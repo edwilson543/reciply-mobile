@@ -1,6 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
@@ -10,8 +9,11 @@ import {
   authReducer,
   initialAuthInfo,
 } from './context/auth/auth';
-import {Route} from './navigation/routes';
-import Temp from './screens/Temp';
+import {Route} from './navigation/Route';
+// Screens
+import SignIn from './screens/users/SignIn/SignIn';
+import RecipeDetails from './screens/recipes/RecipeDetails/RecipeDetails';
+import MyRecipeList from './screens/recipes/MyRecipeList/MyRecipeList';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,9 +46,20 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             {authInfo.userToken === null ? (
-              <Stack.Screen name={Route.SignIn} component={Temp} />
+              // Unauthenticated screens
+              <Stack.Screen name={Route.SignIn} component={SignIn} />
             ) : (
-              <Stack.Screen name={Route.Home} component={Temp} />
+              // Authenticated screens
+              <>
+                <Stack.Screen
+                  name={Route.MyRecipeList}
+                  component={MyRecipeList}
+                />
+                <Stack.Screen
+                  name={Route.RecipeDetails}
+                  component={RecipeDetails}
+                />
+              </>
             )}
           </Stack.Navigator>
         </NavigationContainer>
