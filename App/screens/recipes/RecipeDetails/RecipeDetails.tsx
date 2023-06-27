@@ -5,14 +5,10 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RouteParams} from '../../../navigation/RouteParams';
 
-type RecipeDetailsProps = NativeStackScreenProps<
-  RouteParams,
-  'RecipeDetails'
->;
+type RecipeDetailsProps = NativeStackScreenProps<RouteParams, 'RecipeDetails'>;
 
 export default function RecipeDetails({
   route,
-  navigation,
 }: RecipeDetailsProps): JSX.Element {
   /** Show the details of a single recipe. */
   const recipeId = route.params.recipeId;

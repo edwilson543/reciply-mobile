@@ -54,10 +54,14 @@ export default function App() {
                 <Stack.Screen
                   name={Route.MyRecipeList}
                   component={MyRecipeList}
+                  options={{title: 'my recipes'}}
                 />
                 <Stack.Screen
                   name={Route.RecipeDetails}
                   component={RecipeDetails}
+                  options={({route}) => ({
+                    title: 'recipe ' + route.params.recipeId,
+                  })}
                 />
               </>
             )}
