@@ -1,6 +1,7 @@
 import {colourSchemeLight} from '../colourScheme/colourSchemeLight';
 
 import {StyleSheet} from 'react-native';
+import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
 export const headerScreenStyles = {
   /** Styling for the status bar container provided by react navigation.
@@ -13,7 +14,7 @@ export const headerScreenStyles = {
   headerTitleStyle: {
     fontWeight: 'bold',
   },
-};
+} as NativeStackNavigationOptions;
 
 export const headerStyles = StyleSheet.create({
   /** Styling for the app title in the center of the status bar. */
