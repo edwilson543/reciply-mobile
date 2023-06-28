@@ -9,10 +9,9 @@ import {
   authReducer,
   initialAuthInfo,
 } from './context/auth/auth';
-import {Route, TabStack} from './navigation/constants';
+import {TabStack} from './navigation/constants';
 // Stacks
-import {SignIn} from './screens/auth';
-import {RecipesStackScreen} from './navigation/stacks';
+import {AuthStackScreen, RecipesStackScreen} from './navigation/stacks';
 // Styles
 import {header} from './styles/layout';
 
@@ -48,7 +47,7 @@ export default function App() {
           <Tab.Navigator screenOptions={header.headerScreenOptions}>
             {authInfo.userToken === null ? (
               // Unauthenticated screens
-              <Tab.Screen name={Route.SignIn} component={SignIn} />
+              <Tab.Screen name={TabStack.Auth} component={AuthStackScreen} />
             ) : (
               // Authenticated stacks
               <Tab.Screen

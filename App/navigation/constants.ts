@@ -12,4 +12,5 @@ export enum Route {
 
 export enum TabStack {
   Recipes = 'recipes',
+  Auth = 'auth',
 }
