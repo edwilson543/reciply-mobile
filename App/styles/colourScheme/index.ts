@@ -1,1 +1,2 @@
-export * as colourSchemeLight from './colourSchemeLight';
+export {getColourScheme} from './getColourScheme';
+export type {ColourScheme, ColourTheme} from './colourScheme.type';
