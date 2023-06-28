@@ -12,8 +12,6 @@ import {
 import {TabStack} from './navigation/constants';
 // Stacks
 import {AuthStackScreen, RecipesStackScreen} from './navigation/stacks';
-// Styles
-import {header} from './styles/layout';
 
 const Tab = createBottomTabNavigator();
 
@@ -44,7 +42,7 @@ export default function App() {
     <AuthContext.Provider value={authInfo}>
       <AuthDispatchContext.Provider value={authDispatch}>
         <NavigationContainer>
-          <Tab.Navigator screenOptions={header.headerScreenOptions}>
+          <Tab.Navigator screenOptions={{headerShown: false}}>
             {authInfo.userToken === null ? (
               // Unauthenticated screens
               <Tab.Screen name={TabStack.Auth} component={AuthStackScreen} />

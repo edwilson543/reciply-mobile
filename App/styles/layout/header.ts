@@ -2,8 +2,10 @@ import {colourSchemeLight} from '../colourScheme/colourSchemeLight';
 
 import {StyleSheet} from 'react-native';
 
-export const headerScreenOptions = {
-  /** Styling for the status bar container provided by react navigation. */
+export const headerScreenStyles = {
+  /** Styling for the status bar container provided by react navigation.
+   * The weird structure is to fit with the object type expected by React navigation.
+   * */
   headerStyle: {
     backgroundColor: colourSchemeLight.backgroundSecondary,
   },
