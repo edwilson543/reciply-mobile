@@ -9,10 +9,13 @@ import {
   authReducer,
   initialAuthInfo,
 } from './context/auth/auth';
-import {TabStack} from './navigation/constants';
+import {Route, TabStack} from './navigation/constants';
 // Stacks
-import {AuthStackScreen, RecipesStackScreen} from './navigation/stacks';
+import {RecipesStackScreen} from './navigation/stacks';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {SignIn} from './screens/auth';
 
+const AuthStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -42,18 +45,20 @@ export default function App() {
     <AuthContext.Provider value={authInfo}>
       <AuthDispatchContext.Provider value={authDispatch}>
         <NavigationContainer>
-          <Tab.Navigator screenOptions={{headerShown: false}}>
-            {authInfo.userToken === null ? (
-              // Unauthenticated screens
-              <Tab.Screen name={TabStack.Auth} component={AuthStackScreen} />
-            ) : (
-              // Authenticated stacks
+          {authInfo.userToken === null ? (
+            // Login & registration stack
+            <AuthStack.Navigator>
+              <AuthStack.Screen name={Route.SignIn} component={SignIn} />
+            </AuthStack.Navigator>
+          ) : (
+            // Authenticated stack
+            <Tab.Navigator screenOptions={{headerShown: false}}>
               <Tab.Screen
                 name={TabStack.Recipes}
                 component={RecipesStackScreen}
               />
-            )}
-          </Tab.Navigator>
+            </Tab.Navigator>
+          )}
         </NavigationContainer>
       </AuthDispatchContext.Provider>
     </AuthContext.Provider>
