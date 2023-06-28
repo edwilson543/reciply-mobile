@@ -5,8 +5,13 @@ export enum Route {
   // Recipes
   MyRecipeList = 'MyRecipeList',
   RecipeDetails = 'RecipeDetails',
+
+  // Menus
+  MyMenuList = 'MyMenuList',
+  MenuDetails = 'MenuDetails',
 }
 
 export enum TabStack {
   Recipes = 'Recipes',
+  Menus = 'Menus',
 }

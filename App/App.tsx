@@ -1,6 +1,7 @@
 import React, {useEffect, useReducer} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
   AuthAction,
@@ -11,8 +12,7 @@ import {
 } from './context/auth/auth';
 import {Route, TabStack} from './navigation/constants';
 // Stacks
-import {RecipesStackScreen} from './navigation/stacks';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {RecipesStackScreen, MenuStackScreen} from './navigation/stacks';
 // Screens
 import {SignIn} from './screens/auth';
 // Types
@@ -60,6 +60,7 @@ export default function App() {
                 name={TabStack.Recipes}
                 component={RecipesStackScreen}
               />
+              <Tab.Screen name={TabStack.Menus} component={MenuStackScreen} />
             </Tab.Navigator>
           )}
         </NavigationContainer>

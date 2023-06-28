@@ -1,13 +1,13 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+import {Route} from '../../../navigation/constants';
 import {RecipeStackParams} from '../../../navigation/stackParams';
 
 type RecipeDetailsProps = NativeStackScreenProps<
   RecipeStackParams,
-  'RecipeDetails'
+  Route.RecipeDetails
 >;
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
