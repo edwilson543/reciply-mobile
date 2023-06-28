@@ -4,10 +4,10 @@ import {Button, Text, View} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Route} from '../../../navigation/constants';
-import {RouteParams} from '../../../navigation/RouteParams';
+import {RecipeStackParams} from '../../../navigation/stackParams';
 
 type MyRecipeListProps = NativeStackScreenProps<
-  RouteParams,
+  RecipeStackParams,
   Route.MyRecipeList
 >;
 

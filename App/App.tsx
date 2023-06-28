@@ -13,10 +13,13 @@ import {Route, TabStack} from './navigation/constants';
 // Stacks
 import {RecipesStackScreen} from './navigation/stacks';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// Screens
 import {SignIn} from './screens/auth';
+// Types
+import {AuthStackParams, TabParams} from './navigation/stackParams';
 
-const AuthStack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const AuthStack = createNativeStackNavigator<AuthStackParams>();
+const Tab = createBottomTabNavigator<TabParams>();
 
 export default function App() {
   const [authInfo, authDispatch] = useReducer(authReducer, initialAuthInfo);

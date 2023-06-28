@@ -3,9 +3,12 @@ import {Text, View} from 'react-native';
 
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {RouteParams} from '../../../navigation/RouteParams';
+import {RecipeStackParams} from '../../../navigation/stackParams';
 
-type RecipeDetailsProps = NativeStackScreenProps<RouteParams, 'RecipeDetails'>;
+type RecipeDetailsProps = NativeStackScreenProps<
+  RecipeStackParams,
+  'RecipeDetails'
+>;
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
   /** Show the details of a single recipe. */

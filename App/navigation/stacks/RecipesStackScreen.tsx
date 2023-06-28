@@ -3,10 +3,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Route} from '../constants';
 
 import {RecipeDetails, MyRecipeList} from '../../screens/recipes';
+import {RecipeStackParams} from '../stackParams';
 import {header} from '../../styles/layout';
 import HeaderTitle from '../../components/HeaderTitle';
 
-const RecipesStack = createNativeStackNavigator();
+const RecipesStack = createNativeStackNavigator<RecipeStackParams>();
 
 export function RecipesStackScreen() {
   return (
