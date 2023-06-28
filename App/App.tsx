@@ -13,11 +13,10 @@ import {Route} from './navigation/Route';
 // Layout
 import HeaderTitle from './components/HeaderTitle';
 // Screens
-import SignIn from './screens/users/SignIn/SignIn';
-import RecipeDetails from './screens/recipes/RecipeDetails/RecipeDetails';
-import MyRecipeList from './screens/recipes/MyRecipeList/MyRecipeList';
+import {SignIn} from './screens/auth';
+import {RecipeDetails, MyRecipeList} from './screens/recipes';
 // Styles
-import {headerScreenOptions} from './styles/layout/header';
+import {header} from './styles/layout';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,7 +47,7 @@ export default function App() {
     <AuthContext.Provider value={authInfo}>
       <AuthDispatchContext.Provider value={authDispatch}>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={headerScreenOptions}>
+          <Stack.Navigator screenOptions={header.headerScreenOptions}>
             {authInfo.userToken === null ? (
               // Unauthenticated screens
               <Stack.Screen name={Route.SignIn} component={SignIn} />

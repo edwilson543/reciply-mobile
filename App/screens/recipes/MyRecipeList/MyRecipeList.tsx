@@ -11,7 +11,7 @@ type MyRecipeListProps = NativeStackScreenProps<
   Route.MyRecipeList
 >;
 
-export default function MyRecipeList({
+export function MyRecipeList({
   navigation,
 }: MyRecipeListProps): JSX.Element {
   /** List the recipes the user has written themselves. */

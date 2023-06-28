@@ -7,7 +7,7 @@ import {RouteParams} from '../../../navigation/RouteParams';
 
 type RecipeDetailsProps = NativeStackScreenProps<RouteParams, 'RecipeDetails'>;
 
-export default function RecipeDetails({
+export function RecipeDetails({
   route,
 }: RecipeDetailsProps): JSX.Element {
   /** Show the details of a single recipe. */

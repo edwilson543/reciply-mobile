@@ -1,1 +1,1 @@
-export * as statusBar from './header';
+export * as header from './header';
