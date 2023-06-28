@@ -9,3 +9,7 @@ export enum Route {
   MyRecipeList = 'MyRecipeList',
   RecipeDetails = 'RecipeDetails',
 }
+
+export enum TabStack {
+  Recipes = 'recipes',
+}

@@ -1,6 +1,6 @@
 import React, {useEffect, useReducer} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
   AuthAction,
@@ -9,16 +9,14 @@ import {
   authReducer,
   initialAuthInfo,
 } from './context/auth/auth';
-import {Route} from './navigation/Route';
-// Layout
-import HeaderTitle from './components/HeaderTitle';
-// Screens
+import {Route, TabStack} from './navigation/constants';
+// Stacks
 import {SignIn} from './screens/auth';
-import {RecipeDetails, MyRecipeList} from './screens/recipes';
+import {RecipesStackScreen} from './navigation/stacks';
 // Styles
 import {header} from './styles/layout';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [authInfo, authDispatch] = useReducer(authReducer, initialAuthInfo);
@@ -47,26 +45,18 @@ export default function App() {
     <AuthContext.Provider value={authInfo}>
       <AuthDispatchContext.Provider value={authDispatch}>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={header.headerScreenOptions}>
+          <Tab.Navigator screenOptions={header.headerScreenOptions}>
             {authInfo.userToken === null ? (
               // Unauthenticated screens
-              <Stack.Screen name={Route.SignIn} component={SignIn} />
+              <Tab.Screen name={Route.SignIn} component={SignIn} />
             ) : (
-              // Authenticated screens
-              <>
-                <Stack.Screen
-                  name={Route.MyRecipeList}
-                  component={MyRecipeList}
-                  options={{headerTitle: HeaderTitle}}
-                />
-                <Stack.Screen
-                  name={Route.RecipeDetails}
-                  component={RecipeDetails}
-                  options={{headerTitle: HeaderTitle}}
-                />
-              </>
+              // Authenticated stacks
+              <Tab.Screen
+                name={TabStack.Recipes}
+                component={RecipesStackScreen}
+              />
             )}
-          </Stack.Navigator>
+          </Tab.Navigator>
         </NavigationContainer>
       </AuthDispatchContext.Provider>
     </AuthContext.Provider>

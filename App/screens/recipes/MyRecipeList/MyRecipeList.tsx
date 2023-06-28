@@ -3,7 +3,7 @@ import {Button, Text, View} from 'react-native';
 
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {Route} from '../../../navigation/Route';
+import {Route} from '../../../navigation/constants';
 import {RouteParams} from '../../../navigation/RouteParams';
 
 type MyRecipeListProps = NativeStackScreenProps<
@@ -11,9 +11,7 @@ type MyRecipeListProps = NativeStackScreenProps<
   Route.MyRecipeList
 >;
 
-export function MyRecipeList({
-  navigation,
-}: MyRecipeListProps): JSX.Element {
+export function MyRecipeList({navigation}: MyRecipeListProps): JSX.Element {
   /** List the recipes the user has written themselves. */
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
