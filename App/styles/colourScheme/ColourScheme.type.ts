@@ -7,5 +7,3 @@ export interface ColourScheme {
   fontPrimary: string;
   fontSecondary: string;
 }
-
-export type ColourTheme = 'light' | 'dark' | null;

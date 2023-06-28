@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
+import {ColorSchemeName} from 'react-native';
 
-import {ColourTheme, getColourScheme} from '../colourScheme';
+import {getColourScheme} from '../colourScheme';
 
 export const headerScreenStyles = (
-  theme: ColourTheme,
+  theme: ColorSchemeName,
 ): NativeStackNavigationOptions =>
   /** Styling for the status bar container provided by react navigation.
    * The weird structure is to fit with the object type expected by React navigation.
@@ -19,7 +20,7 @@ export const headerScreenStyles = (
     },
   });
 
-export const headerStyles = (theme: ColourTheme) =>
+export const headerStyles = (theme: ColorSchemeName) =>
   StyleSheet.create({
     /** Styling for the app title in the center of the status bar. */
     headerTitle: {

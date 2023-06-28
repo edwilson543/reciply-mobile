@@ -1,4 +1,4 @@
-import {ColourScheme} from './colourScheme.type';
+import {ColourScheme} from './ColourScheme.type';
 
 export default class ColourSchemeDark implements ColourScheme {
   // Background colours

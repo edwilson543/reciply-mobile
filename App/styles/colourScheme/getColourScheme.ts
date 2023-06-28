@@ -1,7 +1,10 @@
-import {ColourTheme, ColourScheme} from './colourScheme.type';
+import {ColourScheme} from './ColourScheme.type';
 import ColourSchemeLight from './ColourSchemeLight';
 import ColourSchemeDark from './ColourSchemeDark';
 
-export function getColourScheme(theme: ColourTheme): ColourScheme {
-  return theme === 'light' ? new ColourSchemeDark() : new ColourSchemeLight();
+import {ColorSchemeName} from 'react-native';
+
+export function getColourScheme(theme: ColorSchemeName): ColourScheme {
+  /** Resolve the currently active theme, returning the appropriate colour scheme */
+  return theme === 'dark' ? new ColourSchemeDark() : new ColourSchemeLight();
 }
