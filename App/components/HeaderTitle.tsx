@@ -1,20 +1,21 @@
 import React from 'react';
-import {ColorSchemeName, StyleSheet, useColorScheme} from 'react-native';
+import {StyleSheet, useColorScheme} from 'react-native';
 import {Text, View} from 'react-native';
 
-import {getColourScheme} from '../styles/colourScheme';
+import {ColourScheme, getColourScheme} from '../styles/colourScheme';
 
 export default function HeaderTitle() {
   const colourTheme = useColorScheme();
+  const colourScheme = getColourScheme(colourTheme);
 
   return (
     <View>
-      <Text style={styles(colourTheme).headerTitle}>reciply</Text>
+      <Text style={styles(colourScheme).headerTitle}>reciply</Text>
     </View>
   );
 }
 
-const styles = (theme: ColorSchemeName) =>
+const styles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
     /** Styling for the app title in the center of the status bar. */
     headerTitle: {
@@ -23,9 +24,9 @@ const styles = (theme: ColorSchemeName) =>
       alignItems: 'center',
       justifyContent: 'center',
       // Background
-      backgroundColor: getColourScheme(theme).backgroundSecondary,
+      backgroundColor: colourScheme.backgroundSecondary,
       // Typography
-      color: getColourScheme(theme).fontSecondary,
+      color: colourScheme.fontSecondary,
       fontWeight: 'bold',
       fontStyle: 'italic',
     },

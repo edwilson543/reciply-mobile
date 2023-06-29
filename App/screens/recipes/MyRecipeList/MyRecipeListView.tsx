@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, FlatList, Text} from 'react-native';
 
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
@@ -18,18 +18,26 @@ export default function MyRecipeListView({
   // TODO -> use a scroll view with a render item.
   // For now just render the data - it's probs very sub-optimal to fetch / row anyway...
   return (
-    <View style={styles.recipeTable}>
-      {recipes.map(recipe => {
-        return <RecipeListRow recipe={recipe} navigation={navigation} />;
-      })}
-    </View>
+    <>
+      <Text style={styles.title}>My recipes</Text>
+      <FlatList
+        data={recipes}
+        renderItem={({item}) => (
+          <RecipeListRow recipe={item} navigation={navigation} />
+        )}
+        keyExtractor={recipe => `${recipe.recipeId}`}
+      />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  recipeTable: {
+  title: {
     // Display
-    flex: 1,
-    alignItems: 'flex-start',
+    textAlign: 'center',
+    marginVertical: 20,
+    // Typography
+    fontSize: 40,
+    fontWeight: 'bold',
   },
 });

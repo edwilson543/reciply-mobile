@@ -3,6 +3,10 @@ export interface ColourScheme {
   backgroundPrimary: string;
   backgroundSecondary: string;
 
+  // Button colours
+  buttonPrimary: string;
+  buttonSecondary: string;
+
   // Font colours
   fontPrimary: string;
   fontSecondary: string;
