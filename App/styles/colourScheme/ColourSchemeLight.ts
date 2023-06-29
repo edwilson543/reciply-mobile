@@ -9,6 +9,10 @@ export default class ColourSchemeLight implements ColourScheme {
   buttonPrimary = '#7c8be3';
   buttonSecondary = '#e76c6c';
 
+  // Button font colours
+  buttonPrimaryFont = '#fff';
+  buttonSecondaryFont = '#fff';
+
   // Font colours
   fontPrimary = '#000000';
   fontSecondary = '#fff';

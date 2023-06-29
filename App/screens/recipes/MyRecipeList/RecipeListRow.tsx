@@ -34,7 +34,7 @@ export default function RecipeListRow({
           })
         }
         style={styles(colourScheme).viewRecipeButton}>
-        <Text>view</Text>
+        <Text style={styles(colourScheme).viewRecipeButtonText}>view</Text>
       </Pressable>
     </View>
   );
@@ -75,6 +75,11 @@ const styles = (colourScheme: ColourScheme) =>
       // Background
       backgroundColor: colourScheme.buttonPrimary,
       // Border
-      borderRadius: 20,
+      borderRadius: 25,
+    },
+    viewRecipeButtonText: {
+      // Typography
+      fontSize: FontSize.TextSmall,
+      color: colourScheme.buttonPrimaryFont,
     },
   });
