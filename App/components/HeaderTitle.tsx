@@ -1,12 +1,11 @@
 import React from 'react';
-import {StyleSheet, useColorScheme} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Text, View} from 'react-native';
 
-import {ColourScheme, getColourScheme} from '../styles/colourScheme';
+import {ColourScheme, useColourScheme} from '../styles/colourScheme';
 
 export default function HeaderTitle() {
-  const colourTheme = useColorScheme();
-  const colourScheme = getColourScheme(colourTheme);
+  const colourScheme = useColourScheme();
 
   return (
     <View>

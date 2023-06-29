@@ -1,2 +1,2 @@
-export {getColourScheme} from './getColourScheme';
+export {useColourScheme} from './useColourScheme';
 export type {ColourScheme} from './ColourScheme.type';

@@ -1,10 +1,10 @@
-import {Pressable, StyleSheet, Text, useColorScheme, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
 import {Route} from '../../../navigation/constants';
 import React from 'react';
-import {getColourScheme, ColourScheme} from '../../../styles/colourScheme';
+import {useColourScheme, ColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
 type MyRecipeListViewProps = {
@@ -16,8 +16,7 @@ export default function RecipeListRow({
   recipe,
   navigation,
 }: MyRecipeListViewProps) {
-  const colourTheme = useColorScheme();
-  const colourScheme = getColourScheme(colourTheme);
+  const colourScheme = useColourScheme();
 
   return (
     <View style={styles(colourScheme).container} key={recipe.recipeId}>
