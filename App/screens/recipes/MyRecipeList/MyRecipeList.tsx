@@ -1,10 +1,10 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
 
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Route} from '../../../navigation/constants';
 import {RecipeStackParams} from '../../../navigation/stackParams';
+import {MyRecipeListView} from './MyRecipeListView';
 
 type MyRecipeListProps = NativeStackScreenProps<
   RecipeStackParams,
@@ -12,39 +12,21 @@ type MyRecipeListProps = NativeStackScreenProps<
 >;
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {
-  /** List the recipes the user has written themselves. */
-  return (
-    <View style={{flex: 1, alignItems: 'center'}}>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text>Mars bars on toast</Text>
-        <Button
-          title={'view details'}
-          onPress={() =>
-            navigation.push(Route.RecipeDetails, {recipeId: 123456789})
-          }
-        />
-      </View>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text>Chicken fajita lasagne</Text>
-        <Button
-          title={'view details'}
-          onPress={() =>
-            navigation.push(Route.RecipeDetails, {recipeId: 1000000})
-          }
-        />
-      </View>
-    </View>
-  );
+  /** Container for the screen showing the user's recipes. */
+  return <MyRecipeListView recipes={tempData} navigation={navigation} />;
 }
+
+const tempData = [
+  {
+    recipeId: 123456789,
+    name: 'Mars bars on toast',
+    description: 'Healthy alternative to apples',
+    imageSource: '',
+  },
+  {
+    recipeId: 987654321,
+    name: 'Chicken fajita lasagne',
+    description: 'Layered lasagne cake with extra cheese',
+    imageSource: '',
+  },
+];
