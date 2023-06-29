@@ -4,7 +4,7 @@ import {Route} from '../constants';
 import {useColorScheme} from 'react-native';
 
 import {MyMenuList, MenuDetails} from '../../screens/menus';
-import {MenuStackParams} from '../stackParams';
+import {MenuStackParams} from '../navigation.types';
 import {headerScreenStyles} from '../../styles/navigation';
 import HeaderTitle from '../../components/HeaderTitle';
 

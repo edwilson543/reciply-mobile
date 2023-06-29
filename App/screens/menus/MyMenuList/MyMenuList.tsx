@@ -1,15 +1,8 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-
+import {MyMenuListProps} from '../../../navigation/navigation.types';
 import {Route} from '../../../navigation/constants';
-import {MenuStackParams} from '../../../navigation/stackParams';
-
-type MyMenuListProps = NativeStackScreenProps<
-  MenuStackParams,
-  Route.MyMenuList
->;
 
 export function MyMenuList({navigation}: MyMenuListProps) {
   /** List the menus the user has written themselves. */

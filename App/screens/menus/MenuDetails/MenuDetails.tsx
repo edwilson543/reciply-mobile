@@ -1,14 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {MenuStackParams} from '../../../navigation/stackParams';
-import {Route} from '../../../navigation/constants';
-
-type MenuDetailsProps = NativeStackScreenProps<
-  MenuStackParams,
-  Route.MenuDetails
->;
+import {MenuDetailsProps} from '../../../navigation/navigation.types';
 
 export function MenuDetails({route}: MenuDetailsProps) {
   /** Show the details of a single menu. */

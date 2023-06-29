@@ -16,7 +16,7 @@ import {RecipesStackScreen, MenuStackScreen} from './navigation/stacks';
 // Screens
 import {SignIn} from './screens/auth';
 // Types
-import {AuthStackParams, TabParams} from './navigation/stackParams';
+import {AuthStackParams, TabParams} from './navigation/navigation.types';
 
 const AuthStack = createNativeStackNavigator<AuthStackParams>();
 const Tab = createBottomTabNavigator<TabParams>();

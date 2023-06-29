@@ -1,14 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-import {Route} from '../../../navigation/constants';
-import {RecipeStackParams} from '../../../navigation/stackParams';
-
-type RecipeDetailsProps = NativeStackScreenProps<
-  RecipeStackParams,
-  Route.RecipeDetails
->;
+import {RecipeDetailsProps} from '../../../navigation/navigation.types';
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
   /** Show the details of a single recipe. */

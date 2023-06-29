@@ -4,7 +4,7 @@ import {Route} from '../constants';
 import {useColorScheme} from 'react-native';
 
 import {RecipeDetails, MyRecipeList} from '../../screens/recipes';
-import {RecipeStackParams} from '../stackParams';
+import {RecipeStackParams} from '../navigation.types';
 import {headerScreenStyles} from '../../styles/navigation';
 import HeaderTitle from '../../components/HeaderTitle';
 

@@ -1,15 +1,7 @@
 import React from 'react';
 
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-import {Route} from '../../../navigation/constants';
-import {RecipeStackParams} from '../../../navigation/stackParams';
-import {MyRecipeListView} from './MyRecipeListView';
-
-type MyRecipeListProps = NativeStackScreenProps<
-  RecipeStackParams,
-  Route.MyRecipeList
->;
+import {MyRecipeListProps} from '../../../navigation/navigation.types';
+import MyRecipeListView from './MyRecipeListView';
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */

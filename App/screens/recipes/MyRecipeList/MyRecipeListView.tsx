@@ -1,22 +1,19 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {Route} from '../../../navigation/constants';
-import {RecipeStackParams} from '../../../navigation/stackParams';
 import {RecipePreview} from '../../../utils/types/recipes';
-
-type MyRecipeListNavigationProp = NativeStackNavigationProp<
-  RecipeStackParams,
-  Route.MyRecipeList
->;
+import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipePreview>;
   navigation: MyRecipeListNavigationProp;
 };
 
-export function MyRecipeListView({recipes, navigation}: MyRecipeListViewProps) {
+export default function MyRecipeListView({
+  recipes,
+  navigation,
+}: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
   return (
     <View style={styles.recipeTable}>
