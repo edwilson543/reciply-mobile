@@ -5,7 +5,7 @@ import {useColorScheme} from 'react-native';
 
 import {RecipeDetails, MyRecipeList} from '../../screens/recipes';
 import {RecipeStackParams} from '../stackParams';
-import {header} from '../../styles/layout';
+import {headerScreenStyles} from '../../styles/navigation';
 import HeaderTitle from '../../components/HeaderTitle';
 
 const RecipesStack = createNativeStackNavigator<RecipeStackParams>();
@@ -17,7 +17,7 @@ export function RecipesStackScreen() {
     <RecipesStack.Navigator
       screenOptions={{
         headerTitle: HeaderTitle,
-        ...header.headerScreenStyles(colourTheme),
+        ...headerScreenStyles(colourTheme),
       }}>
       <RecipesStack.Screen name={Route.MyRecipeList} component={MyRecipeList} />
       <RecipesStack.Screen

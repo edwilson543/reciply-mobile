@@ -5,7 +5,7 @@ import {useColorScheme} from 'react-native';
 
 import {MyMenuList, MenuDetails} from '../../screens/menus';
 import {MenuStackParams} from '../stackParams';
-import {header} from '../../styles/layout';
+import {headerScreenStyles} from '../../styles/navigation';
 import HeaderTitle from '../../components/HeaderTitle';
 
 const MenusStack = createNativeStackNavigator<MenuStackParams>();
@@ -17,7 +17,7 @@ export function MenuStackScreen() {
     <MenusStack.Navigator
       screenOptions={{
         headerTitle: HeaderTitle,
-        ...header.headerScreenStyles(colourTheme),
+        ...headerScreenStyles(colourTheme),
       }}>
       <MenusStack.Screen name={Route.MyMenuList} component={MyMenuList} />
       <MenusStack.Screen name={Route.MenuDetails} component={MenuDetails} />

@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {ColorSchemeName} from 'react-native';
 
@@ -17,22 +16,5 @@ export const headerScreenStyles = (
     headerTintColor: getColourScheme(theme).fontSecondary,
     headerTitleStyle: {
       fontWeight: 'bold',
-    },
-  });
-
-export const headerStyles = (theme: ColorSchemeName) =>
-  StyleSheet.create({
-    /** Styling for the app title in the center of the status bar. */
-    headerTitle: {
-      /** Display */
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      /** Background */
-      backgroundColor: getColourScheme(theme).backgroundSecondary,
-      /** Typography */
-      color: getColourScheme(theme).fontSecondary,
-      fontWeight: 'bold',
-      fontStyle: 'italic',
     },
   });
