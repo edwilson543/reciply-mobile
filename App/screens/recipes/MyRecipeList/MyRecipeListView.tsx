@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import {Route} from '../../../navigation/constants';
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
+import RecipeListRow from './RecipeListRow';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipePreview>;
@@ -15,23 +15,12 @@ export default function MyRecipeListView({
   navigation,
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
+  // TODO -> use a scroll view with a render item.
+  // For now just render the data - it's probs very sub-optimal to fetch / row anyway...
   return (
     <View style={styles.recipeTable}>
       {recipes.map(recipe => {
-        return (
-          <View style={styles.recipeRow} key={recipe.recipeId}>
-            <Text>{recipe.name}</Text>
-            <Text>{recipe.description}</Text>
-            <Button
-              title={'view'}
-              onPress={() =>
-                navigation.push(Route.RecipeDetails, {
-                  recipeId: recipe.recipeId,
-                })
-              }
-            />
-          </View>
-        );
+        return <RecipeListRow recipe={recipe} navigation={navigation} />;
       })}
     </View>
   );
@@ -42,12 +31,5 @@ const styles = StyleSheet.create({
     // Display
     flex: 1,
     alignItems: 'flex-start',
-  },
-  recipeRow: {
-    // Display
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

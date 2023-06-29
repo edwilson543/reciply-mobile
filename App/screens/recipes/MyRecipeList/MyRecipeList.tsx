@@ -5,6 +5,7 @@ import MyRecipeListView from './MyRecipeListView';
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
+  // TODO -> hook & mock for fetching data
   return <MyRecipeListView recipes={tempData} navigation={navigation} />;
 }
 
