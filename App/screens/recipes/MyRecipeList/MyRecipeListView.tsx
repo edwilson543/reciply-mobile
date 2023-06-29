@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, FlatList, Text} from 'react-native';
 
+import {FontSize} from '../../../styles/constants';
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
 import RecipeListRow from './RecipeListRow';
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 20,
     // Typography
-    fontSize: 40,
+    fontSize: FontSize.Header1,
     fontWeight: 'bold',
   },
 });

@@ -1,17 +1,11 @@
-import {
-  Pressable,
-  ColorSchemeName,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {Pressable, StyleSheet, Text, useColorScheme, View} from 'react-native';
 
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
 import {Route} from '../../../navigation/constants';
 import React from 'react';
 import {getColourScheme, ColourScheme} from '../../../styles/colourScheme';
+import {FontSize} from '../../../styles/constants';
 
 type MyRecipeListViewProps = {
   recipe: RecipePreview;
@@ -64,12 +58,12 @@ const styles = (colourScheme: ColourScheme) =>
     },
     recipeName: {
       // Typography
-      fontSize: 20,
+      fontSize: FontSize.Text,
       fontWeight: 'bold',
     },
     recipeDescription: {
       // Typography
-      fontSize: 15,
+      fontSize: FontSize.TextSmall,
       fontStyle: 'italic',
     },
     viewRecipeButton: {
