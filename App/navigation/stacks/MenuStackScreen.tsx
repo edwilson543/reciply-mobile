@@ -5,7 +5,7 @@ import {Route} from '../constants';
 import {MyMenuList, MenuDetails} from '../../screens/menus';
 import {MenuStackParams} from '../navigation.types';
 import {headerScreenStyles} from '../../styles/navigation';
-import HeaderTitle from '../../components/HeaderTitle';
+import HeaderTitle from '../components/HeaderTitle';
 import {useColourScheme} from '../../styles/colourScheme';
 
 const MenusStack = createNativeStackNavigator<MenuStackParams>();
