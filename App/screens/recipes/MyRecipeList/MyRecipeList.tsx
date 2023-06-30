@@ -1,73 +1,18 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
 
 import {MyRecipeListProps} from '../../../navigation/navigation.types';
 import MyRecipeListView from './MyRecipeListView';
+import {RecipePreview} from '../../../utils/types/recipes';
+import {getMyRecipeList} from '../../../services/restAPI/recipes';
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
-  // TODO -> hook & mock for fetching data
-  return <MyRecipeListView recipes={tempData} navigation={navigation} />;
-}
+  const [recipeList, setRecipeList] = useState<Array<RecipePreview>>([]);
 
-const tempData = [
-  {
-    recipeId: 123456789,
-    name: 'Mars bars on toast',
-    description: 'Healthy alternative to apples',
-    imageSource: '',
-  },
-  {
-    recipeId: 987654321,
-    name: 'Chicken fajita lasagne',
-    description: 'Layered lasagne cake with extra cheese',
-    imageSource: '',
-  },
-  {
-    recipeId: 111111,
-    name: 'Mars bars on toast',
-    description: 'Healthy alternative to apples',
-    imageSource: '',
-  },
-  {
-    recipeId: 222222,
-    name: 'Chicken fajita lasagne',
-    description: 'Layered lasagne cake with extra cheese',
-    imageSource: '',
-  },
-  {
-    recipeId: 3333333,
-    name: 'Mars bars on toast',
-    description: 'Healthy alternative to apples',
-    imageSource: '',
-  },
-  {
-    recipeId: 444444,
-    name: 'Chicken fajita lasagne',
-    description: 'Layered lasagne cake with extra cheese',
-    imageSource: '',
-  },
-  {
-    recipeId: 555555,
-    name: 'Mars bars on toast',
-    description: 'Healthy alternative to apples',
-    imageSource: '',
-  },
-  {
-    recipeId: 666666,
-    name: 'Chicken fajita lasagne',
-    description: 'Layered lasagne cake with extra cheese',
-    imageSource: '',
-  },
-  {
-    recipeId: 7777777,
-    name: 'Mars bars on toast',
-    description: 'Healthy alternative to apples',
-    imageSource: '',
-  },
-  {
-    recipeId: 888888,
-    name: 'Chicken fajita lasagne',
-    description: 'Layered lasagne cake with extra cheese',
-    imageSource: '',
-  },
-];
+  useEffect(() => {
+    getMyRecipeList().then(data => setRecipeList(data));
+  }, []);
+
+  return <MyRecipeListView recipes={recipeList} navigation={navigation} />;
+}
