@@ -3,12 +3,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {ScreenName} from '../constants';
 
 import {RecipeDetails, MyRecipeList} from '../../screens/recipes';
-import {RecipeStackParams} from '../navigation.types';
+import {RecipeStackParamsList} from '../navigation.types';
 import {headerScreenStyles} from '../../styles/navigation';
 import HeaderTitle from '../components/HeaderTitle';
 import {useColourScheme} from '../../styles/colourScheme';
 
-const RecipesStack = createNativeStackNavigator<RecipeStackParams>();
+const RecipesStack = createNativeStackNavigator<RecipeStackParamsList>();
 
 export function RecipesTab() {
   const colourScheme = useColourScheme();
@@ -19,7 +19,10 @@ export function RecipesTab() {
         headerTitle: HeaderTitle,
         ...headerScreenStyles(colourScheme),
       }}>
-      <RecipesStack.Screen name={ScreenName.MyRecipeList} component={MyRecipeList} />
+      <RecipesStack.Screen
+        name={ScreenName.MyRecipeList}
+        component={MyRecipeList}
+      />
       <RecipesStack.Screen
         name={ScreenName.RecipeDetails}
         component={RecipeDetails}

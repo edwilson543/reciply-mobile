@@ -24,12 +24,12 @@ export type TabParamsList = {
  * At present all type keys must match the ScreenName enum values in constants.ts.
  * */
 
-export type RecipeStackParams = {
+export type RecipeStackParamsList = {
   MyRecipeList: undefined;
   RecipeDetails: {recipeId: number};
 };
 
-export type MenuStackParams = {
+export type MenuStackParamsList = {
   MyMenuList: undefined;
   MenuDetails: {menuId: number};
 };
@@ -41,12 +41,12 @@ export type MenuStackParams = {
 // MyRecipeList
 
 export type MyRecipeListNavigationProp = NativeStackNavigationProp<
-  RecipeStackParams,
+  RecipeStackParamsList,
   ScreenName.MyRecipeList
 >;
 
 export type MyRecipeListRouteProp = RouteProp<
-  RecipeStackParams,
+  RecipeStackParamsList,
   ScreenName.MyRecipeList
 >;
 
@@ -58,12 +58,12 @@ export type MyRecipeListProps = {
 // RecipeDetails
 
 export type RecipeDetailsNavigationProp = NativeStackNavigationProp<
-  RecipeStackParams,
+  RecipeStackParamsList,
   ScreenName.RecipeDetails
 >;
 
 export type RecipeDetailsRouteProp = RouteProp<
-  RecipeStackParams,
+  RecipeStackParamsList,
   ScreenName.RecipeDetails
 >;
 
@@ -79,12 +79,12 @@ export type RecipeDetailsProps = {
 // MyMenuList
 
 export type MyMenuListNavigationProp = NativeStackNavigationProp<
-  MenuStackParams,
+  MenuStackParamsList,
   ScreenName.MyMenuList
 >;
 
 export type MyMenuListRouteProp = RouteProp<
-  MenuStackParams,
+  MenuStackParamsList,
   ScreenName.MyMenuList
 >;
 
@@ -96,12 +96,12 @@ export type MyMenuListProps = {
 // MenuDetails
 
 export type MenuDetailsNavigationProp = NativeStackNavigationProp<
-  MenuStackParams,
+  MenuStackParamsList,
   ScreenName.MenuDetails
 >;
 
 export type MenuDetailsRouteProp = RouteProp<
-  MenuStackParams,
+  MenuStackParamsList,
   ScreenName.MenuDetails
 >;
 
