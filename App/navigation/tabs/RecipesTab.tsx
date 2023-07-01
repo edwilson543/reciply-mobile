@@ -10,7 +10,7 @@ import {useColourScheme} from '../../styles/colourScheme';
 
 const RecipesStack = createNativeStackNavigator<RecipeStackParams>();
 
-export function RecipesStackScreen() {
+export function RecipesTab() {
   const colourScheme = useColourScheme();
 
   return (

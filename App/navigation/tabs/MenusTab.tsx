@@ -10,7 +10,7 @@ import {useColourScheme} from '../../styles/colourScheme';
 
 const MenusStack = createNativeStackNavigator<MenuStackParams>();
 
-export function MenuStackScreen() {
+export function MenusTab() {
   const colourScheme = useColourScheme();
 
   return (

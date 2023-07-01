@@ -11,8 +11,8 @@ import {
   initialAuthInfo,
 } from './context/auth/auth';
 import {Route, TabStack} from './navigation/constants';
-// Stacks
-import {RecipesStackScreen, MenuStackScreen} from './navigation/stacks';
+// Tabs
+import {RecipesTab, MenusTab} from './navigation/tabs';
 // Screens
 import {SignIn} from './screens/auth';
 // Types
@@ -56,11 +56,8 @@ export default function App() {
           ) : (
             // Authenticated stack
             <Tab.Navigator screenOptions={{headerShown: false}}>
-              <Tab.Screen
-                name={TabStack.Recipes}
-                component={RecipesStackScreen}
-              />
-              <Tab.Screen name={TabStack.Menus} component={MenuStackScreen} />
+              <Tab.Screen name={TabStack.Recipes} component={RecipesTab} />
+              <Tab.Screen name={TabStack.Menus} component={MenusTab} />
             </Tab.Navigator>
           )}
         </NavigationContainer>
