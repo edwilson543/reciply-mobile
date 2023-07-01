@@ -11,7 +11,7 @@ export enum ScreenName {
   MenuDetails = 'MenuDetails',
 }
 
-export enum TabStack {
+export enum TabName {
   Recipes = 'Recipes',
   Menus = 'Menus',
 }
