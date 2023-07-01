@@ -2,7 +2,7 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
-import {Route} from '../../../navigation/constants';
+import {ScreenName} from '../../../navigation/constants';
 import React from 'react';
 import {useColourScheme, ColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -28,7 +28,7 @@ export default function RecipeListRow({
       </View>
       <Pressable
         onPress={() =>
-          navigation.push(Route.RecipeDetails, {
+          navigation.push(ScreenName.RecipeDetails, {
             recipeId: recipe.recipeId,
           })
         }

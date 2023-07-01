@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Text, View} from 'react-native';
 
 import {MyMenuListProps} from '../../../navigation/navigation.types';
-import {Route} from '../../../navigation/constants';
+import {ScreenName} from '../../../navigation/constants';
 
 export function MyMenuList({navigation}: MyMenuListProps) {
   /** List the menus the user has written themselves. */
@@ -19,7 +19,7 @@ export function MyMenuList({navigation}: MyMenuListProps) {
         <Button
           title={'view details'}
           onPress={() =>
-            navigation.push(Route.MenuDetails, {menuId: 333666999})
+            navigation.push(ScreenName.MenuDetails, {menuId: 333666999})
           }
         />
       </View>
@@ -34,7 +34,7 @@ export function MyMenuList({navigation}: MyMenuListProps) {
         <Button
           title={'view details'}
           onPress={() =>
-            navigation.push(Route.MenuDetails, {menuId: 3131313131})
+            navigation.push(ScreenName.MenuDetails, {menuId: 3131313131})
           }
         />
       </View>

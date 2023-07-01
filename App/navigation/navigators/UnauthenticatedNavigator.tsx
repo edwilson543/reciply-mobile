@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Route} from '../constants';
+import {ScreenName} from '../constants';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -14,7 +14,7 @@ export default function UnauthenticatedNavigator() {
   return (
     <NavigationContainer>
       <AuthStack.Navigator>
-        <AuthStack.Screen name={Route.SignIn} component={SignIn} />
+        <AuthStack.Screen name={ScreenName.SignIn} component={SignIn} />
       </AuthStack.Navigator>
     </NavigationContainer>
   );

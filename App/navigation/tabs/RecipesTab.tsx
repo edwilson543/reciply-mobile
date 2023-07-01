@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Route} from '../constants';
+import {ScreenName} from '../constants';
 
 import {RecipeDetails, MyRecipeList} from '../../screens/recipes';
 import {RecipeStackParams} from '../navigation.types';
@@ -19,9 +19,9 @@ export function RecipesTab() {
         headerTitle: HeaderTitle,
         ...headerScreenStyles(colourScheme),
       }}>
-      <RecipesStack.Screen name={Route.MyRecipeList} component={MyRecipeList} />
+      <RecipesStack.Screen name={ScreenName.MyRecipeList} component={MyRecipeList} />
       <RecipesStack.Screen
-        name={Route.RecipeDetails}
+        name={ScreenName.RecipeDetails}
         component={RecipeDetails}
       />
     </RecipesStack.Navigator>

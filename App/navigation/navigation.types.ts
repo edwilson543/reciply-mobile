@@ -1,6 +1,6 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp} from '@react-navigation/native';
-import {Route} from './constants';
+import {ScreenName} from './constants';
 
 /**
  * Parameters for screens in the auth stack.
@@ -21,7 +21,7 @@ export type TabParams = {
 
 /**
  * Parameters for individual screens.
- * At present all type keys must match the Route enum values in constants.ts.
+ * At present all type keys must match the ScreenName enum values in constants.ts.
  * */
 
 export type RecipeStackParams = {
@@ -42,12 +42,12 @@ export type MenuStackParams = {
 
 export type MyRecipeListNavigationProp = NativeStackNavigationProp<
   RecipeStackParams,
-  Route.MyRecipeList
+  ScreenName.MyRecipeList
 >;
 
 export type MyRecipeListRouteProp = RouteProp<
   RecipeStackParams,
-  Route.MyRecipeList
+  ScreenName.MyRecipeList
 >;
 
 export type MyRecipeListProps = {
@@ -59,12 +59,12 @@ export type MyRecipeListProps = {
 
 export type RecipeDetailsNavigationProp = NativeStackNavigationProp<
   RecipeStackParams,
-  Route.RecipeDetails
+  ScreenName.RecipeDetails
 >;
 
 export type RecipeDetailsRouteProp = RouteProp<
   RecipeStackParams,
-  Route.RecipeDetails
+  ScreenName.RecipeDetails
 >;
 
 export type RecipeDetailsProps = {
@@ -80,10 +80,10 @@ export type RecipeDetailsProps = {
 
 export type MyMenuListNavigationProp = NativeStackNavigationProp<
   MenuStackParams,
-  Route.MyMenuList
+  ScreenName.MyMenuList
 >;
 
-export type MyMenuListRouteProp = RouteProp<MenuStackParams, Route.MyMenuList>;
+export type MyMenuListRouteProp = RouteProp<MenuStackParams, ScreenName.MyMenuList>;
 
 export type MyMenuListProps = {
   navigation: MyMenuListNavigationProp;
@@ -94,12 +94,12 @@ export type MyMenuListProps = {
 
 export type MenuDetailsNavigationProp = NativeStackNavigationProp<
   MenuStackParams,
-  Route.MenuDetails
+  ScreenName.MenuDetails
 >;
 
 export type MenuDetailsRouteProp = RouteProp<
   MenuStackParams,
-  Route.MenuDetails
+  ScreenName.MenuDetails
 >;
 
 export type MenuDetailsProps = {
