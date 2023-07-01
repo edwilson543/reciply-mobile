@@ -1,6 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
@@ -10,16 +9,15 @@ import {
   authReducer,
   initialAuthInfo,
 } from './context/auth/auth';
-import {Route, TabStack} from './navigation/constants';
-// Tabs
-import {RecipesTab, MenusTab} from './navigation/tabs';
+import {Route} from './navigation/constants';
+// Navigators
+import AuthenticatedNavigator from './navigation/navigators/AuthenticatedNavigator';
 // Screens
 import {SignIn} from './screens/auth';
 // Types
-import {AuthStackParams, TabParams} from './navigation/navigation.types';
+import {AuthStackParams} from './navigation/navigation.types';
 
 const AuthStack = createNativeStackNavigator<AuthStackParams>();
-const Tab = createBottomTabNavigator<TabParams>();
 
 export default function App() {
   const [authInfo, authDispatch] = useReducer(authReducer, initialAuthInfo);
@@ -47,20 +45,15 @@ export default function App() {
   return (
     <AuthContext.Provider value={authInfo}>
       <AuthDispatchContext.Provider value={authDispatch}>
-        <NavigationContainer>
-          {authInfo.userToken === null ? (
-            // Login & registration stack
+        {authInfo.userToken === null ? (
+          <NavigationContainer>
             <AuthStack.Navigator>
               <AuthStack.Screen name={Route.SignIn} component={SignIn} />
             </AuthStack.Navigator>
-          ) : (
-            // Authenticated stack
-            <Tab.Navigator screenOptions={{headerShown: false}}>
-              <Tab.Screen name={TabStack.Recipes} component={RecipesTab} />
-              <Tab.Screen name={TabStack.Menus} component={MenusTab} />
-            </Tab.Navigator>
-          )}
-        </NavigationContainer>
+          </NavigationContainer>
+        ) : (
+          <AuthenticatedNavigator />
+        )}
       </AuthDispatchContext.Provider>
     </AuthContext.Provider>
   );
