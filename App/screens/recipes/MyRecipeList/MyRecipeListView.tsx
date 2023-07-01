@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, FlatList, Text} from 'react-native';
+import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
 
 import {FontSize} from '../../../styles/constants';
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
 import RecipeListRow from './RecipeListRow';
+import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipePreview>;
@@ -16,11 +17,16 @@ export default function MyRecipeListView({
   navigation,
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
-  // TODO -> use a scroll view with a render item.
-  // For now just render the data - it's probs very sub-optimal to fetch / row anyway...
+  const colourScheme = useColourScheme();
+
   return (
     <>
-      <Text style={styles.title}>My recipes</Text>
+      <View style={styles(colourScheme).headerContainer}>
+        <Text style={styles(colourScheme).titleText}>My recipes</Text>
+        <Pressable style={styles(colourScheme).addRecipeButton}>
+          <Text style={styles(colourScheme).addRecipeButtonText}>+</Text>
+        </Pressable>
+      </View>
       <FlatList
         data={recipes}
         renderItem={({item}) => (
@@ -32,13 +38,39 @@ export default function MyRecipeListView({
   );
 }
 
-const styles = StyleSheet.create({
-  title: {
-    // Display
-    textAlign: 'center',
-    marginVertical: 20,
-    // Typography
-    fontSize: FontSize.Header1,
-    fontWeight: 'bold',
-  },
-});
+const styles = (colourScheme: ColourScheme) =>
+  StyleSheet.create({
+    headerContainer: {
+      // Display
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+    },
+    titleText: {
+      // Display
+      textAlign: 'center',
+      marginVertical: 20,
+      // Typography
+      fontSize: FontSize.Header1,
+      fontWeight: 'bold',
+    },
+    addRecipeButton: {
+      // Display
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 50,
+      height: 50,
+      // Background
+      backgroundColor: colourScheme.buttonPrimary,
+      // Border
+      borderRadius: 25,
+    },
+    addRecipeButtonText: {
+      // Display
+      alignItems: 'center',
+      justifyContent: 'center',
+      // Typography
+      fontSize: FontSize.Header3,
+      color: colourScheme.buttonPrimaryFont,
+    },
+  });
