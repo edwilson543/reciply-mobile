@@ -6,7 +6,7 @@ import {ScreenName} from './constants';
  * Parameters for screens in the auth stack.
  * */
 
-export type AuthStackParams = {
+export type UnauthenticatedStackParamsList = {
   SignIn: undefined;
 };
 
@@ -83,7 +83,10 @@ export type MyMenuListNavigationProp = NativeStackNavigationProp<
   ScreenName.MyMenuList
 >;
 
-export type MyMenuListRouteProp = RouteProp<MenuStackParams, ScreenName.MyMenuList>;
+export type MyMenuListRouteProp = RouteProp<
+  MenuStackParams,
+  ScreenName.MyMenuList
+>;
 
 export type MyMenuListProps = {
   navigation: MyMenuListNavigationProp;

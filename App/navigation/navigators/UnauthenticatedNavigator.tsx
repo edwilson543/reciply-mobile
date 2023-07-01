@@ -5,17 +5,21 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {SignIn} from '../../screens/auth';
-import {AuthStackParams} from '../navigation.types';
+import {UnauthenticatedStackParamsList} from '../navigation.types';
 
-const AuthStack = createNativeStackNavigator<AuthStackParams>();
+const UnauthenticatedStack =
+  createNativeStackNavigator<UnauthenticatedStackParamsList>();
 
 export default function UnauthenticatedNavigator() {
   /** Wrap the screens unauthenticated users are able to access. */
   return (
     <NavigationContainer>
-      <AuthStack.Navigator>
-        <AuthStack.Screen name={ScreenName.SignIn} component={SignIn} />
-      </AuthStack.Navigator>
+      <UnauthenticatedStack.Navigator>
+        <UnauthenticatedStack.Screen
+          name={ScreenName.SignIn}
+          component={SignIn}
+        />
+      </UnauthenticatedStack.Navigator>
     </NavigationContainer>
   );
 }
