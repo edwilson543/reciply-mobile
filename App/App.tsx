@@ -1,6 +1,4 @@
 import React, {useEffect, useReducer} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
   AuthAction,
@@ -9,17 +7,12 @@ import {
   authReducer,
   initialAuthInfo,
 } from './context/auth/auth';
-import {Route} from './navigation/constants';
 // Navigators
 import AuthenticatedNavigator from './navigation/navigators/AuthenticatedNavigator';
-// Screens
-import {SignIn} from './screens/auth';
-// Types
-import {AuthStackParams} from './navigation/navigation.types';
-
-const AuthStack = createNativeStackNavigator<AuthStackParams>();
+import UnauthenticatedNavigator from './navigation/navigators/UnauthenticatedNavigator';
 
 export default function App() {
+  /** Root component for the application. */
   const [authInfo, authDispatch] = useReducer(authReducer, initialAuthInfo);
 
   useEffect(() => {
@@ -46,11 +39,7 @@ export default function App() {
     <AuthContext.Provider value={authInfo}>
       <AuthDispatchContext.Provider value={authDispatch}>
         {authInfo.userToken === null ? (
-          <NavigationContainer>
-            <AuthStack.Navigator>
-              <AuthStack.Screen name={Route.SignIn} component={SignIn} />
-            </AuthStack.Navigator>
-          </NavigationContainer>
+          <UnauthenticatedNavigator />
         ) : (
           <AuthenticatedNavigator />
         )}
