@@ -3,10 +3,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {MenusTab, RecipesTab} from '../tabs';
-import {TabParams} from '../navigation.types';
+import {TabParamsList} from '../navigation.types';
 import {TabName} from '../constants';
 
-const Tab = createBottomTabNavigator<TabParams>();
+const Tab = createBottomTabNavigator<TabParamsList>();
 
 export default function AuthenticatedNavigator() {
   /** Wrap each of the tabs authenticated users can access inside a navigator. */

@@ -14,7 +14,7 @@ export type UnauthenticatedStackParamsList = {
  * Parameters for tabs in the root tab navigator.
  * */
 
-export type TabParams = {
+export type TabParamsList = {
   Recipes: undefined;
   Menus: undefined;
 };
