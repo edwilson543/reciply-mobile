@@ -1,19 +1,16 @@
 import React, {useEffect, useReducer} from 'react';
 
-import {
-  AuthAction,
-  AuthContext,
-  AuthDispatchContext,
-  authReducer,
-  initialAuthInfo,
-} from './context/auth/auth';
+import * as auth from './context/auth';
 // Navigators
 import AuthenticatedNavigator from './navigation/navigators/AuthenticatedNavigator';
 import UnauthenticatedNavigator from './navigation/navigators/UnauthenticatedNavigator';
 
 export default function App() {
   /** Root component for the application. */
-  const [authInfo, authDispatch] = useReducer(authReducer, initialAuthInfo);
+  const [authInfo, authDispatch] = useReducer(
+    auth.authReducer,
+    auth.initialAuthInfo,
+  );
 
   useEffect(() => {
     // Fetch the token from storage then navigate to appropriate screen
@@ -29,21 +26,21 @@ export default function App() {
       }
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      authDispatch({type: AuthAction.CompleteSignIn, token: userToken});
+      authDispatch({type: auth.AuthAction.CompleteSignIn, token: userToken});
     }
 
     bootstrapAsync();
   }, []);
 
   return (
-    <AuthContext.Provider value={authInfo}>
-      <AuthDispatchContext.Provider value={authDispatch}>
+    <auth.AuthContext.Provider value={authInfo}>
+      <auth.AuthDispatchContext.Provider value={authDispatch}>
         {authInfo.userToken === null ? (
           <UnauthenticatedNavigator />
         ) : (
           <AuthenticatedNavigator />
         )}
-      </AuthDispatchContext.Provider>
-    </AuthContext.Provider>
+      </auth.AuthDispatchContext.Provider>
+    </auth.AuthContext.Provider>
   );
 }
