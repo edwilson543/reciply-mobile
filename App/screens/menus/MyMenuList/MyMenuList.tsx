@@ -8,6 +8,7 @@ export function MyMenuList({navigation}: MyMenuListProps) {
   /** List the menus the user has written themselves. */
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
+      <Text testID={'menus-header'}>Menus</Text>
       <View
         style={{
           flex: 1,
