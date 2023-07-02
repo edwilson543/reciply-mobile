@@ -2,10 +2,8 @@ import 'react-native';
 import React from 'react';
 import App from './App';
 
-import {act} from '@testing-library/react-native';
-import renderer from 'react-test-renderer';
+import {render} from '@testing-library/react-native';
 
-test('app renders', async () => {
-  jest.useFakeTimers();
-  await act(async () => renderer.create(<App />));
+test('app renders', () => {
+  render(<App />);
 });
