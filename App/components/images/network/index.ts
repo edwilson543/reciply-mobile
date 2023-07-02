@@ -1,0 +1,1 @@
+export {ThumbnailImage} from './ThumbnailImage';
