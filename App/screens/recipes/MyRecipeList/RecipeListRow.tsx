@@ -1,9 +1,10 @@
+import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 import {RecipePreview} from '../../../utils/types/recipes';
 import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import React from 'react';
+import {ThumbnailImage} from '../../../components/images/network';
 import {FontSize} from '../../../styles/constants';
 
 type MyRecipeListViewProps = {
@@ -27,6 +28,7 @@ export default function RecipeListRow({
           <Text style={styles.recipeName}>{recipe.name}</Text>
           <Text style={styles.recipeDescription}>{recipe.description}</Text>
         </View>
+        <ThumbnailImage imageSource={recipe.imageSource} />
       </View>
     </Pressable>
   );
