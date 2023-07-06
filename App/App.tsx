@@ -1,6 +1,7 @@
 import React, {useEffect, useReducer} from 'react';
 
 import * as auth from './context/auth';
+import * as storage from './services/storage';
 // Navigators
 import AuthenticatedNavigator from './navigation/navigators/AuthenticatedNavigator';
 import UnauthenticatedNavigator from './navigation/navigators/UnauthenticatedNavigator';
@@ -13,29 +14,27 @@ export default function App() {
   );
 
   useEffect(() => {
-    // Fetch the token from storage then navigate to appropriate screen
-    async function bootstrapAsync() {
-      let userToken;
-
-      try {
-        // userToken = await SecureStore.getItemAsync('userToken');
-        userToken = 'dummy-token';
-      } catch (e) {
-        // Restoring token failed
-        return;
+    // Fetch the token from storage, verify it, then navigate to appropriate screen
+    async function retrieveAuthToken() {
+      storage.setValueForKey(storage.StorageKey.AuthToken, 'dummy-token'); // TODO -> remove
+      const userToken = storage.getValueForKey(storage.StorageKey.AuthToken);
+      if (userToken) {
+        authDispatch({
+          type: auth.AuthAction.CompleteSignIn,
+          token: userToken,
+        });
       }
-      // This will switch to the App screen or Auth screen and this loading
-      // screen will be unmounted and thrown away.
-      authDispatch({type: auth.AuthAction.CompleteSignIn, token: userToken});
     }
 
-    bootstrapAsync();
+    retrieveAuthToken();
   }, []);
+
+  console.log('TOKEN: ', authInfo.userToken);
 
   return (
     <auth.AuthContext.Provider value={authInfo}>
       <auth.AuthDispatchContext.Provider value={authDispatch}>
-        {authInfo.userToken === null ? (
+        {!authInfo.userToken ? (
           <UnauthenticatedNavigator />
         ) : (
           <AuthenticatedNavigator />
