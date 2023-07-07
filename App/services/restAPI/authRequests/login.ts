@@ -1,14 +1,9 @@
 import * as utils from '../utils';
 import * as auth from '../../../context/auth';
 import * as constants from '../constants';
+import {AuthEndpoint} from './constants';
 
-// Constants
-
-enum AuthEndpoint {
-  Login = 'login/',
-}
-
-// Login
+// Interfaces
 
 interface LoginSuccessPayload {
   token: string;
@@ -25,8 +20,11 @@ class UnauthorizedError extends Error {
   }
 }
 
+// Request
+
 export function useLogin(username: string, password: string): void {
   const authDispatch = auth.useAuthDispatch();
+
   const headers = {
     Authorization:
       'Basic ' + Buffer.from(username + ':' + password).toString('base64'),

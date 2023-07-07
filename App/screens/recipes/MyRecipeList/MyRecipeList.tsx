@@ -2,7 +2,7 @@ import React from 'react';
 
 import {MyRecipeListProps} from '../../../navigation/navigation.types';
 import MyRecipeListView from './MyRecipeListView';
-import {useMyRecipeList} from '../../../services/restAPI/requests/recipes';
+import {useMyRecipeList} from '../../../services/restAPI/recipeRequests/recipes';
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
