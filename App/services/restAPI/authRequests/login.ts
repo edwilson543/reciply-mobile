@@ -1,37 +1,31 @@
 import * as request from '../request';
-import * as auth from '../../../context/auth';
 import * as constants from '../constants';
 import * as exceptions from '../exceptions';
 import {AuthEndpoint} from './constants';
 
-export function useLogin(username: string, password: string): void {
-  const authDispatch = auth.useAuthDispatch();
-
+export async function login(
+  username: string,
+  password: string,
+): Promise<LoginSuccessPayload> {
   const headers = {
     Authorization:
       'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
   };
 
-  request
-    // Attempt basic auth with the given username & password
-    .postRequest(AuthEndpoint.Login, {}, headers)
-    // Throw a useful exception if the username & password are invalid
-    .then(response => {
-      if (response.status === constants.StatusCode.Unauthorized) {
-        const error = response.json() as unknown as LoginErrorPayload;
-        throw new exceptions.UnauthorizedError(error.detail);
-      } else {
-        return response;
-      }
-    })
-    // Store the returned user token in the global context
-    .then(response => {
-      const data = response.json() as unknown as LoginSuccessPayload;
-      authDispatch({
-        type: auth.AuthAction.Login,
-        token: data.token,
-      });
-    });
+  return (
+    request
+      // Attempt basic auth with the given username & password
+      .postRequest(AuthEndpoint.Login, {}, headers)
+      // Throw a useful exception if the username & password are invalid
+      .then(response => {
+        if (response.status === constants.StatusCode.Unauthorized) {
+          const error = response.json() as unknown as LoginErrorPayload;
+          throw new exceptions.UnauthorizedError(error.detail);
+        } else {
+          return response.json() as unknown as LoginSuccessPayload;
+        }
+      })
+  );
 }
 
 // Interfaces
