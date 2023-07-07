@@ -1,26 +1,8 @@
 import * as utils from '../utils';
 import * as auth from '../../../context/auth';
 import * as constants from '../constants';
+import * as exceptions from '../exceptions';
 import {AuthEndpoint} from './constants';
-
-// Interfaces
-
-interface LoginSuccessPayload {
-  token: string;
-}
-
-interface LoginErrorPayload {
-  detail: string;
-}
-
-class UnauthorizedError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'UnauthorizedError';
-  }
-}
-
-// Request
 
 export function useLogin(username: string, password: string): void {
   const authDispatch = auth.useAuthDispatch();
@@ -37,7 +19,7 @@ export function useLogin(username: string, password: string): void {
     .then(response => {
       if (response.status === constants.StatusCode.Unauthorized) {
         const error = response.json() as unknown as LoginErrorPayload;
-        throw new UnauthorizedError(error.detail);
+        throw new exceptions.UnauthorizedError(error.detail);
       } else {
         return response;
       }
@@ -50,4 +32,14 @@ export function useLogin(username: string, password: string): void {
         token: data.token,
       });
     });
+}
+
+// Interfaces
+
+interface LoginSuccessPayload {
+  token: string;
+}
+
+interface LoginErrorPayload {
+  detail: string;
 }

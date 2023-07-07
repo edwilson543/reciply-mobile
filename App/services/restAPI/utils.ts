@@ -1,14 +1,6 @@
 import * as constants from './constants';
 import * as auth from '../../context/auth';
-
-// Exceptions
-
-class FetchError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'FetchError';
-  }
-}
+import * as exceptions from './exceptions';
 
 // Requests
 
@@ -29,7 +21,7 @@ export function postRequest(
   try {
     return fetch(absoluteUrl, request);
   } catch (error) {
-    throw new FetchError(`Error connecting to network: ${error}`);
+    throw new exceptions.FetchError(`Error making request: ${error}`);
   }
 }
 
