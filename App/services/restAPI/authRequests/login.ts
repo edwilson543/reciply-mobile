@@ -1,4 +1,4 @@
-import * as utils from '../utils';
+import * as request from '../request';
 import * as auth from '../../../context/auth';
 import * as constants from '../constants';
 import * as exceptions from '../exceptions';
@@ -12,7 +12,7 @@ export function useLogin(username: string, password: string): void {
       'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
   };
 
-  utils
+  request
     // Attempt basic auth with the given username & password
     .postRequest(AuthEndpoint.Login, {}, headers)
     // Throw a useful exception if the username & password are invalid

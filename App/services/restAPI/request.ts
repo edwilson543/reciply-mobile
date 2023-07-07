@@ -2,9 +2,8 @@ import * as constants from './constants';
 import * as auth from '../../context/auth';
 import * as exceptions from './exceptions';
 
-// Requests
-
 export function postRequest(
+  /** Basic POST request to the API. */
   url: string,
   payload: object,
   headers: object,
@@ -26,6 +25,7 @@ export function postRequest(
 }
 
 export function useAuthenticatedPostRequest(
+  /** POST request to the API using token authentication. */
   url: string,
   payload: object,
 ): Promise<Response> {
