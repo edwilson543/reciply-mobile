@@ -13,7 +13,7 @@ export default function UnauthenticatedNavigator() {
   /** Wrap the screens unauthenticated users are able to access. */
   return (
     <UnauthenticatedStack.Navigator>
-      <UnauthenticatedStack.Screen name={ScreenName.SignIn} component={Login} />
+      <UnauthenticatedStack.Screen name={ScreenName.Login} component={Login} />
     </UnauthenticatedStack.Navigator>
   );
 }

@@ -7,7 +7,7 @@ import {ScreenName} from './constants';
  * */
 
 export type UnauthenticatedStackParamsList = {
-  SignIn: undefined;
+  Login: undefined;
 };
 
 /**
@@ -32,6 +32,27 @@ export type RecipeStackParamsList = {
 export type MenuStackParamsList = {
   MyMenuList: undefined;
   MenuDetails: {menuId: number};
+};
+
+/**
+ * Login screens prop types.
+ */
+
+// Login
+
+export type LoginNavigationProp = NativeStackNavigationProp<
+  UnauthenticatedStackParamsList,
+  ScreenName.Login
+>;
+
+export type LoginRouteProp = RouteProp<
+  UnauthenticatedStackParamsList,
+  ScreenName.Login
+>;
+
+export type LoginProps = {
+  navigation: LoginNavigationProp;
+  route: LoginRouteProp;
 };
 
 /**

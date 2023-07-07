@@ -1,6 +1,6 @@
 export enum ScreenName {
   // Auth
-  SignIn = 'SignIn',
+  Login = 'Login',
 
   // Recipes
   MyRecipeList = 'MyRecipeList',
