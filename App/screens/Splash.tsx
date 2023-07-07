@@ -6,10 +6,11 @@ import {ColourScheme, useColourScheme} from '../styles/colourScheme';
 
 export default function Splash() {
   const colourScheme = useColourScheme();
+  const styleSheet = styles(colourScheme);
 
   return (
-    <View style={styles(colourScheme).container}>
-      <Text style={styles(colourScheme).text}>reciply</Text>
+    <View style={styleSheet.container}>
+      <Text style={styleSheet.text}>reciply</Text>
     </View>
   );
 }

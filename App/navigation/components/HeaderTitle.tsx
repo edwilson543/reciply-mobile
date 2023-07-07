@@ -6,10 +6,11 @@ import {ColourScheme, useColourScheme} from '../../styles/colourScheme';
 
 export default function HeaderTitle() {
   const colourScheme = useColourScheme();
+  const styleSheet = styles(colourScheme);
 
   return (
     <View>
-      <Text style={styles(colourScheme).headerTitle}>reciply</Text>
+      <Text style={styleSheet.headerTitle}>reciply</Text>
     </View>
   );
 }

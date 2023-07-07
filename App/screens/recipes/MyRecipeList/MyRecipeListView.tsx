@@ -18,13 +18,14 @@ export default function MyRecipeListView({
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
   const colourScheme = useColourScheme();
+  const styleSheet = styles(colourScheme);
 
   return (
     <>
-      <View style={styles(colourScheme).headerContainer}>
-        <Text style={styles(colourScheme).titleText}>My recipes</Text>
-        <Pressable style={styles(colourScheme).addRecipeButton}>
-          <Text style={styles(colourScheme).addRecipeButtonText}>+</Text>
+      <View style={styleSheet.headerContainer}>
+        <Text style={styleSheet.titleText}>My recipes</Text>
+        <Pressable style={styleSheet.addRecipeButton}>
+          <Text style={styleSheet.addRecipeButtonText}>+</Text>
         </Pressable>
       </View>
       <FlatList

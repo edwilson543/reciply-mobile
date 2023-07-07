@@ -18,26 +18,26 @@ export default function LoginView({
   onPasswordChange,
 }: LoginViewProps) {
   const colourScheme = useColourScheme();
-  const stylesheet = styles(colourScheme);
+  const styleSheet = styles(colourScheme);
 
   return (
-    <View style={stylesheet.screenContainer}>
-      <View style={stylesheet.loginContainer}>
-        <View style={stylesheet.textInputContainer}>
-          <Text style={stylesheet.textInputLabel}>Username</Text>
+    <View style={styleSheet.screenContainer}>
+      <View style={styleSheet.loginContainer}>
+        <View style={styleSheet.textInputContainer}>
+          <Text style={styleSheet.textInputLabel}>Username</Text>
           <TextInput
             value={username}
             onChangeText={onUsernameChange}
-            style={stylesheet.textInputField}
+            style={styleSheet.textInputField}
           />
         </View>
-        <View style={stylesheet.textInputContainer}>
-          <Text style={stylesheet.textInputLabel}>Password</Text>
+        <View style={styleSheet.textInputContainer}>
+          <Text style={styleSheet.textInputLabel}>Password</Text>
           <TextInput
             value={password}
             onChangeText={onPasswordChange}
             secureTextEntry={true}
-            style={stylesheet.textInputField}
+            style={styleSheet.textInputField}
           />
         </View>
       </View>
