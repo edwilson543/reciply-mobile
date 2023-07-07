@@ -21,8 +21,8 @@ export default function LoginView({
   const stylesheet = styles(colourScheme);
 
   return (
-    <View style={stylesheet.container}>
-      <View style={stylesheet.credentialsContainer}>
+    <View style={stylesheet.screenContainer}>
+      <View style={stylesheet.loginContainer}>
         <View style={stylesheet.textInputContainer}>
           <Text style={stylesheet.textInputLabel}>Username</Text>
           <TextInput
@@ -36,6 +36,7 @@ export default function LoginView({
           <TextInput
             value={password}
             onChangeText={onPasswordChange}
+            secureTextEntry={true}
             style={stylesheet.textInputField}
           />
         </View>
@@ -46,7 +47,7 @@ export default function LoginView({
 
 const styles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
-    container: {
+    screenContainer: {
       // Display
       flex: 1,
       alignItems: 'center',
@@ -54,7 +55,7 @@ const styles = (colourScheme: ColourScheme) =>
       // Background
       backgroundColor: colourScheme.backgroundSecondary,
     },
-    credentialsContainer: {
+    loginContainer: {
       // Display
       width: '75%',
       height: '40%',
