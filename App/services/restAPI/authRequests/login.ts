@@ -1,3 +1,5 @@
+import {Buffer} from 'buffer';
+
 import * as request from '../request';
 import * as constants from '../constants';
 import * as exceptions from '../exceptions';
@@ -11,7 +13,6 @@ export async function login(
     Authorization:
       'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
   };
-
   return (
     request
       // Attempt basic auth with the given username & password
@@ -19,8 +20,7 @@ export async function login(
       // Throw a useful exception if the username & password are invalid
       .then(response => {
         if (response.status === constants.StatusCode.Unauthorized) {
-          const error = response.json() as unknown as LoginErrorPayload;
-          throw new exceptions.UnauthorizedError(error.detail);
+          throw new exceptions.UnauthorizedError('Unauthorized');
         } else {
           return response.json() as unknown as LoginSuccessPayload;
         }
@@ -32,8 +32,4 @@ export async function login(
 
 interface LoginSuccessPayload {
   token: string;
-}
-
-interface LoginErrorPayload {
-  detail: string;
 }

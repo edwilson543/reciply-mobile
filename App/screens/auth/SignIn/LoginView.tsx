@@ -1,5 +1,5 @@
 import React, {SetStateAction} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -9,6 +9,9 @@ type LoginViewProps = {
   onUsernameChange: React.Dispatch<SetStateAction<string>>;
   password: string;
   onPasswordChange: React.Dispatch<SetStateAction<string>>;
+  handleLogin: () => void;
+  canSubmit: boolean;
+  errorMessage: string;
 };
 
 export default function LoginView({
@@ -16,6 +19,9 @@ export default function LoginView({
   onUsernameChange,
   password,
   onPasswordChange,
+  handleLogin,
+  canSubmit,
+  errorMessage,
 }: LoginViewProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
@@ -23,11 +29,13 @@ export default function LoginView({
   return (
     <View style={styleSheet.screenContainer}>
       <View style={styleSheet.loginContainer}>
+        {errorMessage ? <Text>{errorMessage}</Text> : <></>}
         <View style={styleSheet.textInputContainer}>
           <Text style={styleSheet.textInputLabel}>Username</Text>
           <TextInput
             value={username}
             onChangeText={onUsernameChange}
+            autoCapitalize={'none'}
             style={styleSheet.textInputField}
           />
         </View>
@@ -36,10 +44,17 @@ export default function LoginView({
           <TextInput
             value={password}
             onChangeText={onPasswordChange}
+            autoCapitalize={'none'}
             secureTextEntry={true}
             style={styleSheet.textInputField}
           />
         </View>
+        <Pressable
+          onPress={handleLogin}
+          disabled={!canSubmit}
+          style={styleSheet.submitButton}>
+          <Text style={styleSheet.submitText}>Submit</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -58,8 +73,9 @@ const styles = (colourScheme: ColourScheme) =>
     loginContainer: {
       // Display
       width: '75%',
-      height: '40%',
+      height: '50%',
       justifyContent: 'center',
+      padding: 10,
       // Background and border
       backgroundColor: colourScheme.backgroundPrimary,
       borderRadius: 10,
@@ -73,7 +89,7 @@ const styles = (colourScheme: ColourScheme) =>
     },
     textInputLabel: {
       // Display
-      width: '75%',
+      width: '100%',
       // Typography
       fontSize: FontSize.TextLarge,
       fontWeight: 'bold',
@@ -82,7 +98,7 @@ const styles = (colourScheme: ColourScheme) =>
     },
     textInputField: {
       // Display
-      width: '75%',
+      width: '100%',
       // Border
       borderWidth: 1,
       borderRadius: 5,
@@ -91,5 +107,20 @@ const styles = (colourScheme: ColourScheme) =>
       fontSize: FontSize.TextLarge,
       color: colourScheme.fontPrimary,
       textAlign: 'left',
+    },
+    submitButton: {
+      // Display
+      padding: 5,
+      alignItems: 'center',
+      justifyContent: 'center',
+      // Background and border
+      backgroundColor: colourScheme.buttonPrimary,
+      borderRadius: 10,
+    },
+    submitText: {
+      // Typography
+      color: colourScheme.buttonPrimaryFont,
+      fontSize: FontSize.Text,
+      fontWeight: 'bold',
     },
   });

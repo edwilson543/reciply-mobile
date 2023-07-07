@@ -4,8 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import * as auth from './context/auth';
 import * as storage from './services/storage';
 // Navigators
-import AuthenticatedNavigator from './navigation/navigators/AuthenticatedNavigator';
-import UnauthenticatedNavigator from './navigation/navigators/UnauthenticatedNavigator';
+import AuthenticatedNavigator from './navigation/authenticated/AuthenticatedNavigator';
+import UnauthenticatedNavigator from './navigation/unauthenticated/UnauthenticatedNavigator';
 
 export default function App() {
   /** Root component for the application. */
@@ -30,7 +30,7 @@ export default function App() {
     <auth.AuthContext.Provider value={authInfo}>
       <auth.AuthDispatchContext.Provider value={authDispatch}>
         <NavigationContainer>
-          {authInfo.token ? (
+          {!authInfo.token ? (
             <UnauthenticatedNavigator />
           ) : (
             <AuthenticatedNavigator />
