@@ -12,7 +12,7 @@ export class FetchError extends Error {
 
 export class UnauthorizedError extends Error {
   /** Error for a 401 unauthorized. */
-  status_code: number;
+  status_code: StatusCode.Unauthorized;
 
   constructor(message: string) {
     super(message);
