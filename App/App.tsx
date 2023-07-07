@@ -15,26 +15,20 @@ export default function App() {
 
   useEffect(() => {
     // Fetch the token from storage, verify it, then navigate to appropriate screen
-    async function retrieveAuthToken() {
-      storage.setValueForKey(storage.StorageKey.AuthToken, 'dummy-token'); // TODO -> remove
-      const userToken = storage.getValueForKey(storage.StorageKey.AuthToken);
-      if (userToken) {
-        authDispatch({
-          type: auth.AuthAction.CompleteSignIn,
-          token: userToken,
-        });
-      }
+    const userToken = storage.getValueForKey(storage.StorageKey.AuthToken);
+
+    if (userToken) {
+      authDispatch({
+        type: auth.AuthAction.RestoreToken,
+        token: userToken,
+      });
     }
-
-    retrieveAuthToken();
   }, []);
-
-  console.log('TOKEN: ', authInfo.userToken);
 
   return (
     <auth.AuthContext.Provider value={authInfo}>
       <auth.AuthDispatchContext.Provider value={authDispatch}>
-        {!authInfo.userToken ? (
+        {!authInfo.token ? (
           <UnauthenticatedNavigator />
         ) : (
           <AuthenticatedNavigator />
