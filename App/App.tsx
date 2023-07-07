@@ -28,7 +28,7 @@ export default function App() {
   return (
     <auth.AuthContext.Provider value={authInfo}>
       <auth.AuthDispatchContext.Provider value={authDispatch}>
-        {!authInfo.token ? (
+        {true ? (
           <UnauthenticatedNavigator />
         ) : (
           <AuthenticatedNavigator />

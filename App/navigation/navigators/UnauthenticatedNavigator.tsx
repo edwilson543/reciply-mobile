@@ -4,7 +4,7 @@ import {ScreenName} from '../constants';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {SignIn} from '../../screens/auth';
+import {Login} from '../../screens/auth';
 import {UnauthenticatedStackParamsList} from '../navigation.types';
 
 const UnauthenticatedStack =
@@ -17,7 +17,7 @@ export default function UnauthenticatedNavigator() {
       <UnauthenticatedStack.Navigator>
         <UnauthenticatedStack.Screen
           name={ScreenName.SignIn}
-          component={SignIn}
+          component={Login}
         />
       </UnauthenticatedStack.Navigator>
     </NavigationContainer>
