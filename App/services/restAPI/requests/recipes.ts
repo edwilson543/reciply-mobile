@@ -1,5 +1,5 @@
-import {RecipePreview} from '../../utils/types/recipes';
-import data from './__mocks__/data/MyRecipeList.json';
+import {RecipePreview} from '../../../utils/types/recipes';
+import data from '../__mocks__/data/MyRecipeList.json';
 
 import {useEffect, useState} from 'react';
 
