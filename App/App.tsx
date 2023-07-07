@@ -1,4 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 
 import * as auth from './context/auth';
 import * as storage from './services/storage';
@@ -28,11 +29,13 @@ export default function App() {
   return (
     <auth.AuthContext.Provider value={authInfo}>
       <auth.AuthDispatchContext.Provider value={authDispatch}>
-        {true ? (
-          <UnauthenticatedNavigator />
-        ) : (
-          <AuthenticatedNavigator />
-        )}
+        <NavigationContainer>
+          {authInfo.token ? (
+            <UnauthenticatedNavigator />
+          ) : (
+            <AuthenticatedNavigator />
+          )}
+        </NavigationContainer>
       </auth.AuthDispatchContext.Provider>
     </auth.AuthContext.Provider>
   );

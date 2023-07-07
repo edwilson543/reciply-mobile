@@ -1,10 +1,15 @@
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {fireEvent, screen, render} from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
 
 test('View recipe details', () => {
-  render(<AuthenticatedNavigator />);
+  render(
+    <NavigationContainer>
+      <AuthenticatedNavigator />
+    </NavigationContainer>,
+  );
 
   // The recipe list tab should initially be open.
   const recipesHeader = screen.getByText('My recipes');
