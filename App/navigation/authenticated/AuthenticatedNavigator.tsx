@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {MenusTab, RecipesTab} from '../tabs';
+import {MenusTab, RecipesTab} from './tabs';
 import {TabParamsList} from '../navigation.types';
 import {TabName} from '../constants';
 
