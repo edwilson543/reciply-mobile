@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {MenusTab, RecipesTab} from './tabs';
-import {TabParamsList} from '../navigation.types';
+import {TabParamsList} from './navigation.types';
 import {TabName} from '../constants';
 
 const Tab = createBottomTabNavigator<TabParamsList>();

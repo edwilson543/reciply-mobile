@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {RecipeDetailsProps} from '../../../navigation/navigation.types';
+import {RecipeDetailsProps} from '../../../navigation/authenticated/navigation.types';
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
   /** Show the details of a single recipe. */

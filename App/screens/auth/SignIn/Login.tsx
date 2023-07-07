@@ -22,7 +22,7 @@ export function Login() {
           type: auth.AuthAction.Login,
           token: data.token,
         }),
-      ).then(() => {});
+      );
     } catch (error) {
       if (error instanceof exceptions.UnauthorizedError) {
         errorMessage = error.message;

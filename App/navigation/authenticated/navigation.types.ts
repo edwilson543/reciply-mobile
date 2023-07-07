@@ -1,14 +1,7 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp} from '@react-navigation/native';
-import {ScreenName} from './constants';
 
-/**
- * Parameters for screens in the auth stack.
- * */
-
-export type UnauthenticatedStackParamsList = {
-  Login: undefined;
-};
+import {ScreenName} from '../constants';
 
 /**
  * Parameters for tabs in the root tab navigator.
@@ -32,27 +25,6 @@ export type RecipeStackParamsList = {
 export type MenuStackParamsList = {
   MyMenuList: undefined;
   MenuDetails: {menuId: number};
-};
-
-/**
- * Login screens prop types.
- */
-
-// Login
-
-export type LoginNavigationProp = NativeStackNavigationProp<
-  UnauthenticatedStackParamsList,
-  ScreenName.Login
->;
-
-export type LoginRouteProp = RouteProp<
-  UnauthenticatedStackParamsList,
-  ScreenName.Login
->;
-
-export type LoginProps = {
-  navigation: LoginNavigationProp;
-  route: LoginRouteProp;
 };
 
 /**

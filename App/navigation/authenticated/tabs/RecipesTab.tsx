@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {ScreenName} from '../../constants';
 
 import {RecipeDetails, MyRecipeList} from '../../../screens/recipes';
-import {RecipeStackParamsList} from '../../navigation.types';
+import {RecipeStackParamsList} from '../navigation.types';
 import {headerScreenStyles} from '../../../styles/navigation';
 import HeaderTitle from '../components/HeaderTitle';
 import {useColourScheme} from '../../../styles/colourScheme';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 
-import {MyMenuListProps} from '../../../navigation/navigation.types';
+import {MyMenuListProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 
 export function MyMenuList({navigation}: MyMenuListProps) {

@@ -4,7 +4,7 @@ import {ScreenName} from '../constants';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {Login} from '../../screens/auth';
-import {UnauthenticatedStackParamsList} from '../navigation.types';
+import {UnauthenticatedStackParamsList} from './navigation.types';
 
 const UnauthenticatedStack =
   createNativeStackNavigator<UnauthenticatedStackParamsList>();

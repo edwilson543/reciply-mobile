@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-import {MenuDetailsProps} from '../../../navigation/navigation.types';
+import {MenuDetailsProps} from '../../../navigation/authenticated/navigation.types';
 
 export function MenuDetails({route}: MenuDetailsProps) {
   /** Show the details of a single menu. */

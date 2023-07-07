@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {MyRecipeListProps} from '../../../navigation/navigation.types';
+import {MyRecipeListProps} from '../../../navigation/authenticated/navigation.types';
 import MyRecipeListView from './MyRecipeListView';
 import {useMyRecipeList} from '../../../services/restAPI/recipeRequests/recipes';
 

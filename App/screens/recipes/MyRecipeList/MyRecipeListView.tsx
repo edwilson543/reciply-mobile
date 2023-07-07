@@ -3,7 +3,7 @@ import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
 
 import {FontSize} from '../../../styles/constants';
 import {RecipePreview} from '../../../utils/types/recipes';
-import {MyRecipeListNavigationProp} from '../../../navigation/navigation.types';
+import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import RecipeListRow from './RecipeListRow';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 
