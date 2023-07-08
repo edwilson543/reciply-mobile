@@ -1,35 +1,25 @@
-import {Buffer} from 'buffer';
-
 import * as request from '../request';
 import * as constants from '../constants';
 import * as exceptions from '../exceptions';
 import {AuthEndpoint} from './constants';
 
-export async function login(
-  username: string,
-  password: string,
-): Promise<LoginSuccessPayload> {
-  const headers = {
-    Authorization:
-      'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
-  };
+export async function logout(): Promise<void> {
   return (
     request
       // Attempt basic auth with the given username & password
-      .fireRequest(AuthEndpoint.Login, request.RequestMethod.POST, headers, {})
+      .fireAuthenticatedRequest(
+        AuthEndpoint.Logout,
+        request.RequestMethod.POST,
+        {},
+        {},
+      )
       // Throw a useful exception if the username & password are invalid
       .then(response => {
         if (response.status === constants.StatusCode.Unauthorized) {
           throw new exceptions.UnauthorizedError('Unauthorized');
         } else {
-          return response.json() as unknown as LoginSuccessPayload;
+          return;
         }
       })
   );
-}
-
-// Interfaces
-
-interface LoginSuccessPayload {
-  token: string;
 }

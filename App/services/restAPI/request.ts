@@ -8,17 +8,21 @@ export enum RequestMethod {
   DELETE = 'DELETE',
 }
 
+const defaultHeaders = {
+  'Content-type': 'application/json',
+};
+
 export async function fireRequest(
   /** Basic POST request to the API. */
   url: string,
   method: RequestMethod,
-  payload: object,
   headers: object,
+  payload: object,
 ): Promise<Response> {
   const request = {
     method: method,
     headers: {
-      'Content-type': 'application/json',
+      ...defaultHeaders,
       ...headers,
     },
     body: JSON.stringify(payload),
@@ -35,15 +39,20 @@ export async function fireAuthenticatedRequest(
   /** POST request to the API using token authentication. */
   url: string,
   method: RequestMethod,
+  headers: object,
   payload: object,
 ): Promise<Response> {
   const authToken = storage.getValueForKey(storage.StorageKey.AuthToken);
+  const combinedHeaders = {
+    ...defaultHeaders,
+    ...headers,
+    Authorization: `token: ${authToken}`,
+  };
   if (!authToken) {
     // Don't bother making an API request, we know it would just get a 401
     throw new exceptions.UnauthorizedError(
       'No auth token available in storage!',
     );
   }
-  const headers = {Authorization: `token: ${authToken}`};
-  return fireRequest(url, method, payload, headers);
+  return fireRequest(url, method, combinedHeaders, payload);
 }
