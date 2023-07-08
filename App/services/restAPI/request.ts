@@ -1,5 +1,5 @@
 import * as constants from './constants';
-import * as auth from '../../context/auth';
+import * as storage from '../storage';
 import * as exceptions from './exceptions';
 
 export function postRequest(
@@ -24,13 +24,18 @@ export function postRequest(
   }
 }
 
-export function useAuthenticatedPostRequest(
+export function authenticatedPostRequest(
   /** POST request to the API using token authentication. */
   url: string,
   payload: object,
 ): Promise<Response> {
-  const authInfo = auth.useAuth();
-  const headers = {Authorization: `token: ${authInfo.token}`};
+  const authToken = storage.getValueForKey(storage.StorageKey.AuthToken);
+  if (!authToken) {
+    // Don't bother making an API request when we don't have an auth token
+    throw new exceptions.UnauthorizedError(
+      'No auth token available in storage!',
+    );
+  }
+  const headers = {Authorization: `token: ${authToken}`};
   return postRequest(url, payload, headers);
-  // TODO -> dispatch logout action follow a 401 (token expired)
 }
