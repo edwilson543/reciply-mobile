@@ -2,14 +2,21 @@ import * as constants from './constants';
 import * as storage from '../storage';
 import * as exceptions from './exceptions';
 
-export function postRequest(
+export enum RequestMethod {
+  GET = 'GET',
+  POST = 'POST',
+  DELETE = 'DELETE',
+}
+
+export function fireRequest(
   /** Basic POST request to the API. */
   url: string,
+  method: RequestMethod,
   payload: object,
   headers: object,
 ): Promise<Response> {
   const request = {
-    method: 'POST',
+    method: method,
     headers: {
       'Content-type': 'application/json',
       ...headers,
@@ -24,18 +31,19 @@ export function postRequest(
   }
 }
 
-export function authenticatedPostRequest(
+export function fireAuthenticatedRequest(
   /** POST request to the API using token authentication. */
   url: string,
+  method: RequestMethod,
   payload: object,
 ): Promise<Response> {
   const authToken = storage.getValueForKey(storage.StorageKey.AuthToken);
   if (!authToken) {
-    // Don't bother making an API request when we don't have an auth token
+    // Don't bother making an API request, we know it would just get a 401
     throw new exceptions.UnauthorizedError(
       'No auth token available in storage!',
     );
   }
   const headers = {Authorization: `token: ${authToken}`};
-  return postRequest(url, payload, headers);
+  return fireRequest(url, method, payload, headers);
 }
