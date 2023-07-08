@@ -8,7 +8,7 @@ export enum RequestMethod {
   DELETE = 'DELETE',
 }
 
-export function fireRequest(
+export async function fireRequest(
   /** Basic POST request to the API. */
   url: string,
   method: RequestMethod,
@@ -31,7 +31,7 @@ export function fireRequest(
   }
 }
 
-export function fireAuthenticatedRequest(
+export async function fireAuthenticatedRequest(
   /** POST request to the API using token authentication. */
   url: string,
   method: RequestMethod,
