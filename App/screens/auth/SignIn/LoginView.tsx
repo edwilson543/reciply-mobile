@@ -29,7 +29,11 @@ export default function LoginView({
   return (
     <View style={styleSheet.screenContainer}>
       <View style={styleSheet.loginContainer}>
-        {errorMessage ? <Text>{errorMessage}</Text> : <></>}
+        {errorMessage ? (
+          <Text testID={'error-message'}>{errorMessage}</Text>
+        ) : (
+          <></>
+        )}
         <View style={styleSheet.textInputContainer}>
           <Text style={styleSheet.textInputLabel}>Username</Text>
           <TextInput
