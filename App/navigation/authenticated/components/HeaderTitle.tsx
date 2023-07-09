@@ -1,15 +1,17 @@
 import React from 'react';
+
 import {StyleSheet} from 'react-native';
 import {Text, View} from 'react-native';
 
-import {ColourScheme, useColourScheme} from '../../styles/colourScheme';
+import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 
 export default function HeaderTitle() {
   const colourScheme = useColourScheme();
+  const styleSheet = styles(colourScheme);
 
   return (
     <View>
-      <Text style={styles(colourScheme).headerTitle}>reciply</Text>
+      <Text style={styleSheet.headerTitle}>reciply</Text>
     </View>
   );
 }

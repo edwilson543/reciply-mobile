@@ -1,12 +1,13 @@
 import React from 'react';
+
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {ScreenName} from '../constants';
-import {MyMenuList, MenuDetails} from '../../screens/menus';
-import {MenuStackParamsList} from '../navigation.types';
-import {headerScreenStyles} from '../../styles/navigation';
+import {MyMenuList, MenuDetails} from '../../../screens/menus';
+import {useColourScheme} from '../../../styles/colourScheme';
+import {headerScreenStyles} from '../../../styles/navigation';
+import {ScreenName} from '../../constants';
 import HeaderTitle from '../components/HeaderTitle';
-import {useColourScheme} from '../../styles/colourScheme';
+import {MenuStackParamsList} from '../navigation.types';
 
 const MenusStack = createNativeStackNavigator<MenuStackParamsList>();
 

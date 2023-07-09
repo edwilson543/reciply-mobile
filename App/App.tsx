@@ -1,9 +1,11 @@
 import React, {useEffect, useReducer} from 'react';
 
+import {NavigationContainer} from '@react-navigation/native';
+
 import * as auth from './context/auth';
-// Navigators
-import AuthenticatedNavigator from './navigation/navigators/AuthenticatedNavigator';
-import UnauthenticatedNavigator from './navigation/navigators/UnauthenticatedNavigator';
+import AuthenticatedNavigator from './navigation/authenticated/AuthenticatedNavigator';
+import UnauthenticatedNavigator from './navigation/unauthenticated/UnauthenticatedNavigator';
+import * as storage from './services/storage';
 
 export default function App() {
   /** Root component for the application. */
@@ -13,33 +15,27 @@ export default function App() {
   );
 
   useEffect(() => {
-    // Fetch the token from storage then navigate to appropriate screen
-    async function bootstrapAsync() {
-      let userToken;
+    // Fetch the token from storage, verify it, then navigate to appropriate screen
+    const userToken = storage.getValueForKey(storage.StorageKey.AuthToken);
 
-      try {
-        // userToken = await SecureStore.getItemAsync('userToken');
-        userToken = 'dummy-token';
-      } catch (e) {
-        // Restoring token failed
-        return;
-      }
-      // This will switch to the App screen or Auth screen and this loading
-      // screen will be unmounted and thrown away.
-      authDispatch({type: auth.AuthAction.CompleteSignIn, token: userToken});
+    if (userToken) {
+      authDispatch({
+        type: auth.AuthAction.RestoreToken,
+        token: userToken,
+      });
     }
-
-    bootstrapAsync();
   }, []);
 
   return (
     <auth.AuthContext.Provider value={authInfo}>
       <auth.AuthDispatchContext.Provider value={authDispatch}>
-        {authInfo.userToken === null ? (
-          <UnauthenticatedNavigator />
-        ) : (
-          <AuthenticatedNavigator />
-        )}
+        <NavigationContainer>
+          {!authInfo.token ? (
+            <UnauthenticatedNavigator />
+          ) : (
+            <AuthenticatedNavigator />
+          )}
+        </NavigationContainer>
       </auth.AuthDispatchContext.Provider>
     </auth.AuthContext.Provider>
   );

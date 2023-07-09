@@ -1,8 +1,8 @@
-import {ColourScheme} from './ColourScheme.type';
-import ColourSchemeLight from './ColourSchemeLight';
-import ColourSchemeDark from './ColourSchemeDark';
-
 import {useColorScheme} from 'react-native';
+
+import {ColourScheme} from './ColourScheme.type';
+import ColourSchemeDark from './ColourSchemeDark';
+import ColourSchemeLight from './ColourSchemeLight';
 
 export function useColourScheme(): ColourScheme {
   /**

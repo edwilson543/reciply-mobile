@@ -3,16 +3,13 @@ import React, {createContext, useContext, Dispatch} from 'react';
 // Constants
 
 export const initialAuthInfo = {
-  isLoading: true,
-  isSignout: false,
-  userToken: null,
+  token: null,
 };
 
 export enum AuthAction {
-  InitiateSignIn = 'initiate-sign-in',
-  CompleteSignIn = 'complete-sign-in',
-  InitiateSignOut = 'initiate-sign-out',
-  CompleteSignOut = 'initiate-sign-out',
+  RestoreToken = 'restore-token',
+  Login = 'login',
+  Logout = 'logout',
 }
 
 // Context
@@ -38,56 +35,48 @@ export function authReducer(
   auth: AuthInformation,
   action: AuthActionParams,
 ): AuthInformation {
-  /** Perform the relevant auth action based on the parameters */
+  /** Perform the relevant auth action based on the parameters.
+   * Restore & login and defined separately, as they may diverge.
+   * */
   switch (action.type) {
-    case AuthAction.InitiateSignIn: {
-      // Start logging in
+    case AuthAction.RestoreToken: {
       return {
-        isLoading: true,
-        isSignout: false,
-        userToken: null,
+        token: action.token,
       };
     }
-    case AuthAction.CompleteSignIn: {
-      // Complete logging in
+    case AuthAction.Login: {
       return {
-        isLoading: false,
-        isSignout: false,
-        userToken: 'mock-token',
+        token: action.token,
+      };
+    }
+    case AuthAction.Logout: {
+      return {
+        token: null,
       };
     }
     default:
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Unknown action: ' + action);
   }
 }
 
 // Interfaces
 
 interface AuthInformation {
-  isLoading: boolean;
-  isSignout: boolean;
-  userToken: string | null;
+  token: string | null;
 }
 
-interface InitiateSignInAction {
-  type: AuthAction.InitiateSignIn;
-}
-
-interface CompleteSignInAction {
-  type: AuthAction.CompleteSignIn;
+interface RestoreTokenAction {
+  type: AuthAction.RestoreToken;
   token: string;
 }
 
-interface InitiateSignOutAction {
-  type: AuthAction.InitiateSignOut;
+interface LoginAction {
+  type: AuthAction.Login;
+  token: string;
 }
 
-interface CompleteSignOutAction {
-  type: AuthAction.CompleteSignOut;
+interface LogoutAction {
+  type: AuthAction.Logout;
 }
 
-type AuthActionParams =
-  | InitiateSignInAction
-  | CompleteSignInAction
-  | InitiateSignOutAction
-  | CompleteSignOutAction;
+type AuthActionParams = RestoreTokenAction | LoginAction | LogoutAction;

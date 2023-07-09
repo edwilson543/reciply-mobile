@@ -4,7 +4,7 @@ export enum FontSize {
   Header2 = 35,
   Header3 = 30,
   // Plain text for paragraphs, buttons etc.
-  TextLarge = 15,
+  TextLarge = 25,
   Text = 20,
   TextSmall = 15,
 }

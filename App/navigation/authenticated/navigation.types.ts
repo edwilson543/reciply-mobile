@@ -1,14 +1,7 @@
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp} from '@react-navigation/native';
-import {ScreenName} from './constants';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-/**
- * Parameters for screens in the auth stack.
- * */
-
-export type UnauthenticatedStackParamsList = {
-  SignIn: undefined;
-};
+import {ScreenName} from '../constants';
 
 /**
  * Parameters for tabs in the root tab navigator.
