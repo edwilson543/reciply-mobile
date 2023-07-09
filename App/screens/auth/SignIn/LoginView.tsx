@@ -55,8 +55,7 @@ export default function LoginView({
           onPress={handleLogin}
           disabled={!canSubmit}
           style={styleSheet.submitButton}
-          testID={'login-button'}
-        >
+          testID={'login-button'}>
           <Text style={styleSheet.submitText}>Submit</Text>
         </Pressable>
       </View>

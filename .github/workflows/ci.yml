@@ -28,6 +28,4 @@ jobs:
           npx eslint .
     - name: Run prettier
       if: ${{ always() }}
-      run: |
-          cd App
-          npx prettier --check .
+      run: npx prettier --check ./App
