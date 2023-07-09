@@ -37,6 +37,7 @@ export default function LoginView({
             onChangeText={onUsernameChange}
             autoCapitalize={'none'}
             style={styleSheet.textInputField}
+            testID={'username-input'}
           />
         </View>
         <View style={styleSheet.textInputContainer}>
@@ -47,12 +48,15 @@ export default function LoginView({
             autoCapitalize={'none'}
             secureTextEntry={true}
             style={styleSheet.textInputField}
+            testID={'password-input'}
           />
         </View>
         <Pressable
           onPress={handleLogin}
           disabled={!canSubmit}
-          style={styleSheet.submitButton}>
+          style={styleSheet.submitButton}
+          testID={'login-button'}
+        >
           <Text style={styleSheet.submitText}>Submit</Text>
         </Pressable>
       </View>
