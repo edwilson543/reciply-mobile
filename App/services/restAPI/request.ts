@@ -1,6 +1,6 @@
 import * as constants from './constants';
-import * as storage from '../storage';
 import * as exceptions from './exceptions';
+import * as storage from '../storage';
 
 export enum RequestMethod {
   GET = 'GET',

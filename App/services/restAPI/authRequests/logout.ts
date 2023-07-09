@@ -1,7 +1,7 @@
-import * as request from '../request';
+import {AuthEndpoint} from './constants';
 import * as constants from '../constants';
 import * as exceptions from '../exceptions';
-import {AuthEndpoint} from './constants';
+import * as request from '../request';
 
 export async function logout(): Promise<void> {
   return (

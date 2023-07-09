@@ -1,8 +1,9 @@
 import React from 'react';
+
 import {StyleSheet, Text, View} from 'react-native';
 
-import {FontSize} from '../styles/constants';
 import {ColourScheme, useColourScheme} from '../styles/colourScheme';
+import {FontSize} from '../styles/constants';
 
 export default function Splash() {
   const colourScheme = useColourScheme();

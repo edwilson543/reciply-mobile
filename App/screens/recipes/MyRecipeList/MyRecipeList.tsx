@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {MyRecipeListProps} from '../../../navigation/authenticated/navigation.types';
 import MyRecipeListView from './MyRecipeListView';
+import {MyRecipeListProps} from '../../../navigation/authenticated/navigation.types';
 import {useMyRecipeList} from '../../../services/restAPI/recipeRequests/recipes';
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {

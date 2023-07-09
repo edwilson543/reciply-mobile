@@ -1,11 +1,12 @@
 import React from 'react';
+
 import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
 
+import RecipeListRow from './RecipeListRow';
+import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
+import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 import {RecipePreview} from '../../../utils/types/recipes';
-import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
-import RecipeListRow from './RecipeListRow';
-import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipePreview>;

@@ -1,11 +1,11 @@
 import React, {useEffect, useReducer} from 'react';
+
 import {NavigationContainer} from '@react-navigation/native';
 
 import * as auth from './context/auth';
-import * as storage from './services/storage';
-// Navigators
 import AuthenticatedNavigator from './navigation/authenticated/AuthenticatedNavigator';
 import UnauthenticatedNavigator from './navigation/unauthenticated/UnauthenticatedNavigator';
+import * as storage from './services/storage';
 
 export default function App() {
   /** Root component for the application. */

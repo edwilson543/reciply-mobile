@@ -1,11 +1,12 @@
 import React from 'react';
+
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 
-import {RecipePreview} from '../../../utils/types/recipes';
+import {ThumbnailImage} from '../../../components/images/network';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {ThumbnailImage} from '../../../components/images/network';
 import {FontSize} from '../../../styles/constants';
+import {RecipePreview} from '../../../utils/types/recipes';
 
 type MyRecipeListViewProps = {
   recipe: RecipePreview;

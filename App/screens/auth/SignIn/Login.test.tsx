@@ -1,9 +1,10 @@
 import React from 'react';
+
 import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {Login} from './Login';
-import {login} from '../../../services/restAPI/authRequests';
 import * as auth from '../../../context/auth';
+import {login} from '../../../services/restAPI/authRequests';
 import * as exceptions from '../../../services/restAPI/exceptions';
 import * as storage from '../../../services/storage';
 
