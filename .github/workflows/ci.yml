@@ -23,9 +23,7 @@ jobs:
       run: npm test
     - name: Lint with eslint
       if: ${{ always() }}
-      run: |
-          cd App
-          npx eslint .
+      run: npx eslint .
     - name: Run prettier
       if: ${{ always() }}
       run: npx prettier --check ./App
