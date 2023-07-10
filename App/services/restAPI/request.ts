@@ -46,7 +46,7 @@ export async function fireAuthenticatedRequest(
   const combinedHeaders = {
     ...defaultHeaders,
     ...headers,
-    Authorization: `token: ${authToken}`,
+    Authorization: `Token ${authToken}`,
   };
   if (!authToken) {
     // Don't bother making an API request, we know it would just get a 401

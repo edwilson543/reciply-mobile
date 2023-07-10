@@ -1,9 +1,7 @@
 import {AuthEndpoint} from './constants';
-import * as constants from '../constants';
-import * as exceptions from '../exceptions';
 import * as request from '../request';
 
-export async function logout(): Promise<void> {
+export async function logout(): Promise<Response> {
   return (
     request
       // Attempt basic auth with the given username & password
@@ -13,13 +11,5 @@ export async function logout(): Promise<void> {
         {},
         {},
       )
-      // Throw a useful exception if the username & password are invalid
-      .then(response => {
-        if (response.status === constants.StatusCode.Unauthorized) {
-          throw new exceptions.UnauthorizedError('Unauthorized');
-        } else {
-          return;
-        }
-      })
   );
 }
