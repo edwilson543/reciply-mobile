@@ -7,7 +7,7 @@ import {logout} from '../../../services/restAPI/authRequests/logout';
 import * as storage from '../../../services/storage';
 import {StorageKey} from '../../../services/storage';
 
-export function Account() {
+export function AccountSettings() {
   /** View of the user's accounts with links to relevant actions. */
   const authDispatch = auth.useAuthDispatch();
 

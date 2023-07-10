@@ -1,1 +1,1 @@
-export {Account} from '../profile/Account/Account';
+export {AccountSettings} from './Account/AccountSettings';

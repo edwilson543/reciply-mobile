@@ -22,7 +22,7 @@ export function ProfileTab() {
       }}>
       <ProfileStack.Screen
         name={ScreenName.Account}
-        component={profileScreens.Account}
+        component={profileScreens.AccountSettings}
       />
     </ProfileStack.Navigator>
   );
