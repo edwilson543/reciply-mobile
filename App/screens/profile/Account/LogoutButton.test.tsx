@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {act, fireEvent, render, screen} from '@testing-library/react-native';
+import {Alert} from 'react-native';
 
 import LogoutButton from './LogoutButton';
 import * as auth from '../../../context/auth';
@@ -8,12 +9,19 @@ import {logout} from '../../../services/restAPI/authRequests/logout';
 import * as storage from '../../../services/storage';
 import {StorageKey} from '../../../services/storage';
 
-// Mock out the call to the auth API
+// Mock out the call to the logout endpoint
 jest.mock('../../../services/restAPI/authRequests/logout');
 afterEach(() => jest.mocked(logout).mockClear());
 afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
 
-test('use can logout', async () => {
+test('user can logout', async () => {
+  // Mock out launching the alert (since it cannot be interacted with directly)
+  const spyAlert = jest.spyOn(Alert, 'alert');
+
+  // Simulate the logout endpoint accepting the logout
+  const mockLogoutResponse = Promise.resolve(new Response());
+  jest.mocked(logout).mockResolvedValueOnce(mockLogoutResponse);
+
   // Put a token into storage
   storage.setValueForKey(StorageKey.AuthToken, 'dummy-token');
 
@@ -25,16 +33,16 @@ test('use can logout', async () => {
     </auth.AuthDispatchContext.Provider>,
   );
 
-  // Simulate the logout endpoint accepting the logout
-  const mockLogoutResponse = Promise.resolve(new Response());
-  jest.mocked(logout).mockResolvedValueOnce(mockLogoutResponse);
-
   // Logout button should be shown
   const logoutButton = screen.getByText('Logout');
   expect(logoutButton).toBeOnTheScreen();
 
-  // Click the logout button
-  await act(() => fireEvent.press(logoutButton));
+  // Click the logout button & use the alert to confirm
+  fireEvent.press(logoutButton);
+  // @ts-ignore (we know the first call to alert passes a confirm button at the specified index)
+  const confirmLogoutCallback = spyAlert.mock.calls[0][2][1]
+    .onPress as CallableFunction;
+  await act(() => confirmLogoutCallback());
 
   // Logout endpoint should have been requested with the relevant credentials
   expect(jest.mocked(logout).mock.calls).toHaveLength(1);

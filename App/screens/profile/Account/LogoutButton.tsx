@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Pressable, StyleSheet, Text} from 'react-native';
+import {Alert, Pressable, StyleSheet, Text} from 'react-native';
 
 import * as auth from '../../../context/auth';
 import {logout} from '../../../services/restAPI/authRequests/logout';
@@ -15,6 +15,15 @@ export default function LogoutButton() {
   const styleSheet = styles(colourScheme);
   const authDispatch = auth.useAuthDispatch();
 
+  function createLogoutAlert(): void {
+    Alert.alert('Really logout?', '', [
+      {
+        text: 'Cancel',
+      },
+      {text: 'Confirm', onPress: handleLogout},
+    ]);
+  }
+
   function handleLogout(): void {
     logout().then(() => {
       storage.deleteValueForKey(StorageKey.AuthToken);
@@ -25,7 +34,7 @@ export default function LogoutButton() {
   }
 
   return (
-    <Pressable onPress={handleLogout} style={styleSheet.settingRow}>
+    <Pressable onPress={createLogoutAlert} style={styleSheet.settingRow}>
       <Text style={styleSheet.settingText}>Logout</Text>
     </Pressable>
   );
