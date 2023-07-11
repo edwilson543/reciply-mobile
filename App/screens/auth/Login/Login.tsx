@@ -21,7 +21,6 @@ export function Login() {
     setIsLoading(true);
     login(username, password)
       .then(data => {
-        // TODO -> is it a bad practice to have the token in storage AND context
         storage.setValueForKey(storage.StorageKey.AuthToken, data.token);
         authDispatch({
           type: auth.AuthAction.Login,
