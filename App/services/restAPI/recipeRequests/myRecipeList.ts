@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-import data from './__mocks__/myRecipeList.json';
+import data from './__mocks__/myRecipeList.data.json';
 import {RecipePreview} from '../../../utils/types/recipes';
 
 export function useMyRecipeList(): Array<RecipePreview> {
