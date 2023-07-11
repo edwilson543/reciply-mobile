@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {fireEvent, screen, render} from '@testing-library/react-native';
+import {act, fireEvent, screen, render} from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
 
-test('View recipe details', () => {
+test('can switch from recipes to menus tab', async () => {
   jest.mock('../../services/restAPI/recipeRequests/myRecipeList');
 
   render(
@@ -15,13 +15,15 @@ test('View recipe details', () => {
   );
 
   // The recipe list tab should initially be open.
-  const recipesHeader = screen.getByText('My recipes');
-  expect(recipesHeader).toBeOnTheScreen();
+  await act(() => {
+    expect(screen.getByText('My recipes')).toBeOnTheScreen();
+  });
 
   // Open the menus tab.
   const menusTabButton = screen.getByRole('button', {name: 'Menus'});
-  fireEvent.press(menusTabButton);
+  await act(() => fireEvent.press(menusTabButton));
 
-  const menusHeader = screen.getByTestId('menus-header');
-  expect(menusHeader).toBeOnTheScreen();
+  await act(() => {
+    expect(screen.getByTestId('menus-header')).toBeOnTheScreen();
+  });
 });
