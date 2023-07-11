@@ -37,15 +37,21 @@ export default function App() {
       <auth.AuthDispatchContext.Provider value={authDispatch}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
-            {!authInfo.token ? (
-              <Stack.Screen
-                name={'unauthenticated'}
-                component={UnauthenticatedNavigator}
-              />
-            ) : (
+            {authInfo.token ? (
               <Stack.Screen
                 name={'authenticated'}
                 component={AuthenticatedNavigator}
+                options={{
+                  animationTypeForReplace: 'push',
+                }}
+              />
+            ) : (
+              <Stack.Screen
+                name={'unauthenticated'}
+                component={UnauthenticatedNavigator}
+                options={{
+                  animationTypeForReplace: 'pop',
+                }}
               />
             )}
           </Stack.Navigator>
