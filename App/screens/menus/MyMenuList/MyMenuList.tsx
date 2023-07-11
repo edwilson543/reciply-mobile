@@ -8,15 +8,9 @@ import {ScreenName} from '../../../navigation/constants';
 export function MyMenuList({navigation}: MyMenuListProps) {
   /** List the menus the user has written themselves. */
   return (
-    <View style={{flex: 1, alignItems: 'center'}}>
+    <View>
       <Text testID={'menus-header'}>Menus</Text>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+      <View>
         <Text>Christmas bulk</Text>
         <Button
           title={'view details'}
@@ -25,13 +19,7 @@ export function MyMenuList({navigation}: MyMenuListProps) {
           }
         />
       </View>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+      <View>
         <Text>Fajitas mon - thur, chicken wraps fri - sun</Text>
         <Button
           title={'view details'}
