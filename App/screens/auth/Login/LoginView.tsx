@@ -1,6 +1,13 @@
 import React, {SetStateAction} from 'react';
 
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -11,6 +18,7 @@ type LoginViewProps = {
   password: string;
   onPasswordChange: React.Dispatch<SetStateAction<string>>;
   handleLogin: () => void;
+  isLoading: boolean;
   canSubmit: boolean;
   errorMessage: string;
 };
@@ -21,6 +29,7 @@ export default function LoginView({
   password,
   onPasswordChange,
   handleLogin,
+  isLoading,
   canSubmit,
   errorMessage,
 }: LoginViewProps) {
@@ -35,34 +44,40 @@ export default function LoginView({
         ) : (
           <></>
         )}
-        <View style={styleSheet.textInputContainer}>
-          <Text style={styleSheet.textInputLabel}>Username</Text>
-          <TextInput
-            value={username}
-            onChangeText={onUsernameChange}
-            autoCapitalize={'none'}
-            style={styleSheet.textInputField}
-            testID={'username-input'}
-          />
-        </View>
-        <View style={styleSheet.textInputContainer}>
-          <Text style={styleSheet.textInputLabel}>Password</Text>
-          <TextInput
-            value={password}
-            onChangeText={onPasswordChange}
-            autoCapitalize={'none'}
-            secureTextEntry={true}
-            style={styleSheet.textInputField}
-            testID={'password-input'}
-          />
-        </View>
-        <Pressable
-          onPress={handleLogin}
-          disabled={!canSubmit}
-          style={styleSheet.submitButton}
-          testID={'login-button'}>
-          <Text style={styleSheet.submitText}>Submit</Text>
-        </Pressable>
+        {isLoading ? (
+          <ActivityIndicator size={'large'} />
+        ) : (
+          <>
+            <View style={styleSheet.textInputContainer}>
+              <Text style={styleSheet.textInputLabel}>Username</Text>
+              <TextInput
+                value={username}
+                onChangeText={onUsernameChange}
+                autoCapitalize={'none'}
+                style={styleSheet.textInputField}
+                testID={'username-input'}
+              />
+            </View>
+            <View style={styleSheet.textInputContainer}>
+              <Text style={styleSheet.textInputLabel}>Password</Text>
+              <TextInput
+                value={password}
+                onChangeText={onPasswordChange}
+                autoCapitalize={'none'}
+                secureTextEntry={true}
+                style={styleSheet.textInputField}
+                testID={'password-input'}
+              />
+            </View>
+            <Pressable
+              onPress={handleLogin}
+              disabled={!canSubmit}
+              style={styleSheet.submitButton}
+              testID={'login-button'}>
+              <Text style={styleSheet.submitText}>Submit</Text>
+            </Pressable>
+          </>
+        )}
       </View>
     </View>
   );
