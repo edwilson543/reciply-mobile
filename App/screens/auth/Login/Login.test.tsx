@@ -4,11 +4,11 @@ import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {Login} from './Login';
 import * as auth from '../../../context/auth';
-import {login} from '../../../services/restAPI/authRequests';
+import {login} from '../../../services/restAPI/authRequests/login';
 import * as exceptions from '../../../services/restAPI/exceptions';
 import * as storage from '../../../services/storage';
 
-// Mock out the call to the auth API
+// Mock out the call to the login endpoint
 jest.mock('../../../services/restAPI/authRequests/login');
 afterEach(() => jest.mocked(login).mockClear());
 afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
@@ -22,7 +22,7 @@ test('valid username and password logs user in', async () => {
     </auth.AuthDispatchContext.Provider>,
   );
 
-  // Make the login API to return a token for any credentials
+  // Simulate the login endpoint returning a token for the credentials
   const mockLoginResponse = Promise.resolve({token: 'dummy-token'});
   jest.mocked(login).mockResolvedValueOnce(mockLoginResponse);
 
@@ -40,7 +40,7 @@ test('valid username and password logs user in', async () => {
   const loginButton = screen.getByTestId('login-button');
   await act(() => fireEvent.press(loginButton));
 
-  // Login API should have been called with the relevant credentials
+  // Login endpoint should have been requested with the relevant credentials
   expect(jest.mocked(login).mock.calls).toHaveLength(1);
   const mockLoginCall = jest.mocked(login).mock.calls[0];
   expect(mockLoginCall[0]).toBe('ed123');
@@ -63,7 +63,7 @@ test('invalid username and password cannot be used to login in', async () => {
   // Provide a mock auth dispatcher, so the dispatched actions can be inspected
   render(<Login />);
 
-  // Make the login API to reject any credentials
+  // Simulate the login endpoint rejecting the credentials
   const mockLoginResponse = Promise.reject(
     new exceptions.UnauthorizedError('Mock error'),
   );
@@ -79,7 +79,7 @@ test('invalid username and password cannot be used to login in', async () => {
   const loginButton = screen.getByTestId('login-button');
   await act(() => fireEvent.press(loginButton));
 
-  // Login API should have been called with the relevant credentials
+  // Login endpoint should have been requested with the relevant credentials
   expect(jest.mocked(login).mock.calls).toHaveLength(1);
   const mockLoginCall = jest.mocked(login).mock.calls[0];
   expect(mockLoginCall[0]).toBe('ed123');

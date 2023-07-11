@@ -1,3 +1,9 @@
+export enum TabName {
+  Recipes = 'Recipes',
+  Menus = 'Menus',
+  Profile = 'Profile',
+}
+
 export enum ScreenName {
   // Auth
   Login = 'Login',
@@ -9,9 +15,7 @@ export enum ScreenName {
   // Menus
   MyMenuList = 'MyMenuList',
   MenuDetails = 'MenuDetails',
-}
 
-export enum TabName {
-  Recipes = 'Recipes',
-  Menus = 'Menus',
+  // Profile
+  Account = 'Account',
 }

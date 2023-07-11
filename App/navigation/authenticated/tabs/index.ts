@@ -4,3 +4,4 @@
 
 export {RecipesTab} from './RecipesTab';
 export {MenusTab} from './MenusTab';
+export {ProfileTab} from './ProfileTab';

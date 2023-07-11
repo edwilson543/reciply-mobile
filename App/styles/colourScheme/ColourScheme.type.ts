@@ -1,17 +1,28 @@
 export interface ColourScheme {
-  // Background colours
+  // Background
   backgroundPrimary: string;
   backgroundSecondary: string;
 
-  // Button colours
+  // Fonts
+  fontPrimary: string;
+  fontSecondary: string;
+
+  // Buttons
   buttonPrimary: string;
   buttonSecondary: string;
 
-  // Button font colours
+  // Button fonts
   buttonPrimaryFont: string;
   buttonSecondaryFont: string;
 
-  // Font colours
-  fontPrimary: string;
-  fontSecondary: string;
+  // Alerts
+  alertPrimary: string;
+  alertSuccess: string;
+  alertWarning: string;
+  alertDanger: string;
+
+  alertPrimaryFont: string;
+  alertSuccessFont: string;
+  alertWarningFont: string;
+  alertDangerFont: string;
 }

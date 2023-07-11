@@ -3,7 +3,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {TabParamsList} from './navigation.types';
-import {MenusTab, RecipesTab} from './tabs';
+import {MenusTab, RecipesTab, ProfileTab} from './tabs';
 import {TabName} from '../constants';
 
 const Tab = createBottomTabNavigator<TabParamsList>();
@@ -14,6 +14,7 @@ export default function AuthenticatedNavigator() {
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen name={TabName.Recipes} component={RecipesTab} />
       <Tab.Screen name={TabName.Menus} component={MenusTab} />
+      <Tab.Screen name={TabName.Profile} component={ProfileTab} />
     </Tab.Navigator>
   );
 }

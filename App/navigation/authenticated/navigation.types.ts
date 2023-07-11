@@ -10,6 +10,7 @@ import {ScreenName} from '../constants';
 export type TabParamsList = {
   Recipes: undefined;
   Menus: undefined;
+  Profile: undefined;
 };
 
 /**
@@ -25,6 +26,10 @@ export type RecipeStackParamsList = {
 export type MenuStackParamsList = {
   MyMenuList: undefined;
   MenuDetails: {menuId: number};
+};
+
+export type ProfileStackParamsList = {
+  Account: undefined;
 };
 
 /**
@@ -101,4 +106,25 @@ export type MenuDetailsRouteProp = RouteProp<
 export type MenuDetailsProps = {
   navigation: MenuDetailsNavigationProp;
   route: MenuDetailsRouteProp;
+};
+
+/**
+ * Profile screens prop types.
+ */
+
+// MyMenuList
+
+export type AccountNavigationProp = NativeStackNavigationProp<
+  ProfileStackParamsList,
+  ScreenName.Account
+>;
+
+export type AccountRouteProp = RouteProp<
+  ProfileStackParamsList,
+  ScreenName.Account
+>;
+
+export type AccountProps = {
+  navigation: AccountNavigationProp;
+  route: AccountRouteProp;
 };
