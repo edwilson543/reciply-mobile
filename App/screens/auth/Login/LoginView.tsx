@@ -40,7 +40,11 @@ export default function LoginView({
     <View style={styleSheet.screenContainer}>
       <View style={styleSheet.loginContainer}>
         {errorMessage ? (
-          <Text testID={'error-message'}>{errorMessage}</Text>
+          <View style={styleSheet.errorText}>
+            <Text style={styleSheet.errorText} testID={'error-message'}>
+              {errorMessage}
+            </Text>
+          </View>
         ) : (
           <></>
         )}
@@ -145,5 +149,15 @@ const styles = (colourScheme: ColourScheme) =>
       color: colourScheme.buttonPrimaryFont,
       fontSize: FontSize.Text,
       fontWeight: 'bold',
+    },
+    errorText: {
+      // Display
+      padding: 5,
+      // Background and border
+      backgroundColor: colourScheme.alertDanger,
+      borderRadius: 10,
+      // Typography
+      fontSize: FontSize.TextSmall,
+      color: colourScheme.alertDangerFont,
     },
   });
