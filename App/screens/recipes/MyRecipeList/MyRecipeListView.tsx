@@ -34,7 +34,7 @@ export default function MyRecipeListView({
         renderItem={({item}) => (
           <RecipeListRow recipe={item} navigation={navigation} />
         )}
-        keyExtractor={recipe => `${recipe.recipeId}`}
+        keyExtractor={recipe => `${recipe.id}`}
       />
     </>
   );

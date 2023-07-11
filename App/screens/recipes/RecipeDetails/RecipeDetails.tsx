@@ -6,11 +6,11 @@ import {RecipeDetailsProps} from '../../../navigation/authenticated/navigation.t
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
   /** Show the details of a single recipe. */
-  const recipeId = route.params.recipeId;
+  const id = route.params.id;
 
   return (
     <View>
-      <Text>I will fetch & show the details for recipe: {recipeId}</Text>
+      <Text>I will fetch & show the details for recipe: {id}</Text>
     </View>
   );
 }

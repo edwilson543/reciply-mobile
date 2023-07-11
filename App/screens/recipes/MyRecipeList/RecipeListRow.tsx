@@ -21,10 +21,10 @@ export default function RecipeListRow({
     <Pressable
       onPress={() =>
         navigation.push(ScreenName.RecipeDetails, {
-          recipeId: recipe.recipeId,
+          id: recipe.id,
         })
       }>
-      <View style={styles.container} key={recipe.recipeId}>
+      <View style={styles.container} key={recipe.id}>
         <View style={styles.textContainer}>
           <Text style={styles.recipeName}>{recipe.name}</Text>
           <Text style={styles.recipeDescription}>{recipe.description}</Text>

@@ -1,5 +1,5 @@
 export interface RecipePreview {
-  recipeId: number;
+  id: number;
   name: string;
   description: string;
   imageSource: string;

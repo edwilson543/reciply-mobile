@@ -20,7 +20,7 @@ export type TabParamsList = {
 
 export type RecipeStackParamsList = {
   MyRecipeList: undefined;
-  RecipeDetails: {recipeId: number};
+  RecipeDetails: {id: number};
 };
 
 export type MenuStackParamsList = {
