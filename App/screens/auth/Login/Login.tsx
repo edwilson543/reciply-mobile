@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import LoginView from './LoginView';
 import * as auth from '../../../context/auth';
-import {login} from '../../../services/restAPI/authRequests';
+import {login} from '../../../services/restAPI/authRequests/login';
 import * as exceptions from '../../../services/restAPI/exceptions';
 import * as storage from '../../../services/storage';
 

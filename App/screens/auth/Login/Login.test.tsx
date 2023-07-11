@@ -4,7 +4,7 @@ import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {Login} from './Login';
 import * as auth from '../../../context/auth';
-import {login} from '../../../services/restAPI/authRequests';
+import {login} from '../../../services/restAPI/authRequests/login';
 import * as exceptions from '../../../services/restAPI/exceptions';
 import * as storage from '../../../services/storage';
 
