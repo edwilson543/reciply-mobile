@@ -16,6 +16,7 @@ test('initially renders login screen when no auth token in storage', () => {
 
 test('initially renders recipe list when auth token available', async () => {
   storage.setValueForKey(storage.StorageKey.AuthToken, 'dummy-token');
+  jest.mock('./services/restAPI/recipeRequests/myRecipeList');
 
   render(<App />);
 

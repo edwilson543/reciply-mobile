@@ -6,6 +6,8 @@ import {fireEvent, screen, render} from '@testing-library/react-native';
 import AuthenticatedNavigator from './AuthenticatedNavigator';
 
 test('View recipe details', () => {
+  jest.mock('../../services/restAPI/recipeRequests/myRecipeList');
+
   render(
     <NavigationContainer>
       <AuthenticatedNavigator />
