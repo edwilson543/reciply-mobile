@@ -5,9 +5,9 @@ import {act, fireEvent, screen, render} from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
 
-test('can switch from recipes to menus tab', async () => {
-  jest.mock('../../services/restAPI/recipeRequests/myRecipeList');
+jest.mock('../../services/restAPI/recipeRequests/myRecipeList');
 
+test('can switch from recipes to menus tab', async () => {
   render(
     <NavigationContainer>
       <AuthenticatedNavigator />
