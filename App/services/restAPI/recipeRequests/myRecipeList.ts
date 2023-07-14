@@ -1,10 +1,8 @@
 import {useEffect, useState} from 'react';
 
-import {RecipeUrlBase} from './constants';
+import {myRecipeListEndpoint} from './constants';
 import {RecipePreview} from '../../../utils/types/recipes';
 import * as request from '../request';
-
-const recipeListEndpoint = `${RecipeUrlBase}list/`;
 
 export function useMyRecipeList(): Array<RecipePreview> {
   /** Fetch the user's authored recipe list. */
@@ -12,7 +10,7 @@ export function useMyRecipeList(): Array<RecipePreview> {
 
   useEffect(() => {
     request
-      .fireAuthenticatedRequest(recipeListEndpoint, request.RequestMethod.GET)
+      .fireAuthenticatedRequest(myRecipeListEndpoint, request.RequestMethod.GET)
       .then(response => {
         return response.json() as unknown as Array<RecipePreview>;
       })
