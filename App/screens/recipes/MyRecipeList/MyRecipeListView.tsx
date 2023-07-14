@@ -1,15 +1,9 @@
 import React from 'react';
 
-import {
-  StyleSheet,
-  FlatList,
-  Text,
-  View,
-  Pressable,
-  ActivityIndicator,
-} from 'react-native';
+import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -39,7 +33,7 @@ export default function MyRecipeListView({
         </Pressable>
       </View>
       {isLoading ? (
-        <ActivityIndicator size={'large'} />
+        <LoadingSpinner size={'large'} />
       ) : (
         <FlatList
           data={recipes}

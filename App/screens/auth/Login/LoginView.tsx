@@ -1,14 +1,8 @@
 import React, {SetStateAction} from 'react';
 
-import {
-  ActivityIndicator,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 
+import LoadingSpinner from '../../../components/LoadingSpinner';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
@@ -49,7 +43,7 @@ export default function LoginView({
           <></>
         )}
         {isLoading ? (
-          <ActivityIndicator size={'large'} />
+          <LoadingSpinner size={'large'} />
         ) : (
           <>
             <View style={styleSheet.textInputContainer}>
