@@ -10,8 +10,10 @@ import {
 } from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
+import * as requests from '../../services/restAPI/request';
 
-jest.mock('../../services/restAPI/recipeRequests/myRecipeList');
+const mockData = {data: [], isLoading: false};
+jest.spyOn(requests, 'useDataGet').mockReturnValue(mockData);
 
 test('can switch from recipes to menus tab', async () => {
   await waitFor(() =>
