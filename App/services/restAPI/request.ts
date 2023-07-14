@@ -1,3 +1,5 @@
+import {useEffect, useState} from 'react';
+
 import * as constants from './constants';
 import * as exceptions from './exceptions';
 import * as storage from '../storage';
@@ -17,7 +19,7 @@ export async function fireRequest(
   url: string,
   method: RequestMethod,
   headers: object,
-  payload?: object | undefined,
+  payload?: object,
 ): Promise<Response> {
   const body = payload && JSON.stringify(payload);
   const request = {
@@ -40,7 +42,7 @@ export async function fireAuthenticatedRequest(
   /** POST request to the API using token authentication. */
   url: string,
   method: RequestMethod,
-  payload?: object | undefined,
+  payload?: object,
 ): Promise<Response> {
   const authToken = storage.getValueForKey(storage.StorageKey.AuthToken);
   const headers = {
@@ -54,4 +56,42 @@ export async function fireAuthenticatedRequest(
     );
   }
   return fireRequest(url, method, headers, payload);
+}
+
+function useData<ResponseData>(
+  url: string,
+  method: RequestMethod,
+  payload?: object,
+): {data: ResponseData | null; isLoading: boolean} {
+  const [data, setData] = useState<ResponseData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fireAuthenticatedRequest(url, method, payload)
+      .then(response => {
+        return response.json() as unknown as ResponseData;
+      })
+      .then(responseData => setData(responseData))
+      .then(() => setIsLoading(false));
+  }, [method, payload, url]);
+
+  return {data, isLoading};
+}
+
+export function useDataGet<ResponseData>(url: string): {
+  data: ResponseData | null;
+  isLoading: boolean;
+} {
+  return useData<ResponseData>(url, RequestMethod.GET);
+}
+
+export function useDataPost<ResponseData>(
+  url: string,
+  payload: object,
+): {
+  data: ResponseData | null;
+  isLoading: boolean;
+} {
+  return useData<ResponseData>(url, RequestMethod.POST, payload);
 }

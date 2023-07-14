@@ -16,7 +16,7 @@ import {FontSize} from '../../../styles/constants';
 import {RecipePreview} from '../../../utils/types/recipes';
 
 type MyRecipeListViewProps = {
-  recipes: Array<RecipePreview>;
+  recipes: Array<RecipePreview> | null;
   isLoading: boolean;
   navigation: MyRecipeListNavigationProp;
 };
