@@ -9,7 +9,7 @@ import * as storage from './services/storage';
 
 // The initial route after login fires a request, so mock this out
 const mockData = {data: [], isLoading: false};
-jest.spyOn(requests, 'useDataGet').mockReturnValue(mockData);
+jest.spyOn(requests, 'useGetData').mockReturnValue(mockData);
 
 test('initially renders login screen when no auth token in storage', () => {
   storage.deleteValueForKey(storage.StorageKey.AuthToken);

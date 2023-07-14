@@ -79,14 +79,14 @@ function useData<ResponseData>(
   return {data, isLoading};
 }
 
-export function useDataGet<ResponseData>(url: string): {
+export function useGetData<ResponseData>(url: string): {
   data: ResponseData | null;
   isLoading: boolean;
 } {
   return useData<ResponseData>(url, RequestMethod.GET);
 }
 
-export function useDataPost<ResponseData>(
+export function usePostData<ResponseData>(
   url: string,
   payload: object,
 ): {
