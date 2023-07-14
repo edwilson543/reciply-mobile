@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-import * as constants from './constants';
+import {APILocation} from './endpoints';
 import * as exceptions from './exceptions';
 import * as storage from '../storage';
 
@@ -30,7 +30,7 @@ export async function fireRequest(
     },
     body: body,
   };
-  const absoluteUrl = constants.APILocation + url;
+  const absoluteUrl = APILocation + url;
   try {
     return fetch(absoluteUrl, request);
   } catch (error) {

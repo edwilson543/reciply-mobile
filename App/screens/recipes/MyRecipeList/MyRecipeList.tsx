@@ -2,7 +2,7 @@ import React from 'react';
 
 import MyRecipeListView from './MyRecipeListView';
 import {MyRecipeListProps} from '../../../navigation/authenticated/navigation.types';
-import {myRecipeListEndpoint} from '../../../services/restAPI/recipeRequests/constants';
+import {myRecipeListEndpoint} from '../../../services/restAPI/endpoints';
 import {useDataGet} from '../../../services/restAPI/request';
 import {RecipePreview} from '../../../utils/types/recipes';
 

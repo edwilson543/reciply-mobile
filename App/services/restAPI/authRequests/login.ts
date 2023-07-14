@@ -1,7 +1,7 @@
 import {Buffer} from 'buffer';
 
-import {AuthEndpoint} from './constants';
 import * as constants from '../constants';
+import {loginEndpoint} from '../endpoints';
 import * as exceptions from '../exceptions';
 import * as request from '../request';
 
@@ -16,7 +16,7 @@ export async function login(
   return (
     request
       // Attempt basic auth with the given username & password
-      .fireRequest(AuthEndpoint.Login, request.RequestMethod.POST, headers, {})
+      .fireRequest(loginEndpoint, request.RequestMethod.POST, headers, {})
       // Throw a useful exception if the username & password are invalid
       .then(response => {
         if (response.status === constants.StatusCode.Unauthorized) {
