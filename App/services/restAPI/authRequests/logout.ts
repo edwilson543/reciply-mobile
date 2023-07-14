@@ -9,7 +9,6 @@ export async function logout(): Promise<Response> {
         AuthEndpoint.Logout,
         request.RequestMethod.POST,
         {},
-        {},
       )
   );
 }

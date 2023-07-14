@@ -17,15 +17,16 @@ export async function fireRequest(
   url: string,
   method: RequestMethod,
   headers: object,
-  payload: object,
+  payload?: object | undefined,
 ): Promise<Response> {
+  const body = payload && JSON.stringify(payload);
   const request = {
     method: method,
     headers: {
       ...defaultHeaders,
       ...headers,
     },
-    body: JSON.stringify(payload),
+    body: body,
   };
   const absoluteUrl = constants.APILocation + url;
   try {
@@ -39,13 +40,11 @@ export async function fireAuthenticatedRequest(
   /** POST request to the API using token authentication. */
   url: string,
   method: RequestMethod,
-  headers: object,
-  payload: object,
+  payload?: object | undefined,
 ): Promise<Response> {
   const authToken = storage.getValueForKey(storage.StorageKey.AuthToken);
-  const combinedHeaders = {
+  const headers = {
     ...defaultHeaders,
-    ...headers,
     Authorization: `Token ${authToken}`,
   };
   if (!authToken) {
@@ -54,5 +53,5 @@ export async function fireAuthenticatedRequest(
       'No auth token available in storage!',
     );
   }
-  return fireRequest(url, method, combinedHeaders, payload);
+  return fireRequest(url, method, headers, payload);
 }

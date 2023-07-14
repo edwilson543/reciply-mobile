@@ -1,24 +1,23 @@
 import {useEffect, useState} from 'react';
 
-import data from './__mocks__/myRecipeList.data.json';
+import {RecipeUrlBase} from './constants';
 import {RecipePreview} from '../../../utils/types/recipes';
+import * as request from '../request';
+
+const recipeListEndpoint = `${RecipeUrlBase}list/`;
 
 export function useMyRecipeList(): Array<RecipePreview> {
-  /** Fetch the recipe list and return it */
+  /** Fetch the user's authored recipe list. */
   const [recipeList, setRecipeList] = useState<Array<RecipePreview>>([]);
 
   useEffect(() => {
-    getMyRecipeList().then(responseData => setRecipeList(responseData));
+    request
+      .fireAuthenticatedRequest(recipeListEndpoint, request.RequestMethod.GET)
+      .then(response => {
+        return response.json() as unknown as Array<RecipePreview>;
+      })
+      .then(responseData => setRecipeList(responseData));
   }, []);
 
   return recipeList;
-}
-
-async function getMyRecipeList(): Promise<Array<RecipePreview>> {
-  // TODO -> actually make an API request and relegate this implementation to the mock.
-  // This can be some generic hook
-  return new Promise(function (resolve, reject) {
-    resolve(data);
-    reject();
-  });
 }
