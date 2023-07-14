@@ -15,7 +15,7 @@ const defaultHeaders = {
 };
 
 export async function fireRequest(
-  /** Basic POST request to the API. */
+  /** Basic HTTP request to the API. */
   url: string,
   method: RequestMethod,
   headers: object,
@@ -39,7 +39,7 @@ export async function fireRequest(
 }
 
 export async function fireAuthenticatedRequest(
-  /** POST request to the API using token authentication. */
+  /** Authenticated HTTP request to the API using token authentication. */
   url: string,
   method: RequestMethod,
   payload?: object,
@@ -63,6 +63,7 @@ function useData<ResponseData>(
   method: RequestMethod,
   payload?: object,
 ): {data: ResponseData | null; isLoading: boolean} {
+  /** Request some resource and store the response and progress in state. */
   const [data, setData] = useState<ResponseData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -79,6 +80,11 @@ function useData<ResponseData>(
   return {data, isLoading};
 }
 
+export function useGetData(url: string): {data: null; isLoading: true};
+export function useGetData<ResponseData>(url: string): {
+  data: ResponseData;
+  isLoading: false;
+};
 export function useGetData<ResponseData>(url: string): {
   data: ResponseData | null;
   isLoading: boolean;
@@ -86,6 +92,14 @@ export function useGetData<ResponseData>(url: string): {
   return useData<ResponseData>(url, RequestMethod.GET);
 }
 
+export function usePostData(
+  url: string,
+  payload: object,
+): {data: null; isLoading: true};
+export function usePostData<ResponseData>(
+  url: string,
+  payload: object,
+): {data: ResponseData; isLoading: false};
 export function usePostData<ResponseData>(
   url: string,
   payload: object,
