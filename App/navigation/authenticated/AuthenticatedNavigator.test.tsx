@@ -1,17 +1,25 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {act, fireEvent, screen, render} from '@testing-library/react-native';
+import {
+  act,
+  fireEvent,
+  screen,
+  render,
+  waitFor,
+} from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
 
 jest.mock('../../services/restAPI/recipeRequests/myRecipeList');
 
 test('can switch from recipes to menus tab', async () => {
-  render(
-    <NavigationContainer>
-      <AuthenticatedNavigator />
-    </NavigationContainer>,
+  await waitFor(() =>
+    render(
+      <NavigationContainer>
+        <AuthenticatedNavigator />
+      </NavigationContainer>,
+    ),
   );
 
   // The recipe list tab should initially be open.

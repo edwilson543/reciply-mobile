@@ -4,7 +4,7 @@ import {myRecipeListEndpoint} from './constants';
 import {RecipePreview} from '../../../utils/types/recipes';
 import * as request from '../request';
 
-export function useMyRecipeList(): Array<RecipePreview> {
+export default function useMyRecipeList(): Array<RecipePreview> {
   /** Fetch the user's authored recipe list. */
   const [recipeList, setRecipeList] = useState<Array<RecipePreview>>([]);
 
