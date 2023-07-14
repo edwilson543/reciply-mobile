@@ -6,7 +6,13 @@ import useMyRecipeList from '../../../services/restAPI/recipeRequests/myRecipeLi
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
-  const recipeList = useMyRecipeList();
+  const {recipeList, isLoading} = useMyRecipeList();
 
-  return <MyRecipeListView recipes={recipeList} navigation={navigation} />;
+  return (
+    <MyRecipeListView
+      recipes={recipeList}
+      isLoading={isLoading}
+      navigation={navigation}
+    />
+  );
 }

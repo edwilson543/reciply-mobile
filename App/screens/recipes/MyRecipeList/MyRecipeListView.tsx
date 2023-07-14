@@ -1,6 +1,13 @@
 import React from 'react';
 
-import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  Text,
+  View,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
@@ -10,11 +17,13 @@ import {RecipePreview} from '../../../utils/types/recipes';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipePreview>;
+  isLoading: boolean;
   navigation: MyRecipeListNavigationProp;
 };
 
 export default function MyRecipeListView({
   recipes,
+  isLoading,
   navigation,
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
@@ -29,13 +38,17 @@ export default function MyRecipeListView({
           <Text style={styleSheet.addRecipeButtonText}>+</Text>
         </Pressable>
       </View>
-      <FlatList
-        data={recipes}
-        renderItem={({item}) => (
-          <RecipeListRow recipe={item} navigation={navigation} />
-        )}
-        keyExtractor={recipe => `${recipe.id}`}
-      />
+      {isLoading ? (
+        <ActivityIndicator size={'large'} />
+      ) : (
+        <FlatList
+          data={recipes}
+          renderItem={({item}) => (
+            <RecipeListRow recipe={item} navigation={navigation} />
+          )}
+          keyExtractor={recipe => `${recipe.id}`}
+        />
+      )}
     </>
   );
 }
