@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 
+import * as constants from './constants';
 import {APILocation} from './endpoints';
 import * as exceptions from './exceptions';
 import * as storage from '../storage';
@@ -62,32 +63,66 @@ function useData<ResponseData>(
   url: string,
   method: RequestMethod,
   payload?: object,
-): {data: ResponseData | null; isLoading: boolean} {
+): {
+  data: ResponseData | null;
+  friendlyErrors: Errors | null;
+  isLoading: boolean;
+} {
   /** Request some resource and store the response and progress in state. */
   const [data, setData] = useState<ResponseData | null>(null);
+  const [friendlyErrors, setFriendlyErrors] = useState<Errors | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  // TODO -> ADD ERRORS INTO RESPONSE
 
   useEffect(() => {
     setIsLoading(true);
+    let isError = false;
     fireAuthenticatedRequest(url, method, payload)
       .then(response => {
-        return response.json() as unknown as ResponseData;
+        isError = response.status >= constants.StatusCode.BadRequest;
+        return response.json() as unknown;
       })
-      .then(responseData => setData(responseData))
-      .then(() => setIsLoading(false));
+      .then(responseData => {
+        if (isError) {
+          // Cast the response to the error type
+          setFriendlyErrors(responseData as Errors);
+        } else {
+          // Cast the response data to the generic type
+          setData(responseData as ResponseData);
+        }
+      })
+      .then(() => setIsLoading(false))
+      // Any server or authorization error gets a generic response
+      .catch(() =>
+        setFriendlyErrors({
+          error: ['An unexpected error occurred. Please try again later.'],
+        }),
+      );
   }, [method, payload, url]);
 
-  return {data, isLoading};
+  return {data, friendlyErrors, isLoading};
 }
 
-export function useGetData(url: string): {data: null; isLoading: true};
+export function useGetData(url: string): {
+  data: null;
+  friendlyErrors: null;
+  isLoading: true;
+};
+/** Waiting for response. */
 export function useGetData<ResponseData>(url: string): {
   data: ResponseData;
+  friendlyErrors: null;
   isLoading: false;
 };
+/** Successful request. */
+export function useGetData(url: string): {
+  data: null;
+  friendlyErrors: Errors;
+  isLoading: false;
+};
+/** Some error. */
 export function useGetData<ResponseData>(url: string): {
   data: ResponseData | null;
+  friendlyErrors: Errors | null;
   isLoading: boolean;
 } {
   return useData<ResponseData>(url, RequestMethod.GET);
@@ -96,17 +131,29 @@ export function useGetData<ResponseData>(url: string): {
 export function usePostData(
   url: string,
   payload: object,
-): {data: null; isLoading: true};
+): {data: null; friendlyErrors: null; isLoading: true};
+/** Waiting for response. */
 export function usePostData<ResponseData>(
   url: string,
   payload: object,
-): {data: ResponseData; isLoading: false};
+): {data: ResponseData; friendlyErrors: null; isLoading: false};
+/** Successful request. */
+export function usePostData(
+  url: string,
+  payload: object,
+): {data: null; friendlyErrors: Errors; isLoading: false};
+/** Some error. */
 export function usePostData<ResponseData>(
   url: string,
   payload: object,
 ): {
   data: ResponseData | null;
+  friendlyErrors: Errors | null;
   isLoading: boolean;
 } {
   return useData<ResponseData>(url, RequestMethod.POST, payload);
+}
+
+interface Errors {
+  [index: string]: Array<string>;
 }

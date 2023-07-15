@@ -8,8 +8,10 @@ import {RecipePreview} from '../../../utils/types/recipes';
 
 export function MyRecipeList({navigation}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
-  const {data, isLoading} =
+  const {data, friendlyErrors, isLoading} =
     useGetData<Array<RecipePreview>>(myRecipeListEndpoint);
+
+  console.log('MyRecipeList errors:', friendlyErrors); // TODO -> use
 
   return (
     <MyRecipeListView
