@@ -2,7 +2,11 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {RecipeDetails, MyRecipeList} from '../../../screens/recipes';
+import {
+  RecipeDetails,
+  MyRecipeList,
+  CreateRecipe,
+} from '../../../screens/recipes';
 import {useColourScheme} from '../../../styles/colourScheme';
 import {headerScreenStyles} from '../../../styles/navigation';
 import {ScreenName} from '../../constants';
@@ -27,6 +31,10 @@ export function RecipesTab() {
       <RecipesStack.Screen
         name={ScreenName.RecipeDetails}
         component={RecipeDetails}
+      />
+      <RecipesStack.Screen
+        name={ScreenName.CreateRecipe}
+        component={CreateRecipe}
       />
     </RecipesStack.Navigator>
   );
