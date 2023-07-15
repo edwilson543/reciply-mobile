@@ -2,6 +2,7 @@ import React, {SetStateAction} from 'react';
 
 import {Pressable, View, Text, StyleSheet, TextInput} from 'react-native';
 
+import {CreateRecipeErrors} from '../../../services/restAPI/types';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
@@ -11,6 +12,7 @@ type CreateRecipeViewProps = {
   description: string;
   onDescriptionChange: React.Dispatch<SetStateAction<string>>;
   submitForm: () => void;
+  errors: CreateRecipeErrors | null;
 };
 
 export default function CreateRecipeView({
@@ -19,13 +21,18 @@ export default function CreateRecipeView({
   description,
   onDescriptionChange,
   submitForm,
+  errors,
 }: CreateRecipeViewProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
+  // TODO -> a generic 'FormErrors' component (and extract error lists)
   return (
     <View style={styleSheet.container}>
-      <Text>Create new recipe</Text>
+      <Text style={styleSheet.header}>Create new recipe</Text>
+      {errors && errors.hasOwnProperty('name') && (
+        <Text style={styleSheet.errorText}>{errors.name}</Text>
+      )}
       <Text>Name</Text>
       <TextInput
         value={name}
@@ -53,6 +60,10 @@ const styles = (colourScheme: ColourScheme) =>
       padding: 5,
       alignItems: 'center',
       justifyContent: 'space-between',
+    },
+    header: {
+      //Typography
+      fontSize: FontSize.Header3,
     },
     textInputField: {
       // Display
@@ -87,5 +98,15 @@ const styles = (colourScheme: ColourScheme) =>
       // Typography
       fontSize: FontSize.Text,
       color: colourScheme.buttonPrimaryFont,
+    },
+    errorText: {
+      // Display
+      padding: 5,
+      // Background and border
+      backgroundColor: colourScheme.alertDanger,
+      borderRadius: 10,
+      // Typography
+      fontSize: FontSize.TextSmall,
+      color: colourScheme.alertDangerFont,
     },
   });

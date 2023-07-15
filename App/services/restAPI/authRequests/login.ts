@@ -16,7 +16,7 @@ export async function login(
   return (
     request
       // Attempt basic auth with the given username & password
-      .fireRequest(loginEndpoint, request.RequestMethod.POST, headers, {})
+      .fireRequest(loginEndpoint, request.RequestMethod.POST, headers)
       // Throw a useful exception if the username & password are invalid
       .then(response => {
         if (response.status === constants.StatusCode.Unauthorized) {
