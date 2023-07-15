@@ -17,7 +17,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
     form.append('name', name);
     form.append('description', description);
     postData(createRecipeEndpoint, form).then(() =>
-      navigation.navigate(ScreenName.MyRecipeList),
+      navigation.navigate(ScreenName.MyRecipeList, {refresh: true}),
     );
   }
 
