@@ -12,12 +12,14 @@ import {RecipePreview} from '../../../utils/types/recipes';
 type MyRecipeListViewProps = {
   recipes: Array<RecipePreview> | null;
   isLoading: boolean;
+  onRefresh: () => void;
   navigation: MyRecipeListNavigationProp;
 };
 
 export default function MyRecipeListView({
   recipes,
   isLoading,
+  onRefresh,
   navigation,
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
@@ -32,17 +34,16 @@ export default function MyRecipeListView({
           <Text style={styleSheet.addRecipeButtonText}>+</Text>
         </Pressable>
       </View>
-      {isLoading ? (
-        <LoadingSpinner size={'large'} />
-      ) : (
-        <FlatList
-          data={recipes}
-          renderItem={({item}) => (
-            <RecipeListRow recipe={item} navigation={navigation} />
-          )}
-          keyExtractor={recipe => `${recipe.id}`}
-        />
-      )}
+      {isLoading ?? <LoadingSpinner size={'large'} />}
+      <FlatList
+        data={recipes}
+        renderItem={({item}) => (
+          <RecipeListRow recipe={item} navigation={navigation} />
+        )}
+        keyExtractor={recipe => `${recipe.id}`}
+        onRefresh={onRefresh}
+        refreshing={isLoading}
+      />
     </>
   );
 }

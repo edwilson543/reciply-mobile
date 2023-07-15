@@ -63,6 +63,7 @@ function useData<ResponseData>(
   url: string,
   method: RequestMethod,
   payload?: object,
+  refreshKey?: number,
 ): {
   data: ResponseData | null;
   friendlyErrors: Errors | null;
@@ -97,35 +98,47 @@ function useData<ResponseData>(
           error: ['An unexpected error occurred. Please try again later.'],
         }),
       );
-  }, [method, payload, url]);
+  }, [method, payload, url, refreshKey]);
 
   return {data, friendlyErrors, isLoading};
 }
 
-export function useGetData(url: string): {
+export function useGetData(
+  url: string,
+  refreshKey?: number,
+): {
   data: null;
   friendlyErrors: null;
   isLoading: true;
 };
 /** Waiting for response. */
-export function useGetData<ResponseData>(url: string): {
+export function useGetData<ResponseData>(
+  url: string,
+  refreshKey?: number,
+): {
   data: ResponseData;
   friendlyErrors: null;
   isLoading: false;
 };
 /** Successful request. */
-export function useGetData(url: string): {
+export function useGetData(
+  url: string,
+  refreshKey?: number,
+): {
   data: null;
   friendlyErrors: Errors;
   isLoading: false;
 };
 /** Some error. */
-export function useGetData<ResponseData>(url: string): {
+export function useGetData<ResponseData>(
+  url: string,
+  refreshKey?: number,
+): {
   data: ResponseData | null;
   friendlyErrors: Errors | null;
   isLoading: boolean;
 } {
-  return useData<ResponseData>(url, RequestMethod.GET);
+  return useData<ResponseData>(url, RequestMethod.GET, undefined, refreshKey);
 }
 
 export function usePostData(
