@@ -6,7 +6,10 @@ import {ThumbnailImage} from '../../../components/images/network';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {FontSize} from '../../../styles/constants';
+import {previewText} from '../../../utils/formatters';
 import {RecipePreview} from '../../../utils/types/recipes';
+
+const descriptionPreviewChars = 40;
 
 type MyRecipeListViewProps = {
   recipe: RecipePreview;
@@ -27,7 +30,9 @@ export default function RecipeListRow({
       <View style={styles.container} key={recipe.id}>
         <View style={styles.textContainer}>
           <Text style={styles.recipeName}>{recipe.name}</Text>
-          <Text style={styles.recipeDescription}>{recipe.description}</Text>
+          <Text style={styles.recipeDescription}>
+            {previewText(recipe.description, descriptionPreviewChars)}
+          </Text>
         </View>
         <ThumbnailImage imageSource={recipe.imageSource} />
       </View>
