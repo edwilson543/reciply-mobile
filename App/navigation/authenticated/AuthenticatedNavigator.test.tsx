@@ -12,8 +12,7 @@ import {
 import AuthenticatedNavigator from './AuthenticatedNavigator';
 import * as requests from '../../services/restAPI/request';
 
-const mockData = {data: [], isLoading: false};
-jest.spyOn(requests, 'useGetData').mockReturnValue(mockData);
+jest.spyOn(requests, 'useGetData');
 
 test('can switch from recipes to menus tab', async () => {
   await waitFor(() =>

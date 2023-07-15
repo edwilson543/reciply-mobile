@@ -59,48 +59,8 @@ export async function fireAuthenticatedRequest(
   return fireRequest(url, method, headers, payload);
 }
 
-function useData<ResponseData>(
-  url: string,
-  method: RequestMethod,
-  payload?: object,
-  refreshKey?: number,
-): {
-  data: ResponseData | null;
-  friendlyErrors: Errors | null;
-  isLoading: boolean;
-} {
-  /** Request some resource and store the response and progress in state. */
-  const [data, setData] = useState<ResponseData | null>(null);
-  const [friendlyErrors, setFriendlyErrors] = useState<Errors | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    let isError = false;
-    fireAuthenticatedRequest(url, method, payload)
-      .then(response => {
-        isError = response.status >= constants.StatusCode.BadRequest;
-        return response.json() as unknown;
-      })
-      .then(responseData => {
-        if (isError) {
-          // Cast the response to the error type
-          setFriendlyErrors(responseData as Errors);
-        } else {
-          // Cast the response data to the generic type
-          setData(responseData as ResponseData);
-        }
-      })
-      .then(() => setIsLoading(false))
-      // Any server or authorization error gets a generic response
-      .catch(() =>
-        setFriendlyErrors({
-          error: ['An unexpected error occurred. Please try again later.'],
-        }),
-      );
-  }, [method, payload, url, refreshKey]);
-
-  return {data, friendlyErrors, isLoading};
+export function postData(url: string, payload: object): Promise<Response> {
+  return fireAuthenticatedRequest(url, RequestMethod.POST, payload);
 }
 
 export function useGetData(
@@ -138,33 +98,38 @@ export function useGetData<ResponseData>(
   friendlyErrors: Errors | null;
   isLoading: boolean;
 } {
-  return useData<ResponseData>(url, RequestMethod.GET, undefined, refreshKey);
-}
+  /** Request some resource and store the response and progress in state. */
+  const [data, setData] = useState<ResponseData | null>(null);
+  const [friendlyErrors, setFriendlyErrors] = useState<Errors | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-export function usePostData(
-  url: string,
-  payload: object,
-): {data: null; friendlyErrors: null; isLoading: true};
-/** Waiting for response. */
-export function usePostData<ResponseData>(
-  url: string,
-  payload: object,
-): {data: ResponseData; friendlyErrors: null; isLoading: false};
-/** Successful request. */
-export function usePostData(
-  url: string,
-  payload: object,
-): {data: null; friendlyErrors: Errors; isLoading: false};
-/** Some error. */
-export function usePostData<ResponseData>(
-  url: string,
-  payload: object,
-): {
-  data: ResponseData | null;
-  friendlyErrors: Errors | null;
-  isLoading: boolean;
-} {
-  return useData<ResponseData>(url, RequestMethod.POST, payload);
+  useEffect(() => {
+    setIsLoading(true);
+    let isError = false;
+    fireAuthenticatedRequest(url, RequestMethod.GET)
+      .then(response => {
+        isError = response.status >= constants.StatusCode.BadRequest;
+        return response.json() as unknown;
+      })
+      .then(responseData => {
+        if (isError) {
+          // Cast the response to the error type
+          setFriendlyErrors(responseData as Errors);
+        } else {
+          // Cast the response data to the generic type
+          setData(responseData as ResponseData);
+        }
+      })
+      .then(() => setIsLoading(false))
+      // Any server or authorization error gets a generic response
+      .catch(() =>
+        setFriendlyErrors({
+          error: ['An unexpected error occurred. Please try again later.'],
+        }),
+      );
+  }, [url, refreshKey]);
+
+  return {data, friendlyErrors, isLoading};
 }
 
 interface Errors {
