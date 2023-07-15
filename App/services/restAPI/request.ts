@@ -20,16 +20,15 @@ export async function fireRequest(
   url: string,
   method: RequestMethod,
   headers: object,
-  payload?: object,
+  payload?: FormData,
 ): Promise<Response> {
-  const body = payload && JSON.stringify(payload);
   const request = {
     method: method,
     headers: {
       ...defaultHeaders,
       ...headers,
     },
-    body: body,
+    body: payload,
   };
   const absoluteUrl = APILocation + url;
   try {
@@ -43,7 +42,7 @@ export async function fireAuthenticatedRequest(
   /** Authenticated HTTP request to the API using token authentication. */
   url: string,
   method: RequestMethod,
-  payload?: object,
+  payload?: FormData,
 ): Promise<Response> {
   const authToken = storage.getValueForKey(storage.StorageKey.AuthToken);
   const headers = {
@@ -59,7 +58,7 @@ export async function fireAuthenticatedRequest(
   return fireRequest(url, method, headers, payload);
 }
 
-export function postData(url: string, payload: object): Promise<Response> {
+export function postData(url: string, payload: FormData): Promise<Response> {
   return fireAuthenticatedRequest(url, RequestMethod.POST, payload);
 }
 
