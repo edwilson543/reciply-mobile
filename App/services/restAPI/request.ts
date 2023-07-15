@@ -66,6 +66,7 @@ function useData<ResponseData>(
   /** Request some resource and store the response and progress in state. */
   const [data, setData] = useState<ResponseData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  // TODO -> ADD ERRORS INTO RESPONSE
 
   useEffect(() => {
     setIsLoading(true);

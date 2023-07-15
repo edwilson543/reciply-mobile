@@ -1,16 +1,16 @@
 import React from 'react';
 
-import {Text, View} from 'react-native';
-
+import RecipeDetailsView from './RecipeDetailsView';
 import {RecipeDetailsProps} from '../../../navigation/authenticated/navigation.types';
+import {recipeDetailsEndpoint} from '../../../services/restAPI/endpoints';
+import {useGetData} from '../../../services/restAPI/request';
+import {RecipePreview} from '../../../utils/types/recipes';
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
   /** Show the details of a single recipe. */
-  const id = route.params.id;
-
-  return (
-    <View>
-      <Text>I will fetch & show the details for recipe: {id}</Text>
-    </View>
+  const {data, isLoading} = useGetData<RecipePreview>(
+    recipeDetailsEndpoint(route.params.id),
   );
+
+  return <RecipeDetailsView recipe={data} isLoading={isLoading} />;
 }
