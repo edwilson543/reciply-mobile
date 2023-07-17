@@ -26,6 +26,8 @@ export default function CreateRecipeView({
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
+  const canSubmit = name.length > 5;
+
   // TODO -> a generic 'FormErrors' component (and extract error lists)
   return (
     <View style={styleSheet.container}>
@@ -38,6 +40,7 @@ export default function CreateRecipeView({
         value={name}
         onChangeText={onNameChange}
         style={[styleSheet.textInputField, styleSheet.nameInputField]}
+        testID={'name-input'}
       />
       <Text>Description</Text>
       <TextInput
@@ -45,8 +48,13 @@ export default function CreateRecipeView({
         onChangeText={onDescriptionChange}
         multiline={true}
         style={[styleSheet.textInputField, styleSheet.descriptionInputField]}
+        testID={'description-input'}
       />
-      <Pressable onPress={submitForm} style={styleSheet.submitButton}>
+      <Pressable
+        onPress={submitForm}
+        disabled={!canSubmit}
+        style={styleSheet.submitButton}
+        testID={'submit-button'}>
         <Text style={styleSheet.submitButtonText}>Submit</Text>
       </Pressable>
     </View>

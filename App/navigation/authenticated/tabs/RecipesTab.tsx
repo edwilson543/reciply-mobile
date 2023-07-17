@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NativeStackNavigatorProps} from 'react-native-screens/lib/typescript/native-stack/types';
 
 import {
   RecipeDetails,
@@ -15,11 +16,16 @@ import {RecipeStackParamsList} from '../navigation.types';
 
 const RecipesStack = createNativeStackNavigator<RecipeStackParamsList>();
 
-export function RecipesTab() {
+type RecipesTabProps = {
+  navigatorProps?: NativeStackNavigatorProps;
+};
+
+export function RecipesTab({navigatorProps}: RecipesTabProps) {
   const colourScheme = useColourScheme();
 
   return (
     <RecipesStack.Navigator
+      {...navigatorProps}
       screenOptions={{
         headerTitle: HeaderTitle,
         ...headerScreenStyles(colourScheme),
