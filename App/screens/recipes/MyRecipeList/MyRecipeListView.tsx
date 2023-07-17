@@ -8,10 +8,10 @@ import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navi
 import {ScreenName} from '../../../navigation/constants';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
-import {RecipePreview} from '../../../utils/types/recipes';
+import {RecipeListPreview} from '../../../utils/types/recipes';
 
 type MyRecipeListViewProps = {
-  recipes: Array<RecipePreview> | null;
+  recipes: Array<RecipeListPreview> | null;
   isLoading: boolean;
   onRefresh: () => void;
   navigation: MyRecipeListNavigationProp;

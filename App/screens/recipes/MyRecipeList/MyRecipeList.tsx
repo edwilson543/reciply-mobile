@@ -4,12 +4,12 @@ import MyRecipeListView from './MyRecipeListView';
 import {MyRecipeListProps} from '../../../navigation/authenticated/navigation.types';
 import {myRecipeListEndpoint} from '../../../services/restAPI/endpoints';
 import {useGetData} from '../../../services/restAPI/request';
-import {RecipePreview} from '../../../utils/types/recipes';
+import {RecipeListPreview} from '../../../utils/types/recipes';
 
 export function MyRecipeList({navigation, route}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
   const [refreshKey, setRefreshKey] = useState<number>(0);
-  const {data, isLoading} = useGetData<Array<RecipePreview>>(
+  const {data, isLoading} = useGetData<Array<RecipeListPreview>>(
     myRecipeListEndpoint,
     refreshKey,
   );

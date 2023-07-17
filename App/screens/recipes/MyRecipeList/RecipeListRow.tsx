@@ -7,12 +7,12 @@ import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navi
 import {ScreenName} from '../../../navigation/constants';
 import {FontSize} from '../../../styles/constants';
 import {previewText} from '../../../utils/formatters';
-import {RecipePreview} from '../../../utils/types/recipes';
+import {RecipeListPreview} from '../../../utils/types/recipes';
 
 const descriptionPreviewChars = 40;
 
 type MyRecipeListViewProps = {
-  recipe: RecipePreview;
+  recipe: RecipeListPreview;
   navigation: MyRecipeListNavigationProp;
 };
 
@@ -26,7 +26,8 @@ export default function RecipeListRow({
         navigation.push(ScreenName.RecipeDetails, {
           id: recipe.id,
         })
-      }>
+      }
+      testID={`recipe-${recipe.id}`}>
       <View style={styles.container} key={recipe.id}>
         <View style={styles.textContainer}>
           <Text style={styles.recipeName}>{recipe.name}</Text>
@@ -34,7 +35,7 @@ export default function RecipeListRow({
             {previewText(recipe.description, descriptionPreviewChars)}
           </Text>
         </View>
-        <ThumbnailImage imageSource={recipe.imageSource} />
+        <ThumbnailImage imageSource={recipe.hero_image_source} />
       </View>
     </Pressable>
   );

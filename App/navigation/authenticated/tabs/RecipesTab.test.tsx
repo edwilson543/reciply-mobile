@@ -1,3 +1,5 @@
+/** Tests for the recipe tab requiring navigation between screens. */
+
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -9,7 +11,43 @@ import {ScreenName} from '../../constants';
 
 jest.mock('../../../services/restAPI/request');
 
-test('can create valid new recipe', async () => {
+test('clicking on recipe in list navigates to detail screen', async () => {
+  // Mock out the recipe list API call
+  const mockRecipeList = {
+    data: [{id: 1, name: 'sausages', description: ''}],
+    friendlyErrors: null,
+    isLoading: false,
+  };
+  // @ts-ignore - it's not picking up the correct overload
+  jest.mocked(useGetData).mockReturnValueOnce(mockRecipeList);
+
+  // Mock out the recipe details API call
+  const mockRecipeDetails = {
+    data: {id: 1, name: 'sausages', description: ''},
+    friendlyErrors: null,
+    isLoading: false,
+  };
+  // @ts-ignore - it's not picking up the correct overload
+  jest.mocked(useGetData).mockReturnValueOnce(mockRecipeDetails);
+
+  render(
+    <NavigationContainer>
+      <RecipesTab
+        navigatorProps={{initialRouteName: ScreenName.MyRecipeList}}
+      />
+    </NavigationContainer>,
+  );
+
+  // Sausage recipe should be shown
+  const recipeRow = screen.getByTestId('recipe-1');
+  expect(recipeRow).toBeVisible();
+
+  // Viewing the details for the recipe row should navigate to the detail view
+  await act(() => fireEvent.press(recipeRow));
+  expect(screen.queryByText('my recipes')).not.toBeOnTheScreen();
+});
+
+test('creating valid new recipe navigates to list screen', async () => {
   // Mock out the API calls
   jest.mocked(postData).mockResolvedValueOnce(new Response('{}'));
   const mockRecipeList = {data: [], friendlyErrors: null, isLoading: false};
