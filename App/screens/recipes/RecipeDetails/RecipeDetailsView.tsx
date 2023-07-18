@@ -18,7 +18,7 @@ export default function RecipeDetailsView({
   isLoading,
 }: RecipeDetailsViewProps) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
         {isLoading || !recipe ? (
           // TODO -> include errors in response payload
