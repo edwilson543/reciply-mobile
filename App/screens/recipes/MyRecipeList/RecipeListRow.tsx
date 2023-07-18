@@ -31,7 +31,7 @@ export default function RecipeListRow({
       testID={`recipe-${recipe.id}`}>
       <View style={styles.container} key={recipe.id}>
         <View style={styles.textContainer}>
-          <text.TextStyled style={text.typography.bold}>
+          <text.TextStyled style={styles.recipeName}>
             {recipe.name}
           </text.TextStyled>
           <text.TextStyled style={styles.recipeDescription}>
@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
+  recipeName: {fontWeight: 'bold'},
   recipeDescription: {fontStyle: 'italic', fontSize: FontSize.TextSmall},
 });

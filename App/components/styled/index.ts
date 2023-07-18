@@ -1,0 +1,1 @@
+export {TextStyled} from './TextStyled';

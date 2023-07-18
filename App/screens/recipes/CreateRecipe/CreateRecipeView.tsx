@@ -2,7 +2,7 @@ import React, {SetStateAction} from 'react';
 
 import {Pressable, View, Text, StyleSheet, TextInput} from 'react-native';
 
-import {TextStyled} from '../../../components/styled/TextStyled';
+import {TextStyled} from '../../../components/styled';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';

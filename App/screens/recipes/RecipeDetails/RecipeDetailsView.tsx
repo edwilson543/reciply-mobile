@@ -4,7 +4,7 @@ import {StyleSheet, ScrollView, View} from 'react-native';
 
 import {LargeSquareImage} from '../../../components/images/network';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {TextStyled} from '../../../components/styled/TextStyled';
+import {TextStyled} from '../../../components/styled';
 import {RecipeDetailsPayload} from '../../../services/restAPI/payloads';
 import {FontSize} from '../../../styles/constants';
 

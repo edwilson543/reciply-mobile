@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
+import {StyleSheet, FlatList, View, Pressable} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {TextStyled} from '../../../components/styled/TextStyled';
+import {TextStyled} from '../../../components/styled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
@@ -35,7 +35,7 @@ export default function MyRecipeListView({
         <Pressable
           onPress={() => navigation.navigate(ScreenName.CreateRecipe)}
           style={styleSheet.addRecipeButton}>
-          <Text style={styleSheet.addRecipeButtonText}>+</Text>
+          <TextStyled style={styleSheet.addRecipeButtonText}>+</TextStyled>
         </Pressable>
       </View>
       {isLoading ?? <LoadingSpinner size={'large'} />}
@@ -81,6 +81,7 @@ const styles = (colourScheme: ColourScheme) =>
     },
     addRecipeButtonText: {
       // Display
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       // Typography
