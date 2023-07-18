@@ -15,7 +15,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
   const [description, setDescription] = useState<string>('');
   const [errors, setErrors] = useState<CreateRecipeErrors | null>(null);
 
-  function submitForm(): void {
+  async function submitForm(): Promise<void> {
     const form = new FormData();
     form.append('name', name);
     form.append('description', description);
