@@ -6,12 +6,12 @@ import RecipeListRow from './RecipeListRow';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {RecipeListPreview} from '../../../services/restAPI/payloads';
+import {RecipeListPayload} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
 type MyRecipeListViewProps = {
-  recipes: Array<RecipeListPreview> | null;
+  recipes: Array<RecipeListPayload> | null;
   isLoading: boolean;
   onRefresh: () => void;
   navigation: MyRecipeListNavigationProp;

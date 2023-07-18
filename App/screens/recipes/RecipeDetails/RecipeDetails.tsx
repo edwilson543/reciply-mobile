@@ -3,12 +3,12 @@ import React from 'react';
 import RecipeDetailsView from './RecipeDetailsView';
 import {RecipeDetailsProps} from '../../../navigation/authenticated/navigation.types';
 import {recipeDetailsEndpoint} from '../../../services/restAPI/endpoints';
-import {RecipePreview} from '../../../services/restAPI/payloads';
+import {RecipeDetailsPayload} from '../../../services/restAPI/payloads';
 import {useGetData} from '../../../services/restAPI/request';
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
   /** Show the details of a single recipe. */
-  const {data, friendlyErrors, isLoading} = useGetData<RecipePreview>(
+  const {data, friendlyErrors, isLoading} = useGetData<RecipeDetailsPayload>(
     recipeDetailsEndpoint(route.params.id),
   );
 

@@ -5,14 +5,14 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {ThumbnailImage} from '../../../components/images/network';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {RecipeListPreview} from '../../../services/restAPI/payloads';
+import {RecipeListPayload} from '../../../services/restAPI/payloads';
 import {FontSize} from '../../../styles/constants';
 import {previewText} from '../../../utils/formatters';
 
 const descriptionPreviewChars = 40;
 
 type MyRecipeListViewProps = {
-  recipe: RecipeListPreview;
+  recipe: RecipeListPayload;
   navigation: MyRecipeListNavigationProp;
 };
 

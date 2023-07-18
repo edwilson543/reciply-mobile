@@ -1,14 +1,16 @@
-interface RecipeBase {
+// Recipes
+
+interface RecipeBasePayload {
   id: number;
   name: string;
   description: string;
 }
 
-export interface RecipePreview extends RecipeBase {
-  // TODO -> get rid o
-  imageSource: string;
+export interface RecipeListPayload extends RecipeBasePayload {
+  hero_image_source: string;
 }
 
-export interface RecipeListPreview extends RecipeBase {
-  hero_image_source: string;
+export interface RecipeDetailsPayload extends RecipeBasePayload {
+  created_at: string;
+  updated_at: string;
 }
