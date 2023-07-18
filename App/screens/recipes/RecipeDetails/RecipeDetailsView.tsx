@@ -4,9 +4,9 @@ import {StyleSheet, ScrollView, Text, View} from 'react-native';
 
 import {LargeSquareImage} from '../../../components/images/network';
 import LoadingSpinner from '../../../components/LoadingSpinner';
+import {RecipePreview} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
-import {RecipePreview} from '../../../utils/types/recipes';
 
 type RecipeDetailsViewProps = {
   recipe: RecipePreview | null;

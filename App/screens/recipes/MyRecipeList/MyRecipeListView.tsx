@@ -6,9 +6,9 @@ import RecipeListRow from './RecipeListRow';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
+import {RecipeListPreview} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
-import {RecipeListPreview} from '../../../utils/types/recipes';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipeListPreview> | null;
