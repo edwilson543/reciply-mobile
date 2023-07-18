@@ -1,3 +1,7 @@
+interface BaseError {
+  non_field_errors?: Array<string>;
+}
+
 // Recipes
 
 interface RecipeBasePayload {
@@ -13,4 +17,8 @@ export interface RecipeListPayload extends RecipeBasePayload {
 export interface RecipeDetailsPayload extends RecipeBasePayload {
   created_at: string;
   updated_at: string;
+}
+
+export interface CreateRecipeErrors extends BaseError {
+  name?: Array<string>;
 }

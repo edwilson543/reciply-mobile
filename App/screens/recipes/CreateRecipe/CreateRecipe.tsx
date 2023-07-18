@@ -6,8 +6,8 @@ import {CreateRecipeProps} from '../../../navigation/authenticated/navigation.ty
 import {ScreenName} from '../../../navigation/constants';
 import {StatusCode} from '../../../services/restAPI/constants';
 import {createRecipeEndpoint} from '../../../services/restAPI/endpoints';
+import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {postData} from '../../../services/restAPI/request';
-import {CreateRecipeErrors} from '../../../services/restAPI/types';
 
 export function CreateRecipe({navigation}: CreateRecipeProps) {
   /** Allow users to create a new recipe. */
