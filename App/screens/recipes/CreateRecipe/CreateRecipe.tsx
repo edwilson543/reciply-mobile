@@ -19,22 +19,14 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
     const form = new FormData();
     form.append('name', name);
     form.append('description', description);
-    let error = false;
 
-    postData(createRecipeEndpoint, form)
-      .then(response => {
-        if (response.status >= StatusCode.BadRequest) {
-          error = true;
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (error) {
-          setErrors(data);
-        } else {
-          navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
-        }
-      });
+    postData(createRecipeEndpoint, form).then(response => {
+      if (response.status >= StatusCode.BadRequest) {
+        response.json().then(data => setErrors(data));
+      } else {
+        navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
+      }
+    });
   }
 
   return (
