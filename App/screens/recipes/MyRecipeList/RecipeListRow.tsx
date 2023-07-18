@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 
 import {ThumbnailImage} from '../../../components/images/network';
+import * as text from '../../../components/styled/TextStyled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
@@ -30,10 +31,12 @@ export default function RecipeListRow({
       testID={`recipe-${recipe.id}`}>
       <View style={styles.container} key={recipe.id}>
         <View style={styles.textContainer}>
-          <Text style={styles.recipeName}>{recipe.name}</Text>
-          <Text style={styles.recipeDescription}>
+          <text.TextStyled style={text.typography.bold}>
+            {recipe.name}
+          </text.TextStyled>
+          <text.TextStyled style={styles.recipeDescription}>
             {previewText(recipe.description, descriptionPreviewChars)}
-          </Text>
+          </text.TextStyled>
         </View>
         <ThumbnailImage imageSource={recipe.hero_image_source} />
       </View>
@@ -56,14 +59,5 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  recipeName: {
-    // Typography
-    fontSize: FontSize.Text,
-    fontWeight: 'bold',
-  },
-  recipeDescription: {
-    // Typography
-    fontSize: FontSize.TextSmall,
-    fontStyle: 'italic',
-  },
+  recipeDescription: {fontStyle: 'italic', fontSize: FontSize.TextSmall},
 });

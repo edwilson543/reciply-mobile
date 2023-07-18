@@ -8,11 +8,9 @@ import {useGetData} from '../../../services/restAPI/request';
 
 export function RecipeDetails({route}: RecipeDetailsProps) {
   /** Show the details of a single recipe. */
-  const {data, friendlyErrors, isLoading} = useGetData<RecipeDetailsPayload>(
+  const {data, isLoading} = useGetData<RecipeDetailsPayload>(
     recipeDetailsEndpoint(route.params.id),
   );
-
-  console.log('RecipeDetails errors', friendlyErrors); // TODO -> use
 
   return <RecipeDetailsView recipe={data} isLoading={isLoading} />;
 }

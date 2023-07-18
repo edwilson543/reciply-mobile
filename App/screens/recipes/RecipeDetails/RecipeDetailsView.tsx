@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {StyleSheet, ScrollView, Text, View} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 
 import {LargeSquareImage} from '../../../components/images/network';
 import LoadingSpinner from '../../../components/LoadingSpinner';
+import {TextStyled} from '../../../components/styled/TextStyled';
 import {RecipeDetailsPayload} from '../../../services/restAPI/payloads';
-import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
 type RecipeDetailsViewProps = {
@@ -17,22 +17,21 @@ export default function RecipeDetailsView({
   recipe,
   isLoading,
 }: RecipeDetailsViewProps) {
-  const colourScheme = useColourScheme();
-  const styleSheet = styles(colourScheme);
-
   return (
     <ScrollView>
-      <View style={styleSheet.container}>
+      <View style={styles.container}>
         {isLoading || !recipe ? (
           // TODO -> include errors in response payload
           <LoadingSpinner size={'large'} />
         ) : (
           <View>
-            <Text style={styleSheet.recipeNameText}>{recipe.name}</Text>
-            <LargeSquareImage imageSource={''} extraStyles={styleSheet.image} />
-            <Text style={styleSheet.recipeDescriptionText}>
+            <TextStyled style={[styles.recipeNameText]}>
+              {recipe.name}
+            </TextStyled>
+            <LargeSquareImage imageSource={''} extraStyles={styles.image} />
+            <TextStyled style={styles.recipeDescriptionText}>
               {recipe.description}
-            </Text>
+            </TextStyled>
           </View>
         )}
       </View>
@@ -40,31 +39,28 @@ export default function RecipeDetailsView({
   );
 }
 
-const styles = (colourScheme: ColourScheme) =>
-  StyleSheet.create({
-    container: {
-      // Display
-      alignItems: 'center',
-      paddingLeft: 25,
-      paddingRight: 25,
-    },
-    recipeNameText: {
-      // Display
-      margin: 10,
-      // Typography
-      fontSize: FontSize.Header3,
-      fontWeight: 'bold',
-      color: colourScheme.fontPrimary,
-    },
-    recipeDescriptionText: {
-      // Display
-      marginTop: 10,
-      // Typography
-      fontSize: FontSize.Text,
-      textAlign: 'left',
-    },
-    image: {
-      // Background and border
-      borderRadius: 5,
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    // Display
+    alignItems: 'center',
+    paddingLeft: 25,
+    paddingRight: 25,
+  },
+  recipeNameText: {
+    // Display
+    margin: 10,
+    // Typography
+    fontSize: FontSize.Header3,
+    fontWeight: 'bold',
+  },
+  recipeDescriptionText: {
+    // Display
+    marginTop: 10,
+    // Typography
+    textAlign: 'left',
+  },
+  image: {
+    // Background and border
+    borderRadius: 5,
+  },
+});

@@ -4,6 +4,7 @@ import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
 import LoadingSpinner from '../../../components/LoadingSpinner';
+import {TextStyled} from '../../../components/styled/TextStyled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
@@ -30,7 +31,7 @@ export default function MyRecipeListView({
   return (
     <>
       <View style={styleSheet.headerContainer}>
-        <Text style={styleSheet.titleText}>My recipes</Text>
+        <TextStyled style={styleSheet.titleText}>My recipes</TextStyled>
         <Pressable
           onPress={() => navigation.navigate(ScreenName.CreateRecipe)}
           style={styleSheet.addRecipeButton}>

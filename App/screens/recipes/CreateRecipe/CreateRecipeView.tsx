@@ -2,6 +2,7 @@ import React, {SetStateAction} from 'react';
 
 import {Pressable, View, Text, StyleSheet, TextInput} from 'react-native';
 
+import {TextStyled} from '../../../components/styled/TextStyled';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -31,18 +32,18 @@ export default function CreateRecipeView({
   // TODO -> a generic 'FormErrors' component (and extract error lists)
   return (
     <View style={styleSheet.container}>
-      <Text style={styleSheet.header}>Create new recipe</Text>
+      <TextStyled style={styleSheet.header}>Create new recipe</TextStyled>
       {errors && errors.hasOwnProperty('name') && (
-        <Text style={styleSheet.errorText}>{errors.name}</Text>
+        <TextStyled style={styleSheet.errorText}>{errors.name}</TextStyled>
       )}
-      <Text>Name</Text>
+      <TextStyled>Name</TextStyled>
       <TextInput
         value={name}
         onChangeText={onNameChange}
         style={[styleSheet.textInputField, styleSheet.nameInputField]}
         testID={'name-input'}
       />
-      <Text>Description</Text>
+      <TextStyled>Description</TextStyled>
       <TextInput
         value={description}
         onChangeText={onDescriptionChange}
