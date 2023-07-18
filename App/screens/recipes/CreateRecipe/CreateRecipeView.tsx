@@ -1,8 +1,8 @@
 import React, {SetStateAction} from 'react';
 
-import {Pressable, View, Text, StyleSheet, TextInput} from 'react-native';
+import {Pressable, View, Text, StyleSheet} from 'react-native';
 
-import {TextStyled} from '../../../components/styled';
+import {TextInputStyled, TextStyled} from '../../../components/styled';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -37,14 +37,14 @@ export default function CreateRecipeView({
         <TextStyled style={styleSheet.errorText}>{errors.name}</TextStyled>
       )}
       <TextStyled>Name</TextStyled>
-      <TextInput
+      <TextInputStyled
         value={name}
         onChangeText={onNameChange}
         style={[styleSheet.textInputField, styleSheet.nameInputField]}
         testID={'name-input'}
       />
       <TextStyled>Description</TextStyled>
-      <TextInput
+      <TextInputStyled
         value={description}
         onChangeText={onDescriptionChange}
         multiline={true}
