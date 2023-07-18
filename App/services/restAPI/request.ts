@@ -58,7 +58,10 @@ export async function fireAuthenticatedRequest(
   return fireRequest(url, method, headers, payload);
 }
 
-export function postData(url: string, payload: FormData): Promise<Response> {
+export async function postData(
+  url: string,
+  payload: FormData,
+): Promise<Response> {
   return fireAuthenticatedRequest(url, RequestMethod.POST, payload);
 }
 

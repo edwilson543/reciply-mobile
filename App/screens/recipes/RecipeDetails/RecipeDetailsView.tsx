@@ -29,10 +29,7 @@ export default function RecipeDetailsView({
         ) : (
           <View>
             <Text style={styleSheet.recipeNameText}>{recipe.name}</Text>
-            <LargeSquareImage
-              imageSource={recipe.imageSource}
-              extraStyles={styleSheet.image}
-            />
+            <LargeSquareImage imageSource={''} extraStyles={styleSheet.image} />
             <Text style={styleSheet.recipeDescriptionText}>
               {recipe.description}
             </Text>
