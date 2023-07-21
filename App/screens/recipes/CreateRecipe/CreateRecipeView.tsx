@@ -1,6 +1,7 @@
 import React, {SetStateAction} from 'react';
 
 import {Pressable, View, Text, StyleSheet} from 'react-native';
+import {Asset} from 'react-native-image-picker';
 
 import {TextInputStyled, TextStyled} from '../../../components/styled';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
@@ -12,6 +13,8 @@ type CreateRecipeViewProps = {
   onNameChange: React.Dispatch<SetStateAction<string>>;
   description: string;
   onDescriptionChange: React.Dispatch<SetStateAction<string>>;
+  heroImage: Asset | null;
+  pickHeroImage: () => void;
   submitForm: () => void;
   errors: CreateRecipeErrors | null;
 };
@@ -21,6 +24,8 @@ export default function CreateRecipeView({
   onNameChange,
   description,
   onDescriptionChange,
+  heroImage,
+  pickHeroImage,
   submitForm,
   errors,
 }: CreateRecipeViewProps) {
@@ -51,6 +56,9 @@ export default function CreateRecipeView({
         style={[styleSheet.textInputField, styleSheet.descriptionInputField]}
         testID={'description-input'}
       />
+      <Pressable onPress={pickHeroImage}>
+        <Text>Pick an image</Text>
+      </Pressable>
       <Pressable
         onPress={submitForm}
         disabled={!canSubmit}

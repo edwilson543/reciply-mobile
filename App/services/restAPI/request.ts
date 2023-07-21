@@ -11,21 +11,19 @@ export enum RequestMethod {
   DELETE = 'DELETE',
 }
 
-const defaultHeaders = {
-  'Content-type': 'application/json',
-};
-
 export async function fireRequest(
   /** Basic HTTP request to the API. */
   url: string,
   method: RequestMethod,
   headers: object,
   payload?: FormData,
+  isUpload: boolean = false,
 ): Promise<Response> {
+  const contentType = isUpload ? 'multipart/form-data' : 'application/json';
   const request = {
     method: method,
     headers: {
-      ...defaultHeaders,
+      'Content-Type': contentType,
       ...headers,
     },
     body: payload,
@@ -43,10 +41,10 @@ export async function fireAuthenticatedRequest(
   url: string,
   method: RequestMethod,
   payload?: FormData,
+  isUpload: boolean = false,
 ): Promise<Response> {
   const authToken = storage.getValueForKey(storage.StorageKey.AuthToken);
   const headers = {
-    ...defaultHeaders,
     Authorization: `Token ${authToken}`,
   };
   if (!authToken) {
@@ -55,14 +53,15 @@ export async function fireAuthenticatedRequest(
       'No auth token available in storage!',
     );
   }
-  return fireRequest(url, method, headers, payload);
+  return fireRequest(url, method, headers, payload, isUpload);
 }
 
 export async function postData(
   url: string,
   payload: FormData,
+  isUpload: boolean = false,
 ): Promise<Response> {
-  return fireAuthenticatedRequest(url, RequestMethod.POST, payload);
+  return fireAuthenticatedRequest(url, RequestMethod.POST, payload, isUpload);
 }
 
 export function useGetData(
