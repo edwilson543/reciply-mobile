@@ -59,7 +59,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
       onNameChange={setName}
       description={description}
       onDescriptionChange={setDescription}
-      heroImage={heroImage}
+      heroImageSource={heroImage && heroImage.uri ? heroImage?.uri : ''}
       pickHeroImage={pickHeroImage}
       submitForm={submitForm}
       errors={errors}

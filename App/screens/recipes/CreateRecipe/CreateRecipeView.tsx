@@ -1,8 +1,8 @@
 import React, {SetStateAction} from 'react';
 
 import {Pressable, View, Text, StyleSheet} from 'react-native';
-import {Asset} from 'react-native-image-picker';
 
+import UploadImagePreview from '../../../components/images/local/UploadImagePreview';
 import {TextInputStyled, TextStyled} from '../../../components/styled';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
@@ -13,7 +13,7 @@ type CreateRecipeViewProps = {
   onNameChange: React.Dispatch<SetStateAction<string>>;
   description: string;
   onDescriptionChange: React.Dispatch<SetStateAction<string>>;
-  heroImage: Asset | null;
+  heroImageSource: string;
   pickHeroImage: () => void;
   submitForm: () => void;
   errors: CreateRecipeErrors | null;
@@ -24,7 +24,7 @@ export default function CreateRecipeView({
   onNameChange,
   description,
   onDescriptionChange,
-  heroImage,
+  heroImageSource,
   pickHeroImage,
   submitForm,
   errors,
@@ -56,9 +56,14 @@ export default function CreateRecipeView({
         style={[styleSheet.textInputField, styleSheet.descriptionInputField]}
         testID={'description-input'}
       />
-      <Pressable onPress={pickHeroImage}>
-        <Text>Pick an image</Text>
-      </Pressable>
+      <View style={styleSheet.selectImageContainer}>
+        <Pressable onPress={pickHeroImage} style={styleSheet.selectImageButton}>
+          <TextStyled style={styleSheet.selectImageText}>
+            + Add photo
+          </TextStyled>
+        </Pressable>
+        <UploadImagePreview imageSource={heroImageSource} />
+      </View>
       <Pressable
         onPress={submitForm}
         disabled={!canSubmit}
@@ -82,6 +87,7 @@ const styles = (colourScheme: ColourScheme) =>
       //Typography
       fontSize: FontSize.Header3,
     },
+    // Inputs
     textInputField: {
       // Display
       width: '75%',
@@ -98,14 +104,41 @@ const styles = (colourScheme: ColourScheme) =>
       height: 50,
     },
     descriptionInputField: {
-      height: 300,
+      height: 250,
     },
+    // Image
+    selectImageContainer: {
+      // Display
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      width: '100%',
+      padding: 5,
+    },
+    selectImageButton: {
+      // Display
+      width: 150,
+      height: 40,
+      padding: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      // Background and border
+      backgroundColor: colourScheme.buttonSecondary,
+      borderRadius: 10,
+    },
+    selectImageText: {
+      // Display
+      justifyContent: 'center',
+      // Typography
+      color: colourScheme.buttonSecondaryFont,
+    },
+    // Submit
     submitButton: {
       // Display
       alignItems: 'center',
       justifyContent: 'center',
       width: '75%',
-      height: 50,
+      height: 40,
       marginTop: 5,
       // Background and border
       backgroundColor: colourScheme.buttonPrimary,
