@@ -9,6 +9,7 @@ import {RecipesTab} from './RecipesTab';
 import {postData, useGetData} from '../../../services/restAPI/request';
 import {ScreenName} from '../../constants';
 
+jest.mock('react-native-image-picker', () => '');
 jest.mock('../../../services/restAPI/request');
 
 test('clicking on recipe in list navigates to detail screen', async () => {

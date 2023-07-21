@@ -6,6 +6,7 @@ import {CreateRecipe} from './CreateRecipe';
 import {postData} from '../../../services/restAPI/request';
 
 jest.mock('../../../services/restAPI/request');
+jest.mock('react-native-image-picker', () => '');
 
 test('cannot submit recipe if name given is too short', async () => {
   jest.mocked(postData).mockResolvedValueOnce(new Response('{}'));

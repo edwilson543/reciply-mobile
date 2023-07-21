@@ -7,6 +7,7 @@ import App from './App';
 import * as requests from './services/restAPI/request';
 import * as storage from './services/storage';
 
+jest.mock('react-native-image-picker', () => '');
 // The initial route after login fires a request, so mock this out
 jest.spyOn(requests, 'useGetData');
 
