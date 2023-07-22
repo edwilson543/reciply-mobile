@@ -1,9 +1,14 @@
 import React, {SetStateAction} from 'react';
 
-import {Pressable, View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import UploadImagePreview from '../../../components/images/local/UploadImagePreview';
-import {TextInputStyled, TextStyled} from '../../../components/styled';
+import {
+  PressablePrimary,
+  PressableSecondary,
+  TextInputStyled,
+  TextStyled,
+} from '../../../components/styled';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -57,20 +62,20 @@ export default function CreateRecipeView({
         testID={'description-input'}
       />
       <View style={styleSheet.selectImageContainer}>
-        <Pressable onPress={pickHeroImage} style={styleSheet.selectImageButton}>
-          <TextStyled style={styleSheet.selectImageText}>
-            + Add photo
-          </TextStyled>
-        </Pressable>
+        <PressableSecondary
+          text={'+ Add photo'}
+          onPress={pickHeroImage}
+          style={styleSheet.selectImageButton}
+        />
         <UploadImagePreview imageSource={heroImageSource} />
       </View>
-      <Pressable
+      <PressablePrimary
         onPress={submitForm}
         disabled={!canSubmit}
         style={styleSheet.submitButton}
-        testID={'submit-button'}>
-        <Text style={styleSheet.submitButtonText}>Submit</Text>
-      </Pressable>
+        text={'Submit'}
+        testID={'submit-button'}
+      />
     </View>
   );
 }
@@ -121,28 +126,12 @@ const styles = (colourScheme: ColourScheme) =>
       backgroundColor: colourScheme.buttonSecondary,
       borderRadius: 10,
     },
-    selectImageText: {
-      // Display
-      justifyContent: 'center',
-      // Typography
-      color: colourScheme.buttonSecondaryFont,
-    },
     // Submit
     submitButton: {
       // Display
-      alignItems: 'center',
-      justifyContent: 'center',
       width: '75%',
       height: 40,
       marginTop: 5,
-      // Background and border
-      backgroundColor: colourScheme.buttonPrimary,
-      borderRadius: 20,
-    },
-    submitButtonText: {
-      // Typography
-      fontSize: FontSize.Text,
-      color: colourScheme.buttonPrimaryFont,
     },
     errorText: {
       // Display

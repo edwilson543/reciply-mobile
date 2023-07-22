@@ -10,6 +10,7 @@ import * as storage from './services/storage';
 jest.mock('react-native-image-picker', () => '');
 // The initial route after login fires a request, so mock this out
 jest.spyOn(requests, 'useGetData');
+afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
 
 test('initially renders login screen when no auth token in storage', () => {
   storage.deleteValueForKey(storage.StorageKey.AuthToken);
