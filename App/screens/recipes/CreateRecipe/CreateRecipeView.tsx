@@ -91,13 +91,8 @@ const styles = (colourScheme: ColourScheme) =>
     textInputField: {
       // Display
       width: '75%',
-      // Border
-      borderWidth: 1,
-      borderRadius: 5,
-      borderColor: colourScheme.buttonPrimary,
       // Typography
       fontSize: FontSize.TextLarge,
-      color: colourScheme.fontPrimary,
       textAlign: 'left',
     },
     nameInputField: {
