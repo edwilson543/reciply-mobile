@@ -1,14 +1,13 @@
 import React, {SetStateAction} from 'react';
 
-import {
-  ActivityIndicator,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
+import LoadingSpinner from '../../../components/LoadingSpinner';
+import {
+  PressablePrimary,
+  TextInputStyled,
+  TextStyled,
+} from '../../../components/styled';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
@@ -49,12 +48,14 @@ export default function LoginView({
           <></>
         )}
         {isLoading ? (
-          <ActivityIndicator size={'large'} />
+          <LoadingSpinner size={'large'} />
         ) : (
           <>
             <View style={styleSheet.textInputContainer}>
-              <Text style={styleSheet.textInputLabel}>Username</Text>
-              <TextInput
+              <TextStyled style={styleSheet.textInputLabel}>
+                Username
+              </TextStyled>
+              <TextInputStyled
                 value={username}
                 onChangeText={onUsernameChange}
                 autoCapitalize={'none'}
@@ -63,8 +64,10 @@ export default function LoginView({
               />
             </View>
             <View style={styleSheet.textInputContainer}>
-              <Text style={styleSheet.textInputLabel}>Password</Text>
-              <TextInput
+              <TextStyled style={styleSheet.textInputLabel}>
+                Password
+              </TextStyled>
+              <TextInputStyled
                 value={password}
                 onChangeText={onPasswordChange}
                 autoCapitalize={'none'}
@@ -73,13 +76,13 @@ export default function LoginView({
                 testID={'password-input'}
               />
             </View>
-            <Pressable
+            <PressablePrimary
               onPress={handleLogin}
               disabled={!canSubmit}
               style={styleSheet.submitButton}
-              testID={'login-button'}>
-              <Text style={styleSheet.submitText}>Submit</Text>
-            </Pressable>
+              text={'Login'}
+              testID={'login-button'}
+            />
           </>
         )}
       </View>
@@ -120,8 +123,6 @@ const styles = (colourScheme: ColourScheme) =>
       // Typography
       fontSize: FontSize.TextLarge,
       fontWeight: 'bold',
-      color: colourScheme.fontPrimary,
-      textAlign: 'left',
     },
     textInputField: {
       // Display
@@ -132,23 +133,10 @@ const styles = (colourScheme: ColourScheme) =>
       borderColor: colourScheme.buttonPrimary,
       // Typography
       fontSize: FontSize.TextLarge,
-      color: colourScheme.fontPrimary,
-      textAlign: 'left',
     },
     submitButton: {
       // Display
       padding: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-      // Background and border
-      backgroundColor: colourScheme.buttonPrimary,
-      borderRadius: 10,
-    },
-    submitText: {
-      // Typography
-      color: colourScheme.buttonPrimaryFont,
-      fontSize: FontSize.Text,
-      fontWeight: 'bold',
     },
     errorText: {
       // Display

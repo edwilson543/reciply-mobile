@@ -1,17 +1,27 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {act, fireEvent, screen, render} from '@testing-library/react-native';
+import {
+  act,
+  fireEvent,
+  screen,
+  render,
+  waitFor,
+} from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
+import * as requests from '../../services/restAPI/request';
+
+jest.mock('react-native-image-picker', () => '');
+jest.spyOn(requests, 'useGetData');
 
 test('can switch from recipes to menus tab', async () => {
-  jest.mock('../../services/restAPI/recipeRequests/myRecipeList');
-
-  render(
-    <NavigationContainer>
-      <AuthenticatedNavigator />
-    </NavigationContainer>,
+  await waitFor(() =>
+    render(
+      <NavigationContainer>
+        <AuthenticatedNavigator />
+      </NavigationContainer>,
+    ),
   );
 
   // The recipe list tab should initially be open.

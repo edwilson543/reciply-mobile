@@ -19,8 +19,9 @@ export type TabParamsList = {
  * */
 
 export type RecipeStackParamsList = {
-  MyRecipeList: undefined;
-  RecipeDetails: {recipeId: number};
+  MyRecipeList: {refresh?: boolean};
+  RecipeDetails: {id: number};
+  CreateRecipe: undefined;
 };
 
 export type MenuStackParamsList = {
@@ -68,6 +69,23 @@ export type RecipeDetailsRouteProp = RouteProp<
 export type RecipeDetailsProps = {
   navigation: RecipeDetailsNavigationProp;
   route: RecipeDetailsRouteProp;
+};
+
+// CreateRecipe
+
+export type CreateRecipeNavigationProp = NativeStackNavigationProp<
+  RecipeStackParamsList,
+  ScreenName.CreateRecipe
+>;
+
+export type CreateRecipeRouteProp = RouteProp<
+  RecipeStackParamsList,
+  ScreenName.CreateRecipe
+>;
+
+export type CreateRecipeProps = {
+  navigation: CreateRecipeNavigationProp;
+  route: CreateRecipeRouteProp;
 };
 
 /**

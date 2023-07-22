@@ -1,15 +1,19 @@
 import React from 'react';
 
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 
 import {ThumbnailImage} from '../../../components/images/network';
+import * as text from '../../../components/styled/TextStyled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
+import {RecipeListPayload} from '../../../services/restAPI/payloads';
 import {FontSize} from '../../../styles/constants';
-import {RecipePreview} from '../../../utils/types/recipes';
+import {previewText} from '../../../utils/formatters';
+
+const descriptionPreviewChars = 40;
 
 type MyRecipeListViewProps = {
-  recipe: RecipePreview;
+  recipe: RecipeListPayload;
   navigation: MyRecipeListNavigationProp;
 };
 
@@ -21,15 +25,20 @@ export default function RecipeListRow({
     <Pressable
       onPress={() =>
         navigation.push(ScreenName.RecipeDetails, {
-          recipeId: recipe.recipeId,
+          id: recipe.id,
         })
-      }>
-      <View style={styles.container} key={recipe.recipeId}>
+      }
+      testID={`recipe-${recipe.id}`}>
+      <View style={styles.container} key={recipe.id}>
         <View style={styles.textContainer}>
-          <Text style={styles.recipeName}>{recipe.name}</Text>
-          <Text style={styles.recipeDescription}>{recipe.description}</Text>
+          <text.TextStyled style={styles.recipeName}>
+            {recipe.name}
+          </text.TextStyled>
+          <text.TextStyled style={styles.recipeDescription}>
+            {previewText(recipe.description, descriptionPreviewChars)}
+          </text.TextStyled>
         </View>
-        <ThumbnailImage imageSource={recipe.imageSource} />
+        <ThumbnailImage imageSource={recipe.hero_image_source} />
       </View>
     </Pressable>
   );
@@ -50,14 +59,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  recipeName: {
-    // Typography
-    fontSize: FontSize.Text,
-    fontWeight: 'bold',
-  },
-  recipeDescription: {
-    // Typography
-    fontSize: FontSize.TextSmall,
-    fontStyle: 'italic',
-  },
+  recipeName: {fontWeight: 'bold'},
+  recipeDescription: {fontStyle: 'italic', fontSize: FontSize.TextSmall},
 });

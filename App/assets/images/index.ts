@@ -1,1 +1,2 @@
-export const ThumbnailImagePlaceholder = require('./placeholders/thumbnailImage.jpg');
+export const RecipeThumbnailPlaceholder = require('./placeholders/recipeThumbnail.jpg');
+export const LargeSquareImagePlaceholder = require('./placeholders/largeSquareImage.jpg');

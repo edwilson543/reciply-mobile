@@ -11,6 +11,7 @@ export enum ScreenName {
   // Recipes
   MyRecipeList = 'MyRecipeList',
   RecipeDetails = 'RecipeDetails',
+  CreateRecipe = 'CreateRecipe',
 
   // Menus
   MyMenuList = 'MyMenuList',

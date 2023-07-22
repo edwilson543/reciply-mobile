@@ -8,9 +8,8 @@ type ThumbnailImageProps = {
   imageSource: string;
 };
 
-export function ThumbnailImage({imageSource}: ThumbnailImageProps) {
+export default function UploadImagePreview({imageSource}: ThumbnailImageProps) {
   /** A small circular image showing the preview of something. */
-  // TODO -> may eventually need to set authorization header in image request.
   const source = imageSource ? {uri: imageSource} : RecipeThumbnailPlaceholder;
   return <Image source={source} style={styles.image} />;
 }
@@ -18,10 +17,10 @@ export function ThumbnailImage({imageSource}: ThumbnailImageProps) {
 const styles = StyleSheet.create({
   image: {
     // Display
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     // Border
     borderWidth: 0,
-    borderRadius: 25,
+    borderRadius: 5,
   },
 });
