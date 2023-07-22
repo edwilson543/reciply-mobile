@@ -14,7 +14,14 @@ export interface RecipeListPayload extends RecipeBasePayload {
   hero_image_source: string;
 }
 
+interface RecipeImage {
+  id: number;
+  is_hero: boolean;
+  image_source: string;
+}
+
 export interface RecipeDetailsPayload extends RecipeBasePayload {
+  images: Array<RecipeImage>;
   created_at: string;
   updated_at: string;
 }

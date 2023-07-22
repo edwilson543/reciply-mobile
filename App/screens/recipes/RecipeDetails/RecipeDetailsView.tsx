@@ -17,18 +17,28 @@ export default function RecipeDetailsView({
   recipe,
   isLoading,
 }: RecipeDetailsViewProps) {
+  let heroImageSource = '';
+  if (recipe) {
+    const heroImages = recipe.images.filter(image => image.is_hero);
+    if (heroImages.length > 0) {
+      heroImageSource = heroImages[0].image_source;
+    }
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
         {isLoading || !recipe ? (
-          // TODO -> include errors in response payload
           <LoadingSpinner size={'large'} />
         ) : (
           <View>
             <TextStyled style={[styles.recipeNameText]}>
               {recipe.name}
             </TextStyled>
-            <LargeSquareImage imageSource={''} extraStyles={styles.image} />
+            <LargeSquareImage
+              imageSource={heroImageSource}
+              extraStyles={styles.image}
+            />
             <TextStyled style={styles.recipeDescriptionText}>
               {recipe.description}
             </TextStyled>
