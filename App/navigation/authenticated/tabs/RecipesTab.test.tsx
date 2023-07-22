@@ -24,7 +24,7 @@ test('clicking on recipe in list navigates to detail screen', async () => {
 
   // Mock out the recipe details API call
   const mockRecipeDetails = {
-    data: {id: 1, name: 'sausages', description: ''},
+    data: {id: 1, name: 'sausages', description: '', images: []},
     friendlyErrors: null,
     isLoading: false,
   };
