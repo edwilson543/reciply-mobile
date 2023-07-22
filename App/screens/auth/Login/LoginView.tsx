@@ -1,9 +1,13 @@
 import React, {SetStateAction} from 'react';
 
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {TextInputStyled, TextStyled} from '../../../components/styled';
+import {
+  PressablePrimary,
+  TextInputStyled,
+  TextStyled,
+} from '../../../components/styled';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
@@ -72,13 +76,13 @@ export default function LoginView({
                 testID={'password-input'}
               />
             </View>
-            <Pressable
+            <PressablePrimary
               onPress={handleLogin}
               disabled={!canSubmit}
               style={styleSheet.submitButton}
-              testID={'login-button'}>
-              <Text style={styleSheet.submitText}>Submit</Text>
-            </Pressable>
+              text={'Login'}
+              testID={'login-button'}
+            />
           </>
         )}
       </View>
@@ -133,17 +137,6 @@ const styles = (colourScheme: ColourScheme) =>
     submitButton: {
       // Display
       padding: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-      // Background and border
-      backgroundColor: colourScheme.buttonPrimary,
-      borderRadius: 10,
-    },
-    submitText: {
-      // Typography
-      color: colourScheme.buttonPrimaryFont,
-      fontSize: FontSize.Text,
-      fontWeight: 'bold',
     },
     errorText: {
       // Display
