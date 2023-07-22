@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {StyleSheet} from 'react-native';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 
+import {TextStyled} from '../../../components/styled';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 
 export default function HeaderTitle() {
@@ -11,7 +12,7 @@ export default function HeaderTitle() {
 
   return (
     <View>
-      <Text style={styleSheet.headerTitle}>reciply</Text>
+      <TextStyled style={styleSheet.headerTitle}>reciply</TextStyled>
     </View>
   );
 }
