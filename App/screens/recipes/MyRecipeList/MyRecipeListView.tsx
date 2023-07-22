@@ -63,7 +63,7 @@ const styles = (colourScheme: ColourScheme) =>
     titleText: {
       // Display
       textAlign: 'center',
-      marginVertical: 20,
+      marginVertical: 10,
       // Typography
       fontSize: FontSize.Header1,
       fontWeight: 'bold',
