@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import RegisterView from './RegisterView';
 import * as auth from '../../../context/auth';
+import {RegisterProps} from '../../../navigation/unauthenticated/navigation.types';
 import * as exceptions from '../../../services/restAPI/exceptions';
 import {RegisterPayload} from '../../../services/restAPI/payloads';
 import {postData} from '../../../services/restAPI/request';
@@ -14,7 +15,7 @@ const initialData: RegisterPayload = {
   password2: '',
 };
 
-export function Register() {
+export function Register({navigation}: RegisterProps) {
   /** Authenticate users using their username and password. */
   const [userDetails, setUserDetails] = useState<RegisterPayload>(initialData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -32,6 +33,7 @@ export function Register() {
 
   return (
     <RegisterView
+      navigation={navigation}
       userDetails={userDetails}
       setUserDetails={setUserDetails}
       handleSubmit={registerDetails}

@@ -5,14 +5,18 @@ import {StyleSheet, Text, View} from 'react-native';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
   PressablePrimary,
+  PressableSecondary,
   TextInputStyled,
   TextStyled,
 } from '../../../components/styled';
+import {ScreenName} from '../../../navigation/constants';
+import {RegisterNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
 import {RegisterPayload} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
 type LoginViewProps = {
+  navigation: RegisterNavigationProp;
   userDetails: RegisterPayload;
   setUserDetails: React.Dispatch<SetStateAction<RegisterPayload>>;
   handleSubmit: () => void;
@@ -22,6 +26,7 @@ type LoginViewProps = {
 };
 
 export default function RegisterView({
+  navigation,
   userDetails,
   handleSubmit,
   isLoading,
@@ -99,8 +104,14 @@ export default function RegisterView({
               onPress={handleSubmit}
               disabled={!canSubmit}
               style={styleSheet.submitButton}
-              text={'Login'}
+              text={'Register'}
               testID={'login-button'}
+            />
+            <PressableSecondary
+              onPress={() => navigation.navigate(ScreenName.Login)}
+              style={styleSheet.loginButton}
+              text={'Login'}
+              testID={'register-button'}
             />
           </>
         )}
@@ -122,7 +133,7 @@ const styles = (colourScheme: ColourScheme) =>
     loginContainer: {
       // Display
       width: '75%',
-      height: '50%',
+      height: '75%',
       justifyContent: 'center',
       padding: 10,
       // Background and border
@@ -163,4 +174,5 @@ const styles = (colourScheme: ColourScheme) =>
       fontSize: FontSize.TextSmall,
       color: colourScheme.alertDangerFont,
     },
+    loginButton: {marginTop: 10},
   });
