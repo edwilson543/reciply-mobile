@@ -10,4 +10,9 @@ export const defaultStyles = (colourScheme: ColourScheme) =>
       color: colourScheme.fontPrimary,
       fontSize: FontSize.Text,
     },
+    header1: {
+      fontFamily: 'AbhayaLibre-SemiBold',
+      color: colourScheme.fontPrimary,
+      fontSize: FontSize.Header1,
+    },
   });
