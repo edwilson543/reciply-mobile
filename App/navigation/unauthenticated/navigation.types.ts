@@ -9,6 +9,7 @@ import {ScreenName} from '../constants';
 
 export type UnauthenticatedStackParamsList = {
   Login: undefined;
+  Register: undefined;
 };
 
 /**
@@ -30,4 +31,21 @@ export type LoginRouteProp = RouteProp<
 export type LoginProps = {
   navigation: LoginNavigationProp;
   route: LoginRouteProp;
+};
+
+// Register
+
+export type RegisterNavigationProp = NativeStackNavigationProp<
+  UnauthenticatedStackParamsList,
+  ScreenName.Register
+>;
+
+export type RegisterRouteProp = RouteProp<
+  UnauthenticatedStackParamsList,
+  ScreenName.Register
+>;
+
+export type RegisterProps = {
+  navigation: RegisterNavigationProp;
+  route: RegisterRouteProp;
 };
