@@ -127,10 +127,6 @@ const styles = (colourScheme: ColourScheme) =>
     textInputField: {
       // Display
       width: '100%',
-      // Border
-      borderWidth: 1,
-      borderRadius: 5,
-      borderColor: colourScheme.buttonPrimary,
       // Typography
       fontSize: FontSize.TextLarge,
     },
