@@ -3,9 +3,13 @@ import React, {useState} from 'react';
 import RegisterView from './RegisterView';
 import * as auth from '../../../context/auth';
 import {RegisterProps} from '../../../navigation/unauthenticated/navigation.types';
-import * as exceptions from '../../../services/restAPI/exceptions';
-import {RegisterPayload} from '../../../services/restAPI/payloads';
-import {postData} from '../../../services/restAPI/request';
+import {StatusCode} from '../../../services/restAPI/constants';
+import {registerEndpoint} from '../../../services/restAPI/endpoints';
+import {
+  RegisterErrors,
+  RegisterPayload,
+} from '../../../services/restAPI/payloads';
+import {fireRequest, RequestMethod} from '../../../services/restAPI/request';
 import * as storage from '../../../services/storage';
 
 const initialData: RegisterPayload = {
@@ -19,17 +23,41 @@ export function Register({navigation}: RegisterProps) {
   /** Authenticate users using their username and password. */
   const [userDetails, setUserDetails] = useState<RegisterPayload>(initialData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errors, setErrors] = useState<RegisterErrors | null>(null);
 
   const authDispatch = auth.useAuthDispatch();
 
   const canSubmit =
-    userDetails.username.length > 6 &&
+    userDetails.username.length > 4 &&
     userDetails.email.length > 6 && // todo -> regex validation
     userDetails.password1.length > 6 &&
     userDetails.password2.length > 6;
 
-  function registerDetails() {}
+  async function registerDetails() {
+    setErrors(null);
+    setIsLoading(true);
+
+    const formData = new FormData();
+    for (const key in userDetails) {
+      formData.append(key, userDetails[key as keyof RegisterPayload]);
+    }
+
+    fireRequest(registerEndpoint, RequestMethod.POST, {}, formData)
+      .then(response => {
+        if (response.status >= StatusCode.BadRequest) {
+          response.json().then(data => setErrors(data));
+        } else {
+          response.json().then(data => {
+            storage.setValueForKey(storage.StorageKey.AuthToken, data.token);
+            authDispatch({
+              type: auth.AuthAction.Login,
+              token: data.token,
+            });
+          });
+        }
+      })
+      .then(() => setIsLoading(false));
+  }
 
   return (
     <RegisterView
@@ -39,7 +67,7 @@ export function Register({navigation}: RegisterProps) {
       handleSubmit={registerDetails}
       isLoading={isLoading}
       canSubmit={canSubmit}
-      errorMessage={errorMessage}
+      errors={errors}
     />
   );
 }

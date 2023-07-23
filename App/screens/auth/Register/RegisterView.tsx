@@ -11,7 +11,10 @@ import {
 } from '../../../components/styled';
 import {ScreenName} from '../../../navigation/constants';
 import {RegisterNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
-import {RegisterPayload} from '../../../services/restAPI/payloads';
+import {
+  RegisterErrors,
+  RegisterPayload,
+} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
@@ -22,16 +25,17 @@ type LoginViewProps = {
   handleSubmit: () => void;
   isLoading: boolean;
   canSubmit: boolean;
-  errorMessage: string;
+  errors: RegisterErrors | null;
 };
 
 export default function RegisterView({
   navigation,
   userDetails,
+  setUserDetails,
   handleSubmit,
   isLoading,
   canSubmit,
-  errorMessage,
+  errors,
 }: LoginViewProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
@@ -39,10 +43,10 @@ export default function RegisterView({
   return (
     <View style={styleSheet.screenContainer}>
       <View style={styleSheet.loginContainer}>
-        {errorMessage ? (
+        {errors ? (
           <View style={styleSheet.errorText}>
             <Text style={styleSheet.errorText} testID={'error-message'}>
-              {errorMessage}
+              {errors.username + errors.email + errors.password}
             </Text>
           </View>
         ) : (
@@ -58,7 +62,9 @@ export default function RegisterView({
               </TextStyled>
               <TextInputStyled
                 value={userDetails.username}
-                // onChangeText={}
+                onChangeText={text =>
+                  setUserDetails({...userDetails, username: text})
+                }
                 autoCapitalize={'none'}
                 style={styleSheet.textInputField}
                 testID={'username-input'}
@@ -68,7 +74,9 @@ export default function RegisterView({
               <TextStyled style={styleSheet.textInputLabel}>Email</TextStyled>
               <TextInputStyled
                 value={userDetails.email}
-                // onChangeText={}
+                onChangeText={text =>
+                  setUserDetails({...userDetails, email: text})
+                }
                 autoCapitalize={'none'}
                 style={styleSheet.textInputField}
                 testID={'username-input'}
@@ -80,7 +88,9 @@ export default function RegisterView({
               </TextStyled>
               <TextInputStyled
                 value={userDetails.password1}
-                // onChangeText={onPasswordChange}
+                onChangeText={text =>
+                  setUserDetails({...userDetails, password1: text})
+                }
                 autoCapitalize={'none'}
                 secureTextEntry={true}
                 style={styleSheet.textInputField}
@@ -93,7 +103,9 @@ export default function RegisterView({
               </TextStyled>
               <TextInputStyled
                 value={userDetails.password2}
-                // onChangeText={onPasswordChange}
+                onChangeText={text =>
+                  setUserDetails({...userDetails, password2: text})
+                }
                 autoCapitalize={'none'}
                 secureTextEntry={true}
                 style={styleSheet.textInputField}

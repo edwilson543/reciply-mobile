@@ -10,6 +10,10 @@ export interface RegisterPayload {
   password2: string;
 }
 
+export interface RegisterErrors extends BaseError, RegisterPayload {
+  password: string;
+}
+
 // Recipes
 
 interface RecipeBasePayload {

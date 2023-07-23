@@ -17,6 +17,7 @@ interface PressableStyledProps extends PressableProps {
 }
 
 // TODO -> touchable opacity
+// TODO -> colour for disabled
 
 export function PressablePrimary({
   text,
