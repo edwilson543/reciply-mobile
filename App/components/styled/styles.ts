@@ -6,7 +6,7 @@ import {FontSize} from '../../styles/constants';
 export const defaultStyles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
     text: {
-      fontFamily: 'Cochin',
+      fontFamily: 'AbhayaLibre-Medium',
       color: colourScheme.fontPrimary,
       fontSize: FontSize.Text,
     },
