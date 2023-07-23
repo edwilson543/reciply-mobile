@@ -5,13 +5,17 @@ import {StyleSheet, Text, View} from 'react-native';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
   PressablePrimary,
+  PressableSecondary,
   TextInputStyled,
   TextStyled,
 } from '../../../components/styled';
+import {ScreenName} from '../../../navigation/constants';
+import {LoginNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
 type LoginViewProps = {
+  navigation: LoginNavigationProp;
   username: string;
   onUsernameChange: React.Dispatch<SetStateAction<string>>;
   password: string;
@@ -23,6 +27,7 @@ type LoginViewProps = {
 };
 
 export default function LoginView({
+  navigation,
   username,
   onUsernameChange,
   password,
@@ -79,9 +84,14 @@ export default function LoginView({
             <PressablePrimary
               onPress={handleLogin}
               disabled={!canSubmit}
-              style={styleSheet.submitButton}
               text={'Login'}
               testID={'login-button'}
+            />
+            <PressableSecondary
+              onPress={() => navigation.navigate(ScreenName.Register)}
+              style={styleSheet.registerButton}
+              text={'Register'}
+              testID={'register-button'}
             />
           </>
         )}
@@ -130,10 +140,6 @@ const styles = (colourScheme: ColourScheme) =>
       // Typography
       fontSize: FontSize.TextLarge,
     },
-    submitButton: {
-      // Display
-      padding: 5,
-    },
     errorText: {
       // Display
       padding: 5,
@@ -144,4 +150,5 @@ const styles = (colourScheme: ColourScheme) =>
       fontSize: FontSize.TextSmall,
       color: colourScheme.alertDangerFont,
     },
+    registerButton: {marginTop: 10},
   });

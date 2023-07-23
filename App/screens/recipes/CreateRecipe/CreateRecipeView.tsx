@@ -119,7 +119,6 @@ const styles = (colourScheme: ColourScheme) =>
       // Display
       width: 150,
       height: 40,
-      padding: 5,
       justifyContent: 'center',
       alignItems: 'center',
       // Background and border
