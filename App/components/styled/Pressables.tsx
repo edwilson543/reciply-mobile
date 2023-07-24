@@ -16,8 +16,6 @@ interface PressableStyledProps extends PressableProps {
   textStyle?: TextStyle;
 }
 
-// TODO -> colour for disabled
-
 export function PressablePrimary({
   text,
   textStyle,
@@ -39,7 +37,7 @@ export function PressablePrimary({
     styleSheet.pressable,
     styleSheet.pressablePrimary,
     ...extraPressableStyles,
-    {opacity: pressed ? 0.5 : 1},
+    {opacity: pressed || props.disabled ? 0.5 : 1},
   ];
 
   return (
@@ -72,7 +70,7 @@ export function PressableSecondary({
     styleSheet.pressable,
     styleSheet.pressableSecondary,
     ...extraPressableStyles,
-    {opacity: pressed ? 0.5 : 1},
+    {opacity: pressed || props.disabled ? 0.5 : 1},
   ];
 
   return (
