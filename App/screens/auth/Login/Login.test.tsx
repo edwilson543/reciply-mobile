@@ -87,8 +87,7 @@ test('invalid username and password cannot be used to login in', async () => {
   expect(mockLoginCall[1]).toBe('password123');
 
   // An appropriate error message should be shown
-  const errorMessage = screen.getByTestId('error-message');
-  expect(errorMessage).toHaveTextContent('Invalid username or password');
+  expect(screen.getByText('Invalid username or password')).toBeOnTheScreen();
 
   // Auth reducer shouldn't have been called and no token should have been set in storage
   expect(mockAuthDispatch.mock.calls).toHaveLength(0);

@@ -17,7 +17,7 @@ test('initially renders login screen when no auth token in storage', () => {
 
   render(<App />);
 
-  expect(screen.getByText('Username')).toBeOnTheScreen();
+  expect(screen.getByText('login')).toBeOnTheScreen();
 });
 
 test('initially renders recipe list when auth token available', async () => {

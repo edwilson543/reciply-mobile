@@ -62,7 +62,7 @@ export default function RegisterView({
         onPress={() => navigation.navigate(ScreenName.Login)}
         text={'login'}
         style={styleSheet.loginButton}
-        testID={'register-button'}
+        testID={'login-button'}
       />
       <Header1 style={styleSheet.reciplyHeader}>reciply</Header1>
       <View style={styleSheet.loginContainer}>

@@ -97,8 +97,7 @@ test('invalid details cannot be used to register', async () => {
   expect(submittedDetails.get('password2')).toBe('password123');
 
   // An appropriate error message should be shown
-  const errorMessage = screen.getByTestId('error-message');
-  expect(errorMessage).toHaveTextContent('Username already taken');
+  expect(screen.getByText('Username already taken')).toBeOnTheScreen();
 
   // Auth reducer shouldn't have been called and no token should have been set in storage
   expect(mockAuthDispatch.mock.calls).toHaveLength(0);
