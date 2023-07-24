@@ -8,7 +8,6 @@ import {
   PressablePrimary,
   PressableSecondary,
   TextInputStyled,
-  TextStyled,
 } from '../../../components/styled';
 import {ScreenName} from '../../../navigation/constants';
 import {LoginNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
@@ -58,31 +57,23 @@ export default function LoginView({
           <LoadingSpinner size={'large'} />
         ) : (
           <>
-            <View style={styleSheet.textInputContainer}>
-              <TextStyled style={styleSheet.textInputLabel}>
-                Username
-              </TextStyled>
-              <TextInputStyled
-                value={username}
-                onChangeText={onUsernameChange}
-                autoCapitalize={'none'}
-                style={styleSheet.textInputField}
-                testID={'username-input'}
-              />
-            </View>
-            <View style={styleSheet.textInputContainer}>
-              <TextStyled style={styleSheet.textInputLabel}>
-                Password
-              </TextStyled>
-              <TextInputStyled
-                value={password}
-                onChangeText={onPasswordChange}
-                autoCapitalize={'none'}
-                secureTextEntry={true}
-                style={styleSheet.textInputField}
-                testID={'password-input'}
-              />
-            </View>
+            <TextInputStyled
+              value={username}
+              onChangeText={onUsernameChange}
+              placeholder="Username"
+              autoCapitalize={'none'}
+              style={styleSheet.textInputField}
+              testID={'username-input'}
+            />
+            <TextInputStyled
+              value={password}
+              onChangeText={onPasswordChange}
+              placeholder="Password"
+              autoCapitalize={'none'}
+              secureTextEntry={true}
+              style={styleSheet.textInputField}
+              testID={'password-input'}
+            />
             <PressablePrimary
               onPress={handleLogin}
               disabled={!canSubmit}
@@ -91,7 +82,6 @@ export default function LoginView({
             />
             <PressableSecondary
               onPress={() => navigation.navigate(ScreenName.Register)}
-              style={styleSheet.registerButton}
               text={'Register'}
               testID={'register-button'}
             />
@@ -113,23 +103,9 @@ const styles = (colourScheme: ColourScheme) =>
     loginContainer: {
       // Display
       width: '75%',
-      height: '50%',
-      justifyContent: 'center',
+      height: '40%',
+      justifyContent: 'space-between',
       padding: 10,
-    },
-    textInputContainer: {
-      // Display
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: 10,
-    },
-    textInputLabel: {
-      // Display
-      width: '100%',
-      // Typography
-      fontSize: FontSize.TextLarge,
-      fontWeight: 'bold',
     },
     textInputField: {
       // Display
@@ -147,5 +123,4 @@ const styles = (colourScheme: ColourScheme) =>
       fontSize: FontSize.TextSmall,
       color: colourScheme.alertDangerFont,
     },
-    registerButton: {marginTop: 10},
   });

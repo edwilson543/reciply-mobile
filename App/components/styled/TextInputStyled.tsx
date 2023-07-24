@@ -27,7 +27,12 @@ export function TextInputStyled({style, ...props}: TextInputProps) {
 const textInputStyles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
     textInput: {
-      // Border
+      // Display
+      height: 50,
+      paddingHorizontal: 10,
+      // Background and border
+      backgroundColor: colourScheme.backgroundPrimary,
+      opacity: 0.75,
       borderWidth: 1,
       borderRadius: 5,
       borderColor: colourScheme.buttonPrimary,
