@@ -82,7 +82,7 @@ function combineStyles(
   return ({pressed}: {pressed: boolean}) => [
     ...defaultStyles,
     ...extraPressableStyles,
-    {opacity: pressed || disabled ? 0.5 : 1},
+    {opacity: pressed || disabled ? 0.5 : 0.8},
   ];
 }
 
@@ -112,5 +112,7 @@ const styles = (colourScheme: ColourScheme) =>
     },
     pressableSecondary: {
       backgroundColor: colourScheme.buttonSecondary,
+      borderColor: colourScheme.buttonSecondaryFont,
+      borderWidth: 1,
     },
   });

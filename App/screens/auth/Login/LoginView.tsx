@@ -43,6 +43,12 @@ export default function LoginView({
   return (
     <View style={styleSheet.screenContainer}>
       <LoginRegisterBackground />
+      <PressableSecondary
+        onPress={() => navigation.navigate(ScreenName.Register)}
+        text={'sign up'}
+        style={styleSheet.registerButton}
+        testID={'register-button'}
+      />
       <View style={styleSheet.loginContainer}>
         {errorMessage ? (
           <View style={styleSheet.errorText}>
@@ -60,7 +66,7 @@ export default function LoginView({
             <TextInputStyled
               value={username}
               onChangeText={onUsernameChange}
-              placeholder="Username"
+              placeholder="username"
               autoCapitalize={'none'}
               style={styleSheet.textInputField}
               testID={'username-input'}
@@ -68,7 +74,7 @@ export default function LoginView({
             <TextInputStyled
               value={password}
               onChangeText={onPasswordChange}
-              placeholder="Password"
+              placeholder="password"
               autoCapitalize={'none'}
               secureTextEntry={true}
               style={styleSheet.textInputField}
@@ -77,13 +83,8 @@ export default function LoginView({
             <PressablePrimary
               onPress={handleLogin}
               disabled={!canSubmit}
-              text={'Login'}
+              text={'login'}
               testID={'login-button'}
-            />
-            <PressableSecondary
-              onPress={() => navigation.navigate(ScreenName.Register)}
-              text={'Register'}
-              testID={'register-button'}
             />
           </>
         )}
@@ -100,10 +101,20 @@ const styles = (colourScheme: ColourScheme) =>
       alignItems: 'center',
       justifyContent: 'center',
     },
+    registerButton: {
+      // Positioning
+      position: 'absolute',
+      right: 20,
+      top: 20,
+      // Display
+      height: 40,
+      // Background and border
+      borderRadius: 20,
+    },
     loginContainer: {
       // Display
       width: '75%',
-      height: '50%',
+      height: '40%',
       justifyContent: 'space-around',
       padding: 10,
     },
