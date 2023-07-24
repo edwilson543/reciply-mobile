@@ -1,6 +1,6 @@
 import React, {SetStateAction} from 'react';
 
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import LoginRegisterBackground from '../../../components/images/local/LoginRegisterBackground';
 import LoadingSpinner from '../../../components/LoadingSpinner';
@@ -10,6 +10,7 @@ import {
   PressableSecondary,
   TextInputStyled,
 } from '../../../components/styled';
+import {AlertDanger} from '../../../components/styled/Alerts';
 import {ScreenName} from '../../../navigation/constants';
 import {LoginNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
@@ -52,15 +53,7 @@ export default function LoginView({
       />
       <Header1 style={styleSheet.reciplyHeader}>reciply</Header1>
       <View style={styleSheet.loginContainer}>
-        {errorMessage ? (
-          <View style={styleSheet.errorText}>
-            <Text style={styleSheet.errorText} testID={'error-message'}>
-              {errorMessage}
-            </Text>
-          </View>
-        ) : (
-          <></>
-        )}
+        {errorMessage ? <AlertDanger errorText={errorMessage} /> : <></>}
         {isLoading ? (
           <LoadingSpinner size={'large'} />
         ) : (
@@ -128,15 +121,5 @@ const styles = (colourScheme: ColourScheme) =>
       width: '100%',
       // Typography
       fontSize: FontSize.TextLarge,
-    },
-    errorText: {
-      // Display
-      padding: 5,
-      // Background and border
-      backgroundColor: colourScheme.alertDanger,
-      borderRadius: 10,
-      // Typography
-      fontSize: FontSize.TextSmall,
-      color: colourScheme.alertDangerFont,
     },
   });

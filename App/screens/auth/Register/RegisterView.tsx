@@ -59,8 +59,8 @@ export default function RegisterView({
     <View style={styleSheet.screenContainer}>
       <LoginRegisterBackground />
       <PressableSecondary
-        onPress={() => navigation.navigate(ScreenName.Register)}
-        text={'sign up'}
+        onPress={() => navigation.navigate(ScreenName.Login)}
+        text={'login'}
         style={styleSheet.loginButton}
         testID={'register-button'}
       />
