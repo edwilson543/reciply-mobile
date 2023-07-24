@@ -44,6 +44,12 @@ export default function RegisterView({
   return (
     <View style={styleSheet.screenContainer}>
       <LoginRegisterBackground />
+      <PressableSecondary
+        onPress={() => navigation.navigate(ScreenName.Register)}
+        text={'sign up'}
+        style={styleSheet.loginButton}
+        testID={'register-button'}
+      />
       <Header1 style={styleSheet.reciplyHeader}>reciply</Header1>
       <View style={styleSheet.loginContainer}>
         {errors ? (
@@ -64,7 +70,7 @@ export default function RegisterView({
               onChangeText={text =>
                 setUserDetails({...userDetails, username: text})
               }
-              placeholder="Username"
+              placeholder="username"
               autoCapitalize={'none'}
               style={styleSheet.textInputField}
               testID={'username-input'}
@@ -74,7 +80,7 @@ export default function RegisterView({
               onChangeText={text =>
                 setUserDetails({...userDetails, email: text})
               }
-              placeholder={'Email'}
+              placeholder={'email'}
               autoCapitalize={'none'}
               style={styleSheet.textInputField}
               testID={'email-input'}
@@ -95,7 +101,7 @@ export default function RegisterView({
               onChangeText={text =>
                 setUserDetails({...userDetails, password2: text})
               }
-              placeholder={'Confirm password'}
+              placeholder={'confirm password'}
               autoCapitalize={'none'}
               secureTextEntry={true}
               style={styleSheet.textInputField}
@@ -104,15 +110,8 @@ export default function RegisterView({
             <PressablePrimary
               onPress={handleSubmit}
               disabled={!canSubmit}
-              style={styleSheet.submitButton}
               text={'Register'}
               testID={'register-button'}
-            />
-            <PressableSecondary
-              onPress={() => navigation.navigate(ScreenName.Login)}
-              style={styleSheet.loginButton}
-              text={'Login'}
-              testID={'login-button'}
             />
           </>
         )}
@@ -129,25 +128,31 @@ const styles = (colourScheme: ColourScheme) =>
       alignItems: 'center',
       justifyContent: 'center',
     },
-    loginContainer: {
+    loginButton: {
+      // Positioning
+      position: 'absolute',
+      right: 20,
+      top: 20,
       // Display
-      width: '75%',
-      height: '75%',
-      justifyContent: 'space-around',
-      padding: 10,
+      height: 40,
+      // Background and border
+      borderRadius: 20,
     },
     reciplyHeader: {
       color: colourScheme.fontTertiary,
+    },
+    loginContainer: {
+      // Display
+      width: '75%',
+      height: '60%',
+      justifyContent: 'space-around',
+      padding: 10,
     },
     textInputField: {
       // Display
       width: '100%',
       // Typography
       fontSize: FontSize.TextLarge,
-    },
-    submitButton: {
-      // Display
-      padding: 5,
     },
     errorText: {
       // Display
@@ -159,5 +164,4 @@ const styles = (colourScheme: ColourScheme) =>
       fontSize: FontSize.TextSmall,
       color: colourScheme.alertDangerFont,
     },
-    loginButton: {marginTop: 10},
   });
