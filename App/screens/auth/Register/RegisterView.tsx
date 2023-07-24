@@ -12,74 +12,112 @@ import {
 } from '../../../components/styled';
 import {AlertDanger} from '../../../components/styled/Alerts';
 import {ScreenName} from '../../../navigation/constants';
-import {LoginNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
+import {RegisterNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
+import {
+  RegisterErrors,
+  RegisterPayload,
+} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 
 type LoginViewProps = {
-  navigation: LoginNavigationProp;
-  username: string;
-  onUsernameChange: React.Dispatch<SetStateAction<string>>;
-  password: string;
-  onPasswordChange: React.Dispatch<SetStateAction<string>>;
-  handleLogin: () => void;
+  navigation: RegisterNavigationProp;
+  userDetails: RegisterPayload;
+  setUserDetails: React.Dispatch<SetStateAction<RegisterPayload>>;
+  handleSubmit: () => void;
   isLoading: boolean;
   canSubmit: boolean;
-  errorMessage: string;
+  errors: RegisterErrors | null;
 };
 
-export default function LoginView({
+export default function RegisterView({
   navigation,
-  username,
-  onUsernameChange,
-  password,
-  onPasswordChange,
-  handleLogin,
+  userDetails,
+  setUserDetails,
+  handleSubmit,
   isLoading,
   canSubmit,
-  errorMessage,
+  errors,
 }: LoginViewProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
+
+  let errorText = '';
+  if (errors) {
+    if (errors.username) {
+      errorText += errors.username;
+    }
+    if (errors.email) {
+      errorText += errors.email;
+    }
+    if (errors.password) {
+      errorText += errors.password;
+    }
+  }
 
   return (
     <View style={styleSheet.screenContainer}>
       <LoginRegisterBackground />
       <PressableSecondary
-        onPress={() => navigation.navigate(ScreenName.Register)}
-        text={'sign up'}
-        style={styleSheet.registerButton}
-        testID={'register-button'}
+        onPress={() => navigation.navigate(ScreenName.Login)}
+        text={'login'}
+        style={styleSheet.loginButton}
+        testID={'login-button'}
       />
       <Header1 style={styleSheet.reciplyHeader}>reciply</Header1>
       <View style={styleSheet.loginContainer}>
-        {errorMessage ? <AlertDanger errorText={errorMessage} /> : <></>}
+        {errors ? <AlertDanger errorText={errorText} /> : <></>}
         {isLoading ? (
           <LoadingSpinner size={'large'} />
         ) : (
           <>
             <TextInputStyled
-              value={username}
-              onChangeText={onUsernameChange}
+              value={userDetails.username}
+              onChangeText={text =>
+                setUserDetails({...userDetails, username: text})
+              }
               placeholder="username"
               autoCapitalize={'none'}
               style={styleSheet.textInputField}
               testID={'username-input'}
             />
             <TextInputStyled
-              value={password}
-              onChangeText={onPasswordChange}
-              placeholder="password"
+              value={userDetails.email}
+              onChangeText={text =>
+                setUserDetails({...userDetails, email: text})
+              }
+              placeholder={'email'}
+              autoCapitalize={'none'}
+              style={styleSheet.textInputField}
+              testID={'email-input'}
+            />
+            <TextInputStyled
+              value={userDetails.password1}
+              onChangeText={text =>
+                setUserDetails({...userDetails, password1: text})
+              }
+              placeholder={'password'}
               autoCapitalize={'none'}
               secureTextEntry={true}
               style={styleSheet.textInputField}
-              testID={'password-input'}
+              testID={'password1-input'}
+            />
+            <TextInputStyled
+              value={userDetails.password2}
+              onChangeText={text =>
+                setUserDetails({...userDetails, password2: text})
+              }
+              placeholder={'confirm password'}
+              autoCapitalize={'none'}
+              secureTextEntry={true}
+              style={styleSheet.textInputField}
+              testID={'password2-input'}
             />
             <PressablePrimary
-              onPress={handleLogin}
+              onPress={handleSubmit}
               disabled={!canSubmit}
-              text={'login'}
-              testID={'login-button'}
+              text={'Register'}
+              testID={'register-button'}
             />
           </>
         )}
@@ -96,7 +134,7 @@ const styles = (colourScheme: ColourScheme) =>
       alignItems: 'center',
       justifyContent: 'center',
     },
-    registerButton: {
+    loginButton: {
       // Positioning
       position: 'absolute',
       right: 20,
@@ -112,7 +150,7 @@ const styles = (colourScheme: ColourScheme) =>
     loginContainer: {
       // Display
       width: '75%',
-      height: '40%',
+      height: '60%',
       justifyContent: 'space-around',
       padding: 10,
     },

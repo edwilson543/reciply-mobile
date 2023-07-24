@@ -9,6 +9,7 @@ import {
   TextInputStyled,
   TextStyled,
 } from '../../../components/styled';
+import {AlertDanger} from '../../../components/styled/Alerts';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -39,12 +40,15 @@ export default function CreateRecipeView({
 
   const canSubmit = name.length > 5;
 
-  // TODO -> a generic 'FormErrors' component (and extract error lists)
+  const errorText = errors?.name ? errors.name[0] : '';
+
   return (
     <View style={styleSheet.container}>
       <TextStyled style={styleSheet.header}>Create new recipe</TextStyled>
-      {errors && errors.hasOwnProperty('name') && (
-        <TextStyled style={styleSheet.errorText}>{errors.name}</TextStyled>
+      {errors ? (
+        <AlertDanger errorText={errorText} style={styleSheet.errors} />
+      ) : (
+        <></>
       )}
       <TextStyled>Name</TextStyled>
       <TextInputStyled
@@ -119,7 +123,6 @@ const styles = (colourScheme: ColourScheme) =>
       // Display
       width: 150,
       height: 40,
-      padding: 5,
       justifyContent: 'center',
       alignItems: 'center',
       // Background and border
@@ -133,14 +136,7 @@ const styles = (colourScheme: ColourScheme) =>
       height: 40,
       marginTop: 5,
     },
-    errorText: {
-      // Display
-      padding: 5,
-      // Background and border
-      backgroundColor: colourScheme.alertDanger,
-      borderRadius: 10,
-      // Typography
-      fontSize: FontSize.TextSmall,
-      color: colourScheme.alertDangerFont,
+    errors: {
+      width: '75%',
     },
   });

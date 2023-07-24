@@ -3,6 +3,7 @@ export const APILocation = 'http://127.0.0.1:8000/api/';
 // Auth
 export const loginEndpoint = 'login/';
 export const logoutEndpoint = 'logout/';
+export const registerEndpoint = 'register/';
 
 // Recipes
 const RecipeUrlBase = 'recipes/recipe';

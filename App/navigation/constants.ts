@@ -7,6 +7,7 @@ export enum TabName {
 export enum ScreenName {
   // Auth
   Login = 'Login',
+  Register = 'Register',
 
   // Recipes
   MyRecipeList = 'MyRecipeList',

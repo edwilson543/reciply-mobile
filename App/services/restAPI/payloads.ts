@@ -2,6 +2,18 @@ interface BaseError {
   non_field_errors?: Array<string>;
 }
 
+// Auth
+export interface RegisterPayload {
+  username: string;
+  email: string;
+  password1: string;
+  password2: string;
+}
+
+export interface RegisterErrors extends BaseError, RegisterPayload {
+  password: string;
+}
+
 // Recipes
 
 interface RecipeBasePayload {

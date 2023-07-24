@@ -18,3 +18,12 @@ export function TextStyled({children, style}: StyledTextProps) {
 
   return <Text style={[styleSheet.text, ...extraStyles]}>{children}</Text>;
 }
+
+export function Header1({children, style}: StyledTextProps) {
+  /** Wrap the default `Text` component to provide some lightweight styles. */
+  const colourScheme = useColourScheme();
+  const styleSheet = styles.defaultStyles(colourScheme);
+  const extraStyles = style instanceof Array ? style : style ? [style] : [];
+
+  return <Text style={[styleSheet.header1, ...extraStyles]}>{children}</Text>;
+}

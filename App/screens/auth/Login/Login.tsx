@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 
 import LoginView from './LoginView';
 import * as auth from '../../../context/auth';
+import {LoginProps} from '../../../navigation/unauthenticated/navigation.types';
 import {login} from '../../../services/restAPI/authRequests/login';
 import * as exceptions from '../../../services/restAPI/exceptions';
 import * as storage from '../../../services/storage';
 
-export function Login() {
+export function Login({navigation}: LoginProps) {
   /** Authenticate users using their username and password. */
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -37,6 +38,7 @@ export function Login() {
 
   return (
     <LoginView
+      navigation={navigation}
       username={username}
       onUsernameChange={setUsername}
       password={password}

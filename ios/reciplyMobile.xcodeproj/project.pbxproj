@@ -14,6 +14,11 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-reciplyMobile-reciplyMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-reciplyMobile-reciplyMobileTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		DC445B6C956940909DEA0EA5 /* AbhayaLibre-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A23D683B2D6C4B20A68C4EC8 /* AbhayaLibre-Bold.ttf */; };
+		8498A282D681415AA11956C4 /* AbhayaLibre-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EF92BCE06FD48A7BEAA449E /* AbhayaLibre-ExtraBold.ttf */; };
+		15267DE26B654B36B844059E /* AbhayaLibre-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D44842CC741C896E942EA /* AbhayaLibre-Medium.ttf */; };
+		0D66E618768E412F8EE44136 /* AbhayaLibre-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C033A72745E74A1EB73D7F0D /* AbhayaLibre-Regular.ttf */; };
+		36F4A03A5DF14688A3AF2BC4 /* AbhayaLibre-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E71AA55173304163BC4CBEB7 /* AbhayaLibre-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = reciplyMobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-reciplyMobile-reciplyMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reciplyMobile-reciplyMobileTests.release.xcconfig"; path = "Target Support Files/Pods-reciplyMobile-reciplyMobileTests/Pods-reciplyMobile-reciplyMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		A23D683B2D6C4B20A68C4EC8 /* AbhayaLibre-Bold.ttf */ = {isa = PBXFileReference; name = "AbhayaLibre-Bold.ttf"; path = "../App/assets/fonts/AbhayaLibre-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6EF92BCE06FD48A7BEAA449E /* AbhayaLibre-ExtraBold.ttf */ = {isa = PBXFileReference; name = "AbhayaLibre-ExtraBold.ttf"; path = "../App/assets/fonts/AbhayaLibre-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4A8D44842CC741C896E942EA /* AbhayaLibre-Medium.ttf */ = {isa = PBXFileReference; name = "AbhayaLibre-Medium.ttf"; path = "../App/assets/fonts/AbhayaLibre-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C033A72745E74A1EB73D7F0D /* AbhayaLibre-Regular.ttf */ = {isa = PBXFileReference; name = "AbhayaLibre-Regular.ttf"; path = "../App/assets/fonts/AbhayaLibre-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E71AA55173304163BC4CBEB7 /* AbhayaLibre-SemiBold.ttf */ = {isa = PBXFileReference; name = "AbhayaLibre-SemiBold.ttf"; path = "../App/assets/fonts/AbhayaLibre-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +132,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				56F1EEE0EB1A4827B297B096 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +158,19 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		56F1EEE0EB1A4827B297B096 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				A23D683B2D6C4B20A68C4EC8 /* AbhayaLibre-Bold.ttf */,
+				6EF92BCE06FD48A7BEAA449E /* AbhayaLibre-ExtraBold.ttf */,
+				4A8D44842CC741C896E942EA /* AbhayaLibre-Medium.ttf */,
+				C033A72745E74A1EB73D7F0D /* AbhayaLibre-Regular.ttf */,
+				E71AA55173304163BC4CBEB7 /* AbhayaLibre-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +268,11 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				DC445B6C956940909DEA0EA5 /* AbhayaLibre-Bold.ttf in Resources */,
+				8498A282D681415AA11956C4 /* AbhayaLibre-ExtraBold.ttf in Resources */,
+				15267DE26B654B36B844059E /* AbhayaLibre-Medium.ttf in Resources */,
+				0D66E618768E412F8EE44136 /* AbhayaLibre-Regular.ttf in Resources */,
+				36F4A03A5DF14688A3AF2BC4 /* AbhayaLibre-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

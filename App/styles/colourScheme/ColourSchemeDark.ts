@@ -8,6 +8,7 @@ export default class ColourSchemeDark implements ColourScheme {
   // Fonts
   fontPrimary = '#fff';
   fontSecondary = '#000000';
+  fontTertiary = '#ace6ce';
 
   // Buttons
   buttonPrimary = '#7c8be3';

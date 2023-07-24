@@ -18,17 +18,13 @@ test('valid username and password logs user in', async () => {
   const mockAuthDispatch = jest.fn();
   render(
     <auth.AuthDispatchContext.Provider value={mockAuthDispatch}>
-      <Login />
+      <Login navigation={jest.fn() as any} route={jest.fn() as any} />
     </auth.AuthDispatchContext.Provider>,
   );
 
   // Simulate the login endpoint returning a token for the credentials
   const mockLoginResponse = Promise.resolve({token: 'dummy-token'});
   jest.mocked(login).mockResolvedValueOnce(mockLoginResponse);
-
-  // Login form should be shown
-  expect(screen.getByText('Username')).toBeOnTheScreen();
-  expect(screen.getByText('Password')).toBeOnTheScreen();
 
   // Input a username and password
   const usernameInput = screen.getByTestId('username-input');
@@ -61,7 +57,12 @@ test('valid username and password logs user in', async () => {
 
 test('invalid username and password cannot be used to login in', async () => {
   // Provide a mock auth dispatcher, so the dispatched actions can be inspected
-  render(<Login />);
+  const mockAuthDispatch = jest.fn();
+  render(
+    <auth.AuthDispatchContext.Provider value={mockAuthDispatch}>
+      <Login navigation={jest.fn() as any} route={jest.fn() as any} />
+    </auth.AuthDispatchContext.Provider>,
+  );
 
   // Simulate the login endpoint rejecting the credentials
   const mockLoginResponse = Promise.reject(
@@ -86,10 +87,10 @@ test('invalid username and password cannot be used to login in', async () => {
   expect(mockLoginCall[1]).toBe('password123');
 
   // An appropriate error message should be shown
-  const errorMessage = screen.getByTestId('error-message');
-  expect(errorMessage).toHaveTextContent('Invalid username or password');
+  expect(screen.getByText('Invalid username or password')).toBeOnTheScreen();
 
-  // No token should have been set in storage
+  // Auth reducer shouldn't have been called and no token should have been set in storage
+  expect(mockAuthDispatch.mock.calls).toHaveLength(0);
   const storedToken = storage.getValueForKey(storage.StorageKey.AuthToken);
   expect(storedToken).toBe(undefined);
 });

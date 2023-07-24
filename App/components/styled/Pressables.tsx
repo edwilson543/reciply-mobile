@@ -3,9 +3,11 @@ import React from 'react';
 import {
   Pressable,
   PressableProps,
+  StyleProp,
   StyleSheet,
   Text,
   TextStyle,
+  ViewStyle,
 } from 'react-native';
 
 import {ColourScheme, useColourScheme} from '../../styles/colourScheme';
@@ -16,8 +18,6 @@ interface PressableStyledProps extends PressableProps {
   textStyle?: TextStyle;
 }
 
-// TODO -> touchable opacity
-
 export function PressablePrimary({
   text,
   textStyle,
@@ -26,23 +26,14 @@ export function PressablePrimary({
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
-  let extraPressableStyles: Array<any> = [];
-  if (props.style) {
-    if (props.style instanceof Array) {
-      extraPressableStyles = props.style;
-    } else {
-      extraPressableStyles = [props.style];
-    }
-  }
+  const style = combineStyles(
+    props.style,
+    [styleSheet.pressable, styleSheet.pressablePrimary],
+    props.disabled,
+  );
 
   return (
-    <Pressable
-      {...props}
-      style={[
-        styleSheet.pressable,
-        styleSheet.pressablePrimary,
-        ...extraPressableStyles,
-      ]}>
+    <Pressable {...props} style={style}>
       <Text style={[styleSheet.text, styleSheet.textPrimary, textStyle]}>
         {text}
       </Text>
@@ -58,28 +49,41 @@ export function PressableSecondary({
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
-  let extraPressableStyles: Array<any> = [];
-  if (props.style) {
-    if (props.style instanceof Array) {
-      extraPressableStyles = props.style;
-    } else {
-      extraPressableStyles = [props.style];
-    }
-  }
+  const style = combineStyles(
+    props.style,
+    [styleSheet.pressable, styleSheet.pressableSecondary],
+    props.disabled,
+  );
 
   return (
-    <Pressable
-      {...props}
-      style={[
-        styleSheet.pressable,
-        styleSheet.pressableSecondary,
-        ...extraPressableStyles,
-      ]}>
+    <Pressable {...props} style={style}>
       <Text style={[styleSheet.text, styleSheet.textSecondary, textStyle]}>
         {text}
       </Text>
     </Pressable>
   );
+}
+
+function combineStyles(
+  extraStyles: StyleProp<any> | Array<StyleProp<any>>,
+  defaultStyles: Array<ViewStyle>,
+  disabled: boolean | null | undefined,
+): (pressed: {pressed: boolean}) => Array<ViewStyle> {
+  /** Combine the per use style array / object with the default button styles. */
+  let extraPressableStyles: Array<any> = [];
+  if (extraStyles) {
+    if (extraStyles instanceof Array) {
+      extraPressableStyles = extraStyles;
+    } else {
+      extraPressableStyles = [extraStyles];
+    }
+  }
+
+  return ({pressed}: {pressed: boolean}) => [
+    ...defaultStyles,
+    ...extraPressableStyles,
+    {opacity: pressed || disabled ? 0.5 : 0.8},
+  ];
 }
 
 const styles = (colourScheme: ColourScheme) =>
@@ -98,6 +102,8 @@ const styles = (colourScheme: ColourScheme) =>
       // Display
       alignItems: 'center',
       justifyContent: 'center',
+      height: 50,
+      padding: 5,
       // Background and Border
       borderRadius: 5,
     },
@@ -106,5 +112,7 @@ const styles = (colourScheme: ColourScheme) =>
     },
     pressableSecondary: {
       backgroundColor: colourScheme.buttonSecondary,
+      borderColor: colourScheme.buttonSecondaryFont,
+      borderWidth: 1,
     },
   });

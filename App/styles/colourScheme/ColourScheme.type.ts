@@ -6,6 +6,7 @@ export interface ColourScheme {
   // Fonts
   fontPrimary: string;
   fontSecondary: string;
+  fontTertiary: string;
 
   // Buttons
   buttonPrimary: string;
