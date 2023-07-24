@@ -3,13 +3,12 @@ import React, {useState} from 'react';
 import RegisterView from './RegisterView';
 import * as auth from '../../../context/auth';
 import {RegisterProps} from '../../../navigation/unauthenticated/navigation.types';
+import {register} from '../../../services/restAPI/authRequests/register';
 import {StatusCode} from '../../../services/restAPI/constants';
-import {registerEndpoint} from '../../../services/restAPI/endpoints';
 import {
   RegisterErrors,
   RegisterPayload,
 } from '../../../services/restAPI/payloads';
-import {fireRequest, RequestMethod} from '../../../services/restAPI/request';
 import * as storage from '../../../services/storage';
 
 const initialData: RegisterPayload = {
@@ -20,7 +19,7 @@ const initialData: RegisterPayload = {
 };
 
 export function Register({navigation}: RegisterProps) {
-  /** Authenticate users using their username and password. */
+  /** Allow users to sign up to the app. */
   const [userDetails, setUserDetails] = useState<RegisterPayload>(initialData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<RegisterErrors | null>(null);
@@ -33,7 +32,7 @@ export function Register({navigation}: RegisterProps) {
     userDetails.password1.length > 6 &&
     userDetails.password2.length > 6;
 
-  async function registerDetails() {
+  async function registerDetails(): Promise<void> {
     setErrors(null);
     setIsLoading(true);
 
@@ -42,7 +41,7 @@ export function Register({navigation}: RegisterProps) {
       formData.append(key, userDetails[key as keyof RegisterPayload]);
     }
 
-    fireRequest(registerEndpoint, RequestMethod.POST, {}, formData)
+    register(formData)
       .then(response => {
         if (response.status >= StatusCode.BadRequest) {
           response.json().then(data => setErrors(data));
