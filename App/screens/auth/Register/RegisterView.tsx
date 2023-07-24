@@ -2,6 +2,7 @@ import React, {SetStateAction} from 'react';
 
 import {StyleSheet, Text, View} from 'react-native';
 
+import LoginRegisterBackground from '../../../components/images/local/LoginRegisterBackground';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
   PressablePrimary,
@@ -42,6 +43,7 @@ export default function RegisterView({
 
   return (
     <View style={styleSheet.screenContainer}>
+      <LoginRegisterBackground />
       <View style={styleSheet.loginContainer}>
         {errors ? (
           <View style={styleSheet.errorText}>
@@ -139,8 +141,6 @@ const styles = (colourScheme: ColourScheme) =>
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      // Background
-      backgroundColor: colourScheme.backgroundSecondary,
     },
     loginContainer: {
       // Display
@@ -148,9 +148,6 @@ const styles = (colourScheme: ColourScheme) =>
       height: '75%',
       justifyContent: 'center',
       padding: 10,
-      // Background and border
-      backgroundColor: colourScheme.backgroundPrimary,
-      borderRadius: 10,
     },
     textInputContainer: {
       // Display
