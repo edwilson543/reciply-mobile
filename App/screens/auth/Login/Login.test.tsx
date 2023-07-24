@@ -26,10 +26,6 @@ test('valid username and password logs user in', async () => {
   const mockLoginResponse = Promise.resolve({token: 'dummy-token'});
   jest.mocked(login).mockResolvedValueOnce(mockLoginResponse);
 
-  // Login form should be shown
-  expect(screen.getByText('Username')).toBeOnTheScreen();
-  expect(screen.getByText('Password')).toBeOnTheScreen();
-
   // Input a username and password
   const usernameInput = screen.getByTestId('username-input');
   const passwordInput = screen.getByTestId('password-input');

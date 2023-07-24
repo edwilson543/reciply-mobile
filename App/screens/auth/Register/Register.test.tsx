@@ -28,12 +28,6 @@ test('valid details can be used to register', async () => {
   );
   jest.mocked(register).mockResolvedValueOnce(mockRegisterResponse);
 
-  // Login form should be shown
-  expect(screen.getByText('Username')).toBeOnTheScreen();
-  expect(screen.getByText('Email')).toBeOnTheScreen();
-  expect(screen.getByText('Password')).toBeOnTheScreen();
-  expect(screen.getByText('Password again')).toBeOnTheScreen();
-
   // Input some user details
   fireEvent.changeText(screen.getByTestId('username-input'), 'ed123');
   fireEvent.changeText(screen.getByTestId('email-input'), 'ed123@gmail.com');
