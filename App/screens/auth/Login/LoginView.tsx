@@ -103,8 +103,8 @@ const styles = (colourScheme: ColourScheme) =>
     loginContainer: {
       // Display
       width: '75%',
-      height: '40%',
-      justifyContent: 'space-between',
+      height: '50%',
+      justifyContent: 'space-around',
       padding: 10,
     },
     textInputField: {

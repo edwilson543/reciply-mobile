@@ -8,7 +8,6 @@ import {
   PressablePrimary,
   PressableSecondary,
   TextInputStyled,
-  TextStyled,
 } from '../../../components/styled';
 import {ScreenName} from '../../../navigation/constants';
 import {RegisterNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
@@ -58,62 +57,48 @@ export default function RegisterView({
           <LoadingSpinner size={'large'} />
         ) : (
           <>
-            <View style={styleSheet.textInputContainer}>
-              <TextStyled style={styleSheet.textInputLabel}>
-                Username
-              </TextStyled>
-              <TextInputStyled
-                value={userDetails.username}
-                onChangeText={text =>
-                  setUserDetails({...userDetails, username: text})
-                }
-                autoCapitalize={'none'}
-                style={styleSheet.textInputField}
-                testID={'username-input'}
-              />
-            </View>
-            <View style={styleSheet.textInputContainer}>
-              <TextStyled style={styleSheet.textInputLabel}>Email</TextStyled>
-              <TextInputStyled
-                value={userDetails.email}
-                onChangeText={text =>
-                  setUserDetails({...userDetails, email: text})
-                }
-                autoCapitalize={'none'}
-                style={styleSheet.textInputField}
-                testID={'email-input'}
-              />
-            </View>
-            <View style={styleSheet.textInputContainer}>
-              <TextStyled style={styleSheet.textInputLabel}>
-                Password
-              </TextStyled>
-              <TextInputStyled
-                value={userDetails.password1}
-                onChangeText={text =>
-                  setUserDetails({...userDetails, password1: text})
-                }
-                autoCapitalize={'none'}
-                secureTextEntry={true}
-                style={styleSheet.textInputField}
-                testID={'password1-input'}
-              />
-            </View>
-            <View style={styleSheet.textInputContainer}>
-              <TextStyled style={styleSheet.textInputLabel}>
-                Password again
-              </TextStyled>
-              <TextInputStyled
-                value={userDetails.password2}
-                onChangeText={text =>
-                  setUserDetails({...userDetails, password2: text})
-                }
-                autoCapitalize={'none'}
-                secureTextEntry={true}
-                style={styleSheet.textInputField}
-                testID={'password2-input'}
-              />
-            </View>
+            <TextInputStyled
+              value={userDetails.username}
+              onChangeText={text =>
+                setUserDetails({...userDetails, username: text})
+              }
+              placeholder="Username"
+              autoCapitalize={'none'}
+              style={styleSheet.textInputField}
+              testID={'username-input'}
+            />
+            <TextInputStyled
+              value={userDetails.email}
+              onChangeText={text =>
+                setUserDetails({...userDetails, email: text})
+              }
+              placeholder={'Email'}
+              autoCapitalize={'none'}
+              style={styleSheet.textInputField}
+              testID={'email-input'}
+            />
+            <TextInputStyled
+              value={userDetails.password1}
+              onChangeText={text =>
+                setUserDetails({...userDetails, password1: text})
+              }
+              placeholder={'password'}
+              autoCapitalize={'none'}
+              secureTextEntry={true}
+              style={styleSheet.textInputField}
+              testID={'password1-input'}
+            />
+            <TextInputStyled
+              value={userDetails.password2}
+              onChangeText={text =>
+                setUserDetails({...userDetails, password2: text})
+              }
+              placeholder={'Confirm password'}
+              autoCapitalize={'none'}
+              secureTextEntry={true}
+              style={styleSheet.textInputField}
+              testID={'password2-input'}
+            />
             <PressablePrimary
               onPress={handleSubmit}
               disabled={!canSubmit}
@@ -146,22 +131,8 @@ const styles = (colourScheme: ColourScheme) =>
       // Display
       width: '75%',
       height: '75%',
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       padding: 10,
-    },
-    textInputContainer: {
-      // Display
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: 10,
-    },
-    textInputLabel: {
-      // Display
-      width: '100%',
-      // Typography
-      fontSize: FontSize.TextLarge,
-      fontWeight: 'bold',
     },
     textInputField: {
       // Display
