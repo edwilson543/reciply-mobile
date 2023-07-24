@@ -3,9 +3,11 @@ import React from 'react';
 import {
   Pressable,
   PressableProps,
+  StyleProp,
   StyleSheet,
   Text,
   TextStyle,
+  ViewStyle,
 } from 'react-native';
 
 import {ColourScheme, useColourScheme} from '../../styles/colourScheme';
@@ -24,21 +26,11 @@ export function PressablePrimary({
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
-  let extraPressableStyles: Array<any> = [];
-  if (props.style) {
-    if (props.style instanceof Array) {
-      extraPressableStyles = props.style;
-    } else {
-      extraPressableStyles = [props.style];
-    }
-  }
-
-  const style = ({pressed}: {pressed: boolean}) => [
-    styleSheet.pressable,
-    styleSheet.pressablePrimary,
-    ...extraPressableStyles,
-    {opacity: pressed || props.disabled ? 0.5 : 1},
-  ];
+  const style = combineStyles(
+    props.style,
+    [styleSheet.pressable, styleSheet.pressablePrimary],
+    props.disabled,
+  );
 
   return (
     <Pressable {...props} style={style}>
@@ -57,21 +49,11 @@ export function PressableSecondary({
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
-  let extraPressableStyles: Array<any> = [];
-  if (props.style) {
-    if (props.style instanceof Array) {
-      extraPressableStyles = props.style;
-    } else {
-      extraPressableStyles = [props.style];
-    }
-  }
-
-  const style = ({pressed}: {pressed: boolean}) => [
-    styleSheet.pressable,
-    styleSheet.pressableSecondary,
-    ...extraPressableStyles,
-    {opacity: pressed || props.disabled ? 0.5 : 1},
-  ];
+  const style = combineStyles(
+    props.style,
+    [styleSheet.pressable, styleSheet.pressableSecondary],
+    props.disabled,
+  );
 
   return (
     <Pressable {...props} style={style}>
@@ -80,6 +62,28 @@ export function PressableSecondary({
       </Text>
     </Pressable>
   );
+}
+
+function combineStyles(
+  extraStyles: StyleProp<any> | Array<StyleProp<any>>,
+  defaultStyles: Array<ViewStyle>,
+  disabled: boolean | null | undefined,
+): (pressed: {pressed: boolean}) => Array<ViewStyle> {
+  /** Combine the per use style array / object with the default button styles. */
+  let extraPressableStyles: Array<any> = [];
+  if (extraStyles) {
+    if (extraStyles instanceof Array) {
+      extraPressableStyles = extraStyles;
+    } else {
+      extraPressableStyles = [extraStyles];
+    }
+  }
+
+  return ({pressed}: {pressed: boolean}) => [
+    ...defaultStyles,
+    ...extraPressableStyles,
+    {opacity: pressed || disabled ? 0.5 : 1},
+  ];
 }
 
 const styles = (colourScheme: ColourScheme) =>
