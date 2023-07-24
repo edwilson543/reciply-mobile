@@ -3,11 +3,12 @@ import {ColourScheme} from './ColourScheme.type';
 export default class ColourSchemeLight implements ColourScheme {
   // Background
   backgroundPrimary = '#fff';
-  backgroundSecondary = '#ace6ce';
+  backgroundSecondary = '#6db57d';
 
   // Fonts
   fontPrimary = '#000000';
   fontSecondary = '#fff';
+  fontTertiary = '#6db57d';
 
   // Buttons
   buttonPrimary = '#000000';

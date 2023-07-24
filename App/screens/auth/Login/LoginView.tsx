@@ -5,6 +5,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import LoginRegisterBackground from '../../../components/images/local/LoginRegisterBackground';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
+  Header1,
   PressablePrimary,
   PressableSecondary,
   TextInputStyled,
@@ -49,6 +50,7 @@ export default function LoginView({
         style={styleSheet.registerButton}
         testID={'register-button'}
       />
+      <Header1 style={styleSheet.reciplyHeader}>reciply</Header1>
       <View style={styleSheet.loginContainer}>
         {errorMessage ? (
           <View style={styleSheet.errorText}>
@@ -110,6 +112,9 @@ const styles = (colourScheme: ColourScheme) =>
       height: 40,
       // Background and border
       borderRadius: 20,
+    },
+    reciplyHeader: {
+      color: colourScheme.fontTertiary,
     },
     loginContainer: {
       // Display
