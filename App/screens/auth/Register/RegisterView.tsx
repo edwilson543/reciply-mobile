@@ -79,7 +79,7 @@ export default function RegisterView({
                 }
                 autoCapitalize={'none'}
                 style={styleSheet.textInputField}
-                testID={'username-input'}
+                testID={'email-input'}
               />
             </View>
             <View style={styleSheet.textInputContainer}>
@@ -94,7 +94,7 @@ export default function RegisterView({
                 autoCapitalize={'none'}
                 secureTextEntry={true}
                 style={styleSheet.textInputField}
-                testID={'password-input'}
+                testID={'password1-input'}
               />
             </View>
             <View style={styleSheet.textInputContainer}>
@@ -109,7 +109,7 @@ export default function RegisterView({
                 autoCapitalize={'none'}
                 secureTextEntry={true}
                 style={styleSheet.textInputField}
-                testID={'password-input'}
+                testID={'password2-input'}
               />
             </View>
             <PressablePrimary
@@ -117,13 +117,13 @@ export default function RegisterView({
               disabled={!canSubmit}
               style={styleSheet.submitButton}
               text={'Register'}
-              testID={'login-button'}
+              testID={'register-button'}
             />
             <PressableSecondary
               onPress={() => navigation.navigate(ScreenName.Login)}
               style={styleSheet.loginButton}
               text={'Login'}
-              testID={'register-button'}
+              testID={'login-button'}
             />
           </>
         )}
