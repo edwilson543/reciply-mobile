@@ -1,6 +1,6 @@
 import React, {SetStateAction} from 'react';
 
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import LoginRegisterBackground from '../../../components/images/local/LoginRegisterBackground';
 import LoadingSpinner from '../../../components/LoadingSpinner';
@@ -10,6 +10,7 @@ import {
   PressableSecondary,
   TextInputStyled,
 } from '../../../components/styled';
+import {AlertDanger} from '../../../components/styled/Alerts';
 import {ScreenName} from '../../../navigation/constants';
 import {RegisterNavigationProp} from '../../../navigation/unauthenticated/navigation.types';
 import {
@@ -41,6 +42,19 @@ export default function RegisterView({
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
+  let errorText = '';
+  if (errors) {
+    if (errors.username) {
+      errorText += errors.username;
+    }
+    if (errors.email) {
+      errorText += errors.email;
+    }
+    if (errors.password) {
+      errorText += errors.password;
+    }
+  }
+
   return (
     <View style={styleSheet.screenContainer}>
       <LoginRegisterBackground />
@@ -52,15 +66,7 @@ export default function RegisterView({
       />
       <Header1 style={styleSheet.reciplyHeader}>reciply</Header1>
       <View style={styleSheet.loginContainer}>
-        {errors ? (
-          <View style={styleSheet.errorText}>
-            <Text style={styleSheet.errorText} testID={'error-message'}>
-              {errors.username + errors.email + errors.password}
-            </Text>
-          </View>
-        ) : (
-          <></>
-        )}
+        {errors ? <AlertDanger errorText={errorText} /> : <></>}
         {isLoading ? (
           <LoadingSpinner size={'large'} />
         ) : (
@@ -153,15 +159,5 @@ const styles = (colourScheme: ColourScheme) =>
       width: '100%',
       // Typography
       fontSize: FontSize.TextLarge,
-    },
-    errorText: {
-      // Display
-      padding: 5,
-      // Background and border
-      backgroundColor: colourScheme.alertDanger,
-      borderRadius: 10,
-      // Typography
-      fontSize: FontSize.TextSmall,
-      color: colourScheme.alertDangerFont,
     },
   });

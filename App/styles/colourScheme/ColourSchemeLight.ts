@@ -28,5 +28,5 @@ export default class ColourSchemeLight implements ColourScheme {
   alertPrimaryFont = '#0d6efd';
   alertSuccessFont = '#198754';
   alertWarningFont = '#ffc107';
-  alertDangerFont = '#dc3545';
+  alertDangerFont = '#480308';
 }
