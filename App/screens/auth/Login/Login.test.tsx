@@ -4,12 +4,12 @@ import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {Login} from './Login';
 import * as auth from '../../../context/auth';
-import {login} from '../../../services/restAPI/authRequests/login';
 import * as exceptions from '../../../services/restAPI/exceptions';
+import {login} from '../../../services/restAPI/requests/auth';
 import * as storage from '../../../services/storage';
 
 // Mock out the call to the login endpoint
-jest.mock('../../../services/restAPI/authRequests/login');
+jest.mock('../../../services/restAPI/requests/auth');
 afterEach(() => jest.mocked(login).mockClear());
 afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
 

@@ -14,6 +14,10 @@ export interface RegisterErrors extends BaseError, RegisterPayload {
   password: string;
 }
 
+export interface LoginSuccessPayload {
+  token: string;
+}
+
 // Recipes
 
 interface RecipeBasePayload {

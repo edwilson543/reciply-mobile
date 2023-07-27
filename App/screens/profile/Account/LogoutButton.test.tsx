@@ -5,12 +5,12 @@ import {Alert} from 'react-native';
 
 import LogoutButton from './LogoutButton';
 import * as auth from '../../../context/auth';
-import {logout} from '../../../services/restAPI/authRequests/logout';
+import {logout} from '../../../services/restAPI/requests/auth';
 import * as storage from '../../../services/storage';
 import {StorageKey} from '../../../services/storage';
 
 // Mock out the call to the logout endpoint
-jest.mock('../../../services/restAPI/authRequests/logout');
+jest.mock('../../../services/restAPI/requests/auth');
 afterEach(() => jest.mocked(logout).mockClear());
 afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
 

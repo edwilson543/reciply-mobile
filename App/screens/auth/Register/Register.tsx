@@ -3,12 +3,12 @@ import React, {useState} from 'react';
 import RegisterView from './RegisterView';
 import * as auth from '../../../context/auth';
 import {RegisterProps} from '../../../navigation/unauthenticated/navigation.types';
-import {register} from '../../../services/restAPI/authRequests/register';
 import {StatusCode} from '../../../services/restAPI/constants';
 import {
   RegisterErrors,
   RegisterPayload,
 } from '../../../services/restAPI/payloads';
+import {register} from '../../../services/restAPI/requests/auth';
 import * as storage from '../../../services/storage';
 
 const initialData: RegisterPayload = {

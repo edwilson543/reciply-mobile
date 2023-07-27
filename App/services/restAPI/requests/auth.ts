@@ -1,9 +1,11 @@
 import {Buffer} from 'buffer';
 
 import * as constants from '../constants';
-import {loginEndpoint} from '../endpoints';
+import {loginEndpoint, logoutEndpoint, registerEndpoint} from '../endpoints';
 import * as exceptions from '../exceptions';
+import {LoginSuccessPayload} from '../payloads';
 import * as request from '../request';
+import {fireRequest, RequestMethod} from '../request';
 
 export async function login(
   username: string,
@@ -28,8 +30,13 @@ export async function login(
   );
 }
 
-// Interfaces
+export async function register(formData: FormData): Promise<Response> {
+  return fireRequest(registerEndpoint, RequestMethod.POST, {}, formData);
+}
 
-interface LoginSuccessPayload {
-  token: string;
+export async function logout(): Promise<Response> {
+  return request.fireAuthenticatedRequest(
+    logoutEndpoint,
+    request.RequestMethod.POST,
+  );
 }
