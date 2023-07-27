@@ -7,10 +7,10 @@ import {loginEndpoint, logoutEndpoint, registerEndpoint} from '../endpoints';
 import * as exceptions from '../exceptions';
 import {LoginSuccessPayload} from '../payloads';
 
-export async function login(
+export const login = async (
   username: string,
   password: string,
-): Promise<LoginSuccessPayload> {
+): Promise<LoginSuccessPayload> => {
   const headers = {
     Authorization:
       'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
@@ -28,15 +28,15 @@ export async function login(
         }
       })
   );
-}
+};
 
-export async function register(formData: FormData): Promise<Response> {
+export const register = async (formData: FormData): Promise<Response> => {
   return fireRequest(registerEndpoint, RequestMethod.POST, {}, formData);
-}
+};
 
-export async function logout(): Promise<Response> {
+export const logout = async (): Promise<Response> => {
   return request.fireAuthenticatedRequest(
     logoutEndpoint,
     request.RequestMethod.POST,
   );
-}
+};
