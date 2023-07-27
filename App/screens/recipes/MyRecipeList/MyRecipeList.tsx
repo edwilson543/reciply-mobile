@@ -2,17 +2,12 @@ import React, {useEffect, useState} from 'react';
 
 import MyRecipeListView from './MyRecipeListView';
 import {MyRecipeListProps} from '../../../navigation/authenticated/navigation.types';
-import {useGetData} from '../../../services/restAPI/client';
-import {myRecipeListEndpoint} from '../../../services/restAPI/endpoints';
-import {RecipeListPayload} from '../../../services/restAPI/payloads';
+import {useMyRecipeList} from '../../../services/restAPI/requests/recipes';
 
 export function MyRecipeList({navigation, route}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
   const [refreshKey, setRefreshKey] = useState<number>(0);
-  const {data, isLoading} = useGetData<Array<RecipeListPayload>>(
-    myRecipeListEndpoint,
-    refreshKey,
-  );
+  const {data, isLoading} = useMyRecipeList(refreshKey);
 
   useEffect(() => {
     /** Allow screens navigating to this page to refresh the list once. */

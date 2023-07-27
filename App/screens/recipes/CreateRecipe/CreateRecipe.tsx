@@ -7,10 +7,9 @@ import {Asset, launchImageLibrary} from 'react-native-image-picker';
 import CreateRecipeView from './CreateRecipeView';
 import {CreateRecipeProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {postData} from '../../../services/restAPI/client';
 import {StatusCode} from '../../../services/restAPI/constants';
-import {createRecipeEndpoint} from '../../../services/restAPI/endpoints';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
+import {createRecipe} from '../../../services/restAPI/requests/recipes';
 
 export function CreateRecipe({navigation}: CreateRecipeProps) {
   /** Allow users to create a new recipe. */
@@ -33,7 +32,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
             : heroImage.uri,
       });
     }
-    postData(createRecipeEndpoint, form, true).then(response => {
+    createRecipe(form).then(response => {
       if (response.status >= StatusCode.BadRequest) {
         response.json().then(data => setErrors(data));
       } else {
