@@ -10,7 +10,7 @@ import {
 } from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
-import * as requests from '../../services/restAPI/request';
+import * as requests from '../../services/restAPI/client';
 
 jest.mock('react-native-image-picker', () => '');
 jest.spyOn(requests, 'useGetData');

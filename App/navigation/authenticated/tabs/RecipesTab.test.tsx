@@ -6,11 +6,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {RecipesTab} from './RecipesTab';
-import {postData, useGetData} from '../../../services/restAPI/request';
+import {postData, useGetData} from '../../../services/restAPI/client';
 import {ScreenName} from '../../constants';
 
 jest.mock('react-native-image-picker', () => '');
-jest.mock('../../../services/restAPI/request');
+jest.mock('../../../services/restAPI/client');
 
 test('clicking on recipe in list navigates to detail screen', async () => {
   // Mock out the recipe list API call

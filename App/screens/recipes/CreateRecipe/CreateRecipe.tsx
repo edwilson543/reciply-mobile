@@ -7,10 +7,10 @@ import {Asset, launchImageLibrary} from 'react-native-image-picker';
 import CreateRecipeView from './CreateRecipeView';
 import {CreateRecipeProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
+import {postData} from '../../../services/restAPI/client';
 import {StatusCode} from '../../../services/restAPI/constants';
 import {createRecipeEndpoint} from '../../../services/restAPI/endpoints';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
-import {postData} from '../../../services/restAPI/request';
 
 export function CreateRecipe({navigation}: CreateRecipeProps) {
   /** Allow users to create a new recipe. */

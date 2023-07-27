@@ -4,7 +4,7 @@ import React from 'react';
 import {act, render, screen, waitFor} from '@testing-library/react-native';
 
 import App from './App';
-import * as requests from './services/restAPI/request';
+import * as requests from './services/restAPI/client';
 import * as storage from './services/storage';
 
 jest.mock('react-native-image-picker', () => '');

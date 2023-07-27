@@ -3,9 +3,9 @@ import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react-native';
 
 import {CreateRecipe} from './CreateRecipe';
-import {postData} from '../../../services/restAPI/request';
+import {postData} from '../../../services/restAPI/client';
 
-jest.mock('../../../services/restAPI/request');
+jest.mock('../../../services/restAPI/client');
 jest.mock('react-native-image-picker', () => '');
 
 test('cannot submit recipe if name given is too short', async () => {

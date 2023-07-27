@@ -1,11 +1,11 @@
 import {Buffer} from 'buffer';
 
+import * as request from '../client';
+import {fireRequest, RequestMethod} from '../client';
 import * as constants from '../constants';
 import {loginEndpoint, logoutEndpoint, registerEndpoint} from '../endpoints';
 import * as exceptions from '../exceptions';
 import {LoginSuccessPayload} from '../payloads';
-import * as request from '../request';
-import {fireRequest, RequestMethod} from '../request';
 
 export async function login(
   username: string,

@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 
 import MyRecipeListView from './MyRecipeListView';
 import {MyRecipeListProps} from '../../../navigation/authenticated/navigation.types';
+import {useGetData} from '../../../services/restAPI/client';
 import {myRecipeListEndpoint} from '../../../services/restAPI/endpoints';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
-import {useGetData} from '../../../services/restAPI/request';
 
 export function MyRecipeList({navigation, route}: MyRecipeListProps) {
   /** Container for the screen showing the user's recipes. */
