@@ -1,3 +1,5 @@
+import {Day, MealTime} from './constants';
+
 interface BaseError {
   non_field_errors?: Array<string>;
 }
@@ -44,4 +46,39 @@ export interface RecipeDetailsPayload extends RecipeBasePayload {
 
 export interface CreateRecipeErrors extends BaseError {
   name?: Array<string>;
+}
+
+// Menus
+
+interface MenuBasePayload {
+  id: number;
+  name: string;
+  description: string;
+}
+
+interface MenuItemPayload {
+  id: number;
+  recipe: RecipeListPayload;
+  day: Day;
+  meal_time: MealTime;
+}
+
+export interface MenuListPayload extends MenuBasePayload {
+  number_of_items: number;
+}
+
+export interface MenuDetailsPayload {
+  items: Array<MenuItemPayload>;
+}
+
+export interface AddItemToMenuRequestPayload {
+  recipeId: number;
+  day: Day;
+  meal_time: MealTime;
+}
+
+export interface AddItemToMenuResponsePayload {
+  recipeId: number;
+  day: Day;
+  meal_time: MealTime;
 }

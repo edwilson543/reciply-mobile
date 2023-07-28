@@ -64,6 +64,10 @@ export async function postData(
   return fireAuthenticatedRequest(url, RequestMethod.POST, payload, isUpload);
 }
 
+export async function deleteData(url: string): Promise<Response> {
+  return fireAuthenticatedRequest(url, RequestMethod.DELETE);
+}
+
 export function useGetData(
   url: string,
   refreshKey?: number,

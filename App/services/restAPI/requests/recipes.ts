@@ -1,17 +1,18 @@
 import {postData, useGetData} from '../client';
-import {
-  createRecipeEndpoint,
-  myRecipeListEndpoint,
-  recipeDetailsEndpoint,
-} from '../endpoints';
-import {RecipeDetailsPayload, RecipeListPayload} from '../payloads';
+import * as endpoints from '../endpoints';
+import * as payloads from '../payloads';
 
 export const useMyRecipeList = (refreshKey: number) =>
-  useGetData<Array<RecipeListPayload>>(myRecipeListEndpoint, refreshKey);
+  useGetData<Array<payloads.RecipeListPayload>>(
+    endpoints.myRecipeListEndpoint,
+    refreshKey,
+  );
 
 export const useRecipeDetails = (recipeId: number) =>
-  useGetData<RecipeDetailsPayload>(recipeDetailsEndpoint(recipeId));
+  useGetData<payloads.RecipeDetailsPayload>(
+    endpoints.recipeDetailsEndpoint(recipeId),
+  );
 
 export const createRecipe = async (form: FormData): Promise<Response> => {
-  return postData(createRecipeEndpoint, form, true);
+  return postData(endpoints.createRecipeEndpoint, form, true);
 };
