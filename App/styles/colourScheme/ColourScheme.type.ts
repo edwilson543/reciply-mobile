@@ -26,4 +26,7 @@ export interface ColourScheme {
   alertSuccessFont: string;
   alertWarningFont: string;
   alertDangerFont: string;
+
+  // Text input
+  textInputFocusBorder: string;
 }
