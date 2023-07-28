@@ -1,7 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
 
-import {Platform} from 'react-native';
 import {Asset, launchImageLibrary} from 'react-native-image-picker';
 
 import CreateRecipeView from './CreateRecipeView';
@@ -19,20 +18,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
   const [errors, setErrors] = useState<CreateRecipeErrors | null>(null);
 
   async function submitForm(): Promise<void> {
-    const form = new FormData();
-    form.append('name', name);
-    form.append('description', description);
-    if (heroImage && heroImage.uri) {
-      form.append('hero_image', {
-        name: heroImage.fileName,
-        type: heroImage.type,
-        uri:
-          Platform.OS === 'ios'
-            ? heroImage.uri.replace('file://', '')
-            : heroImage.uri,
-      });
-    }
-    createRecipe(form).then(response => {
+    createRecipe(name, description, heroImage).then(response => {
       if (response.status >= StatusCode.BadRequest) {
         response.json().then(data => setErrors(data));
       } else {
