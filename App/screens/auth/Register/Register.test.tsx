@@ -40,12 +40,11 @@ test('valid details can be used to register', async () => {
 
   // Register endpoint should have been requested with the relevant credentials
   expect(jest.mocked(register).mock.calls).toHaveLength(1);
-  const mockLoginCall = jest.mocked(register).mock.calls[0];
-  const submittedDetails = mockLoginCall[0] as any; // TS doesn't think FormData has `.get()`
-  expect(submittedDetails.get('username')).toBe('ed123');
-  expect(submittedDetails.get('email')).toBe('ed123@gmail.com');
-  expect(submittedDetails.get('password1')).toBe('password123');
-  expect(submittedDetails.get('password2')).toBe('password123');
+  const mockRegisterCall = jest.mocked(register).mock.calls[0];
+  expect(mockRegisterCall[0]).toBe('ed123');
+  expect(mockRegisterCall[1]).toBe('ed123@gmail.com');
+  expect(mockRegisterCall[2]).toBe('password123');
+  expect(mockRegisterCall[3]).toBe('password123');
 
   // The login action should have been dispatched
   expect(mockAuthDispatch.mock.calls).toHaveLength(1);
@@ -89,12 +88,11 @@ test('invalid details cannot be used to register', async () => {
 
   // Register endpoint should have been requested with the relevant credentials
   expect(jest.mocked(register).mock.calls).toHaveLength(1);
-  const mockLoginCall = jest.mocked(register).mock.calls[0];
-  const submittedDetails = mockLoginCall[0] as any; // TS doesn't think FormData has `.get()`
-  expect(submittedDetails.get('username')).toBe('ed123');
-  expect(submittedDetails.get('email')).toBe('ed123@gmail.com');
-  expect(submittedDetails.get('password1')).toBe('password123');
-  expect(submittedDetails.get('password2')).toBe('password123');
+  const mockRegisterCall = jest.mocked(register).mock.calls[0];
+  expect(mockRegisterCall[0]).toBe('ed123');
+  expect(mockRegisterCall[1]).toBe('ed123@gmail.com');
+  expect(mockRegisterCall[2]).toBe('password123');
+  expect(mockRegisterCall[3]).toBe('password123');
 
   // An appropriate error message should be shown
   expect(screen.getByText('Username already taken')).toBeOnTheScreen();

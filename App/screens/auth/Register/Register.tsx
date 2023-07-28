@@ -36,12 +36,12 @@ export function Register({navigation}: RegisterProps) {
     setErrors(null);
     setIsLoading(true);
 
-    const formData = new FormData();
-    for (const key in userDetails) {
-      formData.append(key, userDetails[key as keyof RegisterPayload]);
-    }
-
-    register(formData)
+    register(
+      userDetails.username,
+      userDetails.email,
+      userDetails.password1,
+      userDetails.password2,
+    )
       .then(response => {
         if (response.status >= StatusCode.BadRequest) {
           response.json().then(data => setErrors(data));

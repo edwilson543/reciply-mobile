@@ -30,7 +30,18 @@ export const login = async (
   );
 };
 
-export const register = async (formData: FormData): Promise<Response> => {
+export const register = async (
+  username: string,
+  email: string,
+  password1: string,
+  password2: string,
+): Promise<Response> => {
+  const formData = new FormData();
+  formData.append('username', username);
+  formData.append('email', email);
+  formData.append('password1', password1);
+  formData.append('password2', password2);
+
   return fireRequest(registerEndpoint, RequestMethod.POST, {}, formData);
 };
 
