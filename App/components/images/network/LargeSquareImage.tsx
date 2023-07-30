@@ -23,5 +23,7 @@ const styles = StyleSheet.create({
     // Display
     width: '100%',
     height: 300,
+    // Background
+    opacity: 0.9,
   },
 });

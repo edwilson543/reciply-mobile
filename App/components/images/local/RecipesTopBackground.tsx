@@ -22,5 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '15%',
+    // Background
+    opacity: 0.75,
   },
 });
