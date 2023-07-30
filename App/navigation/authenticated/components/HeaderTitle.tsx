@@ -5,6 +5,7 @@ import {View} from 'react-native';
 
 import {TextStyled} from '../../../components/styled';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
+import {FontSize} from '../../../styles/constants';
 
 export default function HeaderTitle() {
   const colourScheme = useColourScheme();
@@ -25,11 +26,9 @@ const styles = (colourScheme: ColourScheme) =>
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      // Background
-      backgroundColor: colourScheme.backgroundSecondary,
       // Typography
-      color: colourScheme.fontSecondary,
+      color: colourScheme.fontTertiary,
+      fontSize: FontSize.TextLarge,
       fontWeight: 'bold',
-      fontStyle: 'italic',
     },
   });

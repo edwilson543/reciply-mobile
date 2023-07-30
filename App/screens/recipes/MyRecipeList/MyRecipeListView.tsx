@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
+import RecipesTopBackground from '../../../components/images/local/RecipesTopBackground';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Header1, PressablePrimary} from '../../../components/styled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
@@ -24,7 +25,8 @@ export default function MyRecipeListView({
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
   return (
-    <>
+    <View>
+      <RecipesTopBackground />
       <View style={styles.headerContainer}>
         <Header1 style={styles.titleText}>My recipes</Header1>
         <PressablePrimary
@@ -43,7 +45,7 @@ export default function MyRecipeListView({
         onRefresh={onRefresh}
         refreshing={isLoading}
       />
-    </>
+    </View>
   );
 }
 

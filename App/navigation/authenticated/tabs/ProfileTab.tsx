@@ -4,9 +4,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import * as profileScreens from '../../../screens/profile';
 import {useColourScheme} from '../../../styles/colourScheme';
-import {headerScreenStyles} from '../../../styles/navigation';
 import {ScreenName} from '../../constants';
 import HeaderTitle from '../components/HeaderTitle';
+import {headerScreenStyles} from '../header';
 import {ProfileStackParamsList} from '../navigation.types';
 
 const ProfileStack = createNativeStackNavigator<ProfileStackParamsList>();

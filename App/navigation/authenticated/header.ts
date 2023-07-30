@@ -1,6 +1,7 @@
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
-import {ColourScheme} from '../colourScheme';
+import HeaderTitle from './components/HeaderTitle';
+import {ColourScheme} from '../../styles/colourScheme';
 
 export const headerScreenStyles = (
   colorScheme: ColourScheme,
@@ -9,11 +10,11 @@ export const headerScreenStyles = (
    * The weird structure is to fit with the object type expected by React navigation.
    * */
   ({
-    headerStyle: {
-      backgroundColor: colorScheme.backgroundSecondary,
-    },
-    headerTintColor: colorScheme.fontSecondary,
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+    // Header bar
+    headerTransparent: true,
+    // Header title
+    headerTitle: HeaderTitle,
+    // Header left
+    headerTintColor: colorScheme.fontTertiary,
+    headerBackTitle: 'back',
   });
