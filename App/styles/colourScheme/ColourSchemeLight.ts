@@ -30,6 +30,8 @@ export default class ColourSchemeLight implements ColourScheme {
   alertWarningFont = '#ffc107';
   alertDangerFont = '#480308';
 
-  // Text input
+  // Miscellaneous form widgets
   textInputFocusBorder = '#2391de';
+  tabIconInactive = '#000000';
+  tabIconActive = '#dc2830';
 }

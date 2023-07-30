@@ -27,6 +27,8 @@ export interface ColourScheme {
   alertWarningFont: string;
   alertDangerFont: string;
 
-  // Text input
+  // Miscellaneous form widgets
   textInputFocusBorder: string;
+  tabIconInactive: string;
+  tabIconActive: string;
 }
