@@ -1,7 +1,6 @@
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
 import {ColourScheme} from '../../../styles/colourScheme';
-import {FontSize} from '../../../styles/constants';
 
 export const headerStyles = (
   colorScheme: ColourScheme,
@@ -14,12 +13,7 @@ export const headerStyles = (
     headerTransparent: true,
     headerTintColor: colorScheme.fontTertiary,
     // Header title
-    title: 'reciply',
-    headerTitleAlign: 'center',
-    headerTitleStyle: {
-      fontSize: FontSize.TextLarge,
-      fontFamily: 'AbhayaLibre-ExtraBold',
-    },
+    headerTitle: '',
     // Header left
     headerBackTitle: 'back',
   });
