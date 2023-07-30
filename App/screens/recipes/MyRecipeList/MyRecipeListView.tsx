@@ -25,7 +25,7 @@ export default function MyRecipeListView({
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
   return (
-    <View>
+    <View style={styles.screenContainer}>
       <RecipesTopBackground />
       <View style={styles.headerContainer}>
         <Header1 style={styles.titleText}>recipes</Header1>
@@ -50,6 +50,9 @@ export default function MyRecipeListView({
 }
 
 const styles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+  },
   headerContainer: {
     // Display
     flexDirection: 'row',
