@@ -2,6 +2,7 @@ import React, {SetStateAction} from 'react';
 
 import {View, StyleSheet} from 'react-native';
 
+import RecipesTopBackground from '../../../components/images/local/RecipesTopBackground';
 import UploadImagePreview from '../../../components/images/local/UploadImagePreview';
 import {
   PressablePrimary,
@@ -43,44 +44,47 @@ export default function CreateRecipeView({
   const errorText = errors?.name ? errors.name[0] : '';
 
   return (
-    <View style={styleSheet.container}>
-      <TextStyled style={styleSheet.header}>Create new recipe</TextStyled>
-      {errors ? (
-        <AlertDanger errorText={errorText} style={styleSheet.errors} />
-      ) : (
-        <></>
-      )}
-      <TextStyled>Name</TextStyled>
-      <TextInputStyled
-        value={name}
-        onChangeText={onNameChange}
-        style={[styleSheet.textInputField, styleSheet.nameInputField]}
-        testID={'name-input'}
-      />
-      <TextStyled>Description</TextStyled>
-      <TextInputStyled
-        value={description}
-        onChangeText={onDescriptionChange}
-        multiline={true}
-        style={[styleSheet.textInputField, styleSheet.descriptionInputField]}
-        testID={'description-input'}
-      />
-      <View style={styleSheet.selectImageContainer}>
-        <PressableSecondary
-          text={'+ Add photo'}
-          onPress={pickHeroImage}
-          style={styleSheet.selectImageButton}
+    <>
+      <RecipesTopBackground />
+      <View style={styleSheet.container}>
+        <TextStyled style={styleSheet.header}>Create new recipe</TextStyled>
+        {errors ? (
+          <AlertDanger errorText={errorText} style={styleSheet.errors} />
+        ) : (
+          <></>
+        )}
+        <TextStyled>Name</TextStyled>
+        <TextInputStyled
+          value={name}
+          onChangeText={onNameChange}
+          style={[styleSheet.textInputField, styleSheet.nameInputField]}
+          testID={'name-input'}
         />
-        <UploadImagePreview imageSource={heroImageSource} />
+        <TextStyled>Description</TextStyled>
+        <TextInputStyled
+          value={description}
+          onChangeText={onDescriptionChange}
+          multiline={true}
+          style={[styleSheet.textInputField, styleSheet.descriptionInputField]}
+          testID={'description-input'}
+        />
+        <View style={styleSheet.selectImageContainer}>
+          <PressableSecondary
+            text={'+ Add photo'}
+            onPress={pickHeroImage}
+            style={styleSheet.selectImageButton}
+          />
+          <UploadImagePreview imageSource={heroImageSource} />
+        </View>
+        <PressablePrimary
+          onPress={submitForm}
+          disabled={!canSubmit}
+          style={styleSheet.submitButton}
+          text={'Submit'}
+          testID={'submit-button'}
+        />
       </View>
-      <PressablePrimary
-        onPress={submitForm}
-        disabled={!canSubmit}
-        style={styleSheet.submitButton}
-        text={'Submit'}
-        testID={'submit-button'}
-      />
-    </View>
+    </>
   );
 }
 
@@ -88,6 +92,7 @@ const styles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
     container: {
       // Display
+      // flex: 1,
       padding: 5,
       alignItems: 'center',
       justifyContent: 'space-between',

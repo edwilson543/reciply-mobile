@@ -11,9 +11,9 @@ export const headerStyles = (
   ({
     // Header bar
     headerTransparent: true,
-    headerTintColor: colorScheme.fontTertiary,
+    headerTintColor: colorScheme.fontPrimary,
     // Header title
     headerTitle: '',
     // Header left
-    headerBackTitle: 'back',
+    headerBackTitle: '',
   });
