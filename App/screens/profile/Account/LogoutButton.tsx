@@ -47,6 +47,7 @@ const styles = (colourScheme: ColourScheme) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       padding: 20,
+      height: 100,
       // Background and border
       backgroundColor: colourScheme.buttonPrimary,
     },
