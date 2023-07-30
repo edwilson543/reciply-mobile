@@ -28,7 +28,9 @@ export default function MyRecipeListView({
     <View style={styles.screenContainer}>
       <RecipesTopBackground />
       <View style={styles.headerContainer}>
-        <Header1 style={styles.titleText}>recipes</Header1>
+        <Header1 style={styles.titleText} testID={'recipes-header'}>
+          recipes
+        </Header1>
         <PressablePrimary
           onPress={() => navigation.navigate(ScreenName.CreateRecipe)}
           style={styles.addRecipeButton}

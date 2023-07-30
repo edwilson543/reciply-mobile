@@ -85,5 +85,5 @@ test('creating valid new recipe navigates to list screen', async () => {
   expect(mockCall[2]).toBe(null); // No image selected
 
   // Should have navigated to the recipe list screen
-  expect(screen.getByText('My recipes')).toBeOnTheScreen();
+  expect(screen.getByTestId('recipes-header')).toBeOnTheScreen();
 });

@@ -13,6 +13,9 @@ import AuthenticatedNavigator from './AuthenticatedNavigator';
 import * as requests from '../../services/restAPI/client';
 
 jest.mock('react-native-image-picker', () => '');
+jest.mock('@fortawesome/react-native-fontawesome', () => ({
+  FontAwesomeIcon: '',
+}));
 jest.spyOn(requests, 'useGetData');
 
 test('can switch from recipes to menus tab', async () => {
@@ -26,7 +29,7 @@ test('can switch from recipes to menus tab', async () => {
 
   // The recipe list tab should initially be open.
   await act(() => {
-    expect(screen.getByText('My recipes')).toBeOnTheScreen();
+    expect(screen.getByTestId('recipes-header')).toBeOnTheScreen();
   });
 
   // Open the menus tab.
