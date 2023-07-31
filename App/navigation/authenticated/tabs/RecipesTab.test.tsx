@@ -7,6 +7,10 @@ import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {RecipesTab} from './RecipesTab';
 import {
+  RecipeListPayload,
+  RecipeDetailsPayload,
+} from '../../../services/restAPI/payloads';
+import {
   createRecipe,
   useMyRecipeList,
   useRecipeDetails,
@@ -17,21 +21,29 @@ jest.mock('../../../services/restAPI/requests/recipes');
 
 test('clicking on recipe in list navigates to detail screen', async () => {
   // Mock out the recipe list API call
+  const recipe = {
+    id: 1,
+    name: 'sausages',
+    description: '',
+  } as RecipeListPayload;
   const mockRecipeList = {
-    data: [{id: 1, name: 'sausages', description: ''}],
+    data: [recipe],
     friendlyErrors: null,
-    isLoading: false,
+    isLoading: false as false,
   };
-  // @ts-ignore - it's not picking up the correct overload
   jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
   // Mock out the recipe details API call
   const mockRecipeDetails = {
-    data: {id: 1, name: 'sausages', description: '', images: []},
+    data: {
+      ...recipe,
+      images: [],
+      created_at: '',
+      updated_at: '',
+    } as RecipeDetailsPayload,
     friendlyErrors: null,
-    isLoading: false,
+    isLoading: false as false,
   };
-  // @ts-ignore - it's not picking up the correct overload
   jest.mocked(useRecipeDetails).mockReturnValueOnce(mockRecipeDetails);
 
   render(
@@ -54,8 +66,11 @@ test('clicking on recipe in list navigates to detail screen', async () => {
 test('creating valid new recipe navigates to list screen', async () => {
   // Mock out the API calls
   jest.mocked(createRecipe).mockResolvedValueOnce(new Response('{}'));
-  const mockRecipeList = {data: [], friendlyErrors: null, isLoading: false};
-  // @ts-ignore - it's not picking up the correct overload
+  const mockRecipeList = {
+    data: [],
+    friendlyErrors: null,
+    isLoading: false as false,
+  };
   jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
 
   render(

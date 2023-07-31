@@ -15,8 +15,11 @@ import {useMyRecipeList} from '../../services/restAPI/requests/recipes';
 jest.mock('../../services/restAPI/requests/recipes');
 
 test('can switch from recipes to menus tab', async () => {
-  const mockRecipeList = {data: [], friendlyErrors: null, isLoading: false};
-  // @ts-ignore - it's not picking up the correct overload
+  const mockRecipeList = {
+    data: [],
+    friendlyErrors: null,
+    isLoading: false as false,
+  };
   jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
 
   await waitFor(() =>

@@ -41,7 +41,7 @@ interface RecipeImage {
 export interface RecipeDetailsPayload extends RecipeBasePayload {
   images: Array<RecipeImage>;
   created_at: string;
-  updated_at: string;
+  updated_at: string | null;
 }
 
 export interface CreateRecipeErrors extends BaseError {

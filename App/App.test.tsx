@@ -20,8 +20,11 @@ test('initially renders login screen when no auth token in storage', () => {
 
 test('initially renders recipe list when auth token available', async () => {
   storage.setValueForKey(storage.StorageKey.AuthToken, 'dummy-token');
-  const mockRecipeList = {data: [], friendlyErrors: null, isLoading: false};
-  // @ts-ignore - it's not picking up the correct overload
+  const mockRecipeList = {
+    data: [],
+    friendlyErrors: null,
+    isLoading: false as false,
+  };
   jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
 
   await waitFor(() => render(<App />));
