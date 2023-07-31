@@ -14,6 +14,16 @@ export default function RecipesTopBackground() {
   );
 }
 
+export function MenusTopBackground() {
+  return (
+    <Image
+      source={RecipesTopBackgroundImage}
+      resizeMode="cover"
+      style={styles.image}
+    />
+  );
+}
+
 const styles = StyleSheet.create({
   image: {
     // Positioning

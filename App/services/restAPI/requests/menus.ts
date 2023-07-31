@@ -6,7 +6,7 @@ import {
   AddItemToMenuResponsePayload,
 } from '../payloads';
 
-export const useMenuList = (refreshKey: number) =>
+export const useMyMenuList = (refreshKey: number) =>
   useGetData<Array<payloads.MenuListPayload>>(
     endpoints.myMenuListEndpoint,
     refreshKey,

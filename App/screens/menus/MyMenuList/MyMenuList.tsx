@@ -1,33 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
-import {Button, Text, View} from 'react-native';
-
+import MyMenuListView from './MyMenuListView';
 import {MyMenuListProps} from '../../../navigation/authenticated/navigation.types';
-import {ScreenName} from '../../../navigation/constants';
+import {useMyMenuList} from '../../../services/restAPI/requests/menus';
 
-export function MyMenuList({navigation}: MyMenuListProps) {
+export function MyMenuList({navigation, route}: MyMenuListProps) {
   /** List the menus the user has written themselves. */
+  const [refreshKey, setRefreshKey] = useState<number>(0);
+  const {data, isLoading} = useMyMenuList(refreshKey);
+
+  useEffect(() => {
+    /** Allow screens navigating to this page to refresh the list once. */
+    if (
+      route.params !== undefined &&
+      'refresh' in route.params &&
+      route.params.refresh
+    ) {
+      onRefresh();
+    }
+  }, [route]);
+
+  function onRefresh(): void {
+    setRefreshKey(n => n + 1);
+  }
+
   return (
-    <View>
-      <Text testID={'menus-header'}>Menus</Text>
-      <View>
-        <Text>Christmas bulk</Text>
-        <Button
-          title={'view details'}
-          onPress={() =>
-            navigation.push(ScreenName.MenuDetails, {menuId: 333666999})
-          }
-        />
-      </View>
-      <View>
-        <Text>Fajitas mon - thur, chicken wraps fri - sun</Text>
-        <Button
-          title={'view details'}
-          onPress={() =>
-            navigation.push(ScreenName.MenuDetails, {menuId: 3131313131})
-          }
-        />
-      </View>
-    </View>
+    <MyMenuListView
+      menus={data}
+      isLoading={isLoading}
+      onRefresh={onRefresh}
+      navigation={navigation}
+    />
   );
 }
