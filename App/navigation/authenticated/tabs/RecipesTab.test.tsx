@@ -13,7 +13,6 @@ import {
 } from '../../../services/restAPI/requests/recipes';
 import {ScreenName} from '../../constants';
 
-jest.mock('react-native-image-picker', () => '');
 jest.mock('../../../services/restAPI/requests/recipes');
 
 test('clicking on recipe in list navigates to detail screen', async () => {

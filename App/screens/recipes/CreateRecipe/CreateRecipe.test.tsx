@@ -5,7 +5,6 @@ import {fireEvent, render, screen} from '@testing-library/react-native';
 import {CreateRecipe} from './CreateRecipe';
 import {createRecipe} from '../../../services/restAPI/requests/recipes';
 
-jest.mock('react-native-image-picker', () => '');
 jest.mock('../../../services/restAPI/requests/recipes');
 
 test('cannot submit recipe if name given is too short', async () => {

@@ -12,7 +12,6 @@ import {
 import AuthenticatedNavigator from './AuthenticatedNavigator';
 import * as requests from '../../services/restAPI/client';
 
-jest.mock('react-native-image-picker', () => '');
 jest.spyOn(requests, 'useGetData');
 
 test('can switch from recipes to menus tab', async () => {

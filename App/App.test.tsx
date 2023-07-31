@@ -7,8 +7,6 @@ import App from './App';
 import {useMyRecipeList} from './services/restAPI/requests/recipes';
 import * as storage from './services/storage';
 
-jest.mock('react-native-image-picker', () => '');
-
 // The initial route after login fires a request, so mock this out
 jest.mock('./services/restAPI/requests/recipes');
 afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
