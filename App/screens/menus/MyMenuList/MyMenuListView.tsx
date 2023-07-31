@@ -1,11 +1,12 @@
 import React from 'react';
 
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import MenuListRow from './MenuListRow';
 import {MenusTopBackground} from '../../../components/images/local/RecipesTopBackground';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {Header1, PressablePrimary} from '../../../components/styled';
+import {Header1, PressablePrimaryIcon} from '../../../components/styled';
 import {MyMenuListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {MenuListPayload} from '../../../services/restAPI/payloads';
 
@@ -30,11 +31,10 @@ export default function MyMenuListView({
         <Header1 style={styles.titleText} testID={'menus-header'}>
           menus
         </Header1>
-        <PressablePrimary
+        <PressablePrimaryIcon
           // TODO -> once menu create screen available
           // onPress={() => navigation.navigate(ScreenName.CreateRecipe)}
-          style={styles.addMenuButton}
-          text={'+'}
+          icon={faPlus}
         />
       </View>
       {isLoading ?? <LoadingSpinner size={'large'} />}
@@ -60,16 +60,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
+    marginHorizontal: 10,
   },
   titleText: {
     // Display
     marginVertical: 10,
-  },
-  addMenuButton: {
-    // Display
-    width: 50,
-    height: 50,
-    // Border
-    borderRadius: 25,
   },
 });

@@ -1,11 +1,12 @@
 import React from 'react';
 
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
 import RecipesTopBackground from '../../../components/images/local/RecipesTopBackground';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {Header1, PressablePrimary} from '../../../components/styled';
+import {Header1, PressablePrimaryIcon} from '../../../components/styled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
@@ -31,10 +32,9 @@ export default function MyRecipeListView({
         <Header1 style={styles.titleText} testID={'recipes-header'}>
           recipes
         </Header1>
-        <PressablePrimary
+        <PressablePrimaryIcon
           onPress={() => navigation.navigate(ScreenName.CreateRecipe)}
-          style={styles.addRecipeButton}
-          text={'+'}
+          icon={faPlus}
         />
       </View>
       {isLoading ?? <LoadingSpinner size={'large'} />}
@@ -64,12 +64,5 @@ const styles = StyleSheet.create({
   titleText: {
     // Display
     marginVertical: 10,
-  },
-  addRecipeButton: {
-    // Display
-    width: 50,
-    height: 50,
-    // Border
-    borderRadius: 25,
   },
 });

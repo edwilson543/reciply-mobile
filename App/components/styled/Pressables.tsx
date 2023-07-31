@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {IconDefinition} from '@fortawesome/free-brands-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   Pressable,
   PressableProps,
@@ -64,6 +66,32 @@ export function PressableSecondary({
   );
 }
 
+interface PressableIconProps extends PressableProps {
+  icon: IconDefinition;
+}
+
+export function PressablePrimaryIcon({icon, ...props}: PressableIconProps) {
+  /** Pressable containing an icon only. */
+  const colourScheme = useColourScheme();
+  const styleSheet = styles(colourScheme);
+
+  const style = combineStyles(
+    props.style,
+    [styleSheet.pressableIcon, styleSheet.pressablePrimary],
+    props.disabled,
+  );
+
+  return (
+    <Pressable {...props} style={style}>
+      <FontAwesomeIcon
+        icon={icon}
+        color={colourScheme.buttonPrimaryFont}
+        size={FontSize.Text}
+      />
+    </Pressable>
+  );
+}
+
 function combineStyles(
   extraStyles: StyleProp<any> | Array<StyleProp<any>>,
   defaultStyles: Array<ViewStyle>,
@@ -106,6 +134,15 @@ const styles = (colourScheme: ColourScheme) =>
       padding: 5,
       // Background and Border
       borderRadius: 5,
+    },
+    pressableIcon: {
+      // Display
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 40,
+      height: 40,
+      // Background and Border
+      borderRadius: 20,
     },
     pressablePrimary: {
       backgroundColor: colourScheme.buttonPrimary,
