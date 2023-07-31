@@ -15,16 +15,20 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [heroImage, setHeroImage] = useState<Asset | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<CreateRecipeErrors | null>(null);
 
   async function submitForm(): Promise<void> {
-    createRecipe(name, description, heroImage).then(response => {
-      if (response.status >= StatusCode.BadRequest) {
-        response.json().then(data => setErrors(data));
-      } else {
-        navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
-      }
-    });
+    setIsLoading(true);
+    createRecipe(name, description, heroImage)
+      .then(response => {
+        if (response.status >= StatusCode.BadRequest) {
+          response.json().then(data => setErrors(data));
+        } else {
+          navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
+        }
+      })
+      .then(() => setIsLoading(false));
   }
 
   async function pickHeroImage(): Promise<void> {
@@ -47,6 +51,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
       heroImageSource={heroImage && heroImage.uri ? heroImage?.uri : ''}
       pickHeroImage={pickHeroImage}
       submitForm={submitForm}
+      isLoading={isLoading}
       errors={errors}
     />
   );

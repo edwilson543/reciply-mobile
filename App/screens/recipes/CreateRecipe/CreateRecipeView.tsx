@@ -6,6 +6,7 @@ import {
   RecipesTopBackground,
   UploadImagePreview,
 } from '../../../components/images/local';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
   PressablePrimary,
   PressableSecondary,
@@ -25,6 +26,7 @@ type CreateRecipeViewProps = {
   heroImageSource: string;
   pickHeroImage: () => void;
   submitForm: () => void;
+  isLoading: boolean;
   errors: CreateRecipeErrors | null;
 };
 
@@ -36,6 +38,7 @@ export default function CreateRecipeView({
   heroImageSource,
   pickHeroImage,
   submitForm,
+  isLoading,
   errors,
 }: CreateRecipeViewProps) {
   const colourScheme = useColourScheme();
@@ -55,36 +58,45 @@ export default function CreateRecipeView({
         ) : (
           <></>
         )}
-        <TextStyled>Name</TextStyled>
-        <TextInputStyled
-          value={name}
-          onChangeText={onNameChange}
-          style={[styleSheet.textInputField, styleSheet.nameInputField]}
-          testID={'name-input'}
-        />
-        <TextStyled>Description</TextStyled>
-        <TextInputStyled
-          value={description}
-          onChangeText={onDescriptionChange}
-          multiline={true}
-          style={[styleSheet.textInputField, styleSheet.descriptionInputField]}
-          testID={'description-input'}
-        />
-        <View style={styleSheet.selectImageContainer}>
-          <PressableSecondary
-            text={'+ Add photo'}
-            onPress={pickHeroImage}
-            style={styleSheet.selectImageButton}
-          />
-          <UploadImagePreview imageSource={heroImageSource} />
-        </View>
-        <PressablePrimary
-          onPress={submitForm}
-          disabled={!canSubmit}
-          style={styleSheet.submitButton}
-          text={'Submit'}
-          testID={'submit-button'}
-        />
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <TextInputStyled
+              value={name}
+              placeholder={'name'}
+              onChangeText={onNameChange}
+              style={[styleSheet.textInputField, styleSheet.nameInputField]}
+              testID={'name-input'}
+            />
+            <TextInputStyled
+              value={description}
+              placeholder={'description'}
+              onChangeText={onDescriptionChange}
+              multiline={true}
+              style={[
+                styleSheet.textInputField,
+                styleSheet.descriptionInputField,
+              ]}
+              testID={'description-input'}
+            />
+            <View style={styleSheet.selectImageContainer}>
+              <PressableSecondary
+                text={'+ Add photo'}
+                onPress={pickHeroImage}
+                style={styleSheet.selectImageButton}
+              />
+              <UploadImagePreview imageSource={heroImageSource} />
+            </View>
+            <PressablePrimary
+              onPress={submitForm}
+              disabled={!canSubmit}
+              style={styleSheet.submitButton}
+              text={'Submit'}
+              testID={'submit-button'}
+            />
+          </>
+        )}
       </View>
     </>
   );
@@ -107,9 +119,9 @@ const styles = (colourScheme: ColourScheme) =>
     textInputField: {
       // Display
       width: '75%',
+      marginVertical: 5,
       // Typography
       fontSize: FontSize.TextLarge,
-      textAlign: 'left',
     },
     nameInputField: {
       height: 50,
