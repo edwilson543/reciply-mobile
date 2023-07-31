@@ -2,7 +2,10 @@ import React from 'react';
 
 import {Image, StyleSheet} from 'react-native';
 
-import {RecipesTopBackgroundImage} from '../../../assets/images';
+import {
+  MenusTopBackgroundImage,
+  RecipesTopBackgroundImage,
+} from '../../../assets/images';
 
 export function RecipesTopBackground() {
   return (
@@ -17,7 +20,7 @@ export function RecipesTopBackground() {
 export function MenusTopBackground() {
   return (
     <Image
-      source={RecipesTopBackgroundImage}
+      source={MenusTopBackgroundImage}
       resizeMode="cover"
       style={styles.image}
     />
