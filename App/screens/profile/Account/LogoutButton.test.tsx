@@ -12,7 +12,6 @@ import {StorageKey} from '../../../services/storage';
 // Mock out the call to the logout endpoint
 jest.mock('../../../services/restAPI/requests/auth');
 afterEach(() => jest.mocked(logout).mockClear());
-afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
 
 test('user can logout', async () => {
   // Mock out launching the alert (since it cannot be interacted with directly)

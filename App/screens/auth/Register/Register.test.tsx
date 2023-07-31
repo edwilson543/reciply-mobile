@@ -11,7 +11,6 @@ import * as storage from '../../../services/storage';
 // Mock out the call to the login endpoint
 jest.mock('../../../services/restAPI/requests/auth');
 afterEach(() => jest.mocked(register).mockClear());
-afterEach(() => storage.deleteValueForKey(storage.StorageKey.AuthToken));
 
 test('valid details can be used to register', async () => {
   // Provide a mock auth dispatcher, so the dispatched actions can be inspected
