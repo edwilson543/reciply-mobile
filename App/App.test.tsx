@@ -8,9 +8,6 @@ import {useMyRecipeList} from './services/restAPI/requests/recipes';
 import * as storage from './services/storage';
 
 jest.mock('react-native-image-picker', () => '');
-jest.mock('@fortawesome/react-native-fontawesome', () => ({
-  FontAwesomeIcon: '',
-}));
 
 // The initial route after login fires a request, so mock this out
 jest.mock('./services/restAPI/requests/recipes');
