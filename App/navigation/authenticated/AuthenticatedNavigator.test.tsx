@@ -10,11 +10,15 @@ import {
 } from '@testing-library/react-native';
 
 import AuthenticatedNavigator from './AuthenticatedNavigator';
-import * as requests from '../../services/restAPI/client';
+import {useMyRecipeList} from '../../services/restAPI/requests/recipes';
 
-jest.spyOn(requests, 'useGetData');
+jest.mock('../../services/restAPI/requests/recipes');
 
 test('can switch from recipes to menus tab', async () => {
+  const mockRecipeList = {data: [], friendlyErrors: null, isLoading: false};
+  // @ts-ignore - it's not picking up the correct overload
+  jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
+
   await waitFor(() =>
     render(
       <NavigationContainer>
@@ -27,6 +31,7 @@ test('can switch from recipes to menus tab', async () => {
   await act(() => {
     expect(screen.getByTestId('recipes-header')).toBeOnTheScreen();
   });
+  expect(jest.mocked(useMyRecipeList).mock.calls).toHaveLength(1);
 
   // Open the menus tab.
   const menusTabButton = screen.getByRole('button', {name: 'Menus'});
