@@ -4,7 +4,7 @@ import {Image, StyleSheet} from 'react-native';
 
 import {RecipesTopBackgroundImage} from '../../../assets/images';
 
-export default function RecipesTopBackground() {
+export function RecipesTopBackground() {
   return (
     <Image
       source={RecipesTopBackgroundImage}

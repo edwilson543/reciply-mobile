@@ -4,7 +4,7 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
-import RecipesTopBackground from '../../../components/images/local/RecipesTopBackground';
+import {RecipesTopBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Header1, PressablePrimaryIcon} from '../../../components/styled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';

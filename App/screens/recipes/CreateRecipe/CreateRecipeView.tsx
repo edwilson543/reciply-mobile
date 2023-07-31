@@ -2,8 +2,10 @@ import React, {SetStateAction} from 'react';
 
 import {View, StyleSheet} from 'react-native';
 
-import RecipesTopBackground from '../../../components/images/local/RecipesTopBackground';
-import UploadImagePreview from '../../../components/images/local/UploadImagePreview';
+import {
+  RecipesTopBackground,
+  UploadImagePreview,
+} from '../../../components/images/local';
 import {
   PressablePrimary,
   PressableSecondary,

@@ -2,7 +2,7 @@ import React, {SetStateAction} from 'react';
 
 import {StyleSheet, View} from 'react-native';
 
-import LoginRegisterBackground from '../../../components/images/local/LoginRegisterBackground';
+import {LoginRegisterBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
   Header1,
