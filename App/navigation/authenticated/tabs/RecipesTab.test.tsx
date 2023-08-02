@@ -6,28 +6,21 @@ import {NavigationContainer} from '@react-navigation/native';
 import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {RecipesTab} from './RecipesTab';
-import {
-  RecipeListPayload,
-  RecipeDetailsPayload,
-} from '../../../services/restAPI/payloads';
+import {RecipeDetailsPayload} from '../../../services/restAPI/payloads';
 import {
   createRecipe,
   useMyRecipeList,
   useRecipeDetails,
 } from '../../../services/restAPI/requests/recipes';
+import * as fixtures from '../../../testing/fixtures';
 import {ScreenName} from '../../constants';
 
 jest.mock('../../../services/restAPI/requests/recipes');
 
 test('clicking on recipe in list navigates to detail screen', async () => {
   // Mock out the recipe list API call
-  const recipe = {
-    id: 1,
-    name: 'sausages',
-    description: '',
-  } as RecipeListPayload;
   const mockRecipeList = {
-    data: [recipe],
+    data: [fixtures.recipeListFixture],
     friendlyErrors: null,
     isLoading: false as false,
   };
@@ -36,7 +29,7 @@ test('clicking on recipe in list navigates to detail screen', async () => {
   // Mock out the recipe details API call
   const mockRecipeDetails = {
     data: {
-      ...recipe,
+      ...fixtures.recipeListFixture,
       images: [],
       created_at: '',
       updated_at: '',
@@ -55,7 +48,9 @@ test('clicking on recipe in list navigates to detail screen', async () => {
   );
 
   // Sausage recipe should be shown
-  const recipeRow = screen.getByTestId('recipe-1');
+  const recipeRow = screen.getByTestId(
+    `recipe-${fixtures.recipeListFixture.id}`,
+  );
   expect(recipeRow).toBeVisible();
 
   // Viewing the details for the recipe row should navigate to the detail view

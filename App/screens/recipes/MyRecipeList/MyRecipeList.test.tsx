@@ -9,14 +9,6 @@ import {useMyRecipeList} from '../../../services/restAPI/requests/recipes';
 jest.mock('../../../services/restAPI/requests/recipes');
 
 test('renders recipe list', async () => {
-  const recipes = [];
-  for (let i = 0; i < 10; i++) {
-    recipes.push({
-      id: 1,
-      name: 'sausages',
-      description: '',
-    } as RecipeListPayload);
-  }
   const mockRecipeList = {
     data: [
       {id: 1, name: 'sausages', description: ''} as RecipeListPayload,
