@@ -54,6 +54,7 @@ export default function MyRecipeListView({
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
+    paddingHorizontal: 10,
   },
   headerContainer: {
     // Display

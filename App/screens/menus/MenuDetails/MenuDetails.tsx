@@ -1,16 +1,18 @@
 import React from 'react';
 
-import {Text, View} from 'react-native';
-
+import MenuDetailsView from './MenuDetailsView';
 import {MenuDetailsProps} from '../../../navigation/authenticated/navigation.types';
+import {useMenuDetails} from '../../../services/restAPI/requests/menus';
 
-export function MenuDetails({route}: MenuDetailsProps) {
+export function MenuDetails({navigation, route}: MenuDetailsProps) {
   /** Show the details of a single menu. */
-  const menuId = route.params.menuId;
+  const {data, isLoading} = useMenuDetails(route.params.menuId);
 
   return (
-    <View>
-      <Text>I will fetch & show the details for menu: {menuId}</Text>
-    </View>
+    <MenuDetailsView
+      menu={data}
+      isLoading={isLoading}
+      navigation={navigation}
+    />
   );
 }

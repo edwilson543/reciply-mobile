@@ -56,7 +56,7 @@ interface MenuBasePayload {
   description: string;
 }
 
-interface MenuItemPayload {
+export interface MenuItemPayload {
   id: number;
   recipe: RecipeListPayload;
   day: Day;
@@ -67,7 +67,7 @@ export interface MenuListPayload extends MenuBasePayload {
   number_of_items: number;
 }
 
-export interface MenuDetailsPayload {
+export interface MenuDetailsPayload extends MenuListPayload {
   items: Array<MenuItemPayload>;
 }
 
