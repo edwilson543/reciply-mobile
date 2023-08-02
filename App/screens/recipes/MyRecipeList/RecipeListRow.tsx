@@ -13,7 +13,7 @@ const descriptionPreviewChars = 40;
 
 type RecipeListRowProps = {
   recipe: RecipeListPayload;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
 export default function RecipeListRow({recipe, onPress}: RecipeListRowProps) {

@@ -3,17 +3,15 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {TextStyled} from '../../../components/styled';
-import {MenuDetailsNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {Day} from '../../../services/restAPI/constants';
 import {MenuItemPayload} from '../../../services/restAPI/payloads';
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
 
 type MenuItemProps = {
   menuItem: MenuItemPayload;
-  navigation: MenuDetailsNavigationProp;
 };
 
-export default function MenuItem({menuItem, navigation}: MenuItemProps) {
+export default function MenuItem({menuItem}: MenuItemProps) {
   return (
     <View
       style={styles.container}
@@ -22,7 +20,7 @@ export default function MenuItem({menuItem, navigation}: MenuItemProps) {
       <TextStyled>
         {Day[menuItem.day].toLowerCase()} • {menuItem.meal_time.toLowerCase()}
       </TextStyled>
-      <RecipeListRow recipe={menuItem.recipe} navigation={navigation} />
+      <RecipeListRow recipe={menuItem.recipe} />
     </View>
   );
 }

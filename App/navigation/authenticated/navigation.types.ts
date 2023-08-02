@@ -1,4 +1,4 @@
-import {RouteProp} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {ScreenName} from '../constants';
@@ -8,9 +8,9 @@ import {ScreenName} from '../constants';
  * */
 
 export type TabParamsList = {
-  Recipes: undefined;
-  Menus: undefined;
-  Profile: undefined;
+  Recipes: NavigatorScreenParams<RecipeStackParamsList>;
+  Menus: NavigatorScreenParams<MenuStackParamsList>;
+  Profile: NavigatorScreenParams<ProfileStackParamsList>;
 };
 
 /**

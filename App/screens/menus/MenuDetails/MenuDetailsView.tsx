@@ -6,19 +6,16 @@ import MenuItem from './MenuItem';
 import {MenusTopBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Header1} from '../../../components/styled';
-import {MenuDetailsNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
 
 type MenuDetailsViewProps = {
   menu: MenuDetailsPayload | null;
   isLoading: boolean;
-  navigation: MenuDetailsNavigationProp;
 };
 
 export default function MenuDetailsView({
   menu,
   isLoading,
-  navigation,
 }: MenuDetailsViewProps) {
   /** Presentational component showing the detail for a single menu. */
   return (
@@ -36,9 +33,7 @@ export default function MenuDetailsView({
 
           <FlatList
             data={menu?.items}
-            renderItem={({item}) => (
-              <MenuItem menuItem={item} navigation={navigation} />
-            )}
+            renderItem={({item}) => <MenuItem menuItem={item} />}
             keyExtractor={item => `${item.id}`}
             refreshing={isLoading}
           />
