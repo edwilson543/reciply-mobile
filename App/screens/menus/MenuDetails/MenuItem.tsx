@@ -15,9 +15,12 @@ type MenuItemProps = {
 
 export default function MenuItem({menuItem, navigation}: MenuItemProps) {
   return (
-    <View style={styles.container} key={menuItem.id}>
+    <View
+      style={styles.container}
+      key={menuItem.id}
+      testID={`menu-item-${menuItem.id}`}>
       <TextStyled>
-        {Day[menuItem.day]} • {menuItem.meal_time.toLowerCase()}
+        {Day[menuItem.day].toLowerCase()} • {menuItem.meal_time.toLowerCase()}
       </TextStyled>
       <RecipeListRow recipe={menuItem.recipe} navigation={navigation} />
     </View>
