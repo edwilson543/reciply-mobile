@@ -25,6 +25,7 @@ export default function MyRecipeListView({
   navigation,
 }: MyRecipeListViewProps) {
   /** Presentational component listing some recipes. */
+
   return (
     <View style={styles.screenContainer}>
       <RecipesTopBackground />
@@ -41,7 +42,12 @@ export default function MyRecipeListView({
       <FlatList
         data={recipes}
         renderItem={({item}) => (
-          <RecipeListRow recipe={item} navigation={navigation} />
+          <RecipeListRow
+            recipe={item}
+            onPress={() =>
+              navigation.push(ScreenName.RecipeDetails, {recipeId: item.id})
+            }
+          />
         )}
         keyExtractor={recipe => `${recipe.id}`}
         onRefresh={onRefresh}

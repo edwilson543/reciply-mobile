@@ -1,11 +1,9 @@
 import React from 'react';
 
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Pressable, StyleSheet, View} from 'react-native';
 
 import {ThumbnailImage} from '../../../components/images/network';
 import {TextStyled} from '../../../components/styled';
-import {ScreenName} from '../../../navigation/constants';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -15,24 +13,15 @@ const descriptionPreviewChars = 40;
 
 type RecipeListRowProps = {
   recipe: RecipeListPayload;
-  navigation: NativeStackNavigationProp<any>;
+  onPress: () => void;
 };
 
-export default function RecipeListRow({
-  recipe,
-  navigation,
-}: RecipeListRowProps) {
+export default function RecipeListRow({recipe, onPress}: RecipeListRowProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
   return (
-    <Pressable
-      onPress={() =>
-        navigation.push(ScreenName.RecipeDetails, {
-          recipeId: recipe.id,
-        })
-      }
-      testID={`recipe-${recipe.id}`}>
+    <Pressable onPress={onPress} testID={`recipe-${recipe.id}`}>
       <View style={styleSheet.container} key={recipe.id}>
         <View style={styleSheet.textContainer}>
           <TextStyled style={styleSheet.recipeName}>{recipe.name}</TextStyled>
