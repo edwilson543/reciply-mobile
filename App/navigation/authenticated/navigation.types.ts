@@ -1,6 +1,7 @@
 import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import {MenuDetailsPayload} from '../../services/restAPI/payloads';
 import {ScreenName} from '../constants';
 
 /**
@@ -27,7 +28,7 @@ export type RecipeStackParamsList = {
 export type MenuStackParamsList = {
   MyMenuList: {refresh?: boolean};
   MenuDetails: {menuId: number};
-  AddItemToMenu: {menuId: number};
+  AddItemToMenu: {menu: MenuDetailsPayload};
 };
 
 export type ProfileStackParamsList = {

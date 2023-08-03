@@ -33,7 +33,7 @@ export default function MenuDetailsHeader({
         <PressablePrimary
           text={'add meal'}
           onPress={() =>
-            navigation.push(ScreenName.AddItemToMenu, {menuId: menu.id})
+            navigation.push(ScreenName.AddItemToMenu, {menu: menu})
           }
         />
         <PressablePrimaryIcon icon={faPencil} />
