@@ -18,6 +18,22 @@ export const defaultStyles = (colourScheme: ColourScheme) =>
   });
 
 export const bootstrap = StyleSheet.create({
+  /** Flex */
+  flex1: {flex: 1},
+  flexRow: {flexDirection: 'row'},
+  spaceAround: {justifyContent: 'space-around'},
+  spaceBetween: {justifyContent: 'space-between'},
+  alignCenter: {alignItems: 'center'},
+  /** Width */
+  width25: {width: '25%'},
+  width50: {width: '50%'},
+  width75: {width: '75%'},
+  width100: {width: '100%'},
+  /** Height */
+  height25: {height: '25%'},
+  height50: {height: '50%'},
+  height75: {height: '75%'},
+  height100: {height: '100%'},
   /** Margin */
   // Horizontal and vertical
   m1: {margin: 2},

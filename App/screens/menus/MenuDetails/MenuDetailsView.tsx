@@ -1,11 +1,12 @@
 import React from 'react';
 
+import {faPencil} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import MenuItem from './MenuItem';
 import {MenusTopBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {bootstrap} from '../../../components/styled';
+import {bootstrap, PressablePrimaryIcon} from '../../../components/styled';
 import {
   Header1,
   PressablePrimary,
@@ -35,9 +36,11 @@ export default function MenuDetailsView({
               {menu?.name}
             </Header1>
             <TextStyled style={[bootstrap.my3]}>{menu?.description}</TextStyled>
-            <PressablePrimary text={'add meals'} />
+            <View style={styles.buttonContainer}>
+              <PressablePrimary text={'add meals'} />
+              <PressablePrimaryIcon icon={faPencil} />
+            </View>
           </View>
-
           <FlatList
             data={menu?.items}
             renderItem={({item}) => <MenuItem menuItem={item} />}
@@ -59,5 +62,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'space-around',
+  },
+  buttonContainer: {
+    // Display
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '50%',
   },
 });
