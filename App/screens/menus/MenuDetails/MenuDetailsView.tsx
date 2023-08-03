@@ -5,7 +5,12 @@ import {StyleSheet, FlatList, View} from 'react-native';
 import MenuItem from './MenuItem';
 import {MenusTopBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {Header1} from '../../../components/styled';
+import {bootstrap} from '../../../components/styled';
+import {
+  Header1,
+  PressablePrimary,
+  TextStyled,
+} from '../../../components/styled';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
 
 type MenuDetailsViewProps = {
@@ -25,10 +30,12 @@ export default function MenuDetailsView({
         <LoadingSpinner size={'large'} />
       ) : (
         <>
-          <View style={styles.headerContainer}>
-            <Header1 style={styles.titleText} testID={'menus-header'}>
+          <View style={[styles.headerContainer, bootstrap.px5]}>
+            <Header1 style={[bootstrap.my3]} testID={'menus-header'}>
               {menu?.name}
             </Header1>
+            <TextStyled style={[bootstrap.my3]}>{menu?.description}</TextStyled>
+            <PressablePrimary text={'add meals'} />
           </View>
 
           <FlatList
@@ -49,13 +56,8 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     // Display
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     justifyContent: 'space-around',
-    marginHorizontal: 10,
-  },
-  titleText: {
-    // Display
-    marginVertical: 10,
   },
 });

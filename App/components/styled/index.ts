@@ -5,3 +5,4 @@ export {
   PressableSecondary,
   PressablePrimaryIcon,
 } from './Pressables';
+export {bootstrap} from './styles';

@@ -131,7 +131,7 @@ const styles = (colourScheme: ColourScheme) =>
       alignItems: 'center',
       justifyContent: 'center',
       height: 50,
-      padding: 5,
+      padding: 10,
       // Background and Border
       borderRadius: 5,
     },
