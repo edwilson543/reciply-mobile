@@ -1,13 +1,12 @@
 import React from 'react';
 
-import {FlatList, View} from 'react-native';
+import {FlatList} from 'react-native';
 
 import MenuDetailsHeader from './MenuDetailsHeader';
 import MenuItem from './MenuItem';
-import {MenusTopBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {bootstrap} from '../../../components/styled';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
+import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type MenuDetailsViewProps = {
   menu: MenuDetailsPayload | null;
@@ -20,8 +19,7 @@ export default function MenuDetailsView({
 }: MenuDetailsViewProps) {
   /** Presentational component showing the detail for a single menu. */
   return (
-    <View style={[bootstrap.flex1]}>
-      <MenusTopBackground />
+    <MenuScreenTemplate>
       {isLoading ? (
         <LoadingSpinner size={'large'} />
       ) : (
@@ -33,6 +31,6 @@ export default function MenuDetailsView({
           refreshing={isLoading}
         />
       )}
-    </View>
+    </MenuScreenTemplate>
   );
 }

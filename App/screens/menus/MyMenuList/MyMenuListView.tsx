@@ -9,6 +9,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Header1, PressablePrimaryIcon} from '../../../components/styled';
 import {MyMenuListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {MenuListPayload} from '../../../services/restAPI/payloads';
+import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type MyMenuListViewProps = {
   menus: Array<MenuListPayload> | null;
@@ -25,8 +26,7 @@ export default function MyMenuListView({
 }: MyMenuListViewProps) {
   /** Presentational component listing some menus. */
   return (
-    <View style={styles.screenContainer}>
-      <MenusTopBackground />
+    <MenuScreenTemplate>
       <View style={styles.headerContainer}>
         <Header1 style={styles.titleText} testID={'menus-header'}>
           menus
@@ -47,7 +47,7 @@ export default function MyMenuListView({
         onRefresh={onRefresh}
         refreshing={isLoading}
       />
-    </View>
+    </MenuScreenTemplate>
   );
 }
 

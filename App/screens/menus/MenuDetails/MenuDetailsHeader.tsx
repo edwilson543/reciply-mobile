@@ -18,7 +18,7 @@ type MenuDetailsHeaderProps = {
 
 export default function MenuDetailsHeader({menu}: MenuDetailsHeaderProps) {
   return (
-    <View style={[styles.headerContainer, bootstrap.px5]}>
+    <View style={[styles.headerContainer]}>
       <Header1 style={[bootstrap.my3]} testID={'menus-header'}>
         {menu?.name}
       </Header1>

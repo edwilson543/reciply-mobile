@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 
-import {TextStyled} from '../../../components/styled';
+import {bootstrap, TextStyled} from '../../../components/styled';
 import {Day} from '../../../services/restAPI/constants';
 import {MenuItemPayload} from '../../../services/restAPI/payloads';
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
@@ -14,7 +14,7 @@ type MenuItemProps = {
 export default function MenuItem({menuItem}: MenuItemProps) {
   return (
     <View
-      style={styles.container}
+      style={[bootstrap.my5]}
       key={menuItem.id}
       testID={`menu-item-${menuItem.id}`}>
       <TextStyled>
@@ -24,12 +24,3 @@ export default function MenuItem({menuItem}: MenuItemProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    // Display
-    flex: 1,
-    marginVertical: 10,
-    marginHorizontal: 10,
-  },
-});
