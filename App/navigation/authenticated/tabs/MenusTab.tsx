@@ -2,7 +2,7 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {MyMenuList, MenuDetails} from '../../../screens/menus';
+import {MyMenuList, MenuDetails, AddItemToMenu} from '../../../screens/menus';
 import {useColourScheme} from '../../../styles/colourScheme';
 import {ScreenName} from '../../constants';
 import {MenuStackParamsList} from '../navigation.types';
@@ -19,6 +19,10 @@ export function MenusTab() {
       <MenusStack.Screen
         name={ScreenName.MenuDetails}
         component={MenuDetails}
+      />
+      <MenusStack.Screen
+        name={ScreenName.AddItemToMenu}
+        component={AddItemToMenu}
       />
     </MenusStack.Navigator>
   );

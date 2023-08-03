@@ -27,6 +27,7 @@ export type RecipeStackParamsList = {
 export type MenuStackParamsList = {
   MyMenuList: {refresh?: boolean};
   MenuDetails: {menuId: number};
+  AddItemToMenu: {menuId: number};
 };
 
 export type ProfileStackParamsList = {
@@ -126,11 +127,28 @@ export type MenuDetailsProps = {
   route: MenuDetailsRouteProp;
 };
 
+// AddItemToMenu
+
+export type AddItemToMenuNavigationProp = NativeStackNavigationProp<
+  MenuStackParamsList,
+  ScreenName.AddItemToMenu
+>;
+
+export type AddItemToMenuRouteProp = RouteProp<
+  MenuStackParamsList,
+  ScreenName.AddItemToMenu
+>;
+
+export type AddItemToMenuProps = {
+  navigation: AddItemToMenuNavigationProp;
+  route: AddItemToMenuRouteProp;
+};
+
 /**
  * Profile screens prop types.
  */
 
-// MyMenuList
+// Profile
 
 export type AccountNavigationProp = NativeStackNavigationProp<
   ProfileStackParamsList,

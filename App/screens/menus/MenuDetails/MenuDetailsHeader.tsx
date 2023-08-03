@@ -10,13 +10,19 @@ import {
   PressablePrimaryIcon,
   TextStyled,
 } from '../../../components/styled';
+import {MenuDetailsNavigationProp} from '../../../navigation/authenticated/navigation.types';
+import {ScreenName} from '../../../navigation/constants';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
 
 type MenuDetailsHeaderProps = {
-  menu: MenuDetailsPayload | null;
+  menu: MenuDetailsPayload;
+  navigation: MenuDetailsNavigationProp;
 };
 
-export default function MenuDetailsHeader({menu}: MenuDetailsHeaderProps) {
+export default function MenuDetailsHeader({
+  menu,
+  navigation,
+}: MenuDetailsHeaderProps) {
   return (
     <View style={[styles.headerContainer]}>
       <Header1 style={[bootstrap.my3]} testID={'menus-header'}>
@@ -24,7 +30,12 @@ export default function MenuDetailsHeader({menu}: MenuDetailsHeaderProps) {
       </Header1>
       <TextStyled style={[bootstrap.my3]}>{menu?.description}</TextStyled>
       <View style={styles.buttonContainer}>
-        <PressablePrimary text={'add meals'} />
+        <PressablePrimary
+          text={'add meal'}
+          onPress={() =>
+            navigation.push(ScreenName.AddItemToMenu, {menuId: menu.id})
+          }
+        />
         <PressablePrimaryIcon icon={faPencil} />
       </View>
     </View>
