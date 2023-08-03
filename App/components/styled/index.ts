@@ -1,4 +1,4 @@
-export {TextStyled, Header1} from './TextStyled';
+export {TextStyled, Header1, Header2} from './TextStyled';
 export {TextInputStyled} from './TextInputStyled';
 export {
   PressablePrimary,

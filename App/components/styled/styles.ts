@@ -10,10 +10,16 @@ export const defaultStyles = (colourScheme: ColourScheme) =>
       color: colourScheme.fontPrimary,
       fontSize: FontSize.Text,
     },
-    header1: {
+    // Headers
+    header: {
       fontFamily: 'AbhayaLibre-SemiBold',
       color: colourScheme.fontPrimary,
+    },
+    header1: {
       fontSize: FontSize.Header1,
+    },
+    header2: {
+      fontSize: FontSize.Header2,
     },
   });
 

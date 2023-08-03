@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import {TextStyled} from '../../../components/styled';
+import {ScrollView} from 'react-native';
+
+import DayPicker from './DayPicker';
+import {Header2, PressablePrimary} from '../../../components/styled';
+import {Day} from '../../../services/restAPI/constants';
 import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type AddItemToMenuViewProps = {
@@ -10,9 +14,18 @@ type AddItemToMenuViewProps = {
 export default function AddItemToMenuView({
   addItemToMenu,
 }: AddItemToMenuViewProps) {
+  const [selectedDay, setSelectedDay] = useState<Day>(Day.Monday);
+
   return (
     <MenuScreenTemplate>
-      <TextStyled>add an items</TextStyled>
+      <ScrollView>
+        <Header2>Select day for new meal</Header2>
+        <DayPicker
+          selectedValue={selectedDay}
+          onValueChange={value => setSelectedDay(value as Day)}
+        />
+        <PressablePrimary text={'continue'} />
+      </ScrollView>
     </MenuScreenTemplate>
   );
 }

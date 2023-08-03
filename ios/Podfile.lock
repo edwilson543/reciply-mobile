@@ -498,6 +498,8 @@ PODS:
     - React-jsi (= 0.72.0)
     - React-logger (= 0.72.0)
     - React-perflogger (= 0.72.0)
+  - RNCPicker (2.4.10):
+    - React-Core
   - RNGestureHandler (2.12.0):
     - React-Core
   - RNReanimated (3.3.0):
@@ -605,6 +607,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -714,6 +717,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
@@ -781,6 +786,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 24614bcd31643eacb06c78c0b9101b453d6aac47
   React-utils: c12d2e75c8bbc727939ddc4319ed95493395ed5a
   ReactCommon: 517b45ed311ba9146aa8b55a8ef6617425f7448e
+  RNCPicker: 0bc2f0a29abcca7b7ed44a2d036aac9ab6d25700
   RNGestureHandler: dec4645026e7401a0899f2846d864403478ff6a5
   RNReanimated: 9f7068e43b9358a46a688d94a5a3adb258139457
   RNScreens: 68fd1060f57dd1023880bf4c05d74784b5392789
