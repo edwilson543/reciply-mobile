@@ -16,7 +16,7 @@ export default function RecipeScreenTemplate({
   return (
     <View style={[bootstrap.flex1]}>
       <RecipesTopBackground />
-      <View style={[bootstrap.px5]}>{children}</View>
+      <View style={[bootstrap.flex1, bootstrap.px5]}>{children}</View>
     </View>
   );
 }

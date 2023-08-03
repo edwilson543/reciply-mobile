@@ -16,7 +16,7 @@ export default function MenuScreenTemplate({
   return (
     <View style={[bootstrap.flex1]}>
       <MenusTopBackground />
-      <View style={[bootstrap.px5]}>{children}</View>
+      <View style={[bootstrap.flex1, bootstrap.px5]}>{children}</View>
     </View>
   );
 }
