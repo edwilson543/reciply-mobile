@@ -4,12 +4,13 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import RecipeListRow from './RecipeListRow';
-import {RecipesTopBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
+import {bootstrap} from '../../../components/styled';
 import {Header1, PressablePrimaryIcon} from '../../../components/styled';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
+import RecipeScreenTemplate from '../RecipeScreenTemplate';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipeListPayload> | null;
@@ -27,10 +28,9 @@ export default function MyRecipeListView({
   /** Presentational component listing some recipes. */
 
   return (
-    <View style={styles.screenContainer}>
-      <RecipesTopBackground />
+    <RecipeScreenTemplate>
       <View style={styles.headerContainer}>
-        <Header1 style={styles.titleText} testID={'recipes-header'}>
+        <Header1 style={[bootstrap.my5]} testID={'recipes-header'}>
           recipes
         </Header1>
         <PressablePrimaryIcon
@@ -53,23 +53,15 @@ export default function MyRecipeListView({
         onRefresh={onRefresh}
         refreshing={isLoading}
       />
-    </View>
+    </RecipeScreenTemplate>
   );
 }
 
 const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
   headerContainer: {
     // Display
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-  },
-  titleText: {
-    // Display
-    marginVertical: 10,
   },
 });

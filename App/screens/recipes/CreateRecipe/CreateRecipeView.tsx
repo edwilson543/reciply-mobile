@@ -2,10 +2,7 @@ import React, {SetStateAction} from 'react';
 
 import {View, StyleSheet} from 'react-native';
 
-import {
-  RecipesTopBackground,
-  UploadImagePreview,
-} from '../../../components/images/local';
+import {UploadImagePreview} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
   PressablePrimary,
@@ -17,6 +14,7 @@ import {AlertDanger} from '../../../components/styled/Alerts';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
+import RecipeScreenTemplate from '../RecipeScreenTemplate';
 
 type CreateRecipeViewProps = {
   name: string;
@@ -49,8 +47,7 @@ export default function CreateRecipeView({
   const errorText = errors?.name ? errors.name[0] : '';
 
   return (
-    <>
-      <RecipesTopBackground />
+    <RecipeScreenTemplate>
       <View style={styleSheet.container}>
         <TextStyled style={styleSheet.header}>Create new recipe</TextStyled>
         {errors ? (
@@ -98,7 +95,7 @@ export default function CreateRecipeView({
           </>
         )}
       </View>
-    </>
+    </RecipeScreenTemplate>
   );
 }
 
@@ -106,8 +103,6 @@ const styles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
     container: {
       // Display
-      // flex: 1,
-      padding: 5,
       alignItems: 'center',
       justifyContent: 'space-between',
     },
