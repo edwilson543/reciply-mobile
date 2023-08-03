@@ -33,8 +33,8 @@ test('can switch from recipes to menus tab', async () => {
   // The recipe list tab should initially be open.
   await act(() => {
     expect(screen.getByTestId('recipes-header')).toBeOnTheScreen();
+    expect(jest.mocked(useMyRecipeList).mock.calls).toHaveLength(1);
   });
-  expect(jest.mocked(useMyRecipeList).mock.calls).toHaveLength(1);
 
   // Open the menus tab.
   const menusTabButton = screen.getByRole('button', {name: 'Menus'});

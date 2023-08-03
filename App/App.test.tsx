@@ -10,10 +10,10 @@ import * as storage from './services/storage';
 // The initial route after login fires a request, so mock this out
 jest.mock('./services/restAPI/requests/recipes');
 
-test('initially renders login screen when no auth token in storage', () => {
+test('initially renders login screen when no auth token in storage', async () => {
   storage.deleteValueForKey(storage.StorageKey.AuthToken);
 
-  render(<App />);
+  await waitFor(() => render(<App />));
 
   expect(screen.getByText('login')).toBeOnTheScreen();
 });
