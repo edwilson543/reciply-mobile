@@ -1,12 +1,16 @@
 import {Day, MealTime} from '../services/restAPI/constants';
 import * as payloads from '../services/restAPI/payloads';
 
+// Recipes
+
 export const recipeListFixture = {
   id: 1,
   name: 'some recipe',
   description: 'some description',
   hero_image_source: '',
 } as payloads.RecipeListPayload;
+
+// Menus
 
 export const menuItemFixture = {
   id: 1,
