@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 import SelectDay from './SelectDay';
 import LoadingSpinner from '../../../components/LoadingSpinner';
@@ -27,7 +27,7 @@ export default function AddItemToMenuHeader({
 
   return (
     <>
-      <View style={styles.daysContainer}>
+      <ScrollView horizontal={true}>
         <SelectDay
           day={Day.Monday}
           isActive={activeDay === Day.Monday}
@@ -63,7 +63,7 @@ export default function AddItemToMenuHeader({
           isActive={activeDay === Day.Sunday}
           onPress={() => onPressDay(Day.Sunday)}
         />
-      </View>
+      </ScrollView>
       <View style={bootstrap.my3}>
         <TextStyled>current recipe:</TextStyled>
         {isLoading ? (
@@ -78,13 +78,3 @@ export default function AddItemToMenuHeader({
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  daysContainer: {
-    // Display
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-    marginVertical: 5,
-  },
-});

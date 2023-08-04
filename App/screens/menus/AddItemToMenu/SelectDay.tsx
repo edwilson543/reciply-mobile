@@ -18,36 +18,47 @@ export default function SelectDay({day, isActive, onPress}: SelectDayProps) {
   const Pressable = isActive ? PressablePrimary : PressableSecondary;
 
   return (
-    <View style={styles.container}>
+    <View>
       <Pressable
         onPress={onPress}
         text={Day[day].toLowerCase().slice(0, 3)}
         style={styles.button}
       />
       {/*TODO -> only show tick when recipe selected*/}
-      <FontAwesomeIcon icon={faCheck} style={styles.checkMark} />
+      <View style={styles.checkMarkContainer}>
+        <FontAwesomeIcon icon={faCheck} style={styles.checkMark} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexBasis: '20%',
-    marginHorizontal: 5,
-  },
   button: {
     // Display
+    width: 75,
     height: 50,
+    marginVertical: 10,
+    marginHorizontal: 5,
     padding: 5,
     // Border
     borderRadius: 20,
   },
-  checkMark: {
+  checkMarkContainer: {
     // Positioning
     position: 'relative',
-    bottom: 50,
-    left: 50,
-    // Background -> TODO
-    color: '#fff', // -> TODO
+    bottom: 65,
+    left: 60,
+    // Display
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 20,
+    height: 20,
+    // Background and border
+    backgroundColor: '#6ba96b',
+    borderRadius: 10,
+  },
+  checkMark: {
+    // Background and border
+    color: '#fff',
   },
 });
