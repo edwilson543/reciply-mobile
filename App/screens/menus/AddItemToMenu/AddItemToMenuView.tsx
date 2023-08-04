@@ -1,24 +1,33 @@
 import React from 'react';
 
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View, FlatList} from 'react-native';
 
 import SelectDay from './SelectDay';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 import {bootstrap, TextStyled} from '../../../components/styled';
+import {ScreenName} from '../../../navigation/constants';
 import {Day} from '../../../services/restAPI/constants';
-import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
+import {
+  MenuDetailsPayload,
+  RecipeListPayload,
+} from '../../../services/restAPI/payloads';
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
 import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type AddItemToMenuViewProps = {
+  isLoading: boolean;
   addItemToMenu: (recipeId: number) => void;
   menu: MenuDetailsPayload;
+  suggestedRecipes: Array<RecipeListPayload>;
   activeDay: Day;
   onPressDay: (day: Day) => void;
 };
 
 export default function AddItemToMenuView({
+  isLoading,
   addItemToMenu,
   menu,
+  suggestedRecipes,
   activeDay,
   onPressDay,
 }: AddItemToMenuViewProps) {
@@ -73,6 +82,14 @@ export default function AddItemToMenuView({
             <TextStyled>-</TextStyled>
           )}
           <TextStyled>select recipe:</TextStyled>
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <FlatList
+              data={suggestedRecipes}
+              renderItem={({item}) => <RecipeListRow recipe={item} />}
+            />
+          )}
         </View>
       </ScrollView>
     </MenuScreenTemplate>
