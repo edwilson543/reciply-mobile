@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 
 import {View, FlatList} from 'react-native';
 
 import AddItemToMenuHeader from './AddItemToMenuHeader';
-import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Day} from '../../../services/restAPI/constants';
 import {
   MenuDetailsPayload,
@@ -14,6 +13,8 @@ import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type AddItemToMenuViewProps = {
   isLoading: boolean;
+  isUpdating: boolean;
+  scrollRef: RefObject<FlatList>;
   menu: MenuDetailsPayload;
   suggestedRecipes: Array<RecipeListPayload>;
   onRecipePress: (recipeId: number) => void;
@@ -23,6 +24,8 @@ type AddItemToMenuViewProps = {
 
 export default function AddItemToMenuView({
   isLoading,
+  isUpdating,
+  scrollRef,
   menu,
   suggestedRecipes,
   onRecipePress,
@@ -42,9 +45,10 @@ export default function AddItemToMenuView({
               onPress={() => onRecipePress(item.id)}
             />
           )}
+          ref={scrollRef}
           ListHeaderComponent={
             <AddItemToMenuHeader
-              isLoading={isLoading}
+              isUpdating={isUpdating}
               menu={menu}
               activeDay={activeDay}
               onPressDay={onPressDay}
