@@ -25,7 +25,7 @@ export default function SelectDay({
   onPressDay,
 }: SelectDayProps) {
   return (
-    <ScrollView horizontal={true}>
+    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <SelectSingleDay
         day={Day.Monday}
         isActive={activeDay === Day.Monday}
