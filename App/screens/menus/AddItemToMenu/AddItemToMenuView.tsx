@@ -4,7 +4,6 @@ import {View, FlatList} from 'react-native';
 
 import AddItemToMenuHeader from './AddItemToMenuHeader';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {TextStyled} from '../../../components/styled';
 import {Day} from '../../../services/restAPI/constants';
 import {
   MenuDetailsPayload,
@@ -15,39 +14,43 @@ import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type AddItemToMenuViewProps = {
   isLoading: boolean;
-  addItemToMenu: (recipeId: number) => void;
   menu: MenuDetailsPayload;
   suggestedRecipes: Array<RecipeListPayload>;
+  onRecipePress: (recipeId: number) => void;
   activeDay: Day;
   onPressDay: (day: Day) => void;
 };
 
 export default function AddItemToMenuView({
   isLoading,
-  addItemToMenu,
   menu,
   suggestedRecipes,
+  onRecipePress,
   activeDay,
   onPressDay,
 }: AddItemToMenuViewProps) {
+  const displayedSuggestedRecipes = isLoading ? [] : suggestedRecipes;
+
   return (
     <MenuScreenTemplate>
       <View>
-        {isLoading && menu ? (
-          <LoadingSpinner />
-        ) : (
-          <FlatList
-            data={suggestedRecipes}
-            renderItem={({item}) => <RecipeListRow recipe={item} />}
-            ListHeaderComponent={
-              <AddItemToMenuHeader
-                menu={menu}
-                activeDay={activeDay}
-                onPressDay={onPressDay}
-              />
-            }
-          />
-        )}
+        <FlatList
+          data={displayedSuggestedRecipes}
+          renderItem={({item}) => (
+            <RecipeListRow
+              recipe={item}
+              onPress={() => onRecipePress(item.id)}
+            />
+          )}
+          ListHeaderComponent={
+            <AddItemToMenuHeader
+              isLoading={isLoading}
+              menu={menu}
+              activeDay={activeDay}
+              onPressDay={onPressDay}
+            />
+          }
+        />
       </View>
     </MenuScreenTemplate>
   );

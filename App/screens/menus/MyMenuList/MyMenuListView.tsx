@@ -4,7 +4,6 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import MenuListRow from './MenuListRow';
-import {MenusTopBackground} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Header1, PressablePrimaryIcon} from '../../../components/styled';
 import {MyMenuListNavigationProp} from '../../../navigation/authenticated/navigation.types';

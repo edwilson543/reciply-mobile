@@ -1,9 +1,11 @@
 import {deleteData, postData, useGetData} from '../client';
+import {Day, MealTime} from '../constants';
 import * as endpoints from '../endpoints';
 import * as payloads from '../payloads';
 import {
   AddItemToMenuRequestPayload,
   AddItemToMenuResponsePayload,
+  MenuItemPayload,
 } from '../payloads';
 
 export const useMyMenuList = (refreshKey: number) =>
@@ -27,14 +29,29 @@ export const createMenu = async (
   return postData(endpoints.createMenuEndpoint, form);
 };
 
-export const addItemsToMenu = async (
-  items: Array<AddItemToMenuRequestPayload>,
+export const addItemToMenu = async (
   menuId: number,
+  recipeId: number,
+  day: Day,
+  mealTime: MealTime,
+): Promise<MenuItemPayload> => {
+  const form = new FormData();
+  form.append('recipe_id', recipeId);
+  form.append('day', day);
+  form.append('meal_time', mealTime.toUpperCase());
+  return postData(endpoints.menuAddItemEndpoint(menuId), form).then(response =>
+    response.json(),
+  );
+};
+
+export const addItemsToMenu = async (
+  menuId: number,
+  items: Array<AddItemToMenuRequestPayload>,
 ): Promise<AddItemToMenuResponsePayload> => {
   const form = new FormData();
   form.append('items', items);
-  return postData(endpoints.menuAddItemsEndpoint(menuId), form).then(
-    response => response.json() as unknown as AddItemToMenuResponsePayload,
+  return postData(endpoints.menuAddItemsEndpoint(menuId), form).then(response =>
+    response.json(),
   );
 };
 
