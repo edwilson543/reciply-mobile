@@ -1,15 +1,12 @@
 import React from 'react';
 
-import {ScrollView, View} from 'react-native';
+import {View} from 'react-native';
 
 import SelectDay from './SelectDay';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {bootstrap, TextStyled} from '../../../components/styled';
 import {Day} from '../../../services/restAPI/constants';
-import {
-  MenuDetailsPayload,
-  MenuItemPayload,
-} from '../../../services/restAPI/payloads';
+import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
 
 type AddItemToMenuHeaderProps = {
@@ -30,50 +27,7 @@ export default function AddItemToMenuHeader({
 
   return (
     <>
-      <ScrollView horizontal={true}>
-        <SelectDay
-          day={Day.Monday}
-          isActive={activeDay === Day.Monday}
-          hasRecipe={hasRecipe(menu.items, Day.Monday)}
-          onPress={() => onPressDay(Day.Monday)}
-        />
-        <SelectDay
-          day={Day.Tuesday}
-          isActive={activeDay === Day.Tuesday}
-          hasRecipe={hasRecipe(menu.items, Day.Tuesday)}
-          onPress={() => onPressDay(Day.Tuesday)}
-        />
-        <SelectDay
-          day={Day.Wednesday}
-          isActive={activeDay === Day.Wednesday}
-          hasRecipe={hasRecipe(menu.items, Day.Wednesday)}
-          onPress={() => onPressDay(Day.Wednesday)}
-        />
-        <SelectDay
-          day={Day.Thursday}
-          isActive={activeDay === Day.Thursday}
-          hasRecipe={hasRecipe(menu.items, Day.Thursday)}
-          onPress={() => onPressDay(Day.Thursday)}
-        />
-        <SelectDay
-          day={Day.Friday}
-          isActive={activeDay === Day.Friday}
-          hasRecipe={hasRecipe(menu.items, Day.Friday)}
-          onPress={() => onPressDay(Day.Friday)}
-        />
-        <SelectDay
-          day={Day.Saturday}
-          isActive={activeDay === Day.Saturday}
-          hasRecipe={hasRecipe(menu.items, Day.Saturday)}
-          onPress={() => onPressDay(Day.Saturday)}
-        />
-        <SelectDay
-          day={Day.Sunday}
-          isActive={activeDay === Day.Sunday}
-          hasRecipe={hasRecipe(menu.items, Day.Sunday)}
-          onPress={() => onPressDay(Day.Sunday)}
-        />
-      </ScrollView>
+      <SelectDay menu={menu} activeDay={activeDay} onPressDay={onPressDay} />
       <View style={bootstrap.my3}>
         <TextStyled>current recipe:</TextStyled>
         {isLoading ? (
@@ -87,8 +41,4 @@ export default function AddItemToMenuHeader({
       <TextStyled>select recipe:</TextStyled>
     </>
   );
-}
-
-function hasRecipe(menuItems: Array<MenuItemPayload>, day: Day): boolean {
-  return !!menuItems.filter(item => item.day === day).length;
 }
