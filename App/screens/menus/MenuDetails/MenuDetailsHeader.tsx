@@ -1,18 +1,19 @@
 import React from 'react';
 
-import {faPencil} from '@fortawesome/free-solid-svg-icons';
+import {faPlus, faPencil} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, View} from 'react-native';
 
 import {
   bootstrap,
   Header1,
   PressablePrimary,
-  PressablePrimaryIcon,
+  PressableSecondary,
   TextStyled,
 } from '../../../components/styled';
 import {MenuDetailsNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
+import {FontSize} from '../../../styles/constants';
 
 type MenuDetailsHeaderProps = {
   menu: MenuDetailsPayload;
@@ -31,12 +32,18 @@ export default function MenuDetailsHeader({
       <TextStyled style={[bootstrap.my3]}>{menu?.description}</TextStyled>
       <View style={styles.buttonContainer}>
         <PressablePrimary
-          text={'add meal'}
+          text={'add'}
           onPress={() =>
             navigation.push(ScreenName.AddItemToMenu, {menu: menu})
           }
+          faIcon={faPlus}
+          style={styles.button}
         />
-        <PressablePrimaryIcon icon={faPencil} />
+        <PressableSecondary
+          text={'edit'}
+          faIcon={faPencil}
+          style={styles.button}
+        />
       </View>
     </View>
   );
@@ -51,9 +58,15 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     // Display
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '50%',
+    width: '100%',
+  },
+  button: {
+    width: '30%',
+    fontSize: FontSize.TextLarge,
+    borderRadius: 15,
   },
 });

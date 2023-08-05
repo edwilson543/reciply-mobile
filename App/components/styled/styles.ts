@@ -31,15 +31,15 @@ export const bootstrap = StyleSheet.create({
   spaceBetween: {justifyContent: 'space-between'},
   alignCenter: {alignItems: 'center'},
   /** Width */
-  width25: {width: '25%'},
-  width50: {width: '50%'},
-  width75: {width: '75%'},
-  width100: {width: '100%'},
+  w25: {width: '25%'},
+  w50: {width: '50%'},
+  w75: {width: '75%'},
+  w100: {width: '100%'},
   /** Height */
-  height25: {height: '25%'},
-  height50: {height: '50%'},
-  height75: {height: '75%'},
-  height100: {height: '100%'},
+  h25: {height: '25%'},
+  h50: {height: '50%'},
+  h75: {height: '75%'},
+  h100: {height: '100%'},
   /** Margin */
   // Horizontal and vertical
   m1: {margin: 2},
