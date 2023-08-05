@@ -5,7 +5,10 @@ import CreateMenuView from './CreateMenuView';
 import {CreateMenuProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {StatusCode} from '../../../services/restAPI/constants';
-import {CreateMenuErrors} from '../../../services/restAPI/payloads';
+import {
+  CreateMenuErrors,
+  MenuDetailsPayload,
+} from '../../../services/restAPI/payloads';
 import {createMenu} from '../../../services/restAPI/requests/menus';
 
 export function CreateMenu({navigation}: CreateMenuProps) {
@@ -22,7 +25,11 @@ export function CreateMenu({navigation}: CreateMenuProps) {
         if (response.status >= StatusCode.BadRequest) {
           response.json().then(data => setErrors(data));
         } else {
-          navigation.navigate(ScreenName.MyMenuList);
+          response.json().then((menu: MenuDetailsPayload) =>
+            navigation.navigate(ScreenName.AddItemToMenu, {
+              menu: menu,
+            }),
+          );
         }
       })
       .then(() => setIsLoading(false));

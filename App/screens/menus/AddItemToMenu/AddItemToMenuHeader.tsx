@@ -22,7 +22,7 @@ export default function AddItemToMenuHeader({
   activeDay,
   onPressDay,
 }: AddItemToMenuHeaderProps) {
-  const currentItems = menu?.items.filter(item => item.day === activeDay);
+  const currentItems = menu.items.filter(item => item.day === activeDay);
   let activeRecipe = currentItems && currentItems[0]?.recipe;
   if (!activeRecipe) {
     activeRecipe = {id: -1, name: '', description: '', hero_image_source: ''};
