@@ -4,7 +4,7 @@ import {View} from 'react-native';
 
 import SelectDay from './SelectDay';
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {bootstrap, TextStyled} from '../../../components/styled';
+import {bootstrap, Header1, TextStyled} from '../../../components/styled';
 import {Day} from '../../../services/restAPI/constants';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
@@ -30,6 +30,9 @@ export default function AddItemToMenuHeader({
 
   return (
     <>
+      <Header1 style={[bootstrap.my3]} testID={'menus-header'}>
+        {menu.name}
+      </Header1>
       <SelectDay menu={menu} activeDay={activeDay} onPressDay={onPressDay} />
       <View style={bootstrap.my3}>
         <TextStyled>current recipe:</TextStyled>
