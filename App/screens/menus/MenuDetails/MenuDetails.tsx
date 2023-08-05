@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
+import {useIsFocused} from '@react-navigation/native';
 
 import MenuDetailsView from './MenuDetailsView';
 import {MenuDetailsProps} from '../../../navigation/authenticated/navigation.types';
@@ -6,7 +8,15 @@ import {useMenuDetails} from '../../../services/restAPI/requests/menus';
 
 export function MenuDetails({navigation, route}: MenuDetailsProps) {
   /** Show the details of a single menu. */
-  const {data, isLoading} = useMenuDetails(route.params.menuId);
+  const [refreshKey, setRefreshKey] = useState<number>(0);
+  const {data, isLoading} = useMenuDetails(route.params.menuId, refreshKey);
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (isFocused) {
+      setRefreshKey(key => key + 1);
+    }
+  }, [isFocused]);
 
   return (
     <MenuDetailsView

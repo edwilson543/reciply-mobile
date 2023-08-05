@@ -26,7 +26,7 @@ export type RecipeStackParamsList = {
 };
 
 export type MenuStackParamsList = {
-  MyMenuList: {refresh?: boolean};
+  MyMenuList: undefined;
   MenuDetails: {menuId: number};
   AddItemToMenu: {menu: MenuDetailsPayload};
 };

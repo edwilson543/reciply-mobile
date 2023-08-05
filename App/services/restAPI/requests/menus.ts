@@ -14,9 +14,10 @@ export const useMyMenuList = (refreshKey: number) =>
     refreshKey,
   );
 
-export const useMenuDetails = (menuId: number) =>
+export const useMenuDetails = (menuId: number, refreshKey: number) =>
   useGetData<payloads.MenuDetailsPayload>(
     endpoints.menuDetailsEndpoint(menuId),
+    refreshKey,
   );
 
 export const createMenu = async (
