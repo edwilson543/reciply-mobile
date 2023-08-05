@@ -14,7 +14,7 @@ import {useSuggestedRecipeList} from '../../../services/restAPI/requests/recipes
 
 export function AddItemToMenu({route}: AddItemToMenuProps) {
   const [menu, setMenu] = useState<MenuDetailsPayload>(route.params.menu);
-  const {data, isLoading} = useSuggestedRecipeList(0);
+  const {data: suggestedRecipes, isLoading} = useSuggestedRecipeList(0);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [activeDay, setActiveDay] = useState<Day>(Day.Monday);
   const scrollRef = useRef<FlatList>(null);
@@ -26,8 +26,10 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
     scrollRef.current?.scrollToOffset({animated: true, offset: 0});
     // Tell backend
     addItemToMenu(menu.id, recipeId, activeDay, mealTime)
-      .then(menuItem => {
-        addItemToMenuState(menuItem);
+      .then(({data}) => {
+        if (data) {
+          addItemToMenuState(data);
+        }
       })
       .then(() => setIsUpdating(false));
   }
@@ -55,7 +57,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
       scrollRef={scrollRef}
       onRecipePress={addRecipeToMenu}
       menu={menu}
-      suggestedRecipes={data}
+      suggestedRecipes={suggestedRecipes}
       activeDay={activeDay}
       onPressDay={onPressDay}
     />

@@ -71,18 +71,6 @@ export interface MenuDetailsPayload extends MenuListPayload {
   items: Array<MenuItemPayload>;
 }
 
-export interface AddItemToMenuRequestPayload {
-  recipeId: number;
-  day: Day;
-  meal_time: MealTime;
-}
-
-export interface AddItemToMenuResponsePayload {
-  recipeId: number;
-  day: Day;
-  meal_time: MealTime;
-}
-
 export interface CreateMenuErrors extends BaseError {
   name?: Array<string>;
 }

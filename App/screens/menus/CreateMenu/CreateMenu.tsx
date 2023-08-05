@@ -4,11 +4,7 @@ import {useState} from 'react';
 import CreateMenuView from './CreateMenuView';
 import {CreateMenuProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {StatusCode} from '../../../services/restAPI/constants';
-import {
-  CreateMenuErrors,
-  MenuDetailsPayload,
-} from '../../../services/restAPI/payloads';
+import {CreateMenuErrors} from '../../../services/restAPI/payloads';
 import {createMenu} from '../../../services/restAPI/requests/menus';
 
 export function CreateMenu({navigation}: CreateMenuProps) {
@@ -21,15 +17,13 @@ export function CreateMenu({navigation}: CreateMenuProps) {
   async function submitForm(): Promise<void> {
     setIsLoading(true);
     createMenu(name, description)
-      .then(response => {
-        if (response.status >= StatusCode.BadRequest) {
-          response.json().then(data => setErrors(data));
+      .then(({data, errors: newErrors}) => {
+        if (data) {
+          navigation.navigate(ScreenName.AddItemToMenu, {
+            menu: data,
+          });
         } else {
-          response.json().then((menu: MenuDetailsPayload) =>
-            navigation.navigate(ScreenName.AddItemToMenu, {
-              menu: menu,
-            }),
-          );
+          setErrors(newErrors);
         }
       })
       .then(() => setIsLoading(false));

@@ -6,7 +6,6 @@ import {Asset, launchImageLibrary} from 'react-native-image-picker';
 import CreateRecipeView from './CreateRecipeView';
 import {CreateRecipeProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {StatusCode} from '../../../services/restAPI/constants';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {createRecipe} from '../../../services/restAPI/requests/recipes';
 
@@ -21,11 +20,11 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
   async function submitForm(): Promise<void> {
     setIsLoading(true);
     createRecipe(name, description, heroImage)
-      .then(response => {
-        if (response.status >= StatusCode.BadRequest) {
-          response.json().then(data => setErrors(data));
-        } else {
+      .then(({data, errors: newErrors}) => {
+        if (data) {
           navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
+        } else {
+          setErrors(newErrors);
         }
       })
       .then(() => setIsLoading(false));

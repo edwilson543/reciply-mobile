@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 
 import * as constants from './constants';
+import {StatusCode} from './constants';
 import {APILocation} from './endpoints';
 import * as exceptions from './exceptions';
 import * as storage from '../storage';
@@ -56,12 +57,37 @@ export async function fireAuthenticatedRequest(
   return fireRequest(url, method, headers, payload, isUpload);
 }
 
-export async function postData(
+export interface successResponse<Data> {
+  data: Data;
+  errors: null;
+}
+
+export interface errorResponse<Errors> {
+  data: null;
+  errors: Errors;
+}
+
+export async function postData<Data, Errors>(
   url: string,
   payload: FormData,
   isUpload: boolean = false,
-): Promise<Response> {
-  return fireAuthenticatedRequest(url, RequestMethod.POST, payload, isUpload);
+): Promise<successResponse<Data> | errorResponse<Errors>> {
+  return fireAuthenticatedRequest(
+    url,
+    RequestMethod.POST,
+    payload,
+    isUpload,
+  ).then(response => {
+    if (response.status >= StatusCode.BadRequest) {
+      return response.json().then((errors: Errors) => {
+        return {data: null, errors: errors};
+      });
+    } else {
+      return response.json().then((data: Data) => {
+        return {data: data, errors: null};
+      });
+    }
+  });
 }
 
 export async function deleteData(url: string): Promise<Response> {

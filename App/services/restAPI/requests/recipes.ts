@@ -4,6 +4,7 @@ import {Asset} from 'react-native-image-picker';
 import {postData, useGetData} from '../client';
 import * as endpoints from '../endpoints';
 import * as payloads from '../payloads';
+import {CreateRecipeErrors} from '../payloads';
 
 export const useMyRecipeList = (refreshKey: number) =>
   useGetData<Array<payloads.RecipeListPayload>>(
@@ -26,7 +27,7 @@ export const createRecipe = async (
   name: string,
   description: string,
   heroImage: Asset | null,
-): Promise<Response> => {
+) => {
   const form = new FormData();
   form.append('name', name);
   form.append('description', description);
@@ -40,5 +41,9 @@ export const createRecipe = async (
           : heroImage.uri,
     });
   }
-  return postData(endpoints.createRecipeEndpoint, form, true);
+  return postData<any, CreateRecipeErrors>(
+    endpoints.createRecipeEndpoint,
+    form,
+    true,
+  );
 };
