@@ -13,10 +13,10 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    if (isFocused) {
+    if (isFocused && refreshKey) {
       setRefreshKey(key => key + 1);
     }
-  }, [isFocused]);
+  }, [isFocused, refreshKey]);
 
   return (
     <MenuDetailsView

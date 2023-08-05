@@ -13,10 +13,10 @@ export function MyMenuList({navigation, route}: MyMenuListProps) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    if (isFocused) {
+    if (isFocused && refreshKey) {
       onRefresh();
     }
-  }, [isFocused]);
+  }, [isFocused, refreshKey]);
 
   function onRefresh(): void {
     setRefreshKey(n => n + 1);
