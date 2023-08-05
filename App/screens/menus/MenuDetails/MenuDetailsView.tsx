@@ -2,6 +2,7 @@ import React from 'react';
 
 import {FlatList} from 'react-native';
 
+import MenuDetailsFooter from './MenuDetailsFooter';
 import MenuDetailsHeader from './MenuDetailsHeader';
 import MenuItem from './MenuItem';
 import LoadingSpinner from '../../../components/LoadingSpinner';
@@ -28,10 +29,13 @@ export default function MenuDetailsView({
       ) : (
         <FlatList
           data={menu?.items}
+          renderItem={({item}) => <MenuItem menuItem={item} />}
           ListHeaderComponent={
             <MenuDetailsHeader menu={menu} navigation={navigation} />
           }
-          renderItem={({item}) => <MenuItem menuItem={item} />}
+          ListFooterComponent={
+            <MenuDetailsFooter hasItems={!!menu?.items.length} />
+          }
           keyExtractor={item => `${item.id}`}
           refreshing={isLoading}
         />
