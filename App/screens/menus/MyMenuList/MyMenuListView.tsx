@@ -7,6 +7,7 @@ import MenuListRow from './MenuListRow';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Header1, PressablePrimaryIcon} from '../../../components/styled';
 import {MyMenuListNavigationProp} from '../../../navigation/authenticated/navigation.types';
+import {ScreenName} from '../../../navigation/constants';
 import {MenuListPayload} from '../../../services/restAPI/payloads';
 import MenuScreenTemplate from '../MenuScreenTemplate';
 
@@ -31,8 +32,7 @@ export default function MyMenuListView({
           menus
         </Header1>
         <PressablePrimaryIcon
-          // TODO -> once menu create screen available
-          // onPress={() => navigation.navigate(ScreenName.CreateRecipe)}
+          onPress={() => navigation.navigate(ScreenName.CreateMenu)}
           icon={faPlus}
         />
       </View>

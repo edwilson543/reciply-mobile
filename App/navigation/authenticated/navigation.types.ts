@@ -29,6 +29,7 @@ export type MenuStackParamsList = {
   MyMenuList: undefined;
   MenuDetails: {menuId: number};
   AddItemToMenu: {menu: MenuDetailsPayload};
+  CreateMenu: undefined;
 };
 
 export type ProfileStackParamsList = {
@@ -143,6 +144,23 @@ export type AddItemToMenuRouteProp = RouteProp<
 export type AddItemToMenuProps = {
   navigation: AddItemToMenuNavigationProp;
   route: AddItemToMenuRouteProp;
+};
+
+// CreateMenu
+
+export type CreateMenuNavigationProp = NativeStackNavigationProp<
+  MenuStackParamsList,
+  ScreenName.CreateMenu
+>;
+
+export type CreateMenuRouteProp = RouteProp<
+  MenuStackParamsList,
+  ScreenName.CreateMenu
+>;
+
+export type CreateMenuProps = {
+  navigation: CreateMenuNavigationProp;
+  route: CreateMenuRouteProp;
 };
 
 /**

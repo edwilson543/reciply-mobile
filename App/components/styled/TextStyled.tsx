@@ -48,3 +48,18 @@ export function Header2({children, style, ...props}: TextProps) {
     </Text>
   );
 }
+
+export function Header3({children, style, ...props}: TextProps) {
+  /** Wrap the default `Text` component to provide some lightweight styles. */
+  const colourScheme = useColourScheme();
+  const styleSheet = styles.defaultStyles(colourScheme);
+  const extraStyles = style instanceof Array ? style : style ? [style] : [];
+
+  return (
+    <Text
+      style={[styleSheet.header, styleSheet.header3, ...extraStyles]}
+      {...props}>
+      {children}
+    </Text>
+  );
+}

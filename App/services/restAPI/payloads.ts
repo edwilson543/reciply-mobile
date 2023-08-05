@@ -82,3 +82,7 @@ export interface AddItemToMenuResponsePayload {
   day: Day;
   meal_time: MealTime;
 }
+
+export interface CreateMenuErrors extends BaseError {
+  name?: Array<string>;
+}

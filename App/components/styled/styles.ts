@@ -15,12 +15,9 @@ export const defaultStyles = (colourScheme: ColourScheme) =>
       fontFamily: 'AbhayaLibre-SemiBold',
       color: colourScheme.fontPrimary,
     },
-    header1: {
-      fontSize: FontSize.Header1,
-    },
-    header2: {
-      fontSize: FontSize.Header2,
-    },
+    header1: {fontSize: FontSize.Header1},
+    header2: {fontSize: FontSize.Header2},
+    header3: {fontSize: FontSize.Header3},
   });
 
 export const bootstrap = StyleSheet.create({

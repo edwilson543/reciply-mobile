@@ -8,9 +8,9 @@ import {
   PressablePrimary,
   PressableSecondary,
   TextInputStyled,
-  TextStyled,
 } from '../../../components/styled';
 import {AlertDanger} from '../../../components/styled/Alerts';
+import {Header3} from '../../../components/styled/TextStyled';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -49,7 +49,7 @@ export default function CreateRecipeView({
   return (
     <RecipeScreenTemplate>
       <View style={styleSheet.container}>
-        <TextStyled style={styleSheet.header}>Create new recipe</TextStyled>
+        <Header3>Create new recipe</Header3>
         {errors ? (
           <AlertDanger errorText={errorText} style={styleSheet.errors} />
         ) : (
@@ -105,10 +105,6 @@ const styles = (colourScheme: ColourScheme) =>
       // Display
       alignItems: 'center',
       justifyContent: 'space-between',
-    },
-    header: {
-      //Typography
-      fontSize: FontSize.Header3,
     },
     // Inputs
     textInputField: {
