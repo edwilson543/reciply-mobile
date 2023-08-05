@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {NavigationContainer} from '@react-navigation/native';
 import {within, screen, render, waitFor} from '@testing-library/react-native';
 
 import {MyMenuList} from './MyMenuList';
@@ -31,7 +32,9 @@ test('renders recipe list', async () => {
 
   await waitFor(() =>
     render(
-      <MyMenuList navigation={jest.fn() as any} route={jest.fn() as any} />,
+      <NavigationContainer>
+        <MyMenuList navigation={jest.fn() as any} route={jest.fn() as any} />
+      </NavigationContainer>,
     ),
   );
 

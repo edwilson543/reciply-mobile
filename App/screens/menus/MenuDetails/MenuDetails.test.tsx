@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {NavigationContainer} from '@react-navigation/native';
 import {render, screen, within} from '@testing-library/react-native';
 
 import {MenuDetails} from './MenuDetails';
@@ -21,7 +22,11 @@ test('renders menu details', async () => {
   // Provide the necessary route parameters
   const route = {params: {menuId: 1}};
 
-  render(<MenuDetails navigation={jest.fn() as any} route={route as any} />);
+  render(
+    <NavigationContainer>
+      <MenuDetails navigation={jest.fn() as any} route={route as any} />
+    </NavigationContainer>,
+  );
 
   expect(screen.getByText('my menu')).toBeVisible();
   // Recipe should be shown for monday lunch

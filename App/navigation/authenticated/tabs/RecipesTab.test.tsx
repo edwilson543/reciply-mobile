@@ -60,7 +60,7 @@ test('clicking on recipe in list navigates to detail screen', async () => {
 
 test('creating valid new recipe navigates to list screen', async () => {
   // Mock out the API calls
-  jest.mocked(createRecipe).mockResolvedValueOnce(new Response('{}'));
+  jest.mocked(createRecipe).mockResolvedValueOnce({data: {}, errors: null});
   const mockRecipeList = {
     data: [],
     friendlyErrors: null,
