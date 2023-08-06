@@ -47,7 +47,6 @@ export default function MyRecipeListView({
             onPress={() =>
               navigation.push(ScreenName.RecipeDetails, {recipeId: item.id})
             }
-            deleteOptions={{onDelete: () => 1, text: 'custom'}}
           />
         )}
         keyExtractor={recipe => `${recipe.id}`}

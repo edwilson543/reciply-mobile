@@ -1,5 +1,4 @@
-import React, {useRef} from 'react';
-import {useState} from 'react';
+import React from 'react';
 
 import {
   Dimensions,
@@ -13,13 +12,14 @@ import {ThumbnailImage} from '../../../components/images/network';
 import {TextStyled} from '../../../components/styled';
 import DeleteSwipeOption, {
   DeleteSwipeOptionProps,
-} from '../../../components/swipe/options';
+} from '../../../components/swipe/Options';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 import {previewText} from '../../../utils/formatters';
 
 const descriptionPreviewChars = 40;
+const utilisedDeviceWidth = Dimensions.get('window').width - 20;
 
 type RecipeListRowProps = {
   recipe: RecipeListPayload;
@@ -34,26 +34,14 @@ export default function RecipeListRow({
 }: RecipeListRowProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
-  const scrollRef = useRef<ScrollView>(null);
-  const [showOptions, setShowOptions] = useState<boolean>(false);
-
-  function toggleShowOptions() {
-    if (showOptions) {
-      scrollRef.current?.scrollTo({x: 0, y: 0, animated: true});
-      setShowOptions(false);
-    } else {
-      scrollRef.current?.scrollToEnd({animated: true});
-      setShowOptions(true);
-    }
-  }
 
   return (
     <ScrollView
       horizontal={true}
-      style={styleSheet.scrollView}
-      ref={scrollRef}
-      onScrollEndDrag={toggleShowOptions}
-      showsHorizontalScrollIndicator={false}>
+      showsHorizontalScrollIndicator={false}
+      snapToOffsets={[utilisedDeviceWidth]}
+      scrollEnabled={!!deleteOptions}
+      style={styleSheet.scrollView}>
       <Pressable onPress={onPress} testID={`recipe-${recipe.id}`}>
         <View style={styleSheet.recipeContainer} key={recipe.id}>
           <View style={styleSheet.textContainer}>
@@ -89,7 +77,7 @@ const styles = (colourScheme: ColourScheme) =>
       justifyContent: 'center',
       marginVertical: 5,
       padding: 10,
-      width: Dimensions.get('window').width - 15, // todo -> may want to make more robust..
+      width: utilisedDeviceWidth,
     },
     textContainer: {
       // Display
