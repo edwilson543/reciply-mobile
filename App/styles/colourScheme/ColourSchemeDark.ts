@@ -13,10 +13,12 @@ export default class ColourSchemeDark implements ColourScheme {
   // Buttons
   buttonPrimary = '#7c8be3';
   buttonSecondary = '#e76c6c';
+  buttonDanger = '#9b0000';
 
   // Button fonts
   buttonPrimaryFont = '#fff';
   buttonSecondaryFont = '#fff';
+  buttonDangerFont = '#fff';
 
   // Alerts
   alertPrimary = '#0d6efd';

@@ -11,10 +11,12 @@ export interface ColourScheme {
   // Buttons
   buttonPrimary: string;
   buttonSecondary: string;
+  buttonDanger: string;
 
   // Button fonts
   buttonPrimaryFont: string;
   buttonSecondaryFont: string;
+  buttonDangerFont: string;
 
   // Alerts
   alertPrimary: string;

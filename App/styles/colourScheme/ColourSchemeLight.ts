@@ -13,10 +13,12 @@ export default class ColourSchemeLight implements ColourScheme {
   // Buttons
   buttonPrimary = '#000000';
   buttonSecondary = '#cccccc';
+  buttonDanger = '#ec4646';
 
   // Button fonts
   buttonPrimaryFont = '#fff';
   buttonSecondaryFont = '#000000';
+  buttonDangerFont = '#ffffff';
 
   // Alerts
   alertPrimary = '#7e9ece';
