@@ -78,6 +78,8 @@ const styles = (colourScheme: ColourScheme) =>
       marginVertical: 5,
       padding: 10,
       width: utilisedDeviceWidth,
+      // Background
+      backgroundColor: colourScheme.backgroundPrimary,
     },
     textContainer: {
       // Display
