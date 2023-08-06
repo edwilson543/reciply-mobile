@@ -9,9 +9,10 @@ import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
 
 type MenuItemProps = {
   menuItem: MenuItemPayload;
+  onRemoveItem: (menuItemId: number) => Promise<void>;
 };
 
-export default function MenuItem({menuItem}: MenuItemProps) {
+export default function MenuItem({menuItem, onRemoveItem}: MenuItemProps) {
   return (
     <View
       style={[bootstrap.my5]}
@@ -20,7 +21,13 @@ export default function MenuItem({menuItem}: MenuItemProps) {
       <TextStyled>
         {Day[menuItem.day].toLowerCase()} • {menuItem.meal_time.toLowerCase()}
       </TextStyled>
-      <RecipeListRow recipe={menuItem.recipe} />
+      <RecipeListRow
+        recipe={menuItem.recipe}
+        deleteOptions={{
+          onDelete: () => onRemoveItem(menuItem.id),
+          text: 'remove',
+        }}
+      />
     </View>
   );
 }

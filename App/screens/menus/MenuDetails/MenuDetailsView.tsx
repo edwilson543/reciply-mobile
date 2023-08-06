@@ -12,12 +12,16 @@ import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type MenuDetailsViewProps = {
   menu: MenuDetailsPayload | null;
+  onRemoveItem: (menuItemId: number) => Promise<void>;
+  onRefresh: () => void;
   isLoading: boolean;
   navigation: MenuDetailsNavigationProp;
 };
 
 export default function MenuDetailsView({
   menu,
+  onRemoveItem,
+  onRefresh,
   isLoading,
   navigation,
 }: MenuDetailsViewProps) {
@@ -29,7 +33,9 @@ export default function MenuDetailsView({
       ) : (
         <FlatList
           data={menu?.items}
-          renderItem={({item}) => <MenuItem menuItem={item} />}
+          renderItem={({item}) => (
+            <MenuItem menuItem={item} onRemoveItem={onRemoveItem} />
+          )}
           ListHeaderComponent={
             <MenuDetailsHeader menu={menu} navigation={navigation} />
           }
@@ -37,6 +43,7 @@ export default function MenuDetailsView({
             <MenuDetailsFooter hasItems={!!menu?.items.length} />
           }
           keyExtractor={item => `${item.id}`}
+          onRefresh={onRefresh}
           refreshing={isLoading}
         />
       )}

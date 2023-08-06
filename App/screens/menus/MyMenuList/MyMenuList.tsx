@@ -13,10 +13,9 @@ export function MyMenuList({navigation}: MyMenuListProps) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    if (isFocused && refreshKey) {
-      onRefresh();
-    }
-  }, [isFocused, refreshKey]);
+    /** Refresh the data when navigating back to this screen. */
+    isFocused && onRefresh();
+  }, [isFocused]);
 
   function onRefresh(): void {
     setRefreshKey(n => n + 1);

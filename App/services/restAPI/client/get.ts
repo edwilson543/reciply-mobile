@@ -1,40 +1,14 @@
-import {useEffect, useState} from 'react';
+import {SetStateAction, useEffect, useState} from 'react';
 
 import {fireAuthenticatedRequest, RequestMethod} from './client';
 import * as constants from '../constants';
 
-export function useGetData(
-  url: string,
-  refreshKey?: number,
-): {
-  data: null;
-  friendlyErrors: null;
-  isLoading: true;
-};
-/** Waiting for response. */
-export function useGetData<ResponseData>(
-  url: string,
-  refreshKey?: number,
-): {
-  data: ResponseData;
-  friendlyErrors: null;
-  isLoading: false;
-};
-/** Successful request. */
-export function useGetData(
-  url: string,
-  refreshKey?: number,
-): {
-  data: null;
-  friendlyErrors: Errors;
-  isLoading: false;
-};
-/** Some error. */
 export function useGetData<ResponseData>(
   url: string,
   refreshKey?: number,
 ): {
   data: ResponseData | null;
+  setData: React.Dispatch<SetStateAction<ResponseData | null>>;
   friendlyErrors: Errors | null;
   isLoading: boolean;
 } {
@@ -69,7 +43,7 @@ export function useGetData<ResponseData>(
       );
   }, [url, refreshKey]);
 
-  return {data, friendlyErrors, isLoading};
+  return {data, setData, friendlyErrors, isLoading};
 }
 
 interface Errors {
