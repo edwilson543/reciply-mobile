@@ -22,11 +22,15 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
 
   const scrollRef = useRef<FlatList>(null);
 
-  const {data: suggestedRecipes, isLoading} = useSuggestedRecipeList(0);
+  const {
+    data: suggestedRecipes,
+    setData: setSuggestedRecipes,
+    isLoading,
+  } = useSuggestedRecipeList(0);
 
   const mealTime = MealTime.Dinner; // Hardcoded for now -> todo
 
-  async function addRecipeToMenu(recipeId: number) {
+  async function onAddItem(recipeId: number) {
     setIsUpdating(true);
     scrollRef.current?.scrollToOffset({animated: true, offset: 0});
     // Tell backend
@@ -36,6 +40,14 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
           addItemToMenuState(data);
         }
       })
+      // Remove the item from the suggested recipes (TODO - may want to leave it)
+      .then(
+        () =>
+          suggestedRecipes &&
+          setSuggestedRecipes(
+            suggestedRecipes.filter(recipe => recipe.id !== recipeId),
+          ),
+      )
       .then(() => setIsUpdating(false))
       .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
   }
@@ -73,7 +85,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
       isLoading={isLoading}
       isUpdating={isUpdating}
       scrollRef={scrollRef}
-      onRecipePress={addRecipeToMenu}
+      onRecipePress={onAddItem}
       onRemoveItem={onRemoveItem}
       menu={menu}
       suggestedRecipes={suggestedRecipes ?? []}
@@ -84,7 +96,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
 }
 
 const layoutAnimConfig = {
-  duration: 200,
+  duration: 300,
   create: {
     type: LayoutAnimation.Types.easeInEaseOut,
     property: LayoutAnimation.Properties.opacity,
