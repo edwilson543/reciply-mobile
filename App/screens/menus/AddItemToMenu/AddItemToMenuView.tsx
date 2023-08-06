@@ -16,6 +16,7 @@ type AddItemToMenuViewProps = {
   isUpdating: boolean;
   scrollRef: RefObject<FlatList>;
   menu: MenuDetailsPayload;
+  onRemoveItem: (menuItemId: number) => void;
   suggestedRecipes: Array<RecipeListPayload>;
   onRecipePress: (recipeId: number) => void;
   activeDay: Day;
@@ -27,6 +28,7 @@ export default function AddItemToMenuView({
   isUpdating,
   scrollRef,
   menu,
+  onRemoveItem,
   suggestedRecipes,
   onRecipePress,
   activeDay,
@@ -50,6 +52,7 @@ export default function AddItemToMenuView({
             <AddItemToMenuHeader
               isUpdating={isUpdating}
               menu={menu}
+              onRemoveItem={onRemoveItem}
               activeDay={activeDay}
               onPressDay={onPressDay}
             />

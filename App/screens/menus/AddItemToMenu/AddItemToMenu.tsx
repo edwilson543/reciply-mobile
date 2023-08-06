@@ -9,7 +9,10 @@ import {
   MenuDetailsPayload,
   MenuItemPayload,
 } from '../../../services/restAPI/payloads';
-import {addItemToMenu} from '../../../services/restAPI/requests/menus';
+import {
+  addItemToMenu,
+  removeItemFromMenu,
+} from '../../../services/restAPI/requests/menus';
 import {useSuggestedRecipeList} from '../../../services/restAPI/requests/recipes';
 
 export function AddItemToMenu({route}: AddItemToMenuProps) {
@@ -37,6 +40,17 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
       .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
   }
 
+  async function onRemoveItem(menuItemId: number): Promise<void> {
+    removeItemFromMenu(menuItemId)
+      .then(() =>
+        setMenu({
+          ...menu,
+          items: menu.items.filter(item => item.id !== menuItemId),
+        }),
+      )
+      .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
+  }
+
   function addItemToMenuState(menuItem: MenuItemPayload): void {
     const items = menu.items.filter(
       item =>
@@ -60,6 +74,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
       isUpdating={isUpdating}
       scrollRef={scrollRef}
       onRecipePress={addRecipeToMenu}
+      onRemoveItem={onRemoveItem}
       menu={menu}
       suggestedRecipes={suggestedRecipes ?? []}
       activeDay={activeDay}

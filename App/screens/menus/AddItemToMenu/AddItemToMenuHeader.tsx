@@ -12,6 +12,7 @@ import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
 type AddItemToMenuHeaderProps = {
   isUpdating: boolean;
   menu: MenuDetailsPayload;
+  onRemoveItem: (menuItemId: number) => void;
   activeDay: Day;
   onPressDay: (day: Day) => void;
 };
@@ -19,11 +20,21 @@ type AddItemToMenuHeaderProps = {
 export default function AddItemToMenuHeader({
   isUpdating,
   menu,
+  onRemoveItem,
   activeDay,
   onPressDay,
 }: AddItemToMenuHeaderProps) {
   const currentItems = menu.items.filter(item => item.day === activeDay);
-  let activeRecipe = currentItems && currentItems[0]?.recipe;
+  const activeRecipe = currentItems && currentItems[0]?.recipe;
+  const activeItemId = currentItems && currentItems[0]?.id;
+
+  let deleteOptions;
+  if (activeItemId) {
+    deleteOptions = {
+      onDelete: () => onRemoveItem(activeItemId),
+      text: 'remove',
+    };
+  }
 
   return (
     <>
@@ -36,7 +47,7 @@ export default function AddItemToMenuHeader({
         {isUpdating ? (
           <LoadingSpinner style={bootstrap.p1} />
         ) : activeRecipe ? (
-          <RecipeListRow recipe={activeRecipe} />
+          <RecipeListRow recipe={activeRecipe} deleteOptions={deleteOptions} />
         ) : (
           <TextStyled>-</TextStyled>
         )}
