@@ -51,6 +51,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
 
   function onPressDay(day: Day): void {
     setActiveDay(day);
+    LayoutAnimation.configureNext(layoutAnimConfig);
   }
 
   return (
@@ -68,14 +69,14 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
 }
 
 const layoutAnimConfig = {
-  duration: 300,
+  duration: 200,
   create: {
-    duration: 300,
     type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.scaleY,
+    property: LayoutAnimation.Properties.opacity,
   },
   update: {
     type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.scaleY,
   },
   delete: {
     type: LayoutAnimation.Types.easeInEaseOut,
