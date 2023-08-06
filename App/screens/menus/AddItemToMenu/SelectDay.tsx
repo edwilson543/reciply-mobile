@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useRef} from 'react';
 
 import {faCheck, faQuestion} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {ScrollView, View} from 'react-native';
+import {Dimensions, ScrollView, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import {PressablePrimary, PressableSecondary} from '../../../components/styled';
@@ -12,6 +12,9 @@ import {
   MenuItemPayload,
 } from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
+
+const DayWidth = 75;
+const DayMargin = 5;
 
 type SelectDayProps = {
   menu: MenuDetailsPayload;
@@ -24,18 +27,35 @@ export default function SelectDay({
   activeDay,
   onPressDay,
 }: SelectDayProps) {
+  const scrollRef = useRef<ScrollView>(null);
+
+  function onPress(day: Day) {
+    onPressDay(day);
+    centerDayInDevice(day);
+  }
+
+  function centerDayInDevice(day: Day) {
+    const dayMidpoint =
+      day * (DayWidth + DayMargin) - Dimensions.get('window').width / 2;
+    scrollRef.current?.scrollTo({x: dayMidpoint, animated: true});
+  }
+
   const daysArray = Object.values(Day).filter(
     item => !isNaN(Number(item)),
   ) as Array<Day>;
+
   return (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+    <ScrollView
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+      ref={scrollRef}>
       {daysArray.map(day => {
         return (
           <SelectSingleDay
             day={day}
             isActive={activeDay === day}
             hasRecipe={getHasRecipe(menu.items, day)}
-            onPress={() => onPressDay(day)}
+            onPress={() => onPress(day)}
             key={day}
           />
         );
@@ -99,10 +119,10 @@ const styles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
     button: {
       // Display
-      width: 75,
+      width: DayWidth,
       height: 50,
       marginTop: 20,
-      marginHorizontal: 5,
+      marginHorizontal: DayMargin,
       padding: 5,
       // Border
       borderRadius: 20,
