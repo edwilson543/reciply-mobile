@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import {useIsFocused} from '@react-navigation/native';
+import {LayoutAnimation} from 'react-native';
 
 import MenuDetailsView from './MenuDetailsView';
 import {MenuDetailsProps} from '../../../navigation/authenticated/navigation.types';
@@ -21,14 +22,16 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
   }, [isFocused]);
 
   async function onRemoveItem(menuItemId: number): Promise<void> {
-    removeItemFromMenu(menuItemId).then(
-      () =>
-        data &&
-        setData({
-          ...data,
-          items: data.items.filter(item => item.id !== menuItemId),
-        }),
-    );
+    removeItemFromMenu(menuItemId)
+      .then(
+        () =>
+          data &&
+          setData({
+            ...data,
+            items: data.items.filter(item => item.id !== menuItemId),
+          }),
+      )
+      .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
   }
 
   function onRefresh(): void {
@@ -45,3 +48,15 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
     />
   );
 }
+
+const layoutAnimConfig = {
+  duration: 300,
+  update: {
+    type: LayoutAnimation.Types.easeInEaseOut,
+  },
+  delete: {
+    duration: 100,
+    type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.opacity,
+  },
+};
