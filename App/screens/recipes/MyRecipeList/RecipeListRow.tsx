@@ -11,7 +11,9 @@ import {
 
 import {ThumbnailImage} from '../../../components/images/network';
 import {TextStyled} from '../../../components/styled';
-import DeleteSwipeOption from '../../../components/swipe/options';
+import DeleteSwipeOption, {
+  DeleteSwipeOptionProps,
+} from '../../../components/swipe/options';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -22,9 +24,14 @@ const descriptionPreviewChars = 40;
 type RecipeListRowProps = {
   recipe: RecipeListPayload;
   onPress?: () => void;
+  deleteOptions?: DeleteSwipeOptionProps;
 };
 
-export default function RecipeListRow({recipe, onPress}: RecipeListRowProps) {
+export default function RecipeListRow({
+  recipe,
+  onPress,
+  deleteOptions,
+}: RecipeListRowProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
   const scrollRef = useRef<ScrollView>(null);
@@ -58,9 +65,7 @@ export default function RecipeListRow({recipe, onPress}: RecipeListRowProps) {
           <ThumbnailImage imageSource={recipe.hero_image_source} />
         </View>
       </Pressable>
-      <View>
-        <DeleteSwipeOption onPress={() => 1} />
-      </View>
+      <View>{deleteOptions && <DeleteSwipeOption {...deleteOptions} />}</View>
     </ScrollView>
   );
 }

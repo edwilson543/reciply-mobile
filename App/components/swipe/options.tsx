@@ -9,14 +9,14 @@ import {ColourScheme, useColourScheme} from '../../styles/colourScheme';
 import {FontSize} from '../../styles/constants';
 import {TextStyled} from '../styled';
 
-type DeleteSwipeOptionProps = {
-  onPress: () => void;
+export type DeleteSwipeOptionProps = {
+  onDelete: () => void;
   faIcon?: IconDefinition;
   text?: string;
 };
 
 export default function DeleteSwipeOption({
-  onPress,
+  onDelete,
   faIcon,
   text,
 }: DeleteSwipeOptionProps) {
@@ -27,7 +27,7 @@ export default function DeleteSwipeOption({
   const actionIcon = faIcon ?? faTrash;
 
   return (
-    <Pressable onPress={onPress} style={styleSheet.iconContainer}>
+    <Pressable onPress={onDelete} style={styleSheet.iconContainer}>
       <FontAwesomeIcon
         icon={actionIcon}
         color={colourScheme.buttonDangerFont}
