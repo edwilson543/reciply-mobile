@@ -20,8 +20,9 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
   const isFirstRender = refreshKey === 0;
 
   useEffect(() => {
-    isFocused && !isFirstRender && onRefresh();
-    onRefresh();
+    if (isFocused && !isFirstRender) {
+      onRefresh();
+    }
   }, [isFocused, isFirstRender]);
 
   async function onRemoveItem(menuItemId: number): Promise<void> {

@@ -13,20 +13,23 @@ test('renders menu details', async () => {
   // Mock out the menu details API call
   const mockMenuDetails = {
     data: fixtures.menuDetailsFixture,
+    setData: jest.fn(),
     friendlyErrors: null,
     isLoading: false as false,
   };
   const recipe = fixtures.menuDetailsFixture.items[0].recipe;
-  jest.mocked(useMenuDetails).mockReturnValueOnce(mockMenuDetails);
+  jest.mocked(useMenuDetails).mockReturnValue(mockMenuDetails);
 
   // Provide the necessary route parameters
   const route = {params: {menuId: 1}};
 
   render(
     <NavigationContainer>
-      <MenuDetails navigation={jest.fn() as any} route={route as any} />
+      <MenuDetails navigation={jest.fn() as any} route={route as any} />,
     </NavigationContainer>,
   );
+
+  expect(jest.mocked(useMenuDetails).mock.calls).toHaveLength(1);
 
   expect(screen.getByText('my menu')).toBeVisible();
   // Recipe should be shown for monday lunch

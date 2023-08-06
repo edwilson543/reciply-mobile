@@ -24,6 +24,7 @@ const mockMenuList = {
       number_of_items: 3,
     } as MenuListPayload,
   ],
+  setData: jest.fn(),
   friendlyErrors: null,
   isLoading: false as false,
 };
