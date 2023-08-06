@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {faPlus, faPencil} from '@fortawesome/free-solid-svg-icons';
+import {faPencil, faUtensils} from '@fortawesome/free-solid-svg-icons';
 import {StyleSheet, View} from 'react-native';
 
 import {
@@ -32,11 +32,11 @@ export default function MenuDetailsHeader({
       <TextStyled style={[bootstrap.my3]}>{menu?.description}</TextStyled>
       <View style={styles.buttonContainer}>
         <PressablePrimary
-          text={'add'}
+          text={'meals'}
           onPress={() =>
             navigation.push(ScreenName.AddItemToMenu, {menu: menu})
           }
-          faIcon={faPlus}
+          faIcon={faUtensils}
           style={styles.button}
         />
         <PressableSecondary

@@ -54,7 +54,7 @@ const layoutAnimConfig = {
   duration: 300,
   create: {
     type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.scaleY,
+    property: LayoutAnimation.Properties.opacity,
   },
   update: {
     type: LayoutAnimation.Types.easeInEaseOut,

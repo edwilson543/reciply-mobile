@@ -12,7 +12,7 @@ export default function MenuDetailsFooter({hasItems}: MenuDetailsFooter) {
   } else {
     return (
       <TextStyled style={bootstrap.my5}>
-        This menu currently has no recipes
+        This menu currently has no meals
       </TextStyled>
     );
   }
