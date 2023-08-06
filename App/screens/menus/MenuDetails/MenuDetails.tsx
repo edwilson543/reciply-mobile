@@ -15,11 +15,14 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
     route.params.menuId,
     refreshKey,
   );
+
   const isFocused = useIsFocused();
+  const isFirstRender = refreshKey === 0;
 
   useEffect(() => {
-    isFocused && onRefresh();
-  }, [isFocused]);
+    isFocused && !isFirstRender && onRefresh();
+    onRefresh();
+  }, [isFocused, isFirstRender]);
 
   async function onRemoveItem(menuItemId: number): Promise<void> {
     removeItemFromMenu(menuItemId)

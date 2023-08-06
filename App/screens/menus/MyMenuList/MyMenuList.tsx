@@ -10,12 +10,14 @@ export function MyMenuList({navigation}: MyMenuListProps) {
   /** List the menus the user has written themselves. */
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const {data, isLoading} = useMyMenuList(refreshKey);
+
   const isFocused = useIsFocused();
+  const isFirstRender = refreshKey === 0;
 
   useEffect(() => {
     /** Refresh the data when navigating back to this screen. */
-    isFocused && onRefresh();
-  }, [isFocused]);
+    isFocused && !isFirstRender && onRefresh();
+  }, [isFocused, isFirstRender]);
 
   function onRefresh(): void {
     setRefreshKey(n => n + 1);
