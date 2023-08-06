@@ -55,7 +55,7 @@ const layoutAnimConfig = {
     type: LayoutAnimation.Types.easeInEaseOut,
   },
   delete: {
-    duration: 100,
+    duration: 300,
     type: LayoutAnimation.Types.easeInEaseOut,
     property: LayoutAnimation.Properties.opacity,
   },
