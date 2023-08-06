@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 
-import {FlatList} from 'react-native';
+import {FlatList, LayoutAnimation} from 'react-native';
 
 import AddItemToMenuView from './AddItemToMenuView';
 import {AddItemToMenuProps} from '../../../navigation/authenticated/navigation.types';
@@ -14,10 +14,12 @@ import {useSuggestedRecipeList} from '../../../services/restAPI/requests/recipes
 
 export function AddItemToMenu({route}: AddItemToMenuProps) {
   const [menu, setMenu] = useState<MenuDetailsPayload>(route.params.menu);
-  const {data: suggestedRecipes, isLoading} = useSuggestedRecipeList(0);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [activeDay, setActiveDay] = useState<Day>(Day.Monday);
+
   const scrollRef = useRef<FlatList>(null);
+
+  const {data: suggestedRecipes, isLoading} = useSuggestedRecipeList(0);
 
   const mealTime = MealTime.Dinner; // Hardcoded for now -> todo
 
@@ -31,11 +33,8 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
           addItemToMenuState(data);
         }
       })
-      .then(() => setIsUpdating(false));
-  }
-
-  function onPressDay(day: Day): void {
-    setActiveDay(day);
+      .then(() => setIsUpdating(false))
+      .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
   }
 
   function addItemToMenuState(menuItem: MenuItemPayload): void {
@@ -50,6 +49,10 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
     setMenu({...menu, items: items});
   }
 
+  function onPressDay(day: Day): void {
+    setActiveDay(day);
+  }
+
   return (
     <AddItemToMenuView
       isLoading={isLoading}
@@ -57,9 +60,25 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
       scrollRef={scrollRef}
       onRecipePress={addRecipeToMenu}
       menu={menu}
-      suggestedRecipes={suggestedRecipes}
+      suggestedRecipes={suggestedRecipes ?? []}
       activeDay={activeDay}
       onPressDay={onPressDay}
     />
   );
 }
+
+const layoutAnimConfig = {
+  duration: 300,
+  create: {
+    duration: 300,
+    type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.scaleY,
+  },
+  update: {
+    type: LayoutAnimation.Types.easeInEaseOut,
+  },
+  delete: {
+    type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.opacity,
+  },
+};

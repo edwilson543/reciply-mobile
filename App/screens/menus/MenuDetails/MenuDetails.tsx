@@ -36,6 +36,7 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
 
   function onRefresh(): void {
     setRefreshKey(n => n + 1);
+    LayoutAnimation.configureNext(layoutAnimConfig);
   }
 
   return (
@@ -51,11 +52,14 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
 
 const layoutAnimConfig = {
   duration: 300,
+  create: {
+    type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.scaleY,
+  },
   update: {
     type: LayoutAnimation.Types.easeInEaseOut,
   },
   delete: {
-    duration: 300,
     type: LayoutAnimation.Types.easeInEaseOut,
     property: LayoutAnimation.Properties.opacity,
   },
