@@ -32,7 +32,7 @@ export default function MenuDetailsHeader({
       <TextStyled style={[bootstrap.my3]}>{menu?.description}</TextStyled>
       <View style={styles.buttonContainer}>
         <PressablePrimary
-          text={'meals'}
+          text={'choose'}
           onPress={() =>
             navigation.push(ScreenName.AddItemToMenu, {menu: menu})
           }
