@@ -20,13 +20,13 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [activeDay, setActiveDay] = useState<Day>(Day.Monday);
 
-  const scrollRef = useRef<FlatList>(null);
-
   const {
     data: suggestedRecipes,
     setData: setSuggestedRecipes,
     isLoading,
   } = useSuggestedRecipeList(0);
+
+  const scrollRef = useRef<FlatList>(null);
 
   const mealTime = MealTime.Dinner; // Hardcoded for now -> todo
 

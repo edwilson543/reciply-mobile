@@ -39,7 +39,7 @@ export const addItemToMenu = async (
   const form = new FormData();
   form.append('recipe_id', recipeId);
   form.append('day', day);
-  form.append('meal_time', mealTime.toUpperCase());
+  form.append('meal_time', mealTime);
   return postData<MenuItemPayload, any>(
     endpoints.menuAddItemEndpoint(menuId),
     form,

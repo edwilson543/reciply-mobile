@@ -93,5 +93,5 @@ test('creating valid new menu navigates to add items screen', async () => {
   expect(mockCall[1]).toBe('some description');
 
   // Should have navigated to the menu list screen
-  expect(screen.getByTestId('add-items-to-menu-header')).toBeOnTheScreen();
+  expect(screen.getByTestId('manage-menu-items-header')).toBeOnTheScreen();
 });

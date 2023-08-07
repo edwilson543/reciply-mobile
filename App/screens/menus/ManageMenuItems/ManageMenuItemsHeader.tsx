@@ -38,11 +38,11 @@ export default function ManageMenuItemsHeader({
 
   return (
     <>
-      <Header1 style={[bootstrap.my3]} testID={'add-items-to-menu-header'}>
+      <Header1 style={[bootstrap.my3]} testID={'manage-menu-items-header'}>
         {menu.name}
       </Header1>
       <SelectDay menu={menu} activeDay={activeDay} onPressDay={onPressDay} />
-      <View style={bootstrap.my3}>
+      <View style={bootstrap.my3} testID={'current-recipe'}>
         <TextStyled>current recipe:</TextStyled>
         {isUpdating ? (
           <LoadingSpinner style={bootstrap.p1} />

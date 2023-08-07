@@ -83,7 +83,7 @@ export function SelectSingleDay({
   const Pressable = isActive ? PressablePrimary : PressableSecondary;
 
   return (
-    <View>
+    <View testID={`day-${day}`}>
       <Pressable
         onPress={onPress}
         text={Day[day].toLowerCase().slice(0, 3)}

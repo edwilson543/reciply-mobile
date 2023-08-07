@@ -17,5 +17,5 @@ export enum Day {
 export enum MealTime {
   Breakfast = 'BREAKFAST',
   Lunch = 'LUNCH',
-  Dinner = 'Dinner',
+  Dinner = 'DINNER',
 }
