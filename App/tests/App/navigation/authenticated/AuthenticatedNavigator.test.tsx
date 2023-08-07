@@ -9,14 +9,15 @@ import {
   waitFor,
 } from '@testing-library/react-native';
 
-import AuthenticatedNavigator from './AuthenticatedNavigator';
-import {useMyRecipeList} from '../../services/restAPI/requests/recipes';
+import AuthenticatedNavigator from '../../../../navigation/authenticated/AuthenticatedNavigator';
+import {useMyRecipeList} from '../../../../services/restAPI/requests/recipes';
 
-jest.mock('../../services/restAPI/requests/recipes');
+jest.mock('../../../../services/restAPI/requests/recipes');
 
 test('can switch from recipes to menus tab', async () => {
   const mockRecipeList = {
     data: [],
+    setData: jest.fn(),
     friendlyErrors: null,
     isLoading: false as false,
   };

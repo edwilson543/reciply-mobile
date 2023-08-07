@@ -2,10 +2,10 @@ import React from 'react';
 
 import {render, screen} from '@testing-library/react-native';
 
-import {RecipeDetails} from '../../../../screens/recipes';
-import {useRecipeDetails} from '../../../../services/restAPI/requests/recipes';
+import {RecipeDetails} from '../../../../../screens/recipes';
+import {useRecipeDetails} from '../../../../../services/restAPI/requests/recipes';
 
-jest.mock('../../../../services/restAPI/requests/recipes');
+jest.mock('../../../../../services/restAPI/requests/recipes');
 
 test('renders recipe details', async () => {
   // Mock out the recipe details API call

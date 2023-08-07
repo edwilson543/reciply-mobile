@@ -5,24 +5,25 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
-import {RecipesTab} from './RecipesTab';
-import {RecipeDetailsPayload} from '../../../services/restAPI/payloads';
+import {RecipesTab} from '../../../../../navigation/authenticated/tabs';
+import {ScreenName} from '../../../../../navigation/constants';
+import {RecipeDetailsPayload} from '../../../../../services/restAPI/payloads';
 import {
   createRecipe,
   useMyRecipeList,
   useRecipeDetails,
-} from '../../../services/restAPI/requests/recipes';
-import * as fixtures from '../../../tests/fixtures';
-import {ScreenName} from '../../constants';
+} from '../../../../../services/restAPI/requests/recipes';
+import * as fixtures from '../../../../fixtures';
 
-jest.mock('../../../services/restAPI/requests/recipes');
+jest.mock('../../../../../services/restAPI/requests/recipes');
 
 test('clicking on recipe in list navigates to detail screen', async () => {
   // Mock out the recipe list API call
   const mockRecipeList = {
     data: [fixtures.recipeListFixture],
+    setData: jest.fn(),
     friendlyErrors: null,
-    isLoading: false as false,
+    isLoading: false,
   };
   jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
@@ -34,8 +35,9 @@ test('clicking on recipe in list navigates to detail screen', async () => {
       created_at: '',
       updated_at: '',
     } as RecipeDetailsPayload,
+    setData: jest.fn(),
     friendlyErrors: null,
-    isLoading: false as false,
+    isLoading: false,
   };
   jest.mocked(useRecipeDetails).mockReturnValueOnce(mockRecipeDetails);
 
@@ -63,8 +65,9 @@ test('creating valid new recipe navigates to list screen', async () => {
   jest.mocked(createRecipe).mockResolvedValueOnce({data: {}, errors: null});
   const mockRecipeList = {
     data: [],
+    setData: jest.fn(),
     friendlyErrors: null,
-    isLoading: false as false,
+    isLoading: false,
   };
   jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
 

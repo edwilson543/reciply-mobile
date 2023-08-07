@@ -2,10 +2,10 @@ import React from 'react';
 
 import {fireEvent, render, screen} from '@testing-library/react-native';
 
-import {CreateRecipe} from '../../../../screens/recipes';
-import {createRecipe} from '../../../../services/restAPI/requests/recipes';
+import {CreateRecipe} from '../../../../../screens/recipes';
+import {createRecipe} from '../../../../../services/restAPI/requests/recipes';
 
-jest.mock('../../../../services/restAPI/requests/recipes');
+jest.mock('../../../../../services/restAPI/requests/recipes');
 
 test('cannot submit recipe if name given is too short', async () => {
   render(

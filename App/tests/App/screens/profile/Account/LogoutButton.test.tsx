@@ -3,14 +3,14 @@ import React from 'react';
 import {act, fireEvent, render, screen} from '@testing-library/react-native';
 import {Alert} from 'react-native';
 
-import * as auth from '../../../../context/auth';
-import LogoutButton from '../../../../screens/profile/Account/LogoutButton';
-import {logout} from '../../../../services/restAPI/requests/auth';
-import * as storage from '../../../../services/storage';
-import {StorageKey} from '../../../../services/storage';
+import * as auth from '../../../../../context/auth';
+import LogoutButton from '../../../../../screens/profile/Account/LogoutButton';
+import {logout} from '../../../../../services/restAPI/requests/auth';
+import * as storage from '../../../../../services/storage';
+import {StorageKey} from '../../../../../services/storage';
 
 // Mock out the call to the logout endpoint
-jest.mock('../../../../services/restAPI/requests/auth');
+jest.mock('../../../../../services/restAPI/requests/auth');
 afterEach(() => jest.mocked(logout).mockClear());
 
 test('user can logout', async () => {
