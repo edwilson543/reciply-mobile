@@ -1,64 +1,91 @@
 import React from 'react';
 
-import {Pressable, StyleSheet, View} from 'react-native';
+import {
+  Dimensions,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import {ThumbnailImage} from '../../../components/images/network';
-import * as text from '../../../components/styled/TextStyled';
-import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
-import {ScreenName} from '../../../navigation/constants';
+import {TextStyled} from '../../../components/styled';
+import DeleteSwipeOption, {
+  DeleteSwipeOptionProps,
+} from '../../../components/swipe/Options';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
+import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
 import {previewText} from '../../../utils/formatters';
 
 const descriptionPreviewChars = 40;
+const utilisedDeviceWidth = Dimensions.get('window').width - 20;
 
-type MyRecipeListViewProps = {
+type RecipeListRowProps = {
   recipe: RecipeListPayload;
-  navigation: MyRecipeListNavigationProp;
+  onPress?: () => void;
+  deleteOptions?: DeleteSwipeOptionProps;
 };
 
 export default function RecipeListRow({
   recipe,
-  navigation,
-}: MyRecipeListViewProps) {
+  onPress,
+  deleteOptions,
+}: RecipeListRowProps) {
+  const colourScheme = useColourScheme();
+  const styleSheet = styles(colourScheme);
+
   return (
-    <Pressable
-      onPress={() =>
-        navigation.push(ScreenName.RecipeDetails, {
-          id: recipe.id,
-        })
-      }
-      testID={`recipe-${recipe.id}`}>
-      <View style={styles.container} key={recipe.id}>
-        <View style={styles.textContainer}>
-          <text.TextStyled style={styles.recipeName}>
-            {recipe.name}
-          </text.TextStyled>
-          <text.TextStyled style={styles.recipeDescription}>
-            {previewText(recipe.description, descriptionPreviewChars)}
-          </text.TextStyled>
+    <ScrollView
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+      snapToOffsets={[utilisedDeviceWidth]}
+      scrollEnabled={!!deleteOptions}
+      style={styleSheet.scrollView}>
+      <Pressable onPress={onPress} testID={`recipe-${recipe.id}`}>
+        <View style={styleSheet.recipeContainer} key={recipe.id}>
+          <View style={styleSheet.textContainer}>
+            <TextStyled style={styleSheet.recipeName}>{recipe.name}</TextStyled>
+            <TextStyled style={styleSheet.recipeDescription}>
+              {previewText(recipe.description, descriptionPreviewChars)}
+            </TextStyled>
+          </View>
+          <ThumbnailImage imageSource={recipe.hero_image_source} />
         </View>
-        <ThumbnailImage imageSource={recipe.hero_image_source} />
-      </View>
-    </Pressable>
+      </Pressable>
+      <View>{deleteOptions && <DeleteSwipeOption {...deleteOptions} />}</View>
+    </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    // Display
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 10,
-    marginHorizontal: 10,
-  },
-  textContainer: {
-    // Display
-    flex: 1,
-    flexDirection: 'column',
-  },
-  recipeName: {fontWeight: 'bold'},
-  recipeDescription: {fontStyle: 'italic', fontSize: FontSize.TextSmall},
-});
+const styles = (colourScheme: ColourScheme) =>
+  StyleSheet.create({
+    scrollView: {
+      // Display
+      height: 75,
+      marginVertical: 5,
+      // Background and border
+      borderColor: colourScheme.fontPrimary,
+      borderWidth: 0.5,
+      borderRadius: 5,
+    },
+    recipeContainer: {
+      // Display
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginVertical: 5,
+      padding: 10,
+      width: utilisedDeviceWidth,
+      // Background
+      backgroundColor: colourScheme.backgroundPrimary,
+    },
+    textContainer: {
+      // Display
+      flex: 1,
+      flexDirection: 'column',
+    },
+    recipeName: {fontWeight: 'bold'},
+    recipeDescription: {fontStyle: 'italic', fontSize: FontSize.TextSmall},
+  });

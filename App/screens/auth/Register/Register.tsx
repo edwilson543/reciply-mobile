@@ -3,12 +3,12 @@ import React, {useState} from 'react';
 import RegisterView from './RegisterView';
 import * as auth from '../../../context/auth';
 import {RegisterProps} from '../../../navigation/unauthenticated/navigation.types';
-import {register} from '../../../services/restAPI/authRequests/register';
 import {StatusCode} from '../../../services/restAPI/constants';
 import {
   RegisterErrors,
   RegisterPayload,
 } from '../../../services/restAPI/payloads';
+import {register} from '../../../services/restAPI/requests/auth';
 import * as storage from '../../../services/storage';
 
 const initialData: RegisterPayload = {
@@ -36,12 +36,12 @@ export function Register({navigation}: RegisterProps) {
     setErrors(null);
     setIsLoading(true);
 
-    const formData = new FormData();
-    for (const key in userDetails) {
-      formData.append(key, userDetails[key as keyof RegisterPayload]);
-    }
-
-    register(formData)
+    register(
+      userDetails.username,
+      userDetails.email,
+      userDetails.password1,
+      userDetails.password2,
+    )
       .then(response => {
         if (response.status >= StatusCode.BadRequest) {
           response.json().then(data => setErrors(data));

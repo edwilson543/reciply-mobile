@@ -8,7 +8,7 @@ type ThumbnailImageProps = {
   imageSource: string;
 };
 
-export default function UploadImagePreview({imageSource}: ThumbnailImageProps) {
+export function UploadImagePreview({imageSource}: ThumbnailImageProps) {
   /** A small circular image showing the preview of something. */
   const source = imageSource ? {uri: imageSource} : RecipeThumbnailPlaceholder;
   return <Image source={source} style={styles.image} />;

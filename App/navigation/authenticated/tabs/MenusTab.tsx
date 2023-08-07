@@ -1,29 +1,42 @@
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NativeStackNavigatorProps} from 'react-native-screens/lib/typescript/native-stack/types';
 
-import {MyMenuList, MenuDetails} from '../../../screens/menus';
+import * as screens from '../../../screens/menus';
 import {useColourScheme} from '../../../styles/colourScheme';
-import {headerScreenStyles} from '../../../styles/navigation';
 import {ScreenName} from '../../constants';
-import HeaderTitle from '../components/HeaderTitle';
 import {MenuStackParamsList} from '../navigation.types';
+import {headerStyles} from '../styles/header';
 
 const MenusStack = createNativeStackNavigator<MenuStackParamsList>();
 
-export function MenusTab() {
+type MenusTabProps = {
+  navigatorProps?: NativeStackNavigatorProps;
+};
+
+export function MenusTab({navigatorProps}: MenusTabProps) {
   const colourScheme = useColourScheme();
 
   return (
     <MenusStack.Navigator
-      screenOptions={{
-        headerTitle: HeaderTitle,
-        ...headerScreenStyles(colourScheme),
-      }}>
-      <MenusStack.Screen name={ScreenName.MyMenuList} component={MyMenuList} />
+      {...navigatorProps}
+      screenOptions={headerStyles(colourScheme)}>
+      <MenusStack.Screen
+        name={ScreenName.MyMenuList}
+        component={screens.MyMenuList}
+      />
       <MenusStack.Screen
         name={ScreenName.MenuDetails}
-        component={MenuDetails}
+        component={screens.MenuDetails}
+      />
+      <MenusStack.Screen
+        name={ScreenName.ManageMenuItems}
+        component={screens.ManageMenuItems}
+      />
+      <MenusStack.Screen
+        name={ScreenName.CreateMenu}
+        component={screens.CreateMenu}
       />
     </MenusStack.Navigator>
   );

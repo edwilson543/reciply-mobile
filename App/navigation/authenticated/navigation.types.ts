@@ -1,6 +1,7 @@
-import {RouteProp} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import {MenuDetailsPayload} from '../../services/restAPI/payloads';
 import {ScreenName} from '../constants';
 
 /**
@@ -8,9 +9,9 @@ import {ScreenName} from '../constants';
  * */
 
 export type TabParamsList = {
-  Recipes: undefined;
-  Menus: undefined;
-  Profile: undefined;
+  Recipes: NavigatorScreenParams<RecipeStackParamsList>;
+  Menus: NavigatorScreenParams<MenuStackParamsList>;
+  Profile: NavigatorScreenParams<ProfileStackParamsList>;
 };
 
 /**
@@ -20,13 +21,15 @@ export type TabParamsList = {
 
 export type RecipeStackParamsList = {
   MyRecipeList: {refresh?: boolean};
-  RecipeDetails: {id: number};
+  RecipeDetails: {recipeId: number};
   CreateRecipe: undefined;
 };
 
 export type MenuStackParamsList = {
   MyMenuList: undefined;
   MenuDetails: {menuId: number};
+  ManageMenuItems: {menu: MenuDetailsPayload};
+  CreateMenu: undefined;
 };
 
 export type ProfileStackParamsList = {
@@ -126,11 +129,45 @@ export type MenuDetailsProps = {
   route: MenuDetailsRouteProp;
 };
 
+// ManageMenuItems
+
+export type ManageMenuItemsNavigationProp = NativeStackNavigationProp<
+  MenuStackParamsList,
+  ScreenName.ManageMenuItems
+>;
+
+export type ManageMenuItemsRouteProp = RouteProp<
+  MenuStackParamsList,
+  ScreenName.ManageMenuItems
+>;
+
+export type ManageMenuItemsProps = {
+  navigation: ManageMenuItemsNavigationProp;
+  route: ManageMenuItemsRouteProp;
+};
+
+// CreateMenu
+
+export type CreateMenuNavigationProp = NativeStackNavigationProp<
+  MenuStackParamsList,
+  ScreenName.CreateMenu
+>;
+
+export type CreateMenuRouteProp = RouteProp<
+  MenuStackParamsList,
+  ScreenName.CreateMenu
+>;
+
+export type CreateMenuProps = {
+  navigation: CreateMenuNavigationProp;
+  route: CreateMenuRouteProp;
+};
+
 /**
  * Profile screens prop types.
  */
 
-// MyMenuList
+// Profile
 
 export type AccountNavigationProp = NativeStackNavigationProp<
   ProfileStackParamsList,

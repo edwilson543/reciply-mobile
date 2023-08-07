@@ -21,7 +21,9 @@ export function LargeSquareImage({
 const styles = StyleSheet.create({
   image: {
     // Display
-    width: 300,
+    width: '100%',
     height: 300,
+    // Background
+    opacity: 0.9,
   },
 });

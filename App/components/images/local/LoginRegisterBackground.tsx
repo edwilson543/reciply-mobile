@@ -4,7 +4,7 @@ import {Image, StyleSheet} from 'react-native';
 
 import {LoginRegisterBackgroundImage} from '../../../assets/images';
 
-export default function LoginRegisterBackground() {
+export function LoginRegisterBackground() {
   return (
     <Image
       source={LoginRegisterBackgroundImage}

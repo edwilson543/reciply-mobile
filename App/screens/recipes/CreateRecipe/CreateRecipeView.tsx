@@ -2,14 +2,16 @@ import React, {SetStateAction} from 'react';
 
 import {View, StyleSheet} from 'react-native';
 
-import UploadImagePreview from '../../../components/images/local/UploadImagePreview';
+import {UploadImagePreview} from '../../../components/images/local';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
   PressablePrimary,
   PressableSecondary,
   TextInputStyled,
-  TextStyled,
 } from '../../../components/styled';
 import {AlertDanger} from '../../../components/styled/Alerts';
+import {Header3} from '../../../components/styled/TextStyled';
+import {RecipeScreenTemplate} from '../../../components/Templates';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
@@ -22,6 +24,7 @@ type CreateRecipeViewProps = {
   heroImageSource: string;
   pickHeroImage: () => void;
   submitForm: () => void;
+  isLoading: boolean;
   errors: CreateRecipeErrors | null;
 };
 
@@ -33,6 +36,7 @@ export default function CreateRecipeView({
   heroImageSource,
   pickHeroImage,
   submitForm,
+  isLoading,
   errors,
 }: CreateRecipeViewProps) {
   const colourScheme = useColourScheme();
@@ -43,44 +47,55 @@ export default function CreateRecipeView({
   const errorText = errors?.name ? errors.name[0] : '';
 
   return (
-    <View style={styleSheet.container}>
-      <TextStyled style={styleSheet.header}>Create new recipe</TextStyled>
-      {errors ? (
-        <AlertDanger errorText={errorText} style={styleSheet.errors} />
-      ) : (
-        <></>
-      )}
-      <TextStyled>Name</TextStyled>
-      <TextInputStyled
-        value={name}
-        onChangeText={onNameChange}
-        style={[styleSheet.textInputField, styleSheet.nameInputField]}
-        testID={'name-input'}
-      />
-      <TextStyled>Description</TextStyled>
-      <TextInputStyled
-        value={description}
-        onChangeText={onDescriptionChange}
-        multiline={true}
-        style={[styleSheet.textInputField, styleSheet.descriptionInputField]}
-        testID={'description-input'}
-      />
-      <View style={styleSheet.selectImageContainer}>
-        <PressableSecondary
-          text={'+ Add photo'}
-          onPress={pickHeroImage}
-          style={styleSheet.selectImageButton}
-        />
-        <UploadImagePreview imageSource={heroImageSource} />
+    <RecipeScreenTemplate>
+      <View style={styleSheet.container}>
+        <Header3>Create new recipe</Header3>
+        {errors ? (
+          <AlertDanger errorText={errorText} style={styleSheet.errors} />
+        ) : (
+          <></>
+        )}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <TextInputStyled
+              value={name}
+              placeholder={'name'}
+              onChangeText={onNameChange}
+              style={[styleSheet.textInputField, styleSheet.nameInputField]}
+              testID={'name-input'}
+            />
+            <TextInputStyled
+              value={description}
+              placeholder={'description'}
+              onChangeText={onDescriptionChange}
+              multiline={true}
+              style={[
+                styleSheet.textInputField,
+                styleSheet.descriptionInputField,
+              ]}
+              testID={'description-input'}
+            />
+            <View style={styleSheet.selectImageContainer}>
+              <PressableSecondary
+                text={'+ Add photo'}
+                onPress={pickHeroImage}
+                style={styleSheet.selectImageButton}
+              />
+              <UploadImagePreview imageSource={heroImageSource} />
+            </View>
+            <PressablePrimary
+              onPress={submitForm}
+              disabled={!canSubmit}
+              style={styleSheet.submitButton}
+              text={'Submit'}
+              testID={'submit-button'}
+            />
+          </>
+        )}
       </View>
-      <PressablePrimary
-        onPress={submitForm}
-        disabled={!canSubmit}
-        style={styleSheet.submitButton}
-        text={'Submit'}
-        testID={'submit-button'}
-      />
-    </View>
+    </RecipeScreenTemplate>
   );
 }
 
@@ -88,21 +103,16 @@ const styles = (colourScheme: ColourScheme) =>
   StyleSheet.create({
     container: {
       // Display
-      padding: 5,
       alignItems: 'center',
       justifyContent: 'space-between',
-    },
-    header: {
-      //Typography
-      fontSize: FontSize.Header3,
     },
     // Inputs
     textInputField: {
       // Display
       width: '75%',
+      marginVertical: 5,
       // Typography
       fontSize: FontSize.TextLarge,
-      textAlign: 'left',
     },
     nameInputField: {
       height: 50,

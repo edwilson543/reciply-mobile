@@ -3,7 +3,7 @@ import React from 'react';
 import {Alert, Pressable, StyleSheet, Text} from 'react-native';
 
 import * as auth from '../../../context/auth';
-import {logout} from '../../../services/restAPI/authRequests/logout';
+import {logout} from '../../../services/restAPI/requests/auth';
 import * as storage from '../../../services/storage';
 import {StorageKey} from '../../../services/storage';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
@@ -47,6 +47,7 @@ const styles = (colourScheme: ColourScheme) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       padding: 20,
+      height: 100,
       // Background and border
       backgroundColor: colourScheme.buttonPrimary,
     },

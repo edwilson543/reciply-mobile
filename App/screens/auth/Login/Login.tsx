@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import LoginView from './LoginView';
 import * as auth from '../../../context/auth';
 import {LoginProps} from '../../../navigation/unauthenticated/navigation.types';
-import {login} from '../../../services/restAPI/authRequests/login';
 import * as exceptions from '../../../services/restAPI/exceptions';
+import {login} from '../../../services/restAPI/requests/auth';
 import * as storage from '../../../services/storage';
 
 export function Login({navigation}: LoginProps) {

@@ -1,45 +1,33 @@
 import React from 'react';
 import {useState} from 'react';
 
-import {Platform} from 'react-native';
 import {Asset, launchImageLibrary} from 'react-native-image-picker';
 
 import CreateRecipeView from './CreateRecipeView';
 import {CreateRecipeProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {StatusCode} from '../../../services/restAPI/constants';
-import {createRecipeEndpoint} from '../../../services/restAPI/endpoints';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
-import {postData} from '../../../services/restAPI/request';
+import {createRecipe} from '../../../services/restAPI/requests/recipes';
 
 export function CreateRecipe({navigation}: CreateRecipeProps) {
   /** Allow users to create a new recipe. */
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [heroImage, setHeroImage] = useState<Asset | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<CreateRecipeErrors | null>(null);
 
   async function submitForm(): Promise<void> {
-    const form = new FormData();
-    form.append('name', name);
-    form.append('description', description);
-    if (heroImage && heroImage.uri) {
-      form.append('hero_image', {
-        name: heroImage.fileName,
-        type: heroImage.type,
-        uri:
-          Platform.OS === 'ios'
-            ? heroImage.uri.replace('file://', '')
-            : heroImage.uri,
-      });
-    }
-    postData(createRecipeEndpoint, form, true).then(response => {
-      if (response.status >= StatusCode.BadRequest) {
-        response.json().then(data => setErrors(data));
-      } else {
-        navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
-      }
-    });
+    setIsLoading(true);
+    createRecipe(name, description, heroImage)
+      .then(({data, errors: newErrors}) => {
+        if (data) {
+          navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
+        } else {
+          setErrors(newErrors);
+        }
+      })
+      .then(() => setIsLoading(false));
   }
 
   async function pickHeroImage(): Promise<void> {
@@ -62,6 +50,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
       heroImageSource={heroImage && heroImage.uri ? heroImage?.uri : ''}
       pickHeroImage={pickHeroImage}
       submitForm={submitForm}
+      isLoading={isLoading}
       errors={errors}
     />
   );

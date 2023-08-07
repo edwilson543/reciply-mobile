@@ -3,16 +3,11 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NativeStackNavigatorProps} from 'react-native-screens/lib/typescript/native-stack/types';
 
-import {
-  RecipeDetails,
-  MyRecipeList,
-  CreateRecipe,
-} from '../../../screens/recipes';
+import * as screens from '../../../screens/recipes';
 import {useColourScheme} from '../../../styles/colourScheme';
-import {headerScreenStyles} from '../../../styles/navigation';
 import {ScreenName} from '../../constants';
-import HeaderTitle from '../components/HeaderTitle';
 import {RecipeStackParamsList} from '../navigation.types';
+import {headerStyles} from '../styles/header';
 
 const RecipesStack = createNativeStackNavigator<RecipeStackParamsList>();
 
@@ -26,21 +21,18 @@ export function RecipesTab({navigatorProps}: RecipesTabProps) {
   return (
     <RecipesStack.Navigator
       {...navigatorProps}
-      screenOptions={{
-        headerTitle: HeaderTitle,
-        ...headerScreenStyles(colourScheme),
-      }}>
+      screenOptions={headerStyles(colourScheme)}>
       <RecipesStack.Screen
         name={ScreenName.MyRecipeList}
-        component={MyRecipeList}
+        component={screens.MyRecipeList}
       />
       <RecipesStack.Screen
         name={ScreenName.RecipeDetails}
-        component={RecipeDetails}
+        component={screens.RecipeDetails}
       />
       <RecipesStack.Screen
         name={ScreenName.CreateRecipe}
-        component={CreateRecipe}
+        component={screens.CreateRecipe}
       />
     </RecipesStack.Navigator>
   );

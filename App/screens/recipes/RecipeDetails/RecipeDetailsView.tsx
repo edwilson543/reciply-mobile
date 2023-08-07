@@ -25,25 +25,23 @@ export default function RecipeDetailsView({
     }
   }
 
+  if (isLoading || !recipe) {
+    return <LoadingSpinner size={'large'} />;
+  }
+
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView>
+      <LargeSquareImage
+        imageSource={heroImageSource}
+        extraStyles={styles.image}
+      />
       <View style={styles.container}>
-        {isLoading || !recipe ? (
-          <LoadingSpinner size={'large'} />
-        ) : (
-          <View>
-            <TextStyled style={[styles.recipeNameText]}>
-              {recipe.name}
-            </TextStyled>
-            <LargeSquareImage
-              imageSource={heroImageSource}
-              extraStyles={styles.image}
-            />
-            <TextStyled style={styles.recipeDescriptionText}>
-              {recipe.description}
-            </TextStyled>
-          </View>
-        )}
+        <View>
+          <TextStyled style={[styles.recipeNameText]}>{recipe.name}</TextStyled>
+          <TextStyled style={styles.recipeDescriptionText}>
+            {recipe.description}
+          </TextStyled>
+        </View>
       </View>
     </ScrollView>
   );
