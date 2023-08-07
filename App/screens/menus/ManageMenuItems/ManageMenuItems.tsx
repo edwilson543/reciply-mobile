@@ -13,7 +13,7 @@ import {
   addItemToMenu,
   removeItemFromMenu,
 } from '../../../services/restAPI/requests/menus';
-import {useSuggestedRecipeList} from '../../../services/restAPI/requests/recipes';
+import {useSuggestedRecipeList} from '../../../services/restAPI/requests/suggestions';
 
 export function ManageMenuItems({route}: ManageMenuItemsProps) {
   const [menu, setMenu] = useState<MenuDetailsPayload>(route.params.menu);
@@ -24,7 +24,7 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
     data: suggestedRecipes,
     setData: setSuggestedRecipes,
     isLoading,
-  } = useSuggestedRecipeList(0);
+  } = useSuggestedRecipeList(menu.id, 0);
 
   const scrollRef = useRef<FlatList>(null);
 
@@ -40,7 +40,7 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
           ManageMenuItemsState(data);
         }
       })
-      // Remove the item from the suggested recipes (TODO - may want to leave it)
+      // Remove the item from the suggested recipes
       .then(
         () =>
           suggestedRecipes &&

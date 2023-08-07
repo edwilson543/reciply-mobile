@@ -13,7 +13,6 @@ export const recipeDetailsEndpoint = (recipeId: number) =>
   `${RecipeUrlBase}/${recipeId}/`;
 
 // Menus
-
 const MenuUrlBase = 'menus';
 export const myMenuListEndpoint = `${MenuUrlBase}/menu/list/`;
 export const createMenuEndpoint = `${MenuUrlBase}/menu/create/`;
@@ -25,3 +24,8 @@ export const menuAddItemsEndpoint = (menuId: number) =>
   `${MenuUrlBase}/menu/${menuId}/add-items/`;
 export const menuRemoveItemEndpoint = (menuItemId: number) =>
   `${MenuUrlBase}/menu-item/${menuItemId}/`;
+
+// Suggestions
+const SuggestionsUrlBase = 'suggestions';
+export const suggestRecipesForMenuEndpoint = (menuId: number) =>
+  `${SuggestionsUrlBase}/recipes/for-menu/${menuId}/`;

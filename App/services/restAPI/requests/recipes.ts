@@ -12,12 +12,6 @@ export const useMyRecipeList = (refreshKey: number) =>
     refreshKey,
   );
 
-export const useSuggestedRecipeList = (refreshKey: number) =>
-  useGetData<Array<payloads.RecipeListPayload>>(
-    endpoints.myRecipeListEndpoint,
-    refreshKey,
-  );
-
 export const useRecipeDetails = (recipeId: number) =>
   useGetData<payloads.RecipeDetailsPayload>(
     endpoints.recipeDetailsEndpoint(recipeId),
