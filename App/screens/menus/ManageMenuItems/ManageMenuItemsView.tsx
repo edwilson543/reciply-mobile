@@ -3,13 +3,13 @@ import React, {RefObject} from 'react';
 import {View, FlatList} from 'react-native';
 
 import ManageMenuItemsHeader from './ManageMenuItemsHeader';
+import {MenuScreenTemplate} from '../../../components/Templates';
 import {Day} from '../../../services/restAPI/constants';
 import {
   MenuDetailsPayload,
   RecipeListPayload,
 } from '../../../services/restAPI/payloads';
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
-import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type ManageMenuItemsViewProps = {
   isLoading: boolean;

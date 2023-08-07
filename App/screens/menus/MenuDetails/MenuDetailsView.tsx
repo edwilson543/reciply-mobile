@@ -6,9 +6,9 @@ import MenuDetailsFooter from './MenuDetailsFooter';
 import MenuDetailsHeader from './MenuDetailsHeader';
 import MenuItem from './MenuItem';
 import LoadingSpinner from '../../../components/LoadingSpinner';
+import {MenuScreenTemplate} from '../../../components/Templates';
 import {MenuDetailsNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
-import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type MenuDetailsViewProps = {
   menu: MenuDetailsPayload | null;

@@ -6,10 +6,10 @@ import {StyleSheet, FlatList, View} from 'react-native';
 import MenuListRow from './MenuListRow';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {Header1, PressablePrimaryIcon} from '../../../components/styled';
+import {MenuScreenTemplate} from '../../../components/Templates';
 import {MyMenuListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {MenuListPayload} from '../../../services/restAPI/payloads';
-import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type MyMenuListViewProps = {
   menus: Array<MenuListPayload> | null;

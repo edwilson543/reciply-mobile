@@ -7,10 +7,10 @@ import RecipeListRow from './RecipeListRow';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {bootstrap} from '../../../components/styled';
 import {Header1, PressablePrimaryIcon} from '../../../components/styled';
+import {RecipeScreenTemplate} from '../../../components/Templates';
 import {MyRecipeListNavigationProp} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
 import {RecipeListPayload} from '../../../services/restAPI/payloads';
-import RecipeScreenTemplate from '../RecipeScreenTemplate';
 
 type MyRecipeListViewProps = {
   recipes: Array<RecipeListPayload> | null;

@@ -11,10 +11,10 @@ import {
 } from '../../../components/styled';
 import {AlertDanger} from '../../../components/styled/Alerts';
 import {Header3} from '../../../components/styled/TextStyled';
+import {RecipeScreenTemplate} from '../../../components/Templates';
 import {CreateRecipeErrors} from '../../../services/restAPI/payloads';
 import {ColourScheme, useColourScheme} from '../../../styles/colourScheme';
 import {FontSize} from '../../../styles/constants';
-import RecipeScreenTemplate from '../RecipeScreenTemplate';
 
 type CreateRecipeViewProps = {
   name: string;

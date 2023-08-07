@@ -6,9 +6,9 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import {PressablePrimary, TextInputStyled} from '../../../components/styled';
 import {AlertDanger} from '../../../components/styled/Alerts';
 import {Header3} from '../../../components/styled/TextStyled';
+import {MenuScreenTemplate} from '../../../components/Templates';
 import {CreateMenuErrors} from '../../../services/restAPI/payloads';
 import {FontSize} from '../../../styles/constants';
-import MenuScreenTemplate from '../MenuScreenTemplate';
 
 type CreateMenuViewProps = {
   name: string;
