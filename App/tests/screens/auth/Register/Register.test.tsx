@@ -2,14 +2,14 @@ import React from 'react';
 
 import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
-import {Register} from './Register';
-import * as auth from '../../../context/auth';
-import {StatusCode} from '../../../services/restAPI/constants';
-import {register} from '../../../services/restAPI/requests/auth';
-import * as storage from '../../../services/storage';
+import * as auth from '../../../../context/auth';
+import {Register} from '../../../../screens/auth';
+import {StatusCode} from '../../../../services/restAPI/constants';
+import {register} from '../../../../services/restAPI/requests/auth';
+import * as storage from '../../../../services/storage';
 
 // Mock out the call to the login endpoint
-jest.mock('../../../services/restAPI/requests/auth');
+jest.mock('../../../../services/restAPI/requests/auth');
 afterEach(() => jest.mocked(register).mockClear());
 
 test('valid details can be used to register', async () => {

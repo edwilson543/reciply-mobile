@@ -12,7 +12,7 @@ import {
   useMyRecipeList,
   useRecipeDetails,
 } from '../../../services/restAPI/requests/recipes';
-import * as fixtures from '../../../testing/fixtures';
+import * as fixtures from '../../../tests/fixtures';
 import {ScreenName} from '../../constants';
 
 jest.mock('../../../services/restAPI/requests/recipes');

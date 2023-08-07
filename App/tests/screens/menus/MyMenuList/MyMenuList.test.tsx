@@ -3,11 +3,11 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {within, screen, render, waitFor} from '@testing-library/react-native';
 
-import {MyMenuList} from './MyMenuList';
-import {MenuListPayload} from '../../../services/restAPI/payloads';
-import {useMyMenuList} from '../../../services/restAPI/requests/menus';
+import {MyMenuList} from '../../../../screens/menus';
+import {MenuListPayload} from '../../../../services/restAPI/payloads';
+import {useMyMenuList} from '../../../../services/restAPI/requests/menus';
 
-jest.mock('../../../services/restAPI/requests/menus');
+jest.mock('../../../../services/restAPI/requests/menus');
 
 const mockMenuList = {
   data: [

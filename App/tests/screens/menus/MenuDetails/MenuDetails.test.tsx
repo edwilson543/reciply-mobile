@@ -3,11 +3,11 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {render, screen, within} from '@testing-library/react-native';
 
-import {MenuDetails} from './MenuDetails';
-import {useMenuDetails} from '../../../services/restAPI/requests/menus';
-import * as fixtures from '../../../testing/fixtures';
+import {MenuDetails} from '../../../../screens/menus';
+import {useMenuDetails} from '../../../../services/restAPI/requests/menus';
+import * as fixtures from '../../../fixtures';
 
-jest.mock('../../../services/restAPI/requests/menus');
+jest.mock('../../../../services/restAPI/requests/menus');
 
 test('renders menu details', async () => {
   // Mock out the menu details API call
