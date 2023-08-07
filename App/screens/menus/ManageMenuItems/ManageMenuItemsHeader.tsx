@@ -9,7 +9,7 @@ import {Day} from '../../../services/restAPI/constants';
 import {MenuDetailsPayload} from '../../../services/restAPI/payloads';
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
 
-type AddItemToMenuHeaderProps = {
+type ManageMenuItemsHeaderProps = {
   isUpdating: boolean;
   menu: MenuDetailsPayload;
   onRemoveItem: (menuItemId: number) => void;
@@ -17,13 +17,13 @@ type AddItemToMenuHeaderProps = {
   onPressDay: (day: Day) => void;
 };
 
-export default function AddItemToMenuHeader({
+export default function ManageMenuItemsHeader({
   isUpdating,
   menu,
   onRemoveItem,
   activeDay,
   onPressDay,
-}: AddItemToMenuHeaderProps) {
+}: ManageMenuItemsHeaderProps) {
   const currentItems = menu.items.filter(item => item.day === activeDay);
   const activeRecipe = currentItems && currentItems[0]?.recipe;
   const activeItemId = currentItems && currentItems[0]?.id;

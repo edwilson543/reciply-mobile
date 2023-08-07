@@ -19,7 +19,7 @@ export function CreateMenu({navigation}: CreateMenuProps) {
     createMenu(name, description)
       .then(({data, errors: newErrors}) => {
         if (data) {
-          navigation.replace(ScreenName.AddItemToMenu, {
+          navigation.replace(ScreenName.ManageMenuItems, {
             menu: data,
           });
         } else {

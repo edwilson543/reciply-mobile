@@ -28,7 +28,7 @@ export type RecipeStackParamsList = {
 export type MenuStackParamsList = {
   MyMenuList: undefined;
   MenuDetails: {menuId: number};
-  AddItemToMenu: {menu: MenuDetailsPayload};
+  ManageMenuItems: {menu: MenuDetailsPayload};
   CreateMenu: undefined;
 };
 
@@ -129,21 +129,21 @@ export type MenuDetailsProps = {
   route: MenuDetailsRouteProp;
 };
 
-// AddItemToMenu
+// ManageMenuItems
 
-export type AddItemToMenuNavigationProp = NativeStackNavigationProp<
+export type ManageMenuItemsNavigationProp = NativeStackNavigationProp<
   MenuStackParamsList,
-  ScreenName.AddItemToMenu
+  ScreenName.ManageMenuItems
 >;
 
-export type AddItemToMenuRouteProp = RouteProp<
+export type ManageMenuItemsRouteProp = RouteProp<
   MenuStackParamsList,
-  ScreenName.AddItemToMenu
+  ScreenName.ManageMenuItems
 >;
 
-export type AddItemToMenuProps = {
-  navigation: AddItemToMenuNavigationProp;
-  route: AddItemToMenuRouteProp;
+export type ManageMenuItemsProps = {
+  navigation: ManageMenuItemsNavigationProp;
+  route: ManageMenuItemsRouteProp;
 };
 
 // CreateMenu

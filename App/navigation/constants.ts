@@ -18,7 +18,7 @@ export enum ScreenName {
   MyMenuList = 'MyMenuList',
   MenuDetails = 'MenuDetails',
   CreateMenu = 'CreateMenu',
-  AddItemToMenu = 'AddItemToMenu',
+  ManageMenuItems = 'ManageMenuItems',
 
   // Profile
   Account = 'Account',

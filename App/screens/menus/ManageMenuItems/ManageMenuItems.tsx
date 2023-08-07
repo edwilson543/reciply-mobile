@@ -2,8 +2,8 @@ import React, {useRef, useState} from 'react';
 
 import {FlatList, LayoutAnimation} from 'react-native';
 
-import AddItemToMenuView from './AddItemToMenuView';
-import {AddItemToMenuProps} from '../../../navigation/authenticated/navigation.types';
+import ManageMenuItemsView from './ManageMenuItemsView';
+import {ManageMenuItemsProps} from '../../../navigation/authenticated/navigation.types';
 import {Day, MealTime} from '../../../services/restAPI/constants';
 import {
   MenuDetailsPayload,
@@ -15,7 +15,7 @@ import {
 } from '../../../services/restAPI/requests/menus';
 import {useSuggestedRecipeList} from '../../../services/restAPI/requests/recipes';
 
-export function AddItemToMenu({route}: AddItemToMenuProps) {
+export function ManageMenuItems({route}: ManageMenuItemsProps) {
   const [menu, setMenu] = useState<MenuDetailsPayload>(route.params.menu);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [activeDay, setActiveDay] = useState<Day>(Day.Monday);
@@ -37,7 +37,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
     addItemToMenu(menu.id, recipeId, activeDay, mealTime)
       .then(({data}) => {
         if (data) {
-          addItemToMenuState(data);
+          ManageMenuItemsState(data);
         }
       })
       // Remove the item from the suggested recipes (TODO - may want to leave it)
@@ -63,7 +63,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
       .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
   }
 
-  function addItemToMenuState(menuItem: MenuItemPayload): void {
+  function ManageMenuItemsState(menuItem: MenuItemPayload): void {
     const items = menu.items.filter(
       item =>
         !(
@@ -81,7 +81,7 @@ export function AddItemToMenu({route}: AddItemToMenuProps) {
   }
 
   return (
-    <AddItemToMenuView
+    <ManageMenuItemsView
       isLoading={isLoading}
       isUpdating={isUpdating}
       scrollRef={scrollRef}

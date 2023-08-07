@@ -1,4 +1,4 @@
 export {MyMenuList} from './MyMenuList/MyMenuList';
 export {MenuDetails} from './MenuDetails/MenuDetails';
-export {AddItemToMenu} from './AddItemToMenu/AddItemToMenu';
+export {ManageMenuItems} from './ManageMenuItems/ManageMenuItems';
 export {CreateMenu} from './CreateMenu/CreateMenu';

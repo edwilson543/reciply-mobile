@@ -36,7 +36,7 @@ export default function MenuDetailsHeader({
         <PressablePrimary
           text={'choose'}
           onPress={() =>
-            navigation.push(ScreenName.AddItemToMenu, {menu: menu})
+            navigation.push(ScreenName.ManageMenuItems, {menu: menu})
           }
           faIcon={faUtensils}
           style={styles.button}

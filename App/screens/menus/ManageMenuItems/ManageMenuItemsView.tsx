@@ -2,7 +2,7 @@ import React, {RefObject} from 'react';
 
 import {View, FlatList} from 'react-native';
 
-import AddItemToMenuHeader from './AddItemToMenuHeader';
+import ManageMenuItemsHeader from './ManageMenuItemsHeader';
 import {Day} from '../../../services/restAPI/constants';
 import {
   MenuDetailsPayload,
@@ -11,7 +11,7 @@ import {
 import RecipeListRow from '../../recipes/MyRecipeList/RecipeListRow';
 import MenuScreenTemplate from '../MenuScreenTemplate';
 
-type AddItemToMenuViewProps = {
+type ManageMenuItemsViewProps = {
   isLoading: boolean;
   isUpdating: boolean;
   scrollRef: RefObject<FlatList>;
@@ -23,7 +23,7 @@ type AddItemToMenuViewProps = {
   onPressDay: (day: Day) => void;
 };
 
-export default function AddItemToMenuView({
+export default function ManageMenuItemsView({
   isLoading,
   isUpdating,
   scrollRef,
@@ -33,7 +33,7 @@ export default function AddItemToMenuView({
   onRecipePress,
   activeDay,
   onPressDay,
-}: AddItemToMenuViewProps) {
+}: ManageMenuItemsViewProps) {
   const displayedSuggestedRecipes = isLoading ? [] : suggestedRecipes;
 
   return (
@@ -49,7 +49,7 @@ export default function AddItemToMenuView({
           )}
           ref={scrollRef}
           ListHeaderComponent={
-            <AddItemToMenuHeader
+            <ManageMenuItemsHeader
               isUpdating={isUpdating}
               menu={menu}
               onRemoveItem={onRemoveItem}
