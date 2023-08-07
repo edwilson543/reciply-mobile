@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NativeStackNavigatorProps} from 'react-native-screens/lib/typescript/native-stack/types';
 
 import {
   MyMenuList,
@@ -15,11 +16,17 @@ import {headerStyles} from '../styles/header';
 
 const MenusStack = createNativeStackNavigator<MenuStackParamsList>();
 
-export function MenusTab() {
+type MenusTabProps = {
+  navigatorProps?: NativeStackNavigatorProps;
+};
+
+export function MenusTab({navigatorProps}: MenusTabProps) {
   const colourScheme = useColourScheme();
 
   return (
-    <MenusStack.Navigator screenOptions={headerStyles(colourScheme)}>
+    <MenusStack.Navigator
+      {...navigatorProps}
+      screenOptions={headerStyles(colourScheme)}>
       <MenusStack.Screen name={ScreenName.MyMenuList} component={MyMenuList} />
       <MenusStack.Screen
         name={ScreenName.MenuDetails}

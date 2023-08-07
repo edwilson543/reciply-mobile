@@ -12,6 +12,13 @@ export const recipeListFixture = {
 
 // Menus
 
+export const menuListFixture = {
+  id: 1,
+  name: 'my menu',
+  description: 'some description',
+  number_of_items: 0,
+} as payloads.MenuListPayload;
+
 export const menuItemFixture = {
   id: 1,
   day: Day.Monday,
@@ -20,9 +27,6 @@ export const menuItemFixture = {
 } as payloads.MenuItemPayload;
 
 export const menuDetailsFixture = {
-  id: 1,
-  name: 'my menu',
-  description: '',
-  number_of_items: 1,
+  ...menuListFixture,
   items: [menuItemFixture],
 };

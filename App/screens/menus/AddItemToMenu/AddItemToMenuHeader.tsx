@@ -38,7 +38,7 @@ export default function AddItemToMenuHeader({
 
   return (
     <>
-      <Header1 style={[bootstrap.my3]} testID={'menus-header'}>
+      <Header1 style={[bootstrap.my3]} testID={'add-items-to-menu-header'}>
         {menu.name}
       </Header1>
       <SelectDay menu={menu} activeDay={activeDay} onPressDay={onPressDay} />
