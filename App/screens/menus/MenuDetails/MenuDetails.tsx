@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
-import {useIsFocused} from '@react-navigation/native';
 import {LayoutAnimation} from 'react-native';
 
 import MenuDetailsView from './MenuDetailsView';
@@ -15,15 +14,6 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
     route.params.menuId,
     refreshKey,
   );
-
-  const isFocused = useIsFocused();
-  const isFirstRender = refreshKey === 0;
-
-  useEffect(() => {
-    if (isFocused && !isFirstRender) {
-      onRefresh();
-    }
-  }, [isFocused, isFirstRender]);
 
   async function onRemoveItem(menuItemId: number): Promise<void> {
     removeItemFromMenu(menuItemId)
