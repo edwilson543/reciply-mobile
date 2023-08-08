@@ -25,19 +25,14 @@ export function useGetData<ResponseData>(
   useEffect(() => {
     if (isFocused) {
       setIsLoading(true);
-      let isError = false;
       fireAuthenticatedRequest(url, RequestMethod.GET)
         .then(response => {
-          isError = response.status >= constants.StatusCode.BadRequest;
-          return response.json() as unknown;
-        })
-        .then(responseData => {
-          if (isError) {
-            // Cast the response to the error type
-            setFriendlyErrors(responseData as Errors);
+          if (response.status >= constants.StatusCode.BadRequest) {
+            response.json().then(errors => setFriendlyErrors(errors as Errors));
           } else {
-            // Cast the response data to the generic type
-            setData(responseData as ResponseData);
+            response
+              .json()
+              .then(responseData => setData(responseData as ResponseData));
           }
         })
         .then(() => setIsLoading(false))
