@@ -29,7 +29,7 @@ const mockMenuList = {
   isLoading: false as false,
 };
 test('renders recipe list', async () => {
-  jest.mocked(useMyMenuList).mockReturnValue(mockMenuList);
+  jest.mocked(useMyMenuList).mockReturnValueOnce(mockMenuList);
 
   await waitFor(() =>
     render(

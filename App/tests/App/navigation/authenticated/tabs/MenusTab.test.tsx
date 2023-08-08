@@ -24,7 +24,7 @@ test('clicking on menu in list navigates to detail screen', async () => {
     friendlyErrors: null,
     isLoading: false,
   };
-  jest.mocked(useMyMenuList).mockReturnValue(mockMenuList);
+  jest.mocked(useMyMenuList).mockReturnValueOnce(mockMenuList);
 
   // Mock out the menu details API call
   const mockMenuDetails = {
@@ -68,7 +68,7 @@ test('creating valid new menu navigates to add items screen', async () => {
     friendlyErrors: null,
     isLoading: false,
   };
-  jest.mocked(useMyMenuList).mockReturnValue(mockMenuList);
+  jest.mocked(useMyMenuList).mockReturnValueOnce(mockMenuList);
 
   render(
     <NavigationContainer>

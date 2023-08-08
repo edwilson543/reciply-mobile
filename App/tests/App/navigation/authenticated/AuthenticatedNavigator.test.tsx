@@ -21,7 +21,7 @@ test('can switch from recipes to menus tab', async () => {
     friendlyErrors: null,
     isLoading: false as false,
   };
-  jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
+  jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
   await waitFor(() =>
     render(

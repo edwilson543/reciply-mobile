@@ -19,7 +19,7 @@ test('renders menu details', async () => {
     friendlyErrors: null,
     isLoading: false,
   };
-  jest.mocked(useMenuDetails).mockReturnValue(mockMenuDetails);
+  jest.mocked(useMenuDetails).mockReturnValueOnce(mockMenuDetails);
 
   // Mock out the suggested recipes
   const mockSuggestedRecipes = {

@@ -69,7 +69,7 @@ test('creating valid new recipe navigates to list screen', async () => {
     friendlyErrors: null,
     isLoading: false,
   };
-  jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
+  jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
   render(
     <NavigationContainer>

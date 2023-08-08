@@ -18,7 +18,7 @@ test('renders menu details', async () => {
     isLoading: false as false,
   };
   const recipe = fixtures.menuDetailsFixture.items[0].recipe;
-  jest.mocked(useMenuDetails).mockReturnValue(mockMenuDetails);
+  jest.mocked(useMenuDetails).mockReturnValueOnce(mockMenuDetails);
 
   // Provide the necessary route parameters
   const route = {params: {menuId: 1}};
