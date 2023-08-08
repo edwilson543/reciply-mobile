@@ -23,6 +23,7 @@ export function useGetData<ResponseData>(
   const isFocused = useIsFocused();
 
   useEffect(() => {
+    // Refresh the data when navigating (back) to the screen this hook is called from.
     if (isFocused) {
       setIsLoading(true);
       fireAuthenticatedRequest(url, RequestMethod.GET)
