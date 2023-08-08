@@ -71,6 +71,12 @@ export interface MenuDetailsPayload extends MenuListPayload {
   items: Array<MenuItemPayload>;
 }
 
+export interface CreateMenuRequestPayload {
+  name: string;
+  description: string;
+  add_suggestions: boolean;
+}
+
 export interface CreateMenuErrors extends BaseError {
   name?: Array<string>;
 }

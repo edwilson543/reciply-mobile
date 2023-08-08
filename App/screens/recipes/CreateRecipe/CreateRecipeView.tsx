@@ -51,7 +51,7 @@ export default function CreateRecipeView({
       <View style={styleSheet.container}>
         <Header3>Create new recipe</Header3>
         {errors ? (
-          <AlertDanger errorText={errorText} style={styleSheet.errors} />
+          <AlertDanger errorText={errorText} style={[styleSheet.errors]} />
         ) : (
           <></>
         )}

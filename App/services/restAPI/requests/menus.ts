@@ -6,6 +6,7 @@ import {
   MenuItemPayload,
   CreateMenuErrors,
   MenuDetailsPayload,
+  CreateMenuRequestPayload,
 } from '../payloads';
 
 export const useMyMenuList = (refreshKey: number) =>
@@ -20,10 +21,15 @@ export const useMenuDetails = (menuId: number, refreshKey: number) =>
     refreshKey,
   );
 
-export const createMenu = async (name: string, description: string) => {
+export const createMenu = async ({
+  name,
+  description,
+  add_suggestions,
+}: CreateMenuRequestPayload) => {
   const form = new FormData();
   form.append('name', name);
   form.append('description', description);
+  form.append('add_suggestions', add_suggestions);
   return postData<MenuDetailsPayload, CreateMenuErrors>(
     endpoints.createMenuEndpoint,
     form,

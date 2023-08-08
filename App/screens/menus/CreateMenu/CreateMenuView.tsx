@@ -1,35 +1,40 @@
 import React, {SetStateAction} from 'react';
 
-import {View, StyleSheet} from 'react-native';
+import {faUtensils} from '@fortawesome/free-solid-svg-icons';
+import {View, StyleSheet, Switch} from 'react-native';
 
 import LoadingSpinner from '../../../components/LoadingSpinner';
-import {PressablePrimary, TextInputStyled} from '../../../components/styled';
+import {
+  bootstrap,
+  PressablePrimary,
+  TextInputStyled,
+  TextStyled,
+} from '../../../components/styled';
 import {AlertDanger} from '../../../components/styled/Alerts';
 import {Header3} from '../../../components/styled/TextStyled';
 import {MenuScreenTemplate} from '../../../components/Templates';
-import {CreateMenuErrors} from '../../../services/restAPI/payloads';
+import {
+  CreateMenuErrors,
+  CreateMenuRequestPayload,
+} from '../../../services/restAPI/payloads';
 import {FontSize} from '../../../styles/constants';
 
 type CreateMenuViewProps = {
-  name: string;
-  onNameChange: React.Dispatch<SetStateAction<string>>;
-  description: string;
-  onDescriptionChange: React.Dispatch<SetStateAction<string>>;
+  newMenu: CreateMenuRequestPayload;
+  onNewMenuChange: React.Dispatch<SetStateAction<CreateMenuRequestPayload>>;
   submitForm: () => void;
   isLoading: boolean;
   errors: CreateMenuErrors | null;
 };
 
 export default function CreateMenuView({
-  name,
-  onNameChange,
-  description,
-  onDescriptionChange,
+  newMenu,
+  onNewMenuChange,
   submitForm,
   isLoading,
   errors,
 }: CreateMenuViewProps) {
-  const canSubmit = name.length > 5;
+  const canSubmit = newMenu.name.length > 5;
 
   const errorText = errors?.name ? errors.name[0] : '';
 
@@ -38,7 +43,7 @@ export default function CreateMenuView({
       <View style={styles.container}>
         <Header3>Create new menu</Header3>
         {errors ? (
-          <AlertDanger errorText={errorText} style={styles.errors} />
+          <AlertDanger errorText={errorText} style={[bootstrap.w100]} />
         ) : (
           <></>
         )}
@@ -47,25 +52,37 @@ export default function CreateMenuView({
         ) : (
           <>
             <TextInputStyled
-              value={name}
+              value={newMenu.name}
               placeholder={'name'}
-              onChangeText={onNameChange}
-              style={[styles.textInputField, styles.nameInputField]}
+              onChangeText={value => onNewMenuChange({...newMenu, name: value})}
+              style={[styles.textInputField]}
               testID={'name-input'}
             />
             <TextInputStyled
-              value={description}
+              value={newMenu.description}
               placeholder={'description'}
-              onChangeText={onDescriptionChange}
+              onChangeText={value =>
+                onNewMenuChange({...newMenu, description: value})
+              }
               multiline={true}
-              style={[styles.textInputField, styles.descriptionInputField]}
+              style={[styles.textInputField, bootstrap.h50]}
               testID={'description-input'}
             />
+            <View style={styles.switchContainer}>
+              <TextStyled>Add suggestions</TextStyled>
+              <Switch
+                value={newMenu.add_suggestions}
+                onValueChange={value =>
+                  onNewMenuChange({...newMenu, add_suggestions: value})
+                }
+              />
+            </View>
             <PressablePrimary
               onPress={submitForm}
               disabled={!canSubmit}
               style={styles.submitButton}
-              text={'Submit'}
+              text={'choose meals'}
+              faIcon={faUtensils}
               testID={'submit-button'}
             />
           </>
@@ -80,29 +97,26 @@ const styles = StyleSheet.create({
     // Display
     alignItems: 'center',
     justifyContent: 'space-between',
+    padding: 10,
   },
   // Inputs
   textInputField: {
     // Display
-    width: '75%',
+    width: '100%',
     marginVertical: 5,
     // Typography
     fontSize: FontSize.TextLarge,
   },
-  nameInputField: {
-    height: 50,
-  },
-  descriptionInputField: {
-    height: 250,
+  switchContainer: {
+    // Display
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
   },
   // Submit
   submitButton: {
     // Display
-    width: '75%',
-    height: 40,
+    width: '50%',
     marginTop: 5,
-  },
-  errors: {
-    width: '75%',
   },
 });
