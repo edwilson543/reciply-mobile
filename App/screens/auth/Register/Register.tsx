@@ -36,12 +36,7 @@ export function Register({navigation}: RegisterProps) {
     setErrors(null);
     setIsLoading(true);
 
-    register(
-      userDetails.username,
-      userDetails.email,
-      userDetails.password1,
-      userDetails.password2,
-    )
+    register(userDetails)
       .then(response => {
         if (response.status >= StatusCode.BadRequest) {
           response.json().then(data => setErrors(data));
