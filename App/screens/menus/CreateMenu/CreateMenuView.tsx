@@ -80,7 +80,7 @@ export default function CreateMenuView({
             <PressablePrimary
               onPress={submitForm}
               disabled={!canSubmit}
-              style={styles.submitButton}
+              style={[bootstrap.w50]}
               text={'choose meals'}
               faIcon={faUtensils}
               testID={'submit-button'}
@@ -96,14 +96,14 @@ const styles = StyleSheet.create({
   container: {
     // Display
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    height: '100%',
     padding: 10,
   },
   // Inputs
   textInputField: {
     // Display
     width: '100%',
-    marginVertical: 5,
     // Typography
     fontSize: FontSize.TextLarge,
   },
@@ -112,11 +112,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-  },
-  // Submit
-  submitButton: {
-    // Display
-    width: '50%',
-    marginTop: 5,
   },
 });
