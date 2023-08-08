@@ -5,6 +5,7 @@ import {View, StyleSheet} from 'react-native';
 import {UploadImagePreview} from '../../../components/images/local';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {
+  bootstrap,
   PressablePrimary,
   PressableSecondary,
   TextInputStyled,
@@ -51,7 +52,7 @@ export default function CreateRecipeView({
       <View style={styleSheet.container}>
         <Header3>Create new recipe</Header3>
         {errors ? (
-          <AlertDanger errorText={errorText} style={[styleSheet.errors]} />
+          <AlertDanger errorText={errorText} style={[bootstrap.w100]} />
         ) : (
           <></>
         )}
@@ -63,7 +64,7 @@ export default function CreateRecipeView({
               value={name}
               placeholder={'name'}
               onChangeText={onNameChange}
-              style={[styleSheet.textInputField, styleSheet.nameInputField]}
+              style={[styleSheet.textInputField]}
               testID={'name-input'}
             />
             <TextInputStyled
@@ -71,15 +72,12 @@ export default function CreateRecipeView({
               placeholder={'description'}
               onChangeText={onDescriptionChange}
               multiline={true}
-              style={[
-                styleSheet.textInputField,
-                styleSheet.descriptionInputField,
-              ]}
+              style={[styleSheet.textInputField, bootstrap.h50]}
               testID={'description-input'}
             />
             <View style={styleSheet.selectImageContainer}>
               <PressableSecondary
-                text={'+ Add photo'}
+                text={'+ add photo'}
                 onPress={pickHeroImage}
                 style={styleSheet.selectImageButton}
               />
@@ -88,8 +86,8 @@ export default function CreateRecipeView({
             <PressablePrimary
               onPress={submitForm}
               disabled={!canSubmit}
-              style={styleSheet.submitButton}
-              text={'Submit'}
+              style={[bootstrap.w75]}
+              text={'submit'}
               testID={'submit-button'}
             />
           </>
@@ -104,49 +102,33 @@ const styles = (colourScheme: ColourScheme) =>
     container: {
       // Display
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: 'space-around',
+      height: '100%',
+      padding: 10,
     },
     // Inputs
     textInputField: {
       // Display
-      width: '75%',
-      marginVertical: 5,
+      width: '100%',
       // Typography
       fontSize: FontSize.TextLarge,
-    },
-    nameInputField: {
-      height: 50,
-    },
-    descriptionInputField: {
-      height: 250,
     },
     // Image
     selectImageContainer: {
       // Display
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-around',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
       width: '100%',
-      padding: 5,
     },
     selectImageButton: {
       // Display
       width: 150,
-      height: 40,
       justifyContent: 'center',
       alignItems: 'center',
+      marginEnd: 10,
       // Background and border
       backgroundColor: colourScheme.buttonSecondary,
-      borderRadius: 10,
-    },
-    // Submit
-    submitButton: {
-      // Display
-      width: '75%',
-      height: 40,
-      marginTop: 5,
-    },
-    errors: {
-      width: '75%',
     },
   });
