@@ -89,8 +89,11 @@ test('creating valid new menu navigates to add items screen', async () => {
   // API should have been called with details for the new menu
   expect(jest.mocked(createMenu).mock.calls).toHaveLength(1);
   const mockCall = jest.mocked(createMenu).mock.calls[0];
-  expect(mockCall[0]).toBe('my new menu');
-  expect(mockCall[1]).toBe('some description');
+  expect(mockCall[0]).toStrictEqual({
+    name: 'my new menu',
+    description: 'some description',
+    add_suggestions: true,
+  });
 
   // Should have navigated to the menu list screen
   expect(screen.getByTestId('manage-menu-items-header')).toBeOnTheScreen();

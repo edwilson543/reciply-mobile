@@ -40,10 +40,12 @@ test('valid details can be used to register', async () => {
   // Register endpoint should have been requested with the relevant credentials
   expect(jest.mocked(register).mock.calls).toHaveLength(1);
   const mockRegisterCall = jest.mocked(register).mock.calls[0];
-  expect(mockRegisterCall[0]).toBe('ed123');
-  expect(mockRegisterCall[1]).toBe('ed123@gmail.com');
-  expect(mockRegisterCall[2]).toBe('password123');
-  expect(mockRegisterCall[3]).toBe('password123');
+  expect(mockRegisterCall[0]).toStrictEqual({
+    username: 'ed123',
+    email: 'ed123@gmail.com',
+    password1: 'password123',
+    password2: 'password123',
+  });
 
   // The login action should have been dispatched
   expect(mockAuthDispatch.mock.calls).toHaveLength(1);
@@ -88,10 +90,12 @@ test('invalid details cannot be used to register', async () => {
   // Register endpoint should have been requested with the relevant credentials
   expect(jest.mocked(register).mock.calls).toHaveLength(1);
   const mockRegisterCall = jest.mocked(register).mock.calls[0];
-  expect(mockRegisterCall[0]).toBe('ed123');
-  expect(mockRegisterCall[1]).toBe('ed123@gmail.com');
-  expect(mockRegisterCall[2]).toBe('password123');
-  expect(mockRegisterCall[3]).toBe('password123');
+  expect(mockRegisterCall[0]).toStrictEqual({
+    username: 'ed123',
+    email: 'ed123@gmail.com',
+    password1: 'password123',
+    password2: 'password123',
+  });
 
   // An appropriate error message should be shown
   expect(screen.getByText('Username already taken')).toBeOnTheScreen();
