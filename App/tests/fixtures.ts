@@ -30,3 +30,12 @@ export const menuDetailsFixture = {
   ...menuListFixture,
   items: [menuItemFixture],
 };
+
+// Hooks
+export const useGetDataJunk = {
+  /** Save having to write out all the junk below for typing. */
+  setData: jest.fn(),
+  friendlyErrors: null,
+  isLoading: false,
+  onRefresh: jest.fn(),
+};

@@ -13,9 +13,7 @@ test('renders menu details', async () => {
   // Mock out the menu details API call
   const mockMenuDetails = {
     data: fixtures.menuDetailsFixture,
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false as false,
+    ...fixtures.useGetDataJunk,
   };
   const recipe = fixtures.menuDetailsFixture.items[0].recipe;
   jest.mocked(useMenuDetails).mockReturnValueOnce(mockMenuDetails);

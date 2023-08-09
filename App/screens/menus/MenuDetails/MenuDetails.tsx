@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {LayoutAnimation} from 'react-native';
 
@@ -10,10 +10,8 @@ import {removeItemFromMenu} from '../../../services/restAPI/requests/menus';
 
 export function MenuDetails({navigation, route}: MenuDetailsProps) {
   /** Show the details of a single menu. */
-  const [refreshKey, setRefreshKey] = useState<number>(0);
-  const {data, setData, isLoading} = useMenuDetails(
+  const {data, setData, isLoading, onRefresh} = useMenuDetails(
     route.params.menuId,
-    refreshKey,
   );
 
   async function onRemoveItem(menuItemId: number): Promise<void> {
@@ -27,11 +25,6 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
           }),
       )
       .then(() => LayoutAnimation.configureNext(opacityAnimConfig));
-  }
-
-  function onRefresh(): void {
-    setRefreshKey(n => n + 1);
-    LayoutAnimation.configureNext(opacityAnimConfig);
   }
 
   return (

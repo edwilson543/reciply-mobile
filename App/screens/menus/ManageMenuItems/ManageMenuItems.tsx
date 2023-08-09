@@ -25,7 +25,7 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
     data: suggestedRecipes,
     setData: setSuggestedRecipes,
     isLoading,
-  } = useSuggestedRecipeList(menu.id, 0);
+  } = useSuggestedRecipeList(menu.id);
 
   const scrollRef = useRef<FlatList>(null);
 

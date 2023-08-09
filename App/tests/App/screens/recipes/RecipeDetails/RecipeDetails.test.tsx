@@ -4,6 +4,7 @@ import {render, screen} from '@testing-library/react-native';
 
 import {RecipeDetails} from '../../../../../screens/recipes';
 import {useRecipeDetails} from '../../../../../services/restAPI/requests/recipes';
+import * as fixtures from '../../../../fixtures';
 
 jest.mock('../../../../../services/restAPI/requests/recipes');
 
@@ -18,9 +19,7 @@ test('renders recipe details', async () => {
       created_at: '',
       updated_at: '',
     },
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false as false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useRecipeDetails).mockReturnValueOnce(mockRecipeDetails);
 

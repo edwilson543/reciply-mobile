@@ -6,11 +6,8 @@ import * as endpoints from '../endpoints';
 import * as payloads from '../payloads';
 import {CreateRecipeErrors} from '../payloads';
 
-export const useMyRecipeList = (refreshKey: number) =>
-  useGetData<Array<payloads.RecipeListPayload>>(
-    endpoints.myRecipeListEndpoint,
-    refreshKey,
-  );
+export const useMyRecipeList = () =>
+  useGetData<Array<payloads.RecipeListPayload>>(endpoints.myRecipeListEndpoint);
 
 export const useRecipeDetails = (recipeId: number) =>
   useGetData<payloads.RecipeDetailsPayload>(

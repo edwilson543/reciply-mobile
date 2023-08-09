@@ -1,4 +1,4 @@
-import {SetStateAction, useEffect, useState} from 'react';
+import {SetStateAction, useState, useEffect} from 'react';
 
 import {useIsFocused} from '@react-navigation/native';
 import {LayoutAnimation} from 'react-native';
@@ -7,24 +7,23 @@ import {fireAuthenticatedRequest, RequestMethod} from './client';
 import {opacityAnimConfig} from '../../../animations';
 import * as constants from '../constants';
 
-export function useGetData<ResponseData>(
-  url: string,
-  refreshKey?: number,
-): {
+export function useGetData<ResponseData>(url: string): {
   data: ResponseData | null;
   setData: React.Dispatch<SetStateAction<ResponseData | null>>;
   friendlyErrors: Errors | null;
   isLoading: boolean;
+  onRefresh: () => void;
 } {
   /** Request some resource and store the response and progress in state. */
   const [data, setData] = useState<ResponseData | null>(null);
   const [friendlyErrors, setFriendlyErrors] = useState<Errors | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [refreshKey, setRefreshKey] = useState<number>(0);
 
   const isFocused = useIsFocused();
 
+  // Refresh the data when navigating (back) to the screen this hook is called from.
   useEffect(() => {
-    // Refresh the data when navigating (back) to the screen this hook is called from.
     if (isFocused) {
       setIsLoading(true);
       LayoutAnimation.configureNext(opacityAnimConfig);
@@ -49,7 +48,17 @@ export function useGetData<ResponseData>(
     }
   }, [url, isFocused, refreshKey]);
 
-  return {data, setData, friendlyErrors, isLoading};
+  function onRefresh() {
+    setRefreshKey(key => key + 1);
+  }
+
+  return {
+    data,
+    setData,
+    friendlyErrors,
+    isLoading: isLoading && !data,
+    onRefresh,
+  };
 }
 
 interface Errors {

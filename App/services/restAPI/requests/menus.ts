@@ -9,16 +9,12 @@ import {
   CreateMenuRequestPayload,
 } from '../payloads';
 
-export const useMyMenuList = (refreshKey: number) =>
-  useGetData<Array<payloads.MenuListPayload>>(
-    endpoints.myMenuListEndpoint,
-    refreshKey,
-  );
+export const useMyMenuList = () =>
+  useGetData<Array<payloads.MenuListPayload>>(endpoints.myMenuListEndpoint);
 
-export const useMenuDetails = (menuId: number, refreshKey: number) =>
+export const useMenuDetails = (menuId: number) =>
   useGetData<payloads.MenuDetailsPayload>(
     endpoints.menuDetailsEndpoint(menuId),
-    refreshKey,
   );
 
 export const createMenu = async ({

@@ -5,6 +5,7 @@ import {within, screen, render, waitFor} from '@testing-library/react-native';
 import {MyRecipeList} from '../../../../../screens/recipes';
 import {RecipeListPayload} from '../../../../../services/restAPI/payloads';
 import {useMyRecipeList} from '../../../../../services/restAPI/requests/recipes';
+import * as fixtures from '../../../../fixtures';
 
 jest.mock('../../../../../services/restAPI/requests/recipes');
 
@@ -14,9 +15,7 @@ test('renders recipe list', async () => {
       {id: 1, name: 'sausages', description: ''} as RecipeListPayload,
       {id: 2, name: 'meatballs', description: ''} as RecipeListPayload,
     ],
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false as false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
