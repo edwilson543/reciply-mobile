@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {LayoutAnimation} from 'react-native';
 
 import MenuDetailsView from './MenuDetailsView';
+import {opacityAnimConfig} from '../../../animations';
 import {MenuDetailsProps} from '../../../navigation/authenticated/navigation.types';
 import {useMenuDetails} from '../../../services/restAPI/requests/menus';
 import {removeItemFromMenu} from '../../../services/restAPI/requests/menus';
@@ -25,12 +26,12 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
             items: data.items.filter(item => item.id !== menuItemId),
           }),
       )
-      .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
+      .then(() => LayoutAnimation.configureNext(opacityAnimConfig));
   }
 
   function onRefresh(): void {
     setRefreshKey(n => n + 1);
-    LayoutAnimation.configureNext(layoutAnimConfig);
+    LayoutAnimation.configureNext(opacityAnimConfig);
   }
 
   return (
@@ -43,18 +44,3 @@ export function MenuDetails({navigation, route}: MenuDetailsProps) {
     />
   );
 }
-
-const layoutAnimConfig = {
-  duration: 300,
-  create: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-  update: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-  },
-  delete: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-};

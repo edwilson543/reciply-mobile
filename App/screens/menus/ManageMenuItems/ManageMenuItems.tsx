@@ -3,6 +3,7 @@ import React, {useRef, useState} from 'react';
 import {FlatList, LayoutAnimation} from 'react-native';
 
 import ManageMenuItemsView from './ManageMenuItemsView';
+import {opacityAnimConfig} from '../../../animations';
 import {ManageMenuItemsProps} from '../../../navigation/authenticated/navigation.types';
 import {Day, MealTime} from '../../../services/restAPI/constants';
 import {
@@ -49,7 +50,7 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
           ),
       )
       .then(() => setIsUpdating(false))
-      .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
+      .then(() => LayoutAnimation.configureNext(opacityAnimConfig));
   }
 
   async function onRemoveItem(menuItemId: number): Promise<void> {
@@ -60,7 +61,7 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
           items: menu.items.filter(item => item.id !== menuItemId),
         }),
       )
-      .then(() => LayoutAnimation.configureNext(layoutAnimConfig));
+      .then(() => LayoutAnimation.configureNext(opacityAnimConfig));
   }
 
   function ManageMenuItemsState(menuItem: MenuItemPayload): void {
@@ -77,7 +78,7 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
 
   function onPressDay(day: Day): void {
     setActiveDay(day);
-    LayoutAnimation.configureNext(layoutAnimConfig);
+    LayoutAnimation.configureNext(opacityAnimConfig);
   }
 
   return (
@@ -94,19 +95,3 @@ export function ManageMenuItems({route}: ManageMenuItemsProps) {
     />
   );
 }
-
-const layoutAnimConfig = {
-  duration: 300,
-  create: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-  update: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.scaleY,
-  },
-  delete: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-};

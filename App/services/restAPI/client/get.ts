@@ -4,6 +4,7 @@ import {useIsFocused} from '@react-navigation/native';
 import {LayoutAnimation} from 'react-native';
 
 import {fireAuthenticatedRequest, RequestMethod} from './client';
+import {opacityAnimConfig} from '../../../animations';
 import * as constants from '../constants';
 
 export function useGetData<ResponseData>(
@@ -26,6 +27,7 @@ export function useGetData<ResponseData>(
     // Refresh the data when navigating (back) to the screen this hook is called from.
     if (isFocused) {
       setIsLoading(true);
+      LayoutAnimation.configureNext(opacityAnimConfig);
       fireAuthenticatedRequest(url, RequestMethod.GET)
         .then(response => {
           if (response.status >= constants.StatusCode.BadRequest) {
@@ -37,7 +39,7 @@ export function useGetData<ResponseData>(
           }
         })
         .then(() => setIsLoading(false))
-        .then(() => LayoutAnimation.configureNext(layoutAnimConfig))
+        .then(() => LayoutAnimation.configureNext(opacityAnimConfig))
         // Any server or authorization error gets a generic response
         .catch(() =>
           setFriendlyErrors({
@@ -53,18 +55,3 @@ export function useGetData<ResponseData>(
 interface Errors {
   [index: string]: Array<string>;
 }
-
-const layoutAnimConfig = {
-  duration: 300,
-  create: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-  update: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-  },
-  delete: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-};
