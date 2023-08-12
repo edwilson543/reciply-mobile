@@ -75,4 +75,6 @@ export const bootstrap = StyleSheet.create({
   py3: {paddingVertical: 6},
   py4: {paddingVertical: 8},
   py5: {paddingVertical: 10},
+  /** Typography */
+  textCenter: {textAlign: 'center'},
 });

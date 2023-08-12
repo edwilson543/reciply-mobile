@@ -40,13 +40,15 @@ export default function CreateMenuView({
 
   return (
     <MenuScreenTemplate>
+      <Header3 style={[bootstrap.textCenter, bootstrap.my5]}>
+        Create new menu
+      </Header3>
+      {errors ? (
+        <AlertDanger errorText={errorText} style={[bootstrap.w100]} />
+      ) : (
+        <></>
+      )}
       <View style={styles.container}>
-        <Header3>Create new menu</Header3>
-        {errors ? (
-          <AlertDanger errorText={errorText} style={[bootstrap.w100]} />
-        ) : (
-          <></>
-        )}
         {isLoading ? (
           <LoadingSpinner />
         ) : (
@@ -96,9 +98,8 @@ const styles = StyleSheet.create({
   container: {
     // Display
     alignItems: 'center',
-    justifyContent: 'space-around',
-    height: '100%',
-    padding: 10,
+    justifyContent: 'space-between',
+    padding: 5,
   },
   // Inputs
   textInputField: {

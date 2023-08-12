@@ -49,13 +49,15 @@ export default function CreateRecipeView({
 
   return (
     <RecipeScreenTemplate>
+      <Header3 style={[bootstrap.textCenter, bootstrap.my5]}>
+        Create new recipe
+      </Header3>
+      {errors ? (
+        <AlertDanger errorText={errorText} style={[bootstrap.w100]} />
+      ) : (
+        <></>
+      )}
       <View style={styleSheet.container}>
-        <Header3>Create new recipe</Header3>
-        {errors ? (
-          <AlertDanger errorText={errorText} style={[bootstrap.w100]} />
-        ) : (
-          <></>
-        )}
         {isLoading ? (
           <LoadingSpinner />
         ) : (
@@ -102,9 +104,8 @@ const styles = (colourScheme: ColourScheme) =>
     container: {
       // Display
       alignItems: 'center',
-      justifyContent: 'space-around',
-      height: '100%',
-      padding: 10,
+      justifyContent: 'space-between',
+      padding: 5,
     },
     // Inputs
     textInputField: {
