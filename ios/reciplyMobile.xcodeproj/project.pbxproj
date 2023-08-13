@@ -43,16 +43,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reciplyMobile/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-reciplyMobile-reciplyMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reciplyMobile-reciplyMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-reciplyMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reciplyMobile.debug.xcconfig"; path = "Target Support Files/Pods-reciplyMobile/Pods-reciplyMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		4A8D44842CC741C896E942EA /* AbhayaLibre-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Medium.ttf"; path = "../App/assets/fonts/AbhayaLibre-Medium.ttf"; sourceTree = "<group>"; };
+		4A8D44842CC741C896E942EA /* AbhayaLibre-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Medium.ttf"; path = "../App/assets/fonts/AbhayaLibre-Medium.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-reciplyMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reciplyMobile.release.xcconfig"; path = "Target Support Files/Pods-reciplyMobile/Pods-reciplyMobile.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-reciplyMobile-reciplyMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reciplyMobile-reciplyMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-reciplyMobile-reciplyMobileTests/Pods-reciplyMobile-reciplyMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-reciplyMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reciplyMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EF92BCE06FD48A7BEAA449E /* AbhayaLibre-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-ExtraBold.ttf"; path = "../App/assets/fonts/AbhayaLibre-ExtraBold.ttf"; sourceTree = "<group>"; };
+		6EF92BCE06FD48A7BEAA449E /* AbhayaLibre-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-ExtraBold.ttf"; path = "../App/assets/fonts/AbhayaLibre-ExtraBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = reciplyMobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-reciplyMobile-reciplyMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reciplyMobile-reciplyMobileTests.release.xcconfig"; path = "Target Support Files/Pods-reciplyMobile-reciplyMobileTests/Pods-reciplyMobile-reciplyMobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		A23D683B2D6C4B20A68C4EC8 /* AbhayaLibre-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Bold.ttf"; path = "../App/assets/fonts/AbhayaLibre-Bold.ttf"; sourceTree = "<group>"; };
-		C033A72745E74A1EB73D7F0D /* AbhayaLibre-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Regular.ttf"; path = "../App/assets/fonts/AbhayaLibre-Regular.ttf"; sourceTree = "<group>"; };
-		E71AA55173304163BC4CBEB7 /* AbhayaLibre-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-SemiBold.ttf"; path = "../App/assets/fonts/AbhayaLibre-SemiBold.ttf"; sourceTree = "<group>"; };
+		A23D683B2D6C4B20A68C4EC8 /* AbhayaLibre-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Bold.ttf"; path = "../App/assets/fonts/AbhayaLibre-Bold.ttf"; sourceTree = "<group>"; };
+		C033A72745E74A1EB73D7F0D /* AbhayaLibre-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Regular.ttf"; path = "../App/assets/fonts/AbhayaLibre-Regular.ttf"; sourceTree = "<group>"; };
+		E71AA55173304163BC4CBEB7 /* AbhayaLibre-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-SemiBold.ttf"; path = "../App/assets/fonts/AbhayaLibre-SemiBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -126,7 +126,6 @@
 				E71AA55173304163BC4CBEB7 /* AbhayaLibre-SemiBold.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -462,6 +461,7 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-reciplyMobile-reciplyMobileTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3U24QV9QVK;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -490,6 +490,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 3U24QV9QVK;
 				INFOPLIST_FILE = reciplyMobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -515,6 +516,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3U24QV9QVK;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = reciplyMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -542,6 +544,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3U24QV9QVK;
 				INFOPLIST_FILE = reciplyMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

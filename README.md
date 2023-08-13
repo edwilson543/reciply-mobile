@@ -18,13 +18,8 @@ cd ios
 pod install
 ```
 
-### Running
+### Run on simulator
 In one shell:
 ```bash
-npm start
-```
-
-In another shell:
-```bash
-npm run ios
+npx react-native run-ios --simulator="iPhone-14"
 ```

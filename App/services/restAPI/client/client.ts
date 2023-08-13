@@ -20,7 +20,7 @@ export async function fireRequest(
   const request = {
     method: method,
     headers: {
-      'Content-Type': contentType,
+      'Content-type': contentType,
       ...headers,
     },
     body: payload,
