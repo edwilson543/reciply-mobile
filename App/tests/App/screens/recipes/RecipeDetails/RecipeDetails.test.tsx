@@ -16,6 +16,7 @@ test('renders recipe details', async () => {
       name: 'sausages',
       description: 'some description',
       images: [],
+      ingredients: ['400g of chicken'],
       created_at: '',
       updated_at: '',
     },
@@ -31,4 +32,7 @@ test('renders recipe details', async () => {
   // Sausage recipe should be shown
   expect(screen.getByText('sausages')).toBeVisible();
   expect(screen.getByText('some description')).toBeVisible();
+
+  // Initially the ingrdients tab should be shown
+  expect(screen.getByText('400g of chicken')).toBeVisible();
 });

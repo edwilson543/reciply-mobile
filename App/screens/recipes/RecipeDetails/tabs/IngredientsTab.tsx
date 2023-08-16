@@ -18,7 +18,7 @@ export default function IngredientsTab({ingredients}: IngredientsTabProps) {
     <View style={[bootstrap.my3]}>
       {ingredients.map(ingredient => {
         return (
-          <View style={styleSheet.ingredientRow}>
+          <View style={styleSheet.ingredientRow} key={ingredient}>
             <TextStyled>{ingredient}</TextStyled>
           </View>
         );

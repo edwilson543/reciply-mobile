@@ -21,9 +21,7 @@ test('clicking on recipe in list navigates to detail screen', async () => {
   // Mock out the recipe list API call
   const mockRecipeList = {
     data: [fixtures.recipeListFixture],
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
@@ -32,12 +30,11 @@ test('clicking on recipe in list navigates to detail screen', async () => {
     data: {
       ...fixtures.recipeListFixture,
       images: [],
+      ingredients: [],
       created_at: '',
       updated_at: '',
     } as RecipeDetailsPayload,
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useRecipeDetails).mockReturnValueOnce(mockRecipeDetails);
 
@@ -65,9 +62,7 @@ test('creating valid new recipe navigates to list screen', async () => {
   jest.mocked(createRecipe).mockResolvedValueOnce({data: {}, errors: null});
   const mockRecipeList = {
     data: [],
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 

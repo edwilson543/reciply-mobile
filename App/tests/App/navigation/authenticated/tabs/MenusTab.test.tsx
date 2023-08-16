@@ -20,18 +20,14 @@ test('clicking on menu in list navigates to detail screen', async () => {
   // Mock out the menu list API call
   const mockMenuList = {
     data: [fixtures.menuListFixture],
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useMyMenuList).mockReturnValueOnce(mockMenuList);
 
   // Mock out the menu details API call
   const mockMenuDetails = {
     data: fixtures.menuDetailsFixture,
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useMenuDetails).mockReturnValueOnce(mockMenuDetails);
 
@@ -64,9 +60,7 @@ test('creating valid new menu navigates to add items screen', async () => {
   );
   const mockMenuList = {
     data: [fixtures.menuListFixture],
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useMyMenuList).mockReturnValueOnce(mockMenuList);
 
