@@ -13,7 +13,11 @@ enum Tab {
   Nutrition = 'Nutrition',
 }
 
-export default function TabContainer({}) {
+type TabContainerProps = {
+  ingredients: Array<string>;
+};
+
+export default function TabContainer({ingredients}: TabContainerProps) {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.Ingredients);
 
   const onTabPress = (tab: Tab): void => {
@@ -21,6 +25,18 @@ export default function TabContainer({}) {
       return;
     }
     setActiveTab(tab);
+  };
+
+  const renderActiveTab = () => {
+    switch (activeTab) {
+      case Tab.Ingredients: {
+        return <IngredientsTab ingredients={ingredients} />;
+      }
+      case Tab.Nutrition: {
+        return <NutritionTab />;
+      }
+    }
+    return <></>;
   };
 
   return (
@@ -37,8 +53,7 @@ export default function TabContainer({}) {
           onPress={() => onTabPress(Tab.Nutrition)}
         />
       </View>
-      {activeTab === Tab.Ingredients && <IngredientsTab />}
-      {activeTab === Tab.Nutrition && <NutritionTab />}
+      {renderActiveTab()}
     </View>
   );
 }

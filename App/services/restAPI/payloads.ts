@@ -40,6 +40,7 @@ interface RecipeImage {
 
 export interface RecipeDetailsPayload extends RecipeBasePayload {
   images: Array<RecipeImage>;
+  ingredients: Array<string>;
   created_at: string;
   updated_at: string | null;
 }
