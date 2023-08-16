@@ -2,6 +2,7 @@ import React from 'react';
 
 import {StyleSheet, ScrollView, View} from 'react-native';
 
+import TabContainer from './tabs/TabContainer';
 import {LargeSquareImage} from '../../../components/images/network';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import {TextStyled} from '../../../components/styled';
@@ -36,13 +37,12 @@ export default function RecipeDetailsView({
         extraStyles={styles.image}
       />
       <View style={styles.container}>
-        <View>
-          <TextStyled style={[styles.recipeNameText]}>{recipe.name}</TextStyled>
-          <TextStyled style={styles.recipeDescriptionText}>
-            {recipe.description}
-          </TextStyled>
-        </View>
+        <TextStyled style={[styles.recipeNameText]}>{recipe.name}</TextStyled>
+        <TextStyled style={styles.recipeDescriptionText}>
+          {recipe.description}
+        </TextStyled>
       </View>
+      <TabContainer />
     </ScrollView>
   );
 }
@@ -50,20 +50,21 @@ export default function RecipeDetailsView({
 const styles = StyleSheet.create({
   container: {
     // Display
-    alignItems: 'center',
+    alignItems: 'flex-start',
     paddingLeft: 25,
     paddingRight: 25,
   },
   recipeNameText: {
     // Display
-    margin: 10,
+    marginVertical: 10,
     // Typography
     fontSize: FontSize.Header3,
     fontWeight: 'bold',
   },
   recipeDescriptionText: {
     // Display
-    marginTop: 10,
+    marginVertical: 5,
+    width: '100%',
     // Typography
     textAlign: 'left',
   },
