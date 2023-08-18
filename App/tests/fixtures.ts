@@ -10,6 +10,11 @@ export const recipeListFixture = {
   hero_image_source: '',
 } as payloads.RecipeListPayload;
 
+export const nutritionalInformationFixture = {
+  protein_grams: 100,
+  carbohydrates_grams: 10,
+};
+
 // Menus
 
 export const menuListFixture = {

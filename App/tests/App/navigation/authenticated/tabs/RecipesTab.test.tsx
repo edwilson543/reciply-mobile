@@ -31,6 +31,7 @@ test('clicking on recipe in list navigates to detail screen', async () => {
       ...fixtures.recipeListFixture,
       images: [],
       ingredients: [],
+      nutritional_information: fixtures.nutritionalInformationFixture,
       created_at: '',
       updated_at: '',
     } as RecipeDetailsPayload,

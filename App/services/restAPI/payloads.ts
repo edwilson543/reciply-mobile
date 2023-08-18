@@ -38,9 +38,15 @@ interface RecipeImage {
   image_source: string;
 }
 
+interface NutritionalInformation {
+  protein_grams: number;
+  carbohydrates_grams: number;
+}
+
 export interface RecipeDetailsPayload extends RecipeBasePayload {
   images: Array<RecipeImage>;
   ingredients: Array<string>;
+  nutritional_information: NutritionalInformation;
   created_at: string;
   updated_at: string | null;
 }

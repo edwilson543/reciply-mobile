@@ -17,6 +17,7 @@ test('renders recipe details', async () => {
       description: 'some description',
       images: [],
       ingredients: ['400g of chicken'],
+      nutritional_information: fixtures.nutritionalInformationFixture,
       created_at: '',
       updated_at: '',
     },
