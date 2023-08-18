@@ -11,16 +11,7 @@ jest.mock('../../../../../services/restAPI/requests/recipes');
 test('renders recipe details', async () => {
   // Mock out the recipe details API call
   const mockRecipeDetails = {
-    data: {
-      id: 1,
-      name: 'sausages',
-      description: 'some description',
-      images: [],
-      ingredients: ['400g of chicken'],
-      nutritional_information: fixtures.nutritionalInformationFixture,
-      created_at: '',
-      updated_at: '',
-    },
+    data: fixtures.recipeDetailsFixture,
     ...fixtures.useGetDataJunk,
   };
   jest.mocked(useRecipeDetails).mockReturnValueOnce(mockRecipeDetails);

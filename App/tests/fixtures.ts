@@ -15,6 +15,17 @@ export const nutritionalInformationFixture = {
   carbohydrates_grams: 10,
 };
 
+export const recipeDetailsFixture = {
+  id: 1,
+  name: 'sausages',
+  description: 'some description',
+  images: [],
+  ingredients: ['400g of chicken'],
+  nutritional_information: nutritionalInformationFixture,
+  created_at: '',
+  updated_at: '',
+};
+
 // Menus
 
 export const menuListFixture = {

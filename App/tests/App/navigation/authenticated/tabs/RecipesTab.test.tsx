@@ -7,7 +7,6 @@ import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {RecipesTab} from '../../../../../navigation/authenticated/tabs';
 import {ScreenName} from '../../../../../navigation/constants';
-import {RecipeDetailsPayload} from '../../../../../services/restAPI/payloads';
 import {
   createRecipe,
   useMyRecipeList,
@@ -27,14 +26,7 @@ test('clicking on recipe in list navigates to detail screen', async () => {
 
   // Mock out the recipe details API call
   const mockRecipeDetails = {
-    data: {
-      ...fixtures.recipeListFixture,
-      images: [],
-      ingredients: [],
-      nutritional_information: fixtures.nutritionalInformationFixture,
-      created_at: '',
-      updated_at: '',
-    } as RecipeDetailsPayload,
+    data: fixtures.recipeDetailsFixture,
     ...fixtures.useGetDataJunk,
   };
   jest.mocked(useRecipeDetails).mockReturnValueOnce(mockRecipeDetails);
