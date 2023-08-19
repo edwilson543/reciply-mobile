@@ -38,7 +38,7 @@ interface RecipeImage {
   image_source: string;
 }
 
-interface NutritionalInformation {
+export interface NutritionalInformation {
   protein_grams: number;
   carbohydrates_grams: number;
 }

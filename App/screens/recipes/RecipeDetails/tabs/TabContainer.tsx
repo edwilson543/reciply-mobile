@@ -7,6 +7,7 @@ import IngredientsTab from './IngredientsTab';
 import NutritionTab from './NutritionTab';
 import TabLabel from './TabLabel';
 import {bootstrap} from '../../../../components/styled';
+import {NutritionalInformation} from '../../../../services/restAPI/payloads';
 
 enum Tab {
   Ingredients = 'Ingredients',
@@ -15,9 +16,13 @@ enum Tab {
 
 type TabContainerProps = {
   ingredients: Array<string>;
+  nutritionalInformation: NutritionalInformation;
 };
 
-export default function TabContainer({ingredients}: TabContainerProps) {
+export default function TabContainer({
+  ingredients,
+  nutritionalInformation,
+}: TabContainerProps) {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.Ingredients);
 
   const onTabPress = (tab: Tab): void => {
@@ -33,7 +38,7 @@ export default function TabContainer({ingredients}: TabContainerProps) {
         return <IngredientsTab ingredients={ingredients} />;
       }
       case Tab.Nutrition: {
-        return <NutritionTab />;
+        return <NutritionTab nutritionalInformation={nutritionalInformation} />;
       }
     }
     return <></>;

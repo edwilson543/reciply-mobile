@@ -15,7 +15,7 @@ export default function IngredientsTab({ingredients}: IngredientsTabProps) {
   const styleSheet = styles(colourScheme);
 
   return (
-    <View style={[bootstrap.my3]}>
+    <View style={[bootstrap.my3]} testID={'ingredients-tab-content'}>
       {ingredients.map(ingredient => {
         return (
           <View style={styleSheet.ingredientRow} key={ingredient}>

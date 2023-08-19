@@ -42,7 +42,10 @@ export default function RecipeDetailsView({
           {recipe.description}
         </TextStyled>
       </View>
-      <TabContainer ingredients={recipe.ingredients} />
+      <TabContainer
+        ingredients={recipe.ingredients}
+        nutritionalInformation={recipe.nutritional_information}
+      />
     </ScrollView>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {render, screen} from '@testing-library/react-native';
+import {fireEvent, render, screen} from '@testing-library/react-native';
 
 import {RecipeDetails} from '../../../../../screens/recipes';
 import {useRecipeDetails} from '../../../../../services/restAPI/requests/recipes';
@@ -25,6 +25,13 @@ test('renders recipe details', async () => {
   expect(screen.getByText('sausages')).toBeVisible();
   expect(screen.getByText('some description')).toBeVisible();
 
-  // Initially the ingrdients tab should be shown
-  expect(screen.getByText('400g of chicken')).toBeVisible();
+  // Initially the ingredients tab should be shown
+  expect(screen.getByTestId('ingredients-tab-content')).toBeVisible();
+  expect(screen.queryByTestId('nutrition-tab-content')).toBeNull();
+
+  // Change to nutrition tab
+  fireEvent.press(screen.getByText('Nutrition'));
+
+  expect(screen.getByTestId('nutrition-tab-content')).toBeVisible();
+  expect(screen.queryByTestId('ingredients-tab-content')).toBeNull();
 });
