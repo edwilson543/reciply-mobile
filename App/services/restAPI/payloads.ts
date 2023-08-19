@@ -38,8 +38,15 @@ interface RecipeImage {
   image_source: string;
 }
 
+export interface NutritionalInformation {
+  protein_grams: number;
+  carbohydrates_grams: number;
+}
+
 export interface RecipeDetailsPayload extends RecipeBasePayload {
   images: Array<RecipeImage>;
+  ingredients: Array<string>;
+  nutritional_information: NutritionalInformation;
   created_at: string;
   updated_at: string | null;
 }
@@ -69,6 +76,12 @@ export interface MenuListPayload extends MenuBasePayload {
 
 export interface MenuDetailsPayload extends MenuListPayload {
   items: Array<MenuItemPayload>;
+}
+
+export interface CreateMenuRequestPayload {
+  name: string;
+  description: string;
+  add_suggestions: boolean;
 }
 
 export interface CreateMenuErrors extends BaseError {

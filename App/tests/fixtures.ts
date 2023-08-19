@@ -10,6 +10,22 @@ export const recipeListFixture = {
   hero_image_source: '',
 } as payloads.RecipeListPayload;
 
+export const nutritionalInformationFixture = {
+  protein_grams: 100,
+  carbohydrates_grams: 10,
+};
+
+export const recipeDetailsFixture = {
+  id: 1,
+  name: 'sausages',
+  description: 'some description',
+  images: [],
+  ingredients: ['400g of chicken'],
+  nutritional_information: nutritionalInformationFixture,
+  created_at: '',
+  updated_at: '',
+};
+
 // Menus
 
 export const menuListFixture = {
@@ -29,4 +45,13 @@ export const menuItemFixture = {
 export const menuDetailsFixture = {
   ...menuListFixture,
   items: [menuItemFixture],
+};
+
+// Hooks
+export const useGetDataJunk = {
+  /** Save having to write out all the junk below for typing. */
+  setData: jest.fn(),
+  friendlyErrors: null,
+  isLoading: false,
+  onRefresh: jest.fn(),
 };

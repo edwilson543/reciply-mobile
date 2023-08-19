@@ -5,7 +5,7 @@ import {fireRequest, RequestMethod} from '../client';
 import * as constants from '../constants';
 import {loginEndpoint, logoutEndpoint, registerEndpoint} from '../endpoints';
 import * as exceptions from '../exceptions';
-import {LoginSuccessPayload} from '../payloads';
+import {LoginSuccessPayload, RegisterPayload} from '../payloads';
 
 export const login = async (
   username: string,
@@ -30,12 +30,12 @@ export const login = async (
   );
 };
 
-export const register = async (
-  username: string,
-  email: string,
-  password1: string,
-  password2: string,
-): Promise<Response> => {
+export const register = async ({
+  username,
+  email,
+  password1,
+  password2,
+}: RegisterPayload): Promise<Response> => {
   const formData = new FormData();
   formData.append('username', username);
   formData.append('email', email);

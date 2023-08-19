@@ -54,6 +54,7 @@ export default function RecipeListRow({
         </View>
       </Pressable>
       <View>{deleteOptions && <DeleteSwipeOption {...deleteOptions} />}</View>
+      {deleteOptions && <View style={styleSheet.scrollDeleteSpacer} />}
     </ScrollView>
   );
 }
@@ -88,4 +89,17 @@ const styles = (colourScheme: ColourScheme) =>
     },
     recipeName: {fontWeight: 'bold'},
     recipeDescription: {fontStyle: 'italic', fontSize: FontSize.TextSmall},
+    scrollDeleteSpacer: {
+      // Elastic scroll past the options menu shows the default background (white) which looks weird,
+      // so a spacer is added to make this background red.
+      // Positioning
+      position: 'absolute',
+      zIndex: -1,
+      left: utilisedDeviceWidth,
+      // Display
+      width: utilisedDeviceWidth,
+      height: 100,
+      // Background
+      backgroundColor: colourScheme.buttonDanger,
+    },
   });

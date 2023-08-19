@@ -8,15 +8,22 @@ import {ColourScheme, useColourScheme} from '../../styles/colourScheme';
 
 type AlertProps = {
   errorText: string;
-  style?: ViewStyle;
+  style?: Array<ViewStyle>;
 };
 
 export function AlertDanger({errorText, style}: AlertProps) {
   const colourScheme = useColourScheme();
   const styleSheet = styles(colourScheme);
 
+  const extraStyles = style ?? [];
+
   return (
-    <View style={[styleSheet.alertContainer, styleSheet.alertDanger, style]}>
+    <View
+      style={[
+        styleSheet.alertContainer,
+        styleSheet.alertDanger,
+        ...extraStyles,
+      ]}>
       <TextStyled style={styleSheet.alertDanger}>{errorText}</TextStyled>
     </View>
   );

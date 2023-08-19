@@ -7,7 +7,6 @@ import {act, fireEvent, render, screen} from '@testing-library/react-native';
 
 import {RecipesTab} from '../../../../../navigation/authenticated/tabs';
 import {ScreenName} from '../../../../../navigation/constants';
-import {RecipeDetailsPayload} from '../../../../../services/restAPI/payloads';
 import {
   createRecipe,
   useMyRecipeList,
@@ -21,23 +20,14 @@ test('clicking on recipe in list navigates to detail screen', async () => {
   // Mock out the recipe list API call
   const mockRecipeList = {
     data: [fixtures.recipeListFixture],
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
   // Mock out the recipe details API call
   const mockRecipeDetails = {
-    data: {
-      ...fixtures.recipeListFixture,
-      images: [],
-      created_at: '',
-      updated_at: '',
-    } as RecipeDetailsPayload,
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    data: fixtures.recipeDetailsFixture,
+    ...fixtures.useGetDataJunk,
   };
   jest.mocked(useRecipeDetails).mockReturnValueOnce(mockRecipeDetails);
 
@@ -65,11 +55,9 @@ test('creating valid new recipe navigates to list screen', async () => {
   jest.mocked(createRecipe).mockResolvedValueOnce({data: {}, errors: null});
   const mockRecipeList = {
     data: [],
-    setData: jest.fn(),
-    friendlyErrors: null,
-    isLoading: false,
+    ...fixtures.useGetDataJunk,
   };
-  jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
+  jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
   render(
     <NavigationContainer>

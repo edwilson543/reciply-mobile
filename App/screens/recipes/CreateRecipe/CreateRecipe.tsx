@@ -22,7 +22,7 @@ export function CreateRecipe({navigation}: CreateRecipeProps) {
     createRecipe(name, description, heroImage)
       .then(({data, errors: newErrors}) => {
         if (data) {
-          navigation.navigate(ScreenName.MyRecipeList, {refresh: true});
+          navigation.navigate(ScreenName.MyRecipeList);
         } else {
           setErrors(newErrors);
         }

@@ -4,19 +4,27 @@ import {useState} from 'react';
 import CreateMenuView from './CreateMenuView';
 import {CreateMenuProps} from '../../../navigation/authenticated/navigation.types';
 import {ScreenName} from '../../../navigation/constants';
-import {CreateMenuErrors} from '../../../services/restAPI/payloads';
+import {
+  CreateMenuErrors,
+  CreateMenuRequestPayload,
+} from '../../../services/restAPI/payloads';
 import {createMenu} from '../../../services/restAPI/requests/menus';
+
+const initialData = {
+  name: '',
+  description: '',
+  add_suggestions: true,
+};
 
 export function CreateMenu({navigation}: CreateMenuProps) {
   /** Allow users to create a new menu. */
-  const [name, setName] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
+  const [newMenu, setNewMenu] = useState<CreateMenuRequestPayload>(initialData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<CreateMenuErrors | null>(null);
 
   async function submitForm(): Promise<void> {
     setIsLoading(true);
-    createMenu(name, description)
+    createMenu(newMenu)
       .then(({data, errors: newErrors}) => {
         if (data) {
           navigation.replace(ScreenName.ManageMenuItems, {
@@ -31,10 +39,8 @@ export function CreateMenu({navigation}: CreateMenuProps) {
 
   return (
     <CreateMenuView
-      name={name}
-      onNameChange={setName}
-      description={description}
-      onDescriptionChange={setDescription}
+      newMenu={newMenu}
+      onNewMenuChange={setNewMenu}
       submitForm={submitForm}
       isLoading={isLoading}
       errors={errors}

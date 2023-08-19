@@ -1,6 +1,4 @@
-import React, {useEffect, useState} from 'react';
-
-import {useIsFocused} from '@react-navigation/native';
+import React from 'react';
 
 import MyMenuListView from './MyMenuListView';
 import {MyMenuListProps} from '../../../navigation/authenticated/navigation.types';
@@ -8,20 +6,7 @@ import {useMyMenuList} from '../../../services/restAPI/requests/menus';
 
 export function MyMenuList({navigation}: MyMenuListProps) {
   /** List the menus the user has written themselves. */
-  const [refreshKey, setRefreshKey] = useState<number>(0);
-  const {data, isLoading} = useMyMenuList(refreshKey);
-
-  const isFocused = useIsFocused();
-  const isFirstRender = refreshKey === 0;
-
-  useEffect(() => {
-    /** Refresh the data when navigating back to this screen. */
-    isFocused && !isFirstRender && onRefresh();
-  }, [isFocused, isFirstRender]);
-
-  function onRefresh(): void {
-    setRefreshKey(n => n + 1);
-  }
+  const {data, isLoading, onRefresh} = useMyMenuList();
 
   return (
     <MyMenuListView

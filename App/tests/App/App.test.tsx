@@ -26,7 +26,7 @@ test('initially renders recipe list when auth token available', async () => {
     friendlyErrors: null,
     isLoading: false as false,
   };
-  jest.mocked(useMyRecipeList).mockReturnValue(mockRecipeList);
+  jest.mocked(useMyRecipeList).mockReturnValueOnce(mockRecipeList);
 
   await waitFor(() => render(<App />));
 

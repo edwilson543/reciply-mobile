@@ -6,6 +6,7 @@ import {within, screen, render, waitFor} from '@testing-library/react-native';
 import {MyMenuList} from '../../../../../screens/menus';
 import {MenuListPayload} from '../../../../../services/restAPI/payloads';
 import {useMyMenuList} from '../../../../../services/restAPI/requests/menus';
+import * as fixtures from '../../../../fixtures';
 
 jest.mock('../../../../../services/restAPI/requests/menus');
 
@@ -24,12 +25,10 @@ const mockMenuList = {
       number_of_items: 3,
     } as MenuListPayload,
   ],
-  setData: jest.fn(),
-  friendlyErrors: null,
-  isLoading: false as false,
+  ...fixtures.useGetDataJunk,
 };
 test('renders recipe list', async () => {
-  jest.mocked(useMyMenuList).mockReturnValue(mockMenuList);
+  jest.mocked(useMyMenuList).mockReturnValueOnce(mockMenuList);
 
   await waitFor(() =>
     render(
